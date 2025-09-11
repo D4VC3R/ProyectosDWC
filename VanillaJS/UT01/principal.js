@@ -8,12 +8,12 @@ import { restar, multiplicar, multi } from "./bibliotecas/calculadora.js";
 import { sumar as add } from "./bibliotecas/calculadora.js";
 
 // Importa todos los elementos en un objeto.
-import * as Feo from "./bibliotecas/calculadora.js";
+import * as Calculadora from "./bibliotecas/calculadora.js";
 
 console.log(sumar(8, 5));
 console.log(add(5, 5));
-console.log(Feo.restar(5, 5));
-console.log(Feo.dividir(85, 0));
+console.log(Calculadora.restar(5, 5));
+console.log(Calculadora.dividir(85, 0));
 console.log(multi(5, 5)); 
 
 /* Convenciones de uso.
