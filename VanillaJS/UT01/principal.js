@@ -4,12 +4,13 @@ import { sumar } from "./bibliotecas/calculadora.js";
 // Importa varios elementos de una vez.
 import { restar, multiplicar, multi } from "./bibliotecas/calculadora.js";
 
-// Importac asiganandole un alias.
+// Importa asiganandole un alias.
 import { sumar as add } from "./bibliotecas/calculadora.js";
 
 // Importa todos los elementos en un objeto.
 import * as Calculadora from "./bibliotecas/calculadora.js";
 
+// Pruebas por consola
 console.log(sumar(8, 5));
 console.log(add(5, 5));
 console.log(Calculadora.restar(5, 5));
@@ -30,5 +31,8 @@ console.log(multi(5, 5));
  * */
 
 let res = isNaN(8);
+let res2 = isNaN(true);
+let res3 = "8";
 
-/* console.log(res); */
+
+console.log(res, res2, res3);

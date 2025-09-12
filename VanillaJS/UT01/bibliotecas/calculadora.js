@@ -15,10 +15,11 @@ function multiplicar(x, y) {
 }
 
 /**
- * Exporta directamente la función Dividir.
+ * Se pueden exportar directamente las funciones con 'export' antes de la función.
+ * Ej: export function dividir (x, y){...}
  * */
 
-export function dividir(x, y) {
+function dividir(x, y) {
   let division = 0;
   if (y === 0) {
     division = "No se puede dividir entre 0.";
@@ -32,7 +33,7 @@ export function dividir(x, y) {
  *   Exporta los elementos situados entre las llaves.
  * */
 
-export { sumar, restar, multiplicar };
+export { sumar, restar, multiplicar, dividir };
 
 /**
  * Exporta el elemento con un seudónimo.
