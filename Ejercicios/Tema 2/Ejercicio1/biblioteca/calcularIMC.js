@@ -1,15 +1,25 @@
 "use strict";
 
-const Persona = {
-    masa,
-    altura
+class Persona {
+    constructor() {
+        this.masa;
+        this.altura;
+    }
+}
+
+// Si se ha introducido valores correctos, calculamos y si no, insultamos.
+function calcularIMC(masa, altura){
+    if (!isNaN(masa) && !isNaN(altura))
+        return masa / (altura * altura);
+    else
+        return "Introduce números, idiota."
 };
 
-const Marcos = new Persona;
-Marcos.masa = 60;
-Marcos.altura = 180;
+// Creo que no sería necesario utilizar isNaN aquí ya que se supone que lo hemos comprobado en calcularIMC
+function compararIMC(imcJuan, imcMarcos){
+    if(!isNaN(imcJuan) && !isNaN(imcMarcos))
+        return imcMarcos > imcJuan;
+};
 
-const Juan = new Persona;
-Juan.masa = 70;
-Juan.altura = 177;
+export { Persona, calcularIMC, compararIMC};
 
