@@ -39,6 +39,5 @@ export function analisisNumerico(num){
     isPositivo(num) ? resultado += `positivo y ` : resultado += `negativo y `;
     isPrimo(num) ? resultado += `primo.` : resultado += `no primo.`
 
-    
     return resultado;
 }
