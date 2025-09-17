@@ -46,3 +46,5 @@ export function analisisNumerico(num){
 
     return resultado;
 }
+
+export {isPositivo, isNumero};
