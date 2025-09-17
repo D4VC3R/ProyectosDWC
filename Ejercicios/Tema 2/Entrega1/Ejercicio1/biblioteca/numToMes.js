@@ -11,5 +11,5 @@ const meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "
     if (numero >=1 && numero <=12) {
         return `El mes número ${numero} es ${meses[numero-1]}.` // Accedemos al nombre de cada mes por su posición en el array
     } else
-        return "¿Que tal si pones un número entre 1 y 12?" // La mejor parte, insultar la inteligencia del usuario sutilmente
+        return "¿Qué tal si pones un número entre 1 y 12?" // La mejor parte, insultar la inteligencia del usuario sutilmente
 }
