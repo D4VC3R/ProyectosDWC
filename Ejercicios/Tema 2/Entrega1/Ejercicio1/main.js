@@ -6,4 +6,5 @@ import { getMes } from "./biblioteca/numToMes.js";
 console.log(getMes(1));
 console.log(getMes(12));
 console.log(getMes(5.4));
+console.log(getMes(0));
 console.log(getMes("F"));
