@@ -2,8 +2,7 @@
 
 import { analisisNumerico } from "./biblioteca/analisisNumerico.js";
 
-// Distintas pruebas para comprobar que todo funciona correctamente
-
+// Comprobaciones
 console.log(analisisNumerico(7)); 
 console.log(analisisNumerico("f"));
 console.log(analisisNumerico(4));
