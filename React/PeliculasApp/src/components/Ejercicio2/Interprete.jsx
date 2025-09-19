@@ -10,7 +10,7 @@ const Interprete = (props) => {
             <div className="contenido">
                 <h2 className="nombre">{props.nombre}</h2>
                     <div className="biografia">
-                        Biografia: {props.children}
+                        {props.children}
                     </div>
             </div>
         </div>

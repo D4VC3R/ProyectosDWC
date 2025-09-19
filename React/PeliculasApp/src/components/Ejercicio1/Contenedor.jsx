@@ -1,12 +1,13 @@
 import React, { Children } from "react";
 import "./Contenedor.css";
 
-const Contenedor = ({children}) => {
+const Contenedor = (props) => {
 
 
     return(
-        <div className="contenedor">
-            {children}
+        <div className="Contenedor_contenedor">
+            <p>Contenedor</p>
+            {props.children}
         </div>
     );
 };
