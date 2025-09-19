@@ -1,0 +1,32 @@
+.interprete {
+    padding: 15px;
+    margin: 10px;
+    border: 5px solid #087208;
+    display: flex; 
+    gap: 20px; 
+}
+
+
+.interprete img {
+    border-radius: 8px;
+    width: 150px;
+    display: block; 
+}
+
+
+.interprete .contenido {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.interprete .nombre {
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block; 
+}
+
+.biografia {
+    font-size: 0.9em;
+}
