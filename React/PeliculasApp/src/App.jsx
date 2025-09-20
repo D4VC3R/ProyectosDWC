@@ -7,6 +7,7 @@ import Pelicula from "./components/Ejercicio3/Pelicula.jsx";
 function App() {
   
   // Array de Interprete que luego le pasaremos a Pelicula para rellenar el parametro elenco
+  // Que FilmAffinity me perdona por robarle las imágenes
   const elencoEsenciaDeMujer = [
     <Interprete 
     nombre ="Al Pacino" 
