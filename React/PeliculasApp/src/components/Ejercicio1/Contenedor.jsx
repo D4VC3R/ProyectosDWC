@@ -3,10 +3,9 @@ import "./Contenedor.css";
 
 const Contenedor = (props) => {
 
-
+    // Contenedor solo devuelve el valor de su children.
     return(
         <div className="Contenedor_contenedor">
-            <p>Contenedor</p>
             {props.children}
         </div>
     );
