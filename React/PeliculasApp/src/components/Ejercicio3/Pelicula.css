@@ -1,0 +1,16 @@
+.Pelicula_pelicula img{
+    border-radius: 8px;
+    align-self: center;
+    border: 3px solid rgb(173, 142, 85);
+}
+
+.Pelicula_pelicula .elenco{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.Pelicula_pelicula .titulo{
+    font-family: monaco;
+    color: #854f11;
+}
