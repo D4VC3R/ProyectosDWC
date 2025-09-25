@@ -6,6 +6,7 @@ import * as utilidades from "./misFuncionesNumericas.js";
                                                 // Ejercicio 1 - Constructor     |
                                                 // -------------------------------
 
+// Si el año no es válido no debería crear el objeto y lanzar una excepción, pero complicaba demasiado el ejercicio al detener la ejecución de todo el programa.
 export const creaCurso = (nombreCurso, anyoCurso, descripcionCurso, alumnadoCurso = []) => {
         return {
             nombre: nombreCurso,
@@ -13,7 +14,7 @@ export const creaCurso = (nombreCurso, anyoCurso, descripcionCurso, alumnadoCurs
             descripcion: descripcionCurso,
             alumnado: [...alumnadoCurso]
         };
-        // Si el año no es válido no debería crear el objeto y lanzar una excepción, pero complicaba demasiado el ejercicio al detener la ejecución de todo el programa.
+        
 };
 
 // Comprobamos que el dato introducido como año no sea una locura.
@@ -104,7 +105,7 @@ export const discente = {
         resultado += `  - Primera evaluación: ${this.notas.primera}\n`;
         resultado += `  - Segunda evaluación: ${this.notas.segunda}\n`;
         resultado += `  - Tercera evaluación: ${this.notas.tercera}\n`;
-        resultado += `Nota media: ${this.calcularMedia()}\n`;
+        resultado += `Nota media: ${this.calcularMedia().toLocaleString("es-ES")}\n`;
         
         
         return resultado;
@@ -115,11 +116,16 @@ export const discente = {
                                                 // Ejercicio 4 - Modificando objetos |
                                                 // ----------------------------------
 
-export const creaCursoYMatricular = (nombreCurso, anyoCurso, descripcionCurso, alumnadoCurso = []) => {
-        return {
-            nombre: nombreCurso,
-            anyo: isAnyoValido(anyoCurso) ? anyoCurso : `El año del curso debe ser un valor comprendido entre 1900 y ${new Date().getFullYear() + 5}`,
-            descripcion: descripcionCurso,
-            alumnado: [...alumnadoCurso]
-        };
+
+export function addMatricula(curso){
+    curso.matricular = function(discente) {
+        this.alumnado = [...this.alumnado, discente];
+    };
+    return curso;
 };
+
+
+                                                // ------------------------------------------
+                                                // Ejercicio 5 - Mostrando objetos (otra vez)|
+                                                // ------------------------------------------
+

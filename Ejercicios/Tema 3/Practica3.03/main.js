@@ -4,7 +4,7 @@
 import { creaCurso } from "./biblioteca/ejercicios.js";
 
 let alumnos = ["Paco", "Pepe"];
-const curso = creaCurso("2º DAW", 2026, "Curso para frikis.", alumnos);
+export const curso = creaCurso("2º DAW", 2026, "Curso para frikis.", alumnos);
 
 console.log(curso);
 
@@ -25,3 +25,11 @@ import { discente } from "./biblioteca/ejercicios.js";
 
 console.log(discente.imprimirAficiones());
 console.log(discente.imprimirInforme());
+
+// Comprobaciones Ejercicio 4
+
+import { addMatricula } from "./biblioteca/ejercicios.js";
+
+addMatricula(curso);
+curso.matricular(discente);
+console.log(curso);
