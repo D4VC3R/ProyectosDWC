@@ -116,6 +116,7 @@ export const discente = {
                                                 // Ejercicio 4 - Modificando objetos |
                                                 // ----------------------------------
 
+// Para no copiar y pegar lo del ejercicio 1, he decidido hacer una función que añada la función matricular al curso.
 
 export function addMatricula(curso){
     curso.matricular = function(discente) {
@@ -129,3 +130,6 @@ export function addMatricula(curso){
                                                 // Ejercicio 5 - Mostrando objetos (otra vez)|
                                                 // ------------------------------------------
 
+export const imprimirObjetoPro = (objeto) =>{
+
+}
