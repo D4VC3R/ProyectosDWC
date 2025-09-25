@@ -1,7 +1,7 @@
 "use strict";
 
 function isPar(num){
-    return num%2 == 0;
+    return num%2 === 0;
 };
 
 function isPrimo(num){
