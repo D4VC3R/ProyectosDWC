@@ -1,6 +1,6 @@
 "use strict";
 
-import * as utilidades from "./misFuncionesNumericas.js";
+import * as utilidades from "../../Practica3.04/biblioteca/misFuncionesNumericas.js";
 
 // Hola Juan Carlos, esto es un aviso de que hay muchas cosas que no están hechas conforme a lo que dijiste en la clase del viernes.
 // Verás algún for clásico, encadenamiento de Strings y algún vicio más que aún tengo de Java, los estoy corrigiendo, lo prometo.
