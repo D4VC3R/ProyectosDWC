@@ -3,12 +3,12 @@
 // Recopilación de funciones útiles de anteriores ejercicios convertidas a funciones flecha.
 
 const isPar = (num) => {
-    return num%2 === 0;
+    return isNumero(num) && num%2 === 0;
 };
 
 const isPrimo = (num) => {
     // Como los números primos empiezan en el 2, descartamos todo lo inferior.
-    if (num < 2) {
+    if (num < 2 || !isNumero(num)) {
         return false;
     }
     // Comprobación de los dividores de cada número, si el módulo de algun posible divisor es 0, lanzamos el return.
@@ -21,7 +21,7 @@ const isPrimo = (num) => {
 };
 
 const isPositivo = (num) => {
-    return num>0;
+    return isNumero(num) && num>0;
 };
 
 const isNumero = (num) => { 
@@ -29,7 +29,7 @@ const isNumero = (num) => {
 };
 
 const isNotaValida = (nota) => {
-    return (nota >= 0 && nota <= 10);
+    return isNumero(num) && (nota >= 0 && nota <= 10);
 }
 // Calcular la media de un array de números enteros.
 const getMediaAritmetica = (nums) => {
