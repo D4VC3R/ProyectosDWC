@@ -2,7 +2,7 @@
 
 // Comprobaciones Ejercicio 1
 
-import { nombresPropios, pasarAMayus, ordenAlfabeticoInverso, addPropiedades } from "./biblioteca/ejercicios.js";
+import { nombresPropios, pasarAMayus, ordenAlfabeticoInverso, addPropiedades} from "./biblioteca/ejercicios.js";
 
 console.log("Ejercicio 1.");
 
@@ -29,8 +29,14 @@ console.log(imprimirArray(testFiltrado));
 console.log("\nEjercicio 3.");
 
 import { usuarios } from "./biblioteca/Ejercicio3.js";
-import { getMayoresDeEdad, getYahoo } from "./biblioteca/ejercicios.js";
+import { nuevoUsuario, addUsuario, getMayoresDeEdad, getYahoo, getUsuariosFiltrados, getUsuariosIncompletos, addApellidos, addCodigoPostal } from "./biblioteca/ejercicios.js";
+
 
 console.log(usuarios);
+console.log(addUsuario(usuarios, nuevoUsuario));
 console.log(getMayoresDeEdad(usuarios));
 console.log(getYahoo(usuarios));
+console.log(getUsuariosFiltrados(usuarios));
+console.log(getUsuariosIncompletos(usuarios));
+console.log(addApellidos(usuarios));
+console.log(addCodigoPostal(usuarios));
