@@ -94,7 +94,9 @@ export const comprobarColumnas = (arrayBidimensional = [[]]) => {
 };
 
 // Dividimos el sudoku en cuadrantes de 3x3, devolvemos un array de arrays con los valores de cada cuadrante en cada posición del array.
-export const comprobarCuadrantes = (arrayBidimensional)
+export const comprobarCuadrantes = (arrayBidimensional =[[]]) => {
+	const indices = [0, 3, 6]; // Índices del array donde cambiamos de cuadrante.
+}
 
 
 
