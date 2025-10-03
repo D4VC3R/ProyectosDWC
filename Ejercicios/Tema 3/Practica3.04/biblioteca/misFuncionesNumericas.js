@@ -2,8 +2,54 @@
 
 // Recopilación de funciones útiles de anteriores ejercicios convertidas a funciones flecha.
 
-const isPar = (num) => {
-    return isNumero(num) && num%2 === 0;
+const isPar = (num) => {return isNumero(num) && num%2 === 0;};
+
+const getNumeroAleatorio = (min, max) => {return Math.floor(Math.random() * (max - min + 1) + min);};
+
+const generarArrayAleatorio = (min, max, elementosArray) => {return Array.from({ length: elementosArray }, () => getNumeroAleatorio(min, max));};
+
+const generarArraysAleatorios = (cantidad, elementosArray, min, max) => {return Array.from({ length: cantidad }, () => generarArrayAleatorio(min, max, elementosArray));};
+
+const imprimirArray = (array = []) => {return array.join(', ') + '.';};
+
+const isPositivo = (num) => {return isNumero(num) && num>0;};
+
+const isNumero = (num) => {return !isNaN(num);};
+
+const isNotaValida = (nota) => {return isNumero(num) && (nota >= 0 && nota <= 10);};
+
+const sumar = (x, y) => {return x + y;};
+
+const restar = (x, y) => {return x - y;};
+
+const multiplicar = (x, y) => {return x * y;};
+
+const modulo = (x, y) => {return x % y;};
+
+const dividir = (x, y) => { // Si, te la he robado.
+    let division = 0;
+    if (y === 0) {
+        division = "No se puede dividir entre 0.";
+    } else {
+        division = x / y;
+    }
+    return division;
+};
+
+const calculadora = (x, y, operador) => {
+    if (Number.isInteger(x) && Number.isInteger(y)) {
+        switch (operador) {
+            // No utilizo el break porque todos los casos implican un return.
+            case "+": return sumar(x, y);
+            case "-" : return restar (x,y);
+            case "*" : return multiplicar (x,y);
+            case "/" : return dividir (x,y);
+            case "%" : return modulo (x,y);
+            default: return "Introduce un operador válido ( '+', '-', '*', '/' ó '%')"; // Si el valor no es un operador válido, salta el default.
+        
+        }
+    }
+    return "Solo calculo números enteros."; // Mensaje más bonito que recibir un NaN.
 };
 
 const isPrimo = (num) => {
@@ -20,17 +66,7 @@ const isPrimo = (num) => {
     return true; // Si llegamos hasta aqui es que no hay divisores exactos y por lo tanto el número es primo.
 };
 
-const isPositivo = (num) => {
-    return isNumero(num) && num>0;
-};
 
-const isNumero = (num) => { 
-    return !isNaN(num);
-};
-
-const isNotaValida = (nota) => {
-    return isNumero(num) && (nota >= 0 && nota <= 10);
-}
 // Calcular la media de un array de números enteros.
 const getMediaAritmetica = (nums) => {
     let total = 0, elementos = 0; 
@@ -58,48 +94,6 @@ const calcularMedia = (notas) => {
         }
     });
     return total / elementos;
-}
-
-const calculadora = (x, y, operador) => {
-    if (Number.isInteger(x) && Number.isInteger(y)) {
-        switch (operador) {
-            // No utilizo el break porque todos los casos implican un return.
-            case "+": return sumar(x, y);
-            case "-" : return restar (x,y);
-            case "*" : return multiplicar (x,y);
-            case "/" : return dividir (x,y);
-            case "%" : return modulo (x,y);
-            default: return "Introduce un operador válido ( '+', '-', '*', '/' ó '%')"; // Si el valor no es un operador válido, salta el default.
-        
-        }
-    }
-    return "Solo calculo números enteros."; // Mensaje más bonito que recibir un NaN.
 };
 
-const sumar = (x, y) => {
-    return x + y;
-};
-
-const restar = (x, y) => {
-    return x - y;
-};
-
-const multiplicar = (x, y) => {
-    return x * y;
-};
-
-const dividir = (x, y) => { // Si, te la he robado.
-    let division = 0;
-    if (y === 0) {
-        division = "No se puede dividir entre 0.";
-    } else {
-        division = x / y;
-    }
-    return division;
-};
-
-const modulo = (x, y) => {
-    return x % y;
-};
-
-export {isPar, isPrimo, isPositivo, isNumero, getMediaAritmetica, calculadora, isNotaValida, calcularMedia};
+export {isPar, isPrimo, isPositivo, isNumero, getMediaAritmetica, calculadora, isNotaValida, calcularMedia, getNumeroAleatorio, generarArrayAleatorio, generarArraysAleatorios};
