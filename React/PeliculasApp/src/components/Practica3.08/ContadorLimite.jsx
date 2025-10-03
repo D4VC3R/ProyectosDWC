@@ -6,15 +6,9 @@ const ContadorLimite = () => {
 
   const [contador, setContador] = useState(0);
 
-  const incrementarContador = () => {
-    setContador(contador + 1);
-  };
-
-  const decrementarContador = () => {
-    setContador(contador - 1);
-  };
-
-
+  // No hago comprobaciones aquí porque la propiedad disabled se encarga de ellas.
+  const incrementarContador = () => setContador(contador + 1);
+  const decrementarContador = () => setContador(contador - 1);
 
   return (
 

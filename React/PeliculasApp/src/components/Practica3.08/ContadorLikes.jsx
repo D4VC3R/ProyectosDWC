@@ -6,16 +6,16 @@ import "./ContadorLikes.css"
 
 const ContadorLikes = () => {
 
+  // Innecesario en este caso pero así voy cogiendo la costumbre.
   const valorIniLikes = 0;
   const valorIniDislikes = 0;
 
+  // Creamos un estado para cada contador.
   const [contLikes, setContLikes] = useState(valorIniLikes);
   const [contDislikes, setContDislikes] = useState(valorIniDislikes);
 
   const incrementarLikes = () => setContLikes(contLikes + 1);
   const incrementarDislikes = () => setContDislikes(contDislikes + 1);
-
-
 
   return (
     <div className="ContadorLikes_container">

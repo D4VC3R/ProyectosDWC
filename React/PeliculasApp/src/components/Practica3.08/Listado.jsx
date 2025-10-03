@@ -4,13 +4,14 @@ import "./Listado.css";
 
 const Listado = () => {
 
-	// Creamos un array con números del 1 al 100 como valor inicial
+	// Creamos un array con números del 1 al 100 como valor inicial.
 	const valorInicial = Array.from({ length: 100 }, (valor, indice) => indice + 1);
 
 	const [numerosDisponibles, setNumerosDisponibles] = useState(valorInicial);
 	const [numerosGenerados, setNumerosGenerados] = useState([]);
 
-	// Función para extraer un número aleatorio del array de numerosDisponibles y agregarlo al de numerosGenerados, que es el que voy a mostrar.
+	// Función para extraer un número aleatorio del array numerosDisponibles y agregarlo al de numerosGenerados, que es el que voy a mostrar.
+	// De esta manera me aseguro de no repetir ningún número.
 	const generarNumeroAleatorio = () => {
 		if (numerosDisponibles.length === 0) return;
 
@@ -26,7 +27,6 @@ const Listado = () => {
 		setNumerosDisponibles(valorInicial)
 		setNumerosGenerados([])
 	};
-
 
 	return (
 		<div className="Listado_container">
