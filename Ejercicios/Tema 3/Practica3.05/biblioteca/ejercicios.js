@@ -1,6 +1,6 @@
 "use strict";
 
-import { getNumeroAleatorio } from "../../Practica3.04/biblioteca/misFuncionesNumericas.js";
+import { getNumeroAleatorio } from "./misFuncionesNumericas.js";
 
                                                 // -------------------------------
                                                 // Ejercicio 1 - El inicio        |
@@ -22,7 +22,7 @@ export const generarArrayAleatorioUnico = (min, max, elementosArray) => {
 		return arrayAleatorio;
 };
 
-// Si el índice de un valor no es la última posición donde aparece, es que está repetido.
+// Si la primera aparición de un valor (indexOf) no es también la última (lastIndexOf), es que está repetido.
 export const comprobarArrayAleatorio = (arrayAleatorio = []) => {
     return arrayAleatorio.some((valor, indice, array) => array.indexOf(valor) !== array.lastIndexOf(valor));
 };
@@ -38,24 +38,33 @@ export const generarArrayBidimensionalUnico = () => {
 	return [numeros.slice(0,3), numeros.slice(3,6), numeros.slice(6,9)];
 };
 
-export const comprobarArrayBidimensional = (arrayBidimensional = [[]]) => {
-	// Primero comprobamos la fila, si no hay elementos repetidos, pasamos a las columnas.
-	if(arrayBidimensional.some(fila => comprobarArrayAleatorio(fila)))
-		return true;
+export const comprobarArrayBidimensional = (arrayBidimensional = [[],[],[]]) => {
+	return comprobarFilas(arrayBidimensional) || comprobarColumnas(arrayBidimensional);
+};
 
-	for (let i = 0; i < arrayBidimensional[0]; i++) {
+const comprobarFilas = (arrayBidimensional = [[]]) => {
+		return arrayBidimensional.some(fila => comprobarArrayAleatorio(fila));
+};
+
+const comprobarColumnas = (arrayBidimensional = [[]]) => {
+	// No será la mejor manera, pero con el for tradicional me cuesta menos "ver" que estoy haciendo.
+	for (let i=0; i < arrayBidimensional[0].length; i++){
 		const columna = [];
-		arrayBidimensional.forEach(fila => {
-			columna.push(fila[i])
+		// Por cada fila del array, recogemos los valores que estén en la posición i y los metemos en columna.
+		// Por ejemplo, la posición 0 de cada fila, formará una columna.
+		arrayBidimensional.forEach(fila =>{
+			columna.push(fila[i]);
 		});
-		if (comprobarArrayAleatorio(columna)) {
+		// Ya hemos llenado columna con todos los valores de la posición i, ahora comprobamos.
+		if (comprobarArrayAleatorio(columna))
 			return true;
-		}
 	}
+	// Si llegamos aquí es que ninguna columna tiene números repetidos.
 	return false;
-}
+};
 
-/* Parecía sencillo pero me he dado cuenta en el ejercicio 3 que esta función no sería reutilizable.
+
+/* Me he dado cuenta en el ejercicio 3 que esta función no sería reutilizable porque pierdo la información sobre las filas y columnas.
 
 // Como solo necesitamos comprobar si hay números repetidos, "aplanamos" el array bidimensional
 // y reutilizamos comprobarArrayAleatorio();
@@ -69,34 +78,34 @@ export const comprobarArrayBidimensional = (arrayBidimensional = [[]]) => {
                                                 // Ejercicio 3 - El Sudoku        |
                                                 // -------------------------------
 
-// Ya podemos comprobar que un cuadrante no tenga números repetidos, pero nos falta comprobar cada fila y columna.
 
-export const comprobarFilas = (arrayBidimensional = [[]]) => {
-		return arrayBidimensional.some(fila => comprobarArrayAleatorio(fila));
-};
+// Ya podemos comprobar que una fila o columna no tenga valores repetidos, pero falta comprobar cada cuadrante de 3x3 dentro del sudoku.
+const comprobarCuadrantes = (arrayBidimensional =[[]]) => {
+	const indices = [0, 3, 6]; // Índices del array donde cambiamos de cuadrante.
 
-export const comprobarColumnas = (arrayBidimensional = [[]]) => {
-	
-	// No será la mejor manera, pero con el for tradicional me cuesta menos "ver" que estoy haciendo.
-	for (let i=0; i < arrayBidimensional[0].length; i++){
-		const columna = [];
-		// Por cada fila del array, recogemos los valores que estén en la posición i y los metemos en columna.
-		// Por ejemplo, la posición 0 de cada fila, formará una columna.
-		arrayBidimensional.forEach(fila =>{
-			columna.push(fila[i]);
-		});
-		// Ya hemos llenado columna con todos los valores de la posición i, ahora comprobamos.
-		if (comprobarArrayAleatorio(columna))
-			return true;
+	//  Dos bucles para recorrer los inicios de cada cuadrante.
+	for (const fila of indices) {
+		for (const columna of indices) {
+			const cuadrante = [];
+			// Para cada cuadrante, recorremos sus 3 filas y 3 columnas.
+			for (let i = 0; i < 3; i++) {
+				for (let j = 0; j < 3; j++) {
+					cuadrante.push(arrayBidimensional[fila + i][columna + j]);
+				}
+			}
+			if (comprobarArrayAleatorio(cuadrante)) {
+				return true;
+			}
+		}
 	}
-	// Si llegamos aquí es que ninguna columna tiene número repetidos.
 	return false;
 };
 
-// Dividimos el sudoku en cuadrantes de 3x3, devolvemos un array de arrays con los valores de cada cuadrante en cada posición del array.
-export const comprobarCuadrantes = (arrayBidimensional =[[]]) => {
-	const indices = [0, 3, 6]; // Índices del array donde cambiamos de cuadrante.
-}
+// Como las funciones devuelven true si hay repetidos, hay que negar la lógica para que devuelva true si el sudoku es válido.
+export const isSudokuValido = (arrayBidimensional = [[]]) => {
+	return !comprobarArrayBidimensional(arrayBidimensional) && !comprobarCuadrantes(arrayBidimensional);
+};
+
 
 
 
