@@ -31,6 +31,7 @@ export const comprobarArrayAleatorio = (arrayAleatorio = []) => {
                                                 // Ejercicio 2 - El avance        |
                                                 // -------------------------------
 
+												
 export const generarArrayBidimensionalUnico = () => {
 	// Generamos un array con 9 números aleatorios no repetidos.
 	const numeros = generarArrayAleatorioUnico(1, 9, 9);
