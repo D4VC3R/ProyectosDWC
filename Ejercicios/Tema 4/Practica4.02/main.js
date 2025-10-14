@@ -1,7 +1,13 @@
 "use strict";
 
-import { censurar } from "./biblioteca/funcionesDOM.js";
+// Comprobaciones Ejercicio 1
 
-setTimeout(() => {
-    censurar()
+import { censurarFacil, censurarEloyStyle } from "./biblioteca/funcionesDOM.js";
+
+/* setTimeout(() => {
+    censurarFacil()
+}, 1000); */
+
+setTimeout(() =>{
+    censurarEloyStyle();
 }, 1000);
