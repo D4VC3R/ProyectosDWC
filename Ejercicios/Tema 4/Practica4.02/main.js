@@ -35,5 +35,8 @@ setTimeout(() => {
 import { carrusel } from "./biblioteca/funcionesDOM.js";
 
 addDiv("ejercicio4");
-carrusel("ejercicio4");
+setTimeout(() => {
+    carrusel("ejercicio4");
+}, 1000);
+
 

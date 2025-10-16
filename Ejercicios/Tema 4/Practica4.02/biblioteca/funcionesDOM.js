@@ -67,7 +67,7 @@ import { isPrimo } from "./misFuncionesNumericas.js";
 export const pintarPrimos = () => {
   const tablas = document.getElementsByTagName("table");
   // console.log(tablas)
-  // Hay que especificar que tabla vamos a manipular para poder tener acceso a un montón de métodos que facilitan la vida una barbaridad.
+  // Hay que especificar qué tabla vamos a manipular para poder tener acceso a un montón de métodos que facilitan la vida una barbaridad.
   const tabla = tablas[0];
   // console.log(tabla)
   for (let i = 0; i < tabla.rows.length; i++) {
@@ -131,34 +131,48 @@ export const parrafosLocos = (id) => {
 // Ejercicio 4 - Carrusel DOM        |
 // ----------------------------------
 
+const crearImg = (clase) => {
+  const img = document.createElement("img");
+  img.classList.add(clase);
+  return img;
+};
+
+const anadirImg = (idDiv, img) => {
+  const div = document.getElementById(idDiv);
+  div.appendChild(img);
+};
 
 export const carrusel = (id) => {
   let yamcha = ["./imgs/yamcha/0.png", "./imgs/yamcha/1.png", "./imgs/yamcha/2.png", "./imgs/yamcha/3.png", "./imgs/yamcha/4.png"];
   let vegeta = ["./imgs/vegeta/0.png", "./imgs/vegeta/1.png","./imgs/vegeta/0 copy.png", "./imgs/vegeta/2.png", "./imgs/vegeta/3.png"];
-  const div = document.getElementById(id);
-  const imgYamcha = document.createElement("img");
-  const imgVegeta = document.createElement("img");
+
+  const imgYamcha = crearImg("yamcha");
+  const imgVegeta = crearImg("vegeta");
   let indice = 0;
-  imgYamcha.classList.add("yamcha");
-  imgVegeta.classList.add("vegeta");
 
   setInterval(() => {
-    div.appendChild(imgYamcha);
-    div.appendChild(imgVegeta);
+    anadirImg(id, imgYamcha);
+    anadirImg(id, imgVegeta);
+    // Se podría hacer con setAttribute, pero tener métodos según el elemento creado facilita mucho las cosas.
     imgVegeta.src = vegeta[indice];
     imgYamcha.src = yamcha[indice];
-    // Que toggle acepte booleanos es una maraviila.
+    // Que toggle acepte booleanos es una maravilla, aunque no sé si cumplo lo de "modificar el CSS a través de JS" ya que solo cambio la clase...
+    // Lo intenté hacer con imgVegeta.style.right y style.position, pero la imagen aparecía directamente en la posición final.
     imgVegeta.classList.toggle("desplazar", indice === vegeta.length - 1);
-    // Cuándo índice valga lo mismo que la longitud del array, vuelve a 0.
+    // Cuando índice valga lo mismo que la longitud del array, vuelve a 0.
     indice = (indice + 1) % vegeta.length;
   }, 1000);
+};
 
-  /* Pensaba aplicar el intervalo solo para cambiar el atributo src, pero por algún motivo solo lo cambia si regenero el div por completo.
-  /* 
+  /* Pensaba aplicar el intervalo solo para cambiar el atributo src, pero por algún motivo que 
+  /* no he alcanzado a entender, solo lo cambia si regenero el div por completo.
+  /* Varías personas en StackOverFlow tenían el mismo problema y no he visto solución.
+  /*
   setInterval(() => {
-    indice = (indice + 1) % yamcha.length;  
-    img.src = yamcha[indice];
-    console.log("imagen:", indice); 
+    imgVegeta.src = vegeta[indice];
+    imgYamcha.src = yamcha[indice];
+    imgVegeta.classList.toggle("desplazar", indice === vegeta.length - 1);
+    indice = (indice + 1) % vegeta.length;
+    // console.log(indice);
   }, 1000);
   */
-};

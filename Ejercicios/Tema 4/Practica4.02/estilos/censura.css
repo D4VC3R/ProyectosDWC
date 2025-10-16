@@ -37,13 +37,11 @@ table {
   gap: 5px;               
 }
 
-.yamcha,
-.vegeta {
+.yamcha, .vegeta {
   height: 150px;           
   width: auto;
   display: block;
   margin: 0;
-  transition: transform 0.4s ease;
 }
 
 .yamcha {
@@ -52,8 +50,8 @@ table {
 
 .vegeta.desplazar {
   animation: moverDerecha 1s forwards;
-
 }
+
 @keyframes moverDerecha {
   to {
     transform: translateX(1000px);
