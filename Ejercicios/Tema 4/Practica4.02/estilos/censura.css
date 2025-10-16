@@ -1,5 +1,61 @@
-.censura{
-    color: red;
-    font-weight: bold;
-    font-style: italic;
-};
+table {
+  margin: 0 auto;
+}
+
+.censura {
+  color: red;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.isPrimo {
+  background-color: red;
+  font-weight: bold;
+}
+#ejercicio3{
+  display: flex;
+  justify-content: space-between;
+  margin: 30px;
+}
+
+#ejercicio3 p {
+  font-weight: bold;
+  height: 50px;
+  width: 300px;
+  border: 3px solid #444;
+  margin: 5px auto;
+  text-align: center;
+  line-height: 50px;
+  transition: background 0.3s;
+}
+
+#ejercicio4 {
+  background-color: rgb(38, 252, 38);
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  gap: 5px;               
+}
+
+.yamcha,
+.vegeta {
+  height: 150px;           
+  width: auto;
+  display: block;
+  margin: 0;
+  transition: transform 0.4s ease;
+}
+
+.yamcha {
+  transform: scaleX(-1);
+}
+
+.vegeta.desplazar {
+  animation: moverDerecha 1s forwards;
+
+}
+@keyframes moverDerecha {
+  to {
+    transform: translateX(1000px);
+  }
+}
