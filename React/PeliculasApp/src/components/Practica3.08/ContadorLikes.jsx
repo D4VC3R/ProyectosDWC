@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import likeImg from "../../assets/like-svgrepo-com.svg";
-import dislikeImg from "../../assets/dislike-svgrepo-com.svg"
+import likeImg from "./../../assets/imgs/like-svgrepo-com.svg";
+import dislikeImg from "./../../assets/imgs/dislike-svgrepo-com.svg"
 import "./ContadorLikes.css"
 
 const ContadorLikes = () => {
