@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import matriculados from './matriculados.json';
+import matriculados from './../../assets/json/matriculados.json';
 import "./Matricula.css";
 
 const Matricula = () => {
@@ -65,7 +65,7 @@ const Matricula = () => {
 	return (
 		<div>
 			<h2>Matrículas</h2>
-			<div className="Matricula_botones">
+			<div className="matricula_botones">
 				<button onClick={() => mostrar2DAW()}>Mostrar 2ºDAW</button>
 				<button onClick={() => mostrarPrimeros()}>Mostrar 1º</button>
 				<button onClick={() => mostrarDAW()}>Mostrar DAW</button>
@@ -74,7 +74,7 @@ const Matricula = () => {
 				<button onClick={() => reiniciarListado()}>Reiniciar listado</button>
 			</div>
 			<h2>{cabecera}</h2>
-			<div className="Matricula_listado">
+			<div className="matricula_listado">
 				<ul>
 					{Array.isArray(discentes) && discentes.length 
 					? discentes.map((discente, indice) => (
@@ -82,7 +82,7 @@ const Matricula = () => {
 							key={crypto.randomUUID()}
 							id={indice}>
 							{`${discente.nombre}  ${discente.apellidos}.`}
-							<button className="Matricula_desmatricular" onClick={() => desmatricular(discente.id)}>Desmatricular</button>
+							<button className="matricula_desmatricular" onClick={() => desmatricular(discente.id)}>Desmatricular</button>
 						</li>))
 						: "No hay alumnos." }
 				</ul>

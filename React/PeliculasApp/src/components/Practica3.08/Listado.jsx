@@ -29,13 +29,13 @@ const Listado = () => {
 	};
 
 	return (
-		<div className="Listado_container">
+		<div className="listado_container">
 			<h3>Ejercicio 1</h3>
-			<div className="Listado_botones">
+			<div className="listado_botones">
 				<button onClick={() => generarNumeroAleatorio()}>Generar</button>
 				<button onClick={() => reiniciarEstados()}>Eliminar</button>
 			</div>
-			<div className="Listado_containerNumeros">
+			<div className="listado_containerNumeros">
 				{Array.isArray(numerosGenerados) && numerosGenerados.length
 					? numerosGenerados.map((numero, indice) => {
 						return (

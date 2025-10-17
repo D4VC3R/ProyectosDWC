@@ -1,14 +1,14 @@
-.Contador_container {
+.contador_container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.Contador_container h3 {
+.contador_container h3 {
   align-self: flex-start;
 }
 
-.Contador_botones {
+.contador_botones {
   display: flex;
   justify-content: center;
   gap: 1rem;

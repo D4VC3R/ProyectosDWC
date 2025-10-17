@@ -12,13 +12,13 @@ const ContadorLimite = () => {
 
   return (
 
-    <div className="Contador_container">
+    <div className="contador_container">
       <h3>Ejercicio 2</h3>
-      <div className="Contador_botones">
+      <div className="contador_botones">
         <button onClick={() => incrementarContador()} disabled={contador === 10}>Incrementar</button>
         <button onClick={() => decrementarContador()} disabled={contador === 0}>Decrementar</button>
       </div>
-      <div className="Contador_resultado">
+      <div className="contador_resultado">
         <span>{contador}</span>
       </div>
     </div>

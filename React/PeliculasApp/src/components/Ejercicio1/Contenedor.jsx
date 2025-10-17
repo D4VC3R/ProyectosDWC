@@ -5,7 +5,7 @@ const Contenedor = (props) => {
 
     // Contenedor solo devuelve el valor de su children.
     return(
-        <div className="Contenedor_contenedor">
+        <div className="contenedor_contenedor">
             {props.children}
         </div>
     );

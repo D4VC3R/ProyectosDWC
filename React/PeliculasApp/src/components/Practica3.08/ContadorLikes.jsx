@@ -18,15 +18,15 @@ const ContadorLikes = () => {
   const incrementarDislikes = () => setContDislikes(contDislikes + 1);
 
   return (
-    <div className="ContadorLikes_container">
+    <div className="contadorLikes_container">
       <h3>Ejercicio 3</h3>
-      <div className="ContadorLikes_botones">
-        <div className="ContadorLikes_likes">
+      <div className="contadorLikes_botones">
+        <div className="contadorLikes_likes">
           <img src={likeImg} alt="botón like" onClick={() => incrementarLikes()} />
           <span>{contLikes}</span>
         </div>
 
-        <div className="ContadorLikes_dislikes">
+        <div className="contadorLikes_dislikes">
           <img src={dislikeImg} alt="botón dislike" onClick={() => incrementarDislikes()} />
           <span>{contDislikes}</span>
         </div>

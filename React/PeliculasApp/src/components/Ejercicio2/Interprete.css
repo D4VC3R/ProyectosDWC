@@ -1,4 +1,4 @@
-.Interprete_interprete {
+.interprete_interprete {
     padding: 15px;
     margin: 10px auto;
     border: 3px solid rgb(173, 142, 85);
@@ -10,7 +10,7 @@
     border-radius: 8px;
 }
 
-.Interprete_interprete img {
+.interprete_interprete img {
     border-radius: 8px;
     width: 120px;
     height: 200px;
@@ -19,21 +19,21 @@
     
 }
 
-.Interprete_interprete .contenido {
+.interprete_interprete .contenido {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     flex: 1;
 }
 
-.Interprete_interprete .nombre {
+.interprete_interprete .nombre {
     text-align: left;
     font-weight: bold;
     margin-bottom: 10px;
     font-size: 1.1em;
 }
 
-.Interprete_interprete .biografia {
+.interprete_interprete .biografia {
     font-size: 0.9em;
     text-align: left;
     line-height: 1.4;

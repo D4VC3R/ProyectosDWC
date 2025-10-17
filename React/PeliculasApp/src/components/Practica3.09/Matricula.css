@@ -1,22 +1,22 @@
-.Matricula_botones {
+.matricula_botones {
     display: flex;
     justify-content: space-around;
     gap: 5px;
 }
 
-.Matricula_listado {
+.matricula_listado {
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-.Matricula_listado ul {
+.matricula_listado ul {
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
 }
 
-.Matricula_listado ul li {
+.matricula_listado ul li {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -24,7 +24,7 @@
     padding: 8px 0;
 }
 
-.Matricula_desmatricular {
+.matricula_desmatricular {
     font-size: 13px;
     padding: 2px 8px;
     border-radius: 4px;
