@@ -13,7 +13,9 @@ function App() {
 				<Peliculas />
 			</Contenedor>
 			<Contenedor>
-				<Pelicula nombre = "el sexto sentido" director = "Yo" cartelera = "https://www.ecartelera.com/carteles/5400/5409/001.jpg">
+				<Pelicula nombre = "el sexto sentido" director = "Yo" 
+				cartelera = "https://www.ecartelera.com/carteles/5400/5409/001.jpg"
+				elenco = "Al Pacino">
 					</Pelicula>
 			</Contenedor>
 

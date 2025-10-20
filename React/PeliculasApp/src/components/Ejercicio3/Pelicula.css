@@ -14,7 +14,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .pelicula_cartel {
@@ -30,6 +30,7 @@
   flex-direction: column;
   gap: 10px;
   align-items: center;
+  margin: 15px;
 }
 
 .pelicula_titulo {
@@ -41,7 +42,6 @@
 }
 
 .pelicula_director {
-  margin: 5px 0;
   text-align: center;
   font-size: 1.2em;
 }
@@ -50,7 +50,7 @@
   font-weight: bold;
 }
 
-.pelicula_genero em {
+.pelicula_pelicula em {
   font-style: italic;
   color: #666;
   margin: 5px 0;
@@ -61,10 +61,10 @@
   margin-top: 15px;
   line-height: 1.5;
   text-align: justify;
-  padding: 0 15px;
+  padding: 0 10px;
 }
 
-/* Área para el elenco */
+
 .pelicula_elenco_container {
   width: 100%;
   margin-top: 20px;
@@ -85,3 +85,37 @@
   justify-content: center;
   width: 100%;
 }
+
+.pelicula_taquilla_oculto {
+  display: none;
+}
+
+.pelicula_taquilla {
+  display: flex;
+}
+
+.pelicula_elenco_oculto {
+  display: none;
+}
+
+.pelicula_botones {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  margin: 15px 0;
+}
+
+.pelicula_elenco_boton button, .pelicula_taquilla_boton button {
+  padding: 8px 20px;
+  background-color: #854f11;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+

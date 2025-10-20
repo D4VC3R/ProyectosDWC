@@ -1,11 +1,24 @@
 import React from "react";
 import "./Pelicula.css";
 import Interprete from "../Ejercicio2/Interprete";
+import { useRef } from "react";
 import { generarUuidAleatorio } from "../../libraries/misFunciones.js";
 
 
 const Pelicula = (props) => {
     let noInfo = "Sin información."
+    const taquillaRef = useRef(null);
+	const elencoRef = useRef(null);
+
+    const mostrarElenco = () => {
+        elencoRef.current.classList.toggle("pelicula_elenco");
+    };
+
+    const mostrarTaquilla = () => {
+        taquillaRef.current.classList.toggle("pelicula_taquilla");
+    };
+
+
     return (
         <div className="pelicula_pelicula">
             <div className="pelicula_imagen">
@@ -17,9 +30,13 @@ const Pelicula = (props) => {
                 <div className="pelicula_genero">Género: <em>{props.clasificacion ? props.clasificacion : noInfo}</em></div>
                 <div className="pelicula_resumen">{props.resumen ? props.resumen : noInfo}</div>
             </div>
+            <div className="pelicula_botones">
+                <h2 className="pelicula_elenco_boton"> <button onClick={mostrarElenco}>Elenco</button></h2>
+                <h2 className="pelicula_taquilla_boton"> <button onClick={mostrarTaquilla}>Taquilla</button></h2>
+            </div>
+            <div ref = {taquillaRef} className="pelicula_taquilla_oculto">Recaudación: <em>{props.recaudacion ? props.recaudacion : noInfo}</em></div>
             <div className="pelicula_elenco_container">
-                <h2 className="pelicula_elenco_titulo">Reparto</h2>
-                <div className="pelicula_elenco">
+                <div ref={elencoRef} className="pelicula_elenco_oculto">
                     {props.actores ? props.actores.map((actor)=>{
                         return (
                             <Interprete
