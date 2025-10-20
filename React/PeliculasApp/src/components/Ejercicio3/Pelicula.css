@@ -45,8 +45,12 @@
   text-align: center;
   font-size: 1.2em;
 }
-
 .pelicula_genero {
+  text-align: center;
+  font-weight: bold;
+}
+
+.pelicula_genero em {
   font-style: italic;
   color: #666;
   margin: 5px 0;

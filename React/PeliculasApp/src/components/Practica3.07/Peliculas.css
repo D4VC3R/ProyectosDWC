@@ -3,9 +3,7 @@
     box-sizing: border-box;
 }
 
-/* Sobreescribir el diseño de cada película dentro del listado */
 .peliculas_peliculas .pelicula_pelicula {
-    /* Cambiamos de flex a grid */
     display: grid;
     grid-template-areas: 
         "imagen contenido"
@@ -36,6 +34,11 @@
 .peliculas_peliculas .pelicula_genero,
 .peliculas_peliculas .pelicula_resumen {
     text-align: left;
+    margin-left: 15px;
+}
+
+.peliculas_peliculas em{
+    margin-left: 5px;
 }
 
 

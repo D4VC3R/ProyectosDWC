@@ -13,8 +13,8 @@ const Pelicula = (props) => {
             </div>
             <div className="pelicula_contenido">
                 <h1 className="pelicula_titulo">{props.titulo ? props.titulo : noInfo}</h1>
-                <h3 className="pelicula_director">Director: {props.director ? props.director : noInfo}</h3>
-                <em className="pelicula_genero">{props.clasificacion ? props.clasificacion : noInfo}</em>
+                <h3 className="pelicula_director">Director: <em>{props.director ? props.director : noInfo}</em></h3>
+                <div className="pelicula_genero">Género: <em>{props.clasificacion ? props.clasificacion : noInfo}</em></div>
                 <div className="pelicula_resumen">{props.resumen ? props.resumen : noInfo}</div>
             </div>
             <div className="pelicula_elenco_container">
