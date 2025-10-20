@@ -9,7 +9,7 @@ const Pelicula = (props) => {
     return (
         <div className="pelicula_pelicula">
             <div className="pelicula_imagen">
-                <img src={props.cartelera} className="pelicula_cartel" alt={`Cartel de ${props.titulo}`}></img>
+                <img src={props.cartelera} className="pelicula_cartel" alt={props.titulo ? props.titulo : noInfo}></img>
             </div>
             <div className="pelicula_contenido">
                 <h1 className="pelicula_titulo">{props.titulo ? props.titulo : noInfo}</h1>
