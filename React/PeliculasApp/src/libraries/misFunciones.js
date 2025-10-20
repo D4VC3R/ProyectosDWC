@@ -3,13 +3,13 @@
 // ----------------
 
 // Genera un UUID aleatorio usando la API de Crypto.
-const generarUuidAleatorio = () => crypto.randomUUID();
+export const generarUuidAleatorio = () => crypto.randomUUID();
 
 // Devuelve un número entero aleatorio entre min y max (ambos incluidos).
-const getNumeroAleatorio = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+export const getNumeroAleatorio = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
 // Devuelve el tipo de un valor ('null', 'array', 'object', etc.).
-const getTipo = (valor) =>
+export const getTipo = (valor) =>
   valor === null ? 'null' : Array.isArray(valor) ? 'array' : typeof valor;
 
 //-------------------------Arrays---------------------------
@@ -514,3 +514,4 @@ export const imprimirObjetoPro = (objeto) => {
         }
     }
 };
+

@@ -1,40 +1,53 @@
 .interprete_interprete {
-    padding: 15px;
-    margin: 10px auto;
+    padding: 20px;
     border: 3px solid rgb(173, 142, 85);
     display: flex; 
-    gap: 15px;
-    max-width: 600px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    max-width: 250px;
     width: 100%;
-    background-color: rgba(151, 151, 151, 0.356);
+    margin: 0 auto;
+    background-color: rgba(249, 249, 249, 0.9);
     border-radius: 8px;
 }
 
-.interprete_interprete img {
+.interprete_foto {
     border-radius: 8px;
-    width: 120px;
+    width: 160px;
     height: 200px;
-    align-self: center;
     border: 3px solid rgb(173, 142, 85);
-    
+    object-fit: cover;
+    margin-bottom: 10px;
 }
 
-.interprete_interprete .contenido {
+.interprete_contenido {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    flex: 1;
+    align-items: center;
+    width: 100%;
 }
 
-.interprete_interprete .nombre {
-    text-align: left;
+.interprete_nombre {
+    text-align: center;
     font-weight: bold;
-    margin-bottom: 10px;
+    color: #854f11;
+    margin-bottom: 8px;
     font-size: 1.1em;
 }
 
-.interprete_interprete .biografia {
+.interprete_fecha {
     font-size: 0.9em;
-    text-align: left;
+    color: #666;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.interprete_biografia {
+    font-size: 0.9em;
+    text-align: justify;
     line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 5px;
 }

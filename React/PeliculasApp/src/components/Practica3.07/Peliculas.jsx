@@ -1,6 +1,7 @@
 import React from 'react'
 import listado from "./../../assets/json/peliculas.json"
-import Pelicula from '../Ejercicio3/Pelicula';
+import Pelicula from '../Ejercicio3/Pelicula.jsx';
+import "./Peliculas.css"
 
 const listadoPeliculas = listado;
 console.log(listadoPeliculas)
@@ -18,6 +19,8 @@ const Peliculas = () => {
 					cartel = {pelicula.cartelera}
 					clasificacion = {pelicula.clasificacion}
 					resumen = {pelicula.resumen}
+					cartelera = {pelicula.cartelera}
+					actores = {pelicula.actores}
 					>
 
 					</Pelicula>

@@ -1,16 +1,83 @@
-.pelicula_img{
-    border-radius: 8px;
-    align-self: center;
-    border: 3px solid rgb(173, 142, 85);
+.pelicula_pelicula {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 500px;
+  border-radius: 10px;
+  border: 3px solid rgb(173, 142, 85);
+  background-color: rgba(249, 249, 249, 0.9);
 }
 
-.pelicula_elenco{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+.pelicula_imagen {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
 }
 
-.pelicula_titulo{
-    font-family: monaco;
-    color: #854f11;
+.pelicula_cartel {
+  border-radius: 8px;
+  border: 3px solid rgb(173, 142, 85);
+  width: 100%;
+  max-width: 250px;
+}
+
+.pelicula_contenido {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.pelicula_titulo {
+  font-family: monaco;
+  color: #854f11;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 15px 0;
+}
+
+.pelicula_director {
+  margin: 5px 0;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.pelicula_genero {
+  font-style: italic;
+  color: #666;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.pelicula_resumen {
+  margin-top: 15px;
+  line-height: 1.5;
+  text-align: justify;
+  padding: 0 15px;
+}
+
+/* Área para el elenco */
+.pelicula_elenco_container {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.pelicula_elenco_titulo {
+  text-align: center;
+  margin: 20px 0 15px;
+  color: #854f11;
+  font-size: 1.5em;
+}
+
+.pelicula_elenco {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  width: 100%;
 }

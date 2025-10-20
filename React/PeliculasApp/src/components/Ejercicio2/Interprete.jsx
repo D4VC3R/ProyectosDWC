@@ -2,13 +2,15 @@ import React from "react";
 import "./Interprete.css";
 
 const Interprete = (props) => {
-    // Poco que comentar, utilizamos los atributos de props donde toca y poco mas.
+    let noInfo = "Sin información."
     return (
         <div className="interprete_interprete">
-            <img src={props.foto} className="interprete_foto" alt={`Foto de ${props.nombre}`}></img>
+            <img src={props.imagen} className="interprete_foto" alt={`Foto de ${props.nombre}`}></img>
             <div className="interprete_contenido">
-                <h2 className="interprete_nombre">{props.nombre}</h2>
-                <div className="interprete_biografia">{props.children}</div>
+                <h2 className="interprete_nombre">{props.nombre ? props.nombre : noInfo}</h2>
+                <time className = "interprete_fecha" dateTime={`${props.fechaNacimiento}`}>
+                    {props.fechaNacimiento ? props.fechaNacimiento : noInfo}</time>
+                <div className="interprete_biografia">{props.biografia ? props.biografia : noInfo}</div>
             </div>
         </div>
     );
