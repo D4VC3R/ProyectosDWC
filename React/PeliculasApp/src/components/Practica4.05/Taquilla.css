@@ -1,0 +1,16 @@
+.taquilla_taquilla {
+	display: flex;
+	flex-direction: row;
+	font-size: 40px;
+	justify-content: center;
+	font-weight: bold;
+}
+
+.taquilla_taquilla em {
+	margin-left: 25px;
+	color: green;
+}
+
+.taquilla_taquilla span {
+	font-weight: 400;
+}
