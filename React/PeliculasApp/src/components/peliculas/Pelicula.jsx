@@ -1,10 +1,8 @@
 import React from "react";
 import "./Pelicula.css";
-import Interprete from "../Ejercicio2/Interprete";
 import { useRef } from "react";
-import { generarUuidAleatorio } from "../../libraries/misFunciones.js";
-import Elenco from "../Practica4.05/Elenco.jsx";
-import Taquilla from "../Practica4.05/Taquilla.jsx";
+import Elenco from "./Elenco.jsx";
+import Taquilla from "./Taquilla.jsx";
 
 
 const Pelicula = (props) => {

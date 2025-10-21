@@ -1,18 +1,20 @@
 import React from "react";
 import "./App.css";
-import Contenedor from "./components/Ejercicio1/Contenedor.jsx";
-import Peliculas from "./components/Practica3.07/Peliculas.jsx";
-import "./components/Practica3.07/Peliculas.css";
-import Pelicula from "./components/Ejercicio3/Pelicula.jsx";
+import Contenedor from "./components/common/Contenedor.jsx";
+import Rutas from "./routes/Rutas.jsx";
+import Peliculas from "./components/peliculas/Peliculas.jsx";
+import { BrowserRouter } from "react-router-dom";
 
 
 function App() {
-	// Para la próxima práctica cambiaré la estructura de la carpeta components a una más acorde a un proyecto real en lugar de dividirla por prácticas.
 	return (
 		<>
-			<Contenedor>
-				<Peliculas />
-			</Contenedor>
+			<BrowserRouter>
+				<Contenedor>
+					<Rutas />
+				</Contenedor>
+			</BrowserRouter>
+
 		</>
 	);
 }

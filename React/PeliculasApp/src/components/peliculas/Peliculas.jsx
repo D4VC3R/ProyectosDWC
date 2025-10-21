@@ -1,6 +1,6 @@
 import React from 'react'
 import listado from "./../../assets/json/peliculas.json"
-import Pelicula from '../Ejercicio3/Pelicula.jsx';
+import Pelicula from './Pelicula.jsx';
 import "./Peliculas.css"
 import { useRef } from 'react';
 

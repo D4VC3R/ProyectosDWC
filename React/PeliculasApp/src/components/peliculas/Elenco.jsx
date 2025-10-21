@@ -1,6 +1,6 @@
 import React from 'react'
 import { generarUuidAleatorio } from '../../libraries/misFunciones.js';
-import Interprete from '../Ejercicio2/Interprete.jsx';
+import Interprete from './Interprete.jsx';
 import "./Elenco.css"
 
 const Elenco = (props) => {
