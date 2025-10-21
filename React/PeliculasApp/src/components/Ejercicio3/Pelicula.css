@@ -2,120 +2,118 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px auto;
-  padding: 20px;
-  max-width: 500px;
-  border-radius: 10px;
-  border: 3px solid rgb(173, 142, 85);
-  background-color: rgba(249, 249, 249, 0.9);
+  padding: 25px;
+  max-width: 800px;
+  width: 100%;
+  margin: 30px auto;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .pelicula_imagen {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  max-width: 350px;
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
 }
 
 .pelicula_cartel {
-  border-radius: 8px;
-  border: 3px solid rgb(173, 142, 85);
   width: 100%;
-  max-width: 250px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.pelicula_cartel:hover {
+  transform: scale(1.02);
 }
 
 .pelicula_contenido {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  margin: 15px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .pelicula_titulo {
-  font-family: monaco;
-  color: #854f11;
+  font-size: 2.2rem;
+  color: #333;
+  margin-bottom: 10px;
   font-weight: bold;
-  text-align: center;
-  margin: 0 0 15px 0;
 }
 
 .pelicula_director {
-  text-align: center;
-  font-size: 1.2em;
+  font-size: 1.3rem;
+  margin: 10px 0;
+  color: #000000;
 }
+
+.pelicula_director em {
+  color: #916d0d;
+  margin-left: 5px;
+}
+
 .pelicula_genero {
-  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: #000000;
   font-weight: bold;
 }
 
-.pelicula_pelicula em {
+.pelicula_genero em {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: #777;
   font-style: italic;
-  color: #666;
-  margin: 5px 0;
-  text-align: center;
+  font-weight: normal;
+  margin-left: 5px;
 }
+
 
 .pelicula_resumen {
-  margin-top: 15px;
-  line-height: 1.5;
+  line-height: 1.6;
+  margin: 20px 0;
+  padding: 0 15px;
   text-align: justify;
-  padding: 0 10px;
-}
-
-
-.pelicula_elenco_container {
-  width: 100%;
-  margin-top: 20px;
-}
-
-.pelicula_elenco_titulo {
-  text-align: center;
-  margin: 20px 0 15px;
-  color: #854f11;
-  font-size: 1.5em;
-}
-
-.pelicula_elenco {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: center;
-  width: 100%;
-}
-
-.pelicula_taquilla_oculto {
-  display: none;
-}
-
-.pelicula_taquilla {
-  display: flex;
-}
-
-.pelicula_elenco_oculto {
-  display: none;
+  color: #444;
 }
 
 .pelicula_botones {
   display: flex;
-  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.pelicula_elenco_boton button, 
+.pelicula_taquilla_boton button {
+  padding: 10px 20px;
+  background-color: #916d0d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+
+}
+
+.pelicula_elenco_boton button:hover, 
+.pelicula_taquilla_boton button:hover {
+  background-color: #e4ab10;
+  transform: translateY(-2px);
+}
+
+.elenco_container {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
   width: 100%;
-  margin: 15px 0;
 }
 
-.pelicula_elenco_boton button, .pelicula_taquilla_boton button {
-  padding: 8px 20px;
-  background-color: #854f11;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.2s;
+.pelicula_elenco_container,
+.pelicula_taquilla_container {
+  display: none;
 }
-
-
