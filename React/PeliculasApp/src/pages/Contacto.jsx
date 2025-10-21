@@ -7,7 +7,7 @@ const Contacto = () => {
 		<>
 			<Menu />
 			<h1>Estoy en la página de contacto.</h1>
-				<BotonInicio />
+			<BotonInicio />
 		</>
 	)
 }
