@@ -1,0 +1,42 @@
+.cabecera_cabecera {
+  position: sticky;
+  width: 80%;
+  top: 10px;
+  height: 60px;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 40px; 
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  border-radius: 50px;
+  align-items: center;
+  margin-left: 80px;
+}
+
+.cabecera_cabecera .boton_logo {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.cabecera_cabecera .menu_nav {
+  position: static;
+  transform: none;
+  top: auto;
+  left: auto;
+  margin: 0 auto;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.cabecera_cabecera .menu_lista {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+

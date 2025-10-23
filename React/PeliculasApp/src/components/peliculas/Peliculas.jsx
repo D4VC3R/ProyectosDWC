@@ -1,39 +1,37 @@
 import React from 'react'
-import listado from "./../../assets/json/peliculas.json"
-import Pelicula from './Pelicula.jsx';
+import listadoPeliculas from "./../../assets/json/peliculas.json"
 import "./Peliculas.css"
-import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 
 
 
 const Peliculas = () => {
-	const listadoPeliculas = listado;
-	// console.log(listadoPeliculas)
-
 
 	return (
-		
-		<div className='peliculas_peliculas'>
-			{listadoPeliculas.peliculas.length
-			? listadoPeliculas.peliculas.map((pelicula) =>{
-				return (
-					<Pelicula
-					key={pelicula.id}
-					cartelera = {pelicula.cartelera}
-					titulo = {pelicula.nombre}
-					director = {pelicula.director}
-					cartel = {pelicula.cartelera}
-					clasificacion = {pelicula.clasificacion}
-					resumen = {pelicula.resumen}
-					actores = {pelicula.actores}
-					recaudacion = {pelicula.recaudacion}
-					>
-					</Pelicula>
-				);
-			})
-			:"No hay películas."}
-		</div>
+		<>
+			<h2 className="peliculas_titulo">Listado de películas.</h2>
+			<div className='peliculas_peliculas'>
+				<ul>
+					{listadoPeliculas.peliculas.length
+						? listadoPeliculas.peliculas.map((pelicula) => {
+							return (
+								<li key={pelicula.id} className="peliculas_item">
+									<img src={pelicula.cartel}
+										alt={pelicula.titulo}
+										className="peliculas_cartel">
+									</img>
+									<Link to={`/peliculas/${pelicula.id}`} className="peliculas_titulo">
+										{pelicula.titulo}
+									</Link>
+									<p className="peliculas_anyo">Fecha de estreno: {pelicula.estreno ? pelicula.estreno : "Sin datos."}</p>
+								</li>
+							);
+						})
+						: "No hay películas."}
+				</ul>
+			</div>
+		</>
 	);
 };
 

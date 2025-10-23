@@ -1,6 +1,6 @@
 .contenedor_contenedor {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     border: 6px solid #0085ad;
     color: black;
     background-color: #f9f9f9;

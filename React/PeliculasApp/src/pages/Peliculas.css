@@ -1,0 +1,66 @@
+.peliculas_peliculas {
+  width: 100%;
+  padding: 20px;
+}
+
+/* Título de la sección */
+.peliculas_titulo_seccion {
+  font-size: 24px;
+  margin-bottom: 25px;
+  color: #333;
+  text-align: center;
+}
+
+/* Lista de películas con flexbox */
+.peliculas_lista {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* Permite que las películas pasen a la siguiente fila cuando no quepan */
+  gap: 25px; /* Espacio entre las películas */
+  justify-content: flex-start; /* Alinea desde la izquierda */
+
+  margin: 0;
+  list-style: none;
+}
+
+/* Cada película individual */
+.peliculas_item {
+  display: flex;
+  flex-direction: column; /* Cartel arriba, título y año abajo */
+  width: 180px; /* Ancho fijo para cada película */
+  margin-bottom: 20px;
+}
+
+/* Contenedor de la imagen */
+.peliculas_imagen {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Imagen del cartel */
+.peliculas_cartel {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.peliculas_cartel:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Contenedor de la información */
+.peliculas_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+
+.peliculas_anio {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}

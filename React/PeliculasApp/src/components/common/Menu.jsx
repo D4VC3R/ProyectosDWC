@@ -9,9 +9,10 @@ const Menu = () => {
 			<nav className='menu_nav'>
 				<ul className='menu_lista'>
 					<Link className='menu_elemento' to='/'>Inicio</Link>
-					<Link className='menu_elemento' to='/contacto'>Contacto</Link>
+					<Link className='menu_elemento' to='/peliculas'>Películas</Link>
+					<Link className='menu_elemento' to='/interpretes'>Intérpretes</Link>
+					<Link className='menu_elemento' to='/galeria'>Galería</Link>
 					<Link className='menu_elemento' to='/acercade'>Acerca de</Link>
-					<Link className='menu_elemento' to='/productos'>Productos</Link>
 				</ul>
 			</nav>
 		
