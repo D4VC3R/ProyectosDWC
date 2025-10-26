@@ -1,14 +1,22 @@
 import React from 'react'
 import listadoPeliculas from "./../assets/json/peliculas.json"
 import "./Peliculas.css"
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 
 const Peliculas = () => {
 	const navegar = useNavigate();
+
+	// Como he anidado las rutas, necesito una función para moverme a la parte donde se renderiza <Outlet />.
+	const clickPelicula = (id) => {
+		window.scrollTo(0, 0);
+		navegar(`/peliculas/${id}`);
+	}
+
 	return (
 		<>
+		<Outlet />
 			<div className='peliculas_peliculas'>
 				<h2 className="peliculas_titulo">Listado de películas.</h2>
 				<ul className="peliculas_lista">
@@ -20,13 +28,13 @@ const Peliculas = () => {
 											<img src={pelicula.cartelera}
 											alt={pelicula.nombre}
 											className="peliculas_cartel"
-											onClick={() => navegar(`/peliculas/${pelicula.id}`)}>
+											onClick={() => clickPelicula(pelicula.id)}>
 										</img>
 									</div>
 									<div className="peliculas_info">
-										<Link to={`/peliculas/${pelicula.id}`} className="peliculas_nombre">
+										<h3 className="peliculas_nombre" onClick={() => clickPelicula(pelicula.id)}>
 											{pelicula.nombre}
-										</Link>
+										</h3>
 										<p className="peliculas_anyo">Fecha de estreno: {pelicula.estreno ? pelicula.estreno : "Sin datos."}</p>
 									</div>
 								</li>
@@ -35,6 +43,7 @@ const Peliculas = () => {
 						: "No hay películas."}
 				</ul>
 			</div>
+			
 		</>
 	);
 };

@@ -17,7 +17,7 @@ const Rutas = () => {
 			<Routes>
 				<Route path='/' element={<Inicio />} />
 				<Route path='/peliculas' element={<Peliculas />}>
-					<Route path='/peliculas/detalle' element={<PeliculaDetalle />} />
+					<Route path='/peliculas/:id' element={<PeliculaDetalle />} />
 				</Route>
 				<Route path='/interpretes' element={<Interpretes />}>
 					<Route path='/interpretes/detalle' element={<InterpreteDetalle />} />

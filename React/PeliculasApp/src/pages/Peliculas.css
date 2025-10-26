@@ -23,27 +23,25 @@
   list-style: none;
 }
 
-/* Cada película individual */
 .peliculas_item {
   display: flex;
-  flex-direction: column; /* Cartel arriba, título y año abajo */
-  width: 180px; /* Ancho fijo para cada película */
+  flex-direction: column; 
+  width: 180px; 
   margin-bottom: 20px;
 }
 
-/* Contenedor de la imagen */
 .peliculas_imagen {
   width: 100%;
   margin-bottom: 10px;
 }
 
-/* Imagen del cartel */
 .peliculas_cartel {
   width: 100%;
   height: auto;
   border-radius: 8px;
   transition: transform 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .peliculas_cartel:hover {
@@ -63,4 +61,15 @@
   font-size: 14px;
   color: #666;
   margin: 0;
+}
+
+.peliculas_nombre {
+  color: #91620b;
+  cursor: pointer;
+}
+
+.peliculas_nombre:hover {
+  text-decoration: underline;
+  color: #d8910d;
+
 }
