@@ -7,7 +7,7 @@ const Cabecera = () => {
 	return (
 		<>
 			<header className='cabecera_cabecera'>
-				<div classNmae='cabecera_logo'>
+				<div className='cabecera_logo'>
 					<BotonLogo />
 				</div>
 				<div className='cabecera_menu'>

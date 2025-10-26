@@ -1,7 +1,6 @@
 .cabecera_cabecera {
   position: sticky;
-  width: 80%;
-  top: 10px;
+  width: 85%;
   height: 60px;
   display: flex;
   justify-content: space-around;
@@ -11,7 +10,8 @@
   z-index: 1000;
   border-radius: 50px;
   align-items: center;
-  margin-left: 80px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cabecera_cabecera .boton_logo {
