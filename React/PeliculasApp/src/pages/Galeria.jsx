@@ -7,26 +7,17 @@ import { Outlet } from 'react-router-dom';
 
 const Galeria = () => {
 
-	// Obtenemos los carteles de las películas
-	const carteles = listadoPeliculas.peliculas.map(pelicula => {
-		return pelicula.cartelera;
-	});
-
 	return (
 		<>
-			<FiltrarGaleria />
-			<Outlet />
-			<h2>Galería de Carteles</h2>
 			<div className="galeria_galeria">
-				<ul className="galeria_carteles">
-					{carteles.map(cartel => {
-						return <li>
-							<img src={cartel} alt={cartel} className="galeria_cartel" />
-						</li>;
-					})}
-				</ul>
+				<div className="galeria_filtros">
+					<FiltrarGaleria />
+				</div>
+				<h2>Galería de Carteles</h2>
+				<div className="galeria_carteles">
+					<Outlet />
+				</div>
 			</div>
-
 		</>
 	)
 }

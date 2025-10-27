@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
+
 const FiltrarGaleria = () => {
 
 	const navegar = useNavigate();
@@ -9,6 +10,7 @@ const FiltrarGaleria = () => {
 	return (
 		<>
 			<div className="filtrarGaleria_menu">
+				<button onClick={() => navegar('/galeria/todos')}>Todos los carteles</button>
 				<button onClick={() => navegar('/galeria/titulo')}>Por Título</button>
 				<button onClick={() => navegar('/galeria/interprete')}>Por Intérprete</button>
 				<button onClick={() => navegar('/galeria/director')}>Por Director</button>
