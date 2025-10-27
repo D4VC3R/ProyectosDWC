@@ -17,7 +17,7 @@ const Interpretes = () => {
 			<h2>Listado de intérpretes.</h2>
 			<div className="interpretes_listado">
 				{interpretes.map((actor, index) =>{
-					return <div className="interpretes_ficha"><Interprete key ={index} {...actor} /> </div>
+					return <div className="interpretes_ficha" key = {index}><Interprete {...actor}/></div>
 				})}
 			</div>
 		</>
