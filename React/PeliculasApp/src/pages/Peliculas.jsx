@@ -8,7 +8,8 @@ import { useNavigate } from 'react-router-dom';
 const Peliculas = () => {
 	const navegar = useNavigate();
 
-	// Como he anidado las rutas, necesito una función para moverme a la parte donde se renderiza <Outlet />.
+	// Como he anidado las rutas, necesito una función para moverme a la parte donde se renderiza <Outlet />, si no parece que no pase nada al clickar una película.
+	// Podría usar un Link, y luego en PeliculaDetalle implementar un botón para volver atrás, pero así me ha gustado más.
 	const clickPelicula = (id) => {
 		window.scrollTo(0, 0);
 		navegar(`/peliculas/${id}`);

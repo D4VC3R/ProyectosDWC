@@ -1,5 +1,5 @@
 import React from 'react'
-import Cabecera from '../components/common/Cabecera'
+
 
 const InterpreteDetalle = () => {
 	return (

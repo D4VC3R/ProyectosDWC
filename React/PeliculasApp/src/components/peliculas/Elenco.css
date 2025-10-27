@@ -12,7 +12,6 @@
   margin-top: 15px;
 }
 
-
 .elenco_container .interprete_interprete {
   display: flex;
   flex-direction: column;
@@ -40,31 +39,26 @@
   align-self: center;
 }
 
-
 .elenco_container .interprete_contenido {
   text-align: center;
 }
-
 
 .elenco_container .interprete_nombre {
   font-size: 1rem;
   margin-bottom: 2px;
 }
 
-
 .elenco_container .interprete_fecha {
   font-size: 0.8rem;
   margin-bottom: 8px;
 }
 
-/* Biografía más corta en elenco */
 .elenco_container .interprete_biografia {
   font-size: 0.8rem;
   line-height: 1.2;
   text-align: center;
 }
 
-/* Título del elenco */
 .elenco_titulo {
   width: 100%;
   text-align: center;

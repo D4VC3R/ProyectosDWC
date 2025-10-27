@@ -1,12 +1,13 @@
 import React from 'react'
 import './Menu.css'
 import { Link } from 'react-router-dom'
-import { useRef } from 'react'
 
-const Menu = () => {
+const Menu = ({vertical = false}) => {
+	// Le paso por props si quiero el menú en vertical u horizontal, así, como dijiste, simplemente cambiando el CSS es como tener un componente diferente.
+
 	return (
 		<>
-			<nav className='menu_nav'>
+        <nav className={`menu_nav ${vertical ? 'menu_vertical' : ''}`}>
 				<ul className='menu_lista'>
 					<Link className='menu_elemento' to='/'>Inicio</Link>
 					<Link className='menu_elemento' to='/peliculas'>Películas</Link>
@@ -15,7 +16,6 @@ const Menu = () => {
 					<Link className='menu_elemento' to='/acercade'>Acerca de</Link>
 				</ul>
 			</nav>
-		
 		</>
 	)
 }

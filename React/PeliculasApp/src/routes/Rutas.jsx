@@ -8,8 +8,11 @@ import Error from './../pages/Error.jsx';
 import Peliculas from './../pages/Peliculas.jsx';
 import PeliculaDetalle from './../pages/PeliculaDetalle.jsx';
 import Interpretes from '../pages/Interpretes.jsx';
-import InterpreteDetalle from '../pages/InterpreteDetalle.jsx';
+
 import Galeria from './../pages/Galeria.jsx';
+import FiltrarPorDirector from './../pages/submenus/filtrarGaleria/FiltrarPorDirector.jsx';
+import FiltrarPorInterprete from './../pages/submenus/filtrarGaleria/FiltrarPorInterprete.jsx';
+import FiltrarPorTitulo from './../pages/submenus/filtrarGaleria/FiltrarPorTitulo.jsx';
 
 const Rutas = () => {
 	return (
@@ -19,10 +22,12 @@ const Rutas = () => {
 				<Route path='/peliculas' element={<Peliculas />}>
 					<Route path='/peliculas/:id' element={<PeliculaDetalle />} />
 				</Route>
-				<Route path='/interpretes' element={<Interpretes />}>
-					<Route path='/interpretes/detalle' element={<InterpreteDetalle />} />
+				<Route path='/interpretes' element={<Interpretes />}/>
+				<Route path='/galeria' element={<Galeria />}>
+						<Route path='/galeria/titulo' element={<FiltrarPorTitulo />} />
+						<Route path='/galeria/interprete' element={<FiltrarPorInterprete />} />
+						<Route path='/galeria/director' element={<FiltrarPorDirector />} />
 				</Route>
-				<Route path='galeria' element={<Galeria />} />
 				<Route path='/contacto' element={<Contacto />} />
 				<Route path='/acercade' element={<AcercaDe />} />
 				<Route path='/productos' element={<Productos />} />

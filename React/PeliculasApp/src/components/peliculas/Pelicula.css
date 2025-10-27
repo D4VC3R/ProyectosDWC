@@ -2,29 +2,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 25px;
-  max-width: 800px;
-  width: 100%;
-  margin: 30px auto;
   background-color: #f9f9f9;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .pelicula_imagen {
-  width: 100%;
   max-width: 350px;
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
-  align-self: center;
 }
 
 .pelicula_cartel {
-  width: 100%;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
+  box-shadow: 0 5px 15px rgba(78, 78, 78, 0.856);
 }
 
 .pelicula_cartel:hover {
@@ -39,7 +31,7 @@
 
 .pelicula_titulo {
   font-size: 2.2rem;
-  color: #333;
+  color: #916d0d;
   margin-bottom: 10px;
   font-weight: bold;
 }

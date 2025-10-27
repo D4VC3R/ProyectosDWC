@@ -8,7 +8,10 @@ const AcercaDe = () => {
 		<>
 			
 			<h2 className="acercade_acercade">
-				Desarrollado con sangre <span>(casi nada)</span> , sudor <span>(muy poco)</span> y lágrimas <span>(muchísimas)</span> por David Cerdán.
+				Desarrollado con sangre <span>(casi nada) </span>, 
+				sudor <span>(muy poco) </span>
+				y lágrimas <span>(muchísimas)</span> por 
+				<address>David Cerdán.</address>
 				</h2>
 			<BotonInicio />
 		</>

@@ -2,6 +2,7 @@ import React from 'react'
 import './Footer.css'
 
 const Footer = () => {
+	// He aprovechado para prácticar un poco las etiquetas de html.
 	return (
 		<footer className="footer_footer">
 			<address>David Cerdán Valero</address> 

@@ -2,29 +2,39 @@
     position: fixed; 
     top: 50px; 
     left: 50%; 
-		transform: translateX(-50%);
     display: flex;    
-		background-color: #ffffff;
+    background-color: #ffffff;
     border-radius: 50px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: fit-content
+    box-shadow: 0 4px 12px rgba(99, 99, 99, 0.918);
+    width: fit-content;
 }
 
 .menu_lista {
     display: flex;
     list-style: none; 
-		margin: 0;
-		padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .menu_elemento {
     color: #333;
     font-weight: 500;
     padding: 10px 20px;
+    text-decoration: none;
 }
 
 .menu_elemento:hover {
     background-color: #f0f0f0;
     color: #d8910d;
-		border-radius: 50px;
+    border-radius: 50px;
 }
+
+.menu_nav.menu_vertical {
+    position: sticky;
+    border-radius: 12px;
+}
+
+.menu_nav.menu_vertical .menu_lista {
+    flex-direction: column;
+}
+

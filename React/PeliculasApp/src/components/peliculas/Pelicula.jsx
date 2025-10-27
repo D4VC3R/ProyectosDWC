@@ -26,31 +26,30 @@ const Pelicula = (props) => {
     return (
         <>
             <div className="pelicula_pelicula">
-                <div className="pelicula_imagen">
-                    <img src={props.cartelera} className="pelicula_cartel" alt={props.nombre ? props.nombre : noInfo}></img>
-                </div>
-                <div className="pelicula_contenido">
-                    <h1 className="pelicula_titulo">{props.nombre ? props.nombre : noInfo}</h1>
-                    <h3 className="pelicula_director">Director: <em>{props.director ? props.director : noInfo}</em></h3>
-                    <div className="pelicula_genero">Género: <em>{props.clasificacion ? props.clasificacion : noInfo}</em></div>
-                    <div className="pelicula_resumen">{props.resumen ? props.resumen : noInfo}</div>
+                    <div className="pelicula_imagen">
+                        <img src={props.cartelera} className="pelicula_cartel" alt={props.nombre ? props.nombre : noInfo}></img>
+                    </div>
+                    <div className="pelicula_contenido">
+                        <h1 className="pelicula_titulo">{props.nombre ? props.nombre : noInfo}</h1>
+                        <h3 className="pelicula_director">Director: <em>{props.director ? props.director : noInfo}</em></h3>
+                        <div className="pelicula_genero">Género: <em>{props.clasificacion ? props.clasificacion : noInfo}</em></div>
+                        <div className="pelicula_resumen">{props.resumen ? props.resumen : noInfo}</div>
+                    </div>
+
+                    <div className="pelicula_botones">
+                        <h2 className="pelicula_elenco_boton"> <button onClick={mostrarElenco}>Elenco</button></h2>
+                        <h2 className="pelicula_taquilla_boton"> <button onClick={mostrarTaquilla}>Taquilla</button></h2>
+                    </div>
                 </div>
 
-                <div className="pelicula_botones">
-                    <h2 className="pelicula_elenco_boton"> <button onClick={mostrarElenco}>Elenco</button></h2>
-                    <h2 className="pelicula_taquilla_boton"> <button onClick={mostrarTaquilla}>Taquilla</button></h2>
+                <div ref={taquillaRef} className="pelicula_taquilla_container">
+                    <Taquilla recaudacion={props.recaudacion} />
                 </div>
-            </div>
 
-            <div ref={taquillaRef} className="pelicula_taquilla_container">
-                <Taquilla recaudacion={props.recaudacion} />
-            </div>
-
-            <div className="pelicula_elenco_container" ref={elencoRef}>
-                <Elenco actores={props.actores} />
-            </div>
+                <div className="pelicula_elenco_container" ref={elencoRef}>
+                    <Elenco actores={props.actores} />
+                </div>
         </>
-
     );
 
 };

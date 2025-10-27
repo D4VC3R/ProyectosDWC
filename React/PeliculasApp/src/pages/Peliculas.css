@@ -1,9 +1,3 @@
-.peliculas_peliculas {
-  width: 100%;
-  padding: 20px;
-}
-
-/* Título de la sección */
 .peliculas_titulo_seccion {
   font-size: 24px;
   margin-bottom: 25px;
@@ -11,27 +5,19 @@
   text-align: center;
 }
 
-/* Lista de películas con flexbox */
 .peliculas_lista {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap; /* Permite que las películas pasen a la siguiente fila cuando no quepan */
-  gap: 25px; /* Espacio entre las películas */
-  justify-content: flex-start; /* Alinea desde la izquierda */
-
-  margin: 0;
+  flex-wrap: wrap; 
+  gap: 10px; 
+  justify-content: space-evenly; 
   list-style: none;
 }
 
 .peliculas_item {
   display: flex;
   flex-direction: column; 
-  width: 180px; 
-  margin-bottom: 20px;
-}
-
-.peliculas_imagen {
-  width: 100%;
+  width: 300px; 
   margin-bottom: 10px;
 }
 
@@ -40,27 +26,13 @@
   height: auto;
   border-radius: 8px;
   transition: transform 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(78, 78, 78, 0.856);
   cursor: pointer;
 }
 
 .peliculas_cartel:hover {
   transform: scale(1.03);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Contenedor de la información */
-.peliculas_info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5px;
-}
-
-.peliculas_anio {
-  font-size: 14px;
-  color: #666;
-  margin: 0;
+  box-shadow: 0 6px 12px rgba(141, 109, 2, 0.637);
 }
 
 .peliculas_nombre {

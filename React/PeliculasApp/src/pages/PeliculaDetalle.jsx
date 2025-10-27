@@ -5,6 +5,8 @@ import Pelicula from '../components/peliculas/Pelicula';
 
 const PeliculaDetalle = () => {
 
+	// Obtenemos el id de la URL, filtramos ese id con el listado de películas y le pasamos al componente reutilizado Pelicula
+	// una copia del objeto película correspondiente.
 	const {id} = useParams();
 
 	const pelicula = listadoPeliculas.peliculas.find(pelicula => pelicula.id === parseInt(id));
