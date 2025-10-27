@@ -24,9 +24,7 @@
 }
 
 .menu_elemento:hover {
-    background-color: #f0f0f0;
     color: #d8910d;
-    border-radius: 50px;
 }
 
 .menu_nav.menu_vertical {
@@ -36,5 +34,9 @@
 
 .menu_nav.menu_vertical .menu_lista {
     flex-direction: column;
+}
+
+.menu_nav.menu_vertical .menu_elemento:hover{
+    background-color: #f0f0f0;
 }
 
