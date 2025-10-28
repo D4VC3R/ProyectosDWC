@@ -3,8 +3,7 @@ import './Menu.css'
 import { Link } from 'react-router-dom'
 
 const Menu = ({vertical = false}) => {
-	// Le paso por props si quiero el menú en vertical u horizontal, así, como dijiste, simplemente cambiando el CSS es como tener un componente diferente.
-
+	// Le paso por props un booleano para cambiar el menú entre vertical u horizontal, así, como dijiste, simplemente cambiando el CSS es como tener un componente diferente.
 	return (
 		<>
         <nav className={`menu_nav ${vertical ? 'menu_vertical' : ''}`}>
