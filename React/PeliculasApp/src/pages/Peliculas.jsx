@@ -9,7 +9,7 @@ const Peliculas = () => {
 	/* 
 	En un principio habia anidado la ruta /peliculas/detalle/:id a /peliculas y utilizaba un <Outlet /> para renderizar PeliculaDetalle.jsx en la parte superior
 	manteniendo el listado siempre visible. Lo he cambiado para ajustarme a lo que pide la práctica.
-	Antes tenía un onClick que ejecutaba ésta función en los atributos de <img> y en el <h3> del título de la película.
+	Antes tenía un onClick que ejecutaba ésta función en los atributos de <img> y en el <h3> del título de la película. Ahora uso <Link>
 	
 	const clickPelicula = (id) => {
 		window.scrollTo(0, 0);
