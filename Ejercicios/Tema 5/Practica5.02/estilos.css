@@ -1,0 +1,21 @@
+.practica502{
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.ejercicio1{
+	flex: 1 1 auto;
+	border: 1px solid black;
+}
+.oculto{
+	display: none;
+}
+.ejercicio1 p {
+	background-color: rgb(212, 212, 212);
+}
+
+.ejercicio2 {
+	flex: 1 1 250px;
+	border: 1px solid black;
+}
+
