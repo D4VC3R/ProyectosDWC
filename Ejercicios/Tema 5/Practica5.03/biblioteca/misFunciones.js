@@ -160,7 +160,7 @@ const addParrafo = (id) => {
 };
 
 // Devuelve un color RGB aleatorio.
-export const colorAleatorio = () =>
+const colorAleatorio = () =>
   `rgb(${getNumeroAleatorio(0, 256)},${getNumeroAleatorio(0,256)},${getNumeroAleatorio(0, 256)})`;
 
 // Crea una imagen con la clase indicada.

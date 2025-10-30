@@ -1,0 +1,46 @@
+.contenedor-general {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.contenedor-colores {
+	border: 2px solid rgba(0, 0, 0, 0.26);
+	border-radius: 30px;
+	margin-bottom: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 90%;
+}
+
+.lista-colores {
+	list-style: none;
+	display: flex;
+	justify-content: space-evenly;
+	width: 90%;
+	border-radius: 20px;
+	box-shadow: 2px 2px 5px grey;
+}
+.lista-colores li {
+	border: 1px solid black;
+	margin: 5px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50px;
+	cursor: pointer;
+}
+
+.lista-colores li:hover {
+	transform: scale(1.2);
+	transition: 0.4s;
+}
+
+td {
+	width: 10px;
+	height: 10px;
+}
+table {
+	border-collapse: collapse;
+  border-spacing: 0;
+  border: 2px solid black;
+}
