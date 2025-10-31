@@ -3,20 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./paint.css" />
     <title>Paint</title>
   </head>
   <body>
     <div class ="contenedor-general">
       <div class="contenedor-colores" id="contenedor-colores">
-        <div class="botones">
-          <button class="boton-borrar" id="boton-borrar">Borrar todo</button>
-          <button id="boton-preciso">Modo preciso</button>
-        </div>
         <ul class="lista-colores" id="lista-colores"></ul>
+        <p id="color-seleccionado"></p>
       </div>
       <div class="contenedor-lienzo" id="contenedor-lienzo">
         <table class="tabla-lienzo" id="tabla-lienzo"></table>
+        <div class="botones">
+          <button id="boton-borrar">Borrar todo</button>
+          <button id="boton-preciso">Modo preciso</button>
+        </div>
       </div>
     </div>
 

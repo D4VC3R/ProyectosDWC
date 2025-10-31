@@ -32,7 +32,7 @@ export const setColores = (listaColores) => {
     "#FF00FF",
     "#B13425",
     "#E39D29",
-    "#6A6b04",
+    "#6A6B04",
     colorAleatorio()
   ];
 
@@ -63,4 +63,17 @@ export function alternarBotonActivo(lista, elemento) {
     }
   });
   elemento.classList.toggle("activo");
+}
+
+export function getInfoColor(estilo, idElemento){
+
+  const infoColor = document.getElementById(idElemento);
+  // Extraer y normalizar el valor del color (eliminar "background-color:" y espacios)
+  const color = estilo.replace("background-color:", "").trim();
+
+  infoColor.innerHTML = `Color seleccionado: ${color}`;
+
+  color !== "#FFFFFF" 
+  ? infoColor.setAttribute("style", `color: ${color}`)
+  : infoColor.setAttribute("style", `color: #000000`);
 }

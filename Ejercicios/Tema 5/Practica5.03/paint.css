@@ -10,6 +10,14 @@
 	align-items: center;
 }
 
+#color-seleccionado {
+	font-family: 'Schoolbell', cursive;
+	margin: 0px;
+	padding: 0 5px;
+	border-radius: 10px;
+	box-shadow: 2px 2px 5px grey;
+}
+
 .lista-colores {
 	list-style: none;
 	display: flex;
@@ -58,4 +66,10 @@ table {
 	border-collapse: collapse;
   border-spacing: 0;
   border: 2px solid black;
+}
+
+.botones {
+	display: flex;
+	margin-top:10px;
+	justify-content: space-evenly;
 }

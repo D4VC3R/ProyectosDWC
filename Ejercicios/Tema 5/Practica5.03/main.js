@@ -1,5 +1,5 @@
 "use strict";
-import { crearLista, setColores, crearTabla, alternarBotonActivo } from "./biblioteca/paint.js";
+import { crearLista, setColores, crearTabla, alternarBotonActivo, getInfoColor } from "./biblioteca/paint.js";
 
 window.onload = () => {
 
@@ -14,27 +14,30 @@ window.onload = () => {
 	const colores = Array.from(document.getElementsByTagName("li"));
 	const celdas = Array.from(document.getElementsByTagName("td"))
 	const lienzo = document.getElementById("contenedor-lienzo");
+	
 	// estilo contendrá el valor del atributo <style>, que será siempre background-color, y lo aplicará a cada casilla por la que pasemos el ratón.
 	let estilo = "";
 	// Como lo he hecho con mouseover, para saber cuándo estoy pintando y cuándo no, necesito un booleano.
 	let pintando = false;
 
-	// Según el elemento que reciba el click, capturamos el estilo del color, ponemos todas las celdas en blanco o les ponemos la clase "preciso".
+	// Si se clica en un color, capturamos su atributo style y lo guardamos en 'estilo' para aplicarlo más adelante.
 	panelColores.addEventListener("click", (evento) =>{
-		let click = evento.target
+		let click = evento.target;
 
 		if (colores.includes(click)){
 			estilo = click.getAttribute("style");
 			alternarBotonActivo(colores, click);
+			getInfoColor(estilo, "color-seleccionado");
 		} 
-		if (click === document.getElementById("boton-borrar")) celdas.forEach(celda => celda.setAttribute("style", "background-color: #FFFFFF"));
-		if (click === document.getElementById("boton-preciso")) celdas.forEach(celda => celda.classList.toggle("preciso"));
-		
 	}, false);
 
-	// Al hacer click, cambiamos el valor del booleano para pintar o dejar de hacerlo.
-	lienzo.addEventListener("mousedown", () =>{
-			pintando = !pintando;
+	// Si hacemos clic en el contenedor lienzo, comprobamos en qué parte del div se ha hecho clic y actuamos como corresponda.
+	lienzo.addEventListener("click", (evento) =>{
+		let click = evento.target;
+
+		if (click === document.getElementById("boton-borrar")) celdas.forEach(celda => celda.setAttribute("style", "background-color: #FFFFFF"));
+		if (click === document.getElementById("boton-preciso")) celdas.forEach(celda => celda.classList.toggle("preciso"));
+		if (click.tagName === ("TD")) pintando = !pintando;
 	}, false);
 
 	// Cuando el ratón se mueve, si el booleano está en true, pintamos en las celdas.
