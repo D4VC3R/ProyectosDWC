@@ -17,7 +17,7 @@ window.onload = () => {
 	
 	// estilo contendrá el valor del atributo <style>, que será siempre background-color, y lo aplicará a cada casilla por la que pasemos el ratón.
 	let estilo = "";
-	// Como lo he hecho con mouseover, para saber cuándo estoy pintando y cuándo no, necesito un booleano.
+	// Como lo he hecho con mouseover, para controlar si estoy pintando o no, necesito un booleano.
 	let pintando = false;
 
 	// Si se clica en un color, capturamos su atributo style y lo guardamos en 'estilo' para aplicarlo más adelante.

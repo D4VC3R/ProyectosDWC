@@ -3,7 +3,7 @@
 import { colorAleatorio } from "./misFunciones.js";
 
 // -------------------------------
-// Ejercicio 1 - Plantilla        |
+// Ejercicio 1 - Pintarrajea      | 
 // -------------------------------
 
 // Obtenemos el elemento <ul> y lo rellenamos con tantos <li> (colores) como reciba por parámetro, asegurando mínimo 6.
@@ -14,7 +14,7 @@ export const crearLista = (elementos = 6 ,idLista) => {
     const li = document.createElement("li");
     lista.append(li)
   };
-  // Podría ejecutar setColores directamente en lugar de devolver la lista, pero así la función es más reutilizable
+  // Podría ejecutar setColores directamente en lugar de devolver la lista, pero así la función es más reutilizable.
   return lista;
 };
 
@@ -68,11 +68,12 @@ export function alternarBotonActivo(lista, elemento) {
 export function getInfoColor(estilo, idElemento){
 
   const infoColor = document.getElementById(idElemento);
-  // Extraer y normalizar el valor del color (eliminar "background-color:" y espacios)
+  // Extraemos el color a partir del atributo background-color y eliminamos los espacios sobrantes.
   const color = estilo.replace("background-color:", "").trim();
 
   infoColor.innerHTML = `Color seleccionado: ${color}`;
 
+  // Como quiero mostrar el mensaje con el mismo color que se ha seleccionado, necesito una solución para cuándo coincide con el color de fondo de la página.
   color !== "#FFFFFF" 
   ? infoColor.setAttribute("style", `color: ${color}`)
   : infoColor.setAttribute("style", `color: #000000`);
