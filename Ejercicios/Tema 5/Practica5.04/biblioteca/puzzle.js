@@ -45,3 +45,17 @@ export const reiniciar = (piezas) => {
   piezas.forEach(pieza => document.getElementById("piezas").appendChild(pieza));
   aleatorizarArray(piezas);
 }
+
+export const isCorrecto = (piezas =[]) =>{
+  for (let i = 1; i <= 3; i++) {
+    
+    for (let j = 1; j <= 3; j++) {
+      if (!piezas[i].src.contains(`fila-${i}`) || piezas[i].src.contains(`columna-${j}`)) {
+        console.log(piezas[i].src.contains(`fila-${i}`))
+        return false;
+      }
+      
+    }
+  }
+  return true;
+}
