@@ -1,31 +1,59 @@
 "use strict";
-import { crearLista } from "./biblioteca/misFunciones.js";
+import { addPiezas, addClase, reiniciar } from "./biblioteca/puzzle.js";
+import { insertarTabla } from "./biblioteca/misFunciones.js"
 window.onload = () => {
 
-const getPiezas = () => {
-	const piezas = ["./../imgs/fila-1-columna-1.jpg",
-		"./../imgs/fila-1-columna-2.jpg",
-		"./../imgs/fila-1-columna-3.jpg",
-		"./../imgs/fila-2-columna-1.jpg",
-		"./../imgs/fila-2-columna-2.jpg",
-		"./../imgs/fila-2-columna-3.jpg",
-		"./../imgs/fila-3-columna-1.jpg",
-		"./../imgs/fila-3-columna-2.jpg",
-		"./../imgs/fila-3-columna-3.jpg"
-	]
-	
-	const lista = crearLista(piezas.length, "piezas");
-	console.log(lista)
-	
-	for (let i = 0; i < piezas.length; i++) {
-		const img = document.createElement("img");
-		img.src = piezas[i];
-		img.alt = `pieza ${i + 1}`;
-		lista.children[i].appendChild(img);
+addPiezas();
+insertarTabla(3, 3, "tablero");
+
+const piezas = Array.from(document.getElementsByClassName("pieza"));
+const casillas = Array.from(document.getElementsByTagName("TD"));
+addClase("soltable", casillas);
+
+document.getElementById("contenedor-piezas").addEventListener("dragstart", (evento)=>{
+	if (piezas.includes(evento.target) ) {
+		evento.dataTransfer.setData("id", evento.target.id)
+		
 	}
-}
+}, false);
+
+document.getElementById("contenedor-piezas").addEventListener("dragover", (evento) =>{
+	evento.preventDefault();
+}, false);
+
+document.getElementById("contenedor-piezas").addEventListener("drop", (evento) =>{
+	evento.preventDefault();
+	if (evento.target.classList.contains("piezas") || evento.target.classList.contains("pieza")) {
+		document.getElementById("piezas").appendChild(
+			document.getElementById(evento.dataTransfer.getData("id"))
+		)
+	}
+}, false);
 
 
+document.getElementById("contenedor-tablero").addEventListener("dragover", (evento) =>{
+	evento.preventDefault();
+}, false);
 
-	
+document.getElementById("contenedor-tablero").addEventListener("drop", (evento) =>{
+	evento.preventDefault();
+	if (evento.target.classList.contains("soltable")) {
+		evento.target.appendChild(
+			document.getElementById(evento.dataTransfer.getData("id"))
+		)
+	}
+}, false);
+
+document.getElementById("contenedor-tablero").addEventListener("dragstart", (evento) =>{
+	if (piezas.includes(evento.target)) {
+		evento.dataTransfer.setData("id", evento.target.id)
+	}
+})
+
+document.getElementById("contenedor-reinicio").addEventListener("click", (evento) =>{
+	if (evento.target.classList.contains("boton-reinicio")) {
+		reiniciar(piezas);
+	}
+})
+
 }

@@ -1,0 +1,48 @@
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+.contenedor-piezas {
+	display: flex;
+	margin-bottom: 20px;
+	justify-content: center;
+}
+
+#piezas {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2px;
+	min-height: 150px;
+	min-width: 300px;
+	border: 2px solid black;
+	justify-content: center;
+}
+
+.pieza {
+	display: block;
+	height: 125px;
+	width: 200px;
+}
+
+#tablero {
+	border: 2px solid black;
+	height: 373px;
+	width: 598px;
+	border-collapse: collapse;
+	table-layout: fixed;
+	justify-self: center;
+}
+
+.soltable{
+	border: 1px solid black;
+	height: 125px;
+	width: 200px;
+	padding: 0;
+}
+.contenedor-reinicio {
+	margin-top: 20px;
+	align-self: center;
+}

@@ -164,9 +164,10 @@ export const colorAleatorio = () =>
   `rgb(${getNumeroAleatorio(0, 256)},${getNumeroAleatorio(0,256)},${getNumeroAleatorio(0, 256)})`;
 
 // Crea una imagen con la clase indicada.
-const crearImg = clase => {
+export const crearImg = (clase, src) => {
   const img = document.createElement("img");
   img.classList.add(clase);
+  img.src = src;
   return img;
 };
 
