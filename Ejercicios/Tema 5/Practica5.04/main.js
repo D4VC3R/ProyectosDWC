@@ -1,5 +1,5 @@
 "use strict";
-import { addPiezas, addClase, reiniciar, isCorrecto } from "./biblioteca/puzzle.js";
+import { addPiezas, addClase, reiniciar } from "./biblioteca/puzzle.js";
 import { insertarTabla } from "./biblioteca/misFunciones.js"
 window.onload = () => {
 
@@ -42,7 +42,8 @@ document.getElementById("contenedor-tablero").addEventListener("drop", (evento) 
 			document.getElementById(evento.dataTransfer.getData("id"))
 		)
 	}
-	if (piezas.length===0 && isCorrecto(piezas)) {
+
+	if (!document.getElementById("piezas").hasChildNodes()) {
 		console.log("Has ganado.")
 	}
 }, false);

@@ -46,16 +46,9 @@ export const reiniciar = (piezas) => {
   aleatorizarArray(piezas);
 }
 
-export const isCorrecto = (piezas =[]) =>{
-  for (let i = 1; i <= 3; i++) {
+export const isCorrecto = (piezas = [], casillas = []) => {
+  for (let i = 1; i <= casillas.length; i++) {
     
-    for (let j = 1; j <= 3; j++) {
-      if (!piezas[i].src.contains(`fila-${i}`) || piezas[i].src.contains(`columna-${j}`)) {
-        console.log(piezas[i].src.contains(`fila-${i}`))
-        return false;
-      }
-      
-    }
+    
   }
-  return true;
 }
