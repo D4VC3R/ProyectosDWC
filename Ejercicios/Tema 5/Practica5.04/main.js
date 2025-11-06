@@ -1,5 +1,5 @@
 "use strict";
-import { addPiezas, addClase, reiniciar } from "./biblioteca/puzzle.js";
+import { addPiezas, addClase, reiniciar, identificarCasillas, isCorrecto } from "./biblioteca/puzzle.js";
 import { insertarTabla } from "./biblioteca/misFunciones.js"
 window.onload = () => {
 
@@ -9,11 +9,12 @@ insertarTabla(3, 3, "tablero");
 const piezas = Array.from(document.getElementsByClassName("pieza"));
 const casillas = Array.from(document.getElementsByTagName("TD"));
 addClase("soltable", casillas);
+identificarCasillas(casillas);
 
 document.getElementById("contenedor-piezas").addEventListener("dragstart", (evento)=>{
 	if (piezas.includes(evento.target) ) {
 		evento.dataTransfer.setData("id", evento.target.id)
-		console.log(evento.target)
+		
 	}
 }, false);
 
@@ -43,8 +44,8 @@ document.getElementById("contenedor-tablero").addEventListener("drop", (evento) 
 		)
 	}
 
-	if (!document.getElementById("piezas").hasChildNodes()) {
-		console.log("Has ganado.")
+	if (!document.getElementById("piezas").hasChildNodes() && isCorrecto(casillas)) {
+		
 	}
 }, false);
 
@@ -59,5 +60,4 @@ document.getElementById("contenedor-reinicio").addEventListener("click", (evento
 		reiniciar(piezas);
 	}
 })
-
 }

@@ -41,14 +41,30 @@ export const addClase = (clase, elementos = []) => {
   elementos.forEach(elemento => elemento.classList.add(clase));
 }
 
-export const reiniciar = (piezas) => {
+export const identificarCasillas = (casillas = []) => {
+  let cont = 0;
+  for (let i = 1; i <= 3; i++) {
+    for (let j = 1; j <= 3; j++) {
+      casillas[cont].id = `fila-${i}-columna-${j}`;
+      cont++;
+    }
+  }
+}
+
+const limpiarSrc = (src = "") => {
+  let posicion = src.split('/').pop();
+  return posicion.split('.').shift();
+}
+
+export const isCorrecto = (casillas = []) => {
+  return casillas.every(casilla => {
+    return limpiarSrc(casilla.firstChild.src) === casilla.id;
+  })
+}
+
+export const reiniciar = (piezas = []) => {
   piezas.forEach(pieza => document.getElementById("piezas").appendChild(pieza));
   aleatorizarArray(piezas);
 }
 
-export const isCorrecto = (piezas = [], casillas = []) => {
-  for (let i = 1; i <= casillas.length; i++) {
-    
-    
-  }
-}
+
