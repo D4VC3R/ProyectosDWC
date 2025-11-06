@@ -21,8 +21,12 @@ const getPiezas = () => {
   return piezas;
 }
 
+// Gracias, Fisher.
 const aleatorizarArray = (array) => {
-  array.sort(() => Math.random() - 0.5);
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
 }
 
 export const addPiezas = () => {
@@ -84,7 +88,7 @@ export const reiniciar = (piezas = [], casillas = []) => {
   casillas.forEach(casilla => {
 		limpiarClase(casilla)
 		casilla.classList.remove("resuelto")});
-    
+
   piezas.forEach(pieza => document.getElementById("piezas").appendChild(pieza));
   aleatorizarArray(piezas);
 }

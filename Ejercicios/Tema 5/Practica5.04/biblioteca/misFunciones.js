@@ -59,6 +59,13 @@ const ordenarPorPropiedad = (array, propiedad, asc = true) =>
       : b[propiedad].localeCompare(a[propiedad])
   );
 
+  export const aleatorizarArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
 // Suma todos los números de un array númerico.
 const sumaNumeros = (...numeros) => numeros.reduce((total, valor) => total + valor, 0);
 

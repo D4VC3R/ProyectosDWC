@@ -70,6 +70,7 @@ window.onload = () => {
 	},false);
 
 	document.getElementById("contenedor-tablero").addEventListener("dragstart", (evento) => {
+
 		if (piezas.includes(evento.target)) {
 			evento.dataTransfer.setData("idImagen", evento.target.id);
 			evento.dataTransfer.setData("idCasilla", evento.target.parentElement.id)
