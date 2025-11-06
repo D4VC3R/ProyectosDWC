@@ -1,5 +1,5 @@
 "use strict";
-import { addPiezas, addClase, reiniciar, identificarCasillas, isCorrecto } from "./biblioteca/puzzle.js";
+import { addPiezas, addClase, reiniciar, identificarCasillas, isResuelto, isCorrecta, marcarCorrecta, marcarIncorrecta } from "./biblioteca/puzzle.js";
 import { insertarTabla } from "./biblioteca/misFunciones.js"
 window.onload = () => {
 
@@ -44,8 +44,8 @@ document.getElementById("contenedor-tablero").addEventListener("drop", (evento) 
 		)
 	}
 
-	if (!document.getElementById("piezas").hasChildNodes() && isCorrecto(casillas)) {
-		
+	if (!document.getElementById("piezas").hasChildNodes() && isResuelto(casillas)) {
+		console.log("Resuelto")
 	}
 }, false);
 
@@ -53,7 +53,7 @@ document.getElementById("contenedor-tablero").addEventListener("dragstart", (eve
 	if (piezas.includes(evento.target)) {
 		evento.dataTransfer.setData("id", evento.target.id)
 	}
-})
+}, false);
 
 document.getElementById("contenedor-reinicio").addEventListener("click", (evento) =>{
 	if (evento.target.classList.contains("boton-reinicio")) {

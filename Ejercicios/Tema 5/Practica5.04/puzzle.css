@@ -46,3 +46,11 @@ body {
 	margin-top: 20px;
 	align-self: center;
 }
+
+.casilla-correcta {
+	border: 2px solid rgb(44, 219, 9)
+}
+
+.casilla-incorrecta {
+	border: 2px solid rgb(189, 8, 8)
+}

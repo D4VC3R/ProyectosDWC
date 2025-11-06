@@ -56,10 +56,23 @@ const limpiarSrc = (src = "") => {
   return posicion.split('.').shift();
 }
 
-export const isCorrecto = (casillas = []) => {
+export const isResuelto = (casillas = []) => {
   return casillas.every(casilla => {
     return limpiarSrc(casilla.firstChild.src) === casilla.id;
   })
+}
+
+export const isCorrecta = (casilla) => {
+  return limpiarSrc(casilla.firstChild.src) === casilla.id;
+}
+
+export const marcarCorrecta = (casilla) => {
+  casilla.classList.toggle("casilla-correcta");
+}
+
+export const marcarIncorrecta = (casilla) => {
+    casilla.classList.toggle("casilla-incorrecta");
+
 }
 
 export const reiniciar = (piezas = []) => {
