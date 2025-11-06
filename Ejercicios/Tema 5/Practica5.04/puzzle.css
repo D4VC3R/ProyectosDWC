@@ -54,3 +54,7 @@ body {
 .casilla-incorrecta {
 	border: 2px solid rgb(189, 8, 8)
 }
+
+.resuelto{
+	border:none !important;
+}

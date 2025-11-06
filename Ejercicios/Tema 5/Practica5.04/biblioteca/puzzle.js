@@ -57,9 +57,7 @@ const limpiarSrc = (src = "") => {
 }
 
 export const isResuelto = (casillas = []) => {
-  return casillas.every(casilla => {
-    return limpiarSrc(casilla.firstChild.src) === casilla.id;
-  })
+  return casillas.every(casilla => isCorrecta(casilla));
 }
 
 export const isCorrecta = (casilla) => {
@@ -67,15 +65,26 @@ export const isCorrecta = (casilla) => {
 }
 
 export const marcarCorrecta = (casilla) => {
-  casilla.classList.toggle("casilla-correcta");
+  limpiarClase(casilla);
+  casilla.classList.add("casilla-correcta");
 }
 
 export const marcarIncorrecta = (casilla) => {
-    casilla.classList.toggle("casilla-incorrecta");
-
+  limpiarClase(casilla);
+  casilla.classList.add("casilla-incorrecta");
 }
 
-export const reiniciar = (piezas = []) => {
+export const limpiarClase = (casilla) => {
+  casilla.classList.contains("casilla-correcta")
+  ? casilla.classList.remove("casilla-correcta")
+  : casilla.classList.remove("casilla-incorrecta")
+}
+
+export const reiniciar = (piezas = [], casillas = []) => {
+  casillas.forEach(casilla => {
+		limpiarClase(casilla)
+		casilla.classList.remove("resuelto")});
+    
   piezas.forEach(pieza => document.getElementById("piezas").appendChild(pieza));
   aleatorizarArray(piezas);
 }
