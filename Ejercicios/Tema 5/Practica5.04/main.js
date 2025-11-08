@@ -9,13 +9,14 @@ import {
 	marcarCorrecta,
 	marcarIncorrecta,
 	limpiarClase,
+	mensajeVictoria,
 } from "./biblioteca/puzzle.js";
 import { insertarTabla } from "./biblioteca/misFunciones.js";
 window.onload = () => {
 	addPiezas();
 	insertarTabla(3, 3, "tablero");
 
-	// Pasamos las imágenes y las celdas de HTMLCollection a Array para jugar con los métodos.
+	// Pasamos las piezas y las celdas de HTMLCollection a Array para jugar con los métodos.
 	const piezas = Array.from(document.getElementsByClassName("pieza"));
 	const casillas = Array.from(document.getElementsByTagName("TD"));
 	addClase("soltable", casillas);
@@ -75,12 +76,19 @@ window.onload = () => {
 			casillas.forEach(casilla => {
 				limpiarClase(casilla)
 				casilla.classList.add("resuelto")})
+				mensajeVictoria();
 		}
 	},false);
 
 	document.getElementById("contenedor-tablero").addEventListener("dragstart", (evento) => {
+		// Si ya has resuelto el puzzle no te dejo toquetear más, que da muchos problemas. A reiniciar.
+		if (isResuelto(casillas)) {
+			evento.preventDefault();
+      return;
+      }
 		// Si movemos una imagen ya colocada, guardamos el id de la imagen y de la casilla donde estaba.
 		if (piezas.includes(evento.target)) {
+
 			evento.dataTransfer.setData("idImagen", evento.target.id);
 			evento.dataTransfer.setData("idCasilla", evento.target.parentElement.id)
 		}

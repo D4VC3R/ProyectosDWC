@@ -22,7 +22,7 @@ const getPiezas = () => {
   return piezas;
 }
 
-// Gracias, Fisher.
+// Gracias, Fisher-Yates.
 const aleatorizarArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -43,14 +43,12 @@ export const addPiezas = () => {
   }
 }
 
-// Función para añadir una misma clase a todos los elementos de un array.
-// La utilizo para añadir clase a las casillas de la tabla.
 export const addClase = (clase, elementos = []) => {
   elementos.forEach(elemento => elemento.classList.add(clase));
 }
 
-// Identifico cada casilla con su posición, empezando en 1.
-// Así puedo aprovechar el src de cada imagen para comprobar si está en el sitio correcto.
+// Identifico cada casilla con su posición, empezando en 1. Así puedo aprovechar el src de cada imagen para comprobar si está en el sitio correcto.
+// Por un lado está bien si siempre utilizamos la página que nos pasaste para crear las piezas del puzzle, por otro lado no me gusta nada depender del src.
 export const identificarCasillas = (casillas = []) => {
   let cont = 0;
   for (let i = 1; i <= 3; i++) {
@@ -60,8 +58,7 @@ export const identificarCasillas = (casillas = []) => {
     }
   }
 }
-// Primero nos quedamos con lo que hay después de la última '/'
-// y luego devolvemos el string antes del '.'.
+// Primero nos quedamos con lo que hay después de la última '/' y luego devolvemos el string antes del '.'.
 const limpiarSrc = (src = "") => {
   let posicion = src.split('/').pop();
   return posicion.split('.').shift();
@@ -72,17 +69,18 @@ export const isCorrecta = (casilla) => {
   return limpiarSrc(casilla.firstChild.src) === casilla.id;
 }
 
-// Si todas las casillas son correctas...
+// Si todas las casillas tienen una imagen y son correctas...
 export const isResuelto = (casillas = []) => {
-  return casillas.every(casilla => isCorrecta(casilla));
+  if(casillas.every(casilla => casilla.firstChild))
+    return casillas.every(casilla => isCorrecta(casilla));
 }
 
 // La utilizo cuando mueves una imagen de una casilla ya colocada, como tiene que tener si o si una de estas dos clases
-// con una ternaria nos aseguramos de que vamos a quitar la clase.
+// con una ternaria nos aseguramos de no fallar al quitar la clase.
 export const limpiarClase = (casilla) => {
   casilla.classList.contains("casilla-correcta")
   ? casilla.classList.remove("casilla-correcta")
-  : casilla.classList.remove("casilla-incorrecta")
+  : casilla.classList.remove("casilla-incorrecta");
 }
 
 export const marcarCorrecta = (casilla) => {
@@ -95,8 +93,8 @@ export const marcarIncorrecta = (casilla) => {
   casilla.classList.add("casilla-incorrecta");
 }
 
-// Devolvemos los elementos a su estado inicial, quitando las clases extra a las casillas
-// y devolviendo las imágenes a su contenedor original.
+// Devolvemos los elementos a su estado inicial, quitando las clases extra a las casillas, devolviendo las imágenes a su contenedor original
+// y eliminando, si existe, el mensaje de victoria.
 export const reiniciar = (piezas = [], casillas = []) => {
   casillas.forEach(casilla => {
 		limpiarClase(casilla)
@@ -104,6 +102,15 @@ export const reiniciar = (piezas = [], casillas = []) => {
 
   piezas.forEach(pieza => document.getElementById("piezas").appendChild(pieza));
   aleatorizarArray(piezas);
+
+  if (document.getElementById("contenedor-tablero").lastElementChild.tagName === "P")
+    document.getElementById("contenedor-tablero").lastElementChild.remove();
+}
+
+export const mensajeVictoria = () => {
+  const p = document.createElement("P");
+  p.innerHTML = "¡Resuelto!";
+  document.getElementById("contenedor-tablero").appendChild(p);
 }
 
 
