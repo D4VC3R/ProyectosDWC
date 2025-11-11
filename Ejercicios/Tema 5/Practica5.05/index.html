@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Práctica 5.05</title>
+  </head>
+  <body>
+    <form name="formDiscos">
+			<fieldset id ="infoDisco">
+				<legend>Información del disco</legend>
+				<label for="título">Título</label>
+				<input
+					type="text"
+					name="titulo"
+					id="titulo"
+					placeholder="Título del disco..."
+				/>
+				<label for="caratula">Carátula</label>
+				<input
+					type="text"
+					name="caratula"
+					id="caratula"
+					placeholder="URL de la carátula"
+				/>
+				<label for="interprete">Intérprete</label>
+				<input
+					type="text"
+					name="interprete"
+					id="interprete"
+					placeholder="Grupo / Intérprete"
+				/>
+				<label for="anyo">Año de publicación</label>
+				<input
+					type="number"
+					step="1"
+					min="1900"
+					name="anyo"
+					id="anyo"
+					placeholder="Año de publicación"
+				/>
+			</fieldset>
+			<fieldset id="infoGenero">
+				<legend>Género</legend>
+				<select id="selectGenero">
+					<option value="rock">Rock</option>
+					<option value="popEs">Pop español</option>
+					<option value="popInt">Pop internacional</option>
+					<option value="rap">Rap</option>
+					<option value="clasica">Música clásica</option>
+					<option value="techno">Techno</option>
+					<option value="reggae">Reggae</option>
+					<option value="reggaeton">Reggaeton</option>
+				</select>
+			</fieldset>
+			<fieldeset id="estadoDisco">
+				<legend>Estado</legend>
+				<label for="prestado">¿Prestado?</label>
+				<select id="selectEstado">
+					<option value="false" selected>No</option>
+					<option value="true">Si</option>
+				</select>
+				<label for="localizacion">Localización</label>
+				<input
+					type="text"
+					name="localizacion"
+					id="localizacion"
+					placeholder="Formato: ES-000AA"
+				/>
+			</fieldeset>
+			<fieldset id="botonesForm">
+				<legend>Acciones</legend>
+				<button id="guardar">Guardar</button>
+				<button id="mostrar">Mostrar</button>
+			</fieldset>
+		</form>
+
+		<div id="coleccionDiscos"></div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
