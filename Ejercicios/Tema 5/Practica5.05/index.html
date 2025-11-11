@@ -9,7 +9,7 @@
     <form name="formDiscos">
 			<fieldset id ="infoDisco">
 				<legend>Información del disco</legend>
-				<label for="título">Título</label>
+				<label for="titulo">Título</label>
 				<input
 					type="text"
 					name="titulo"
@@ -43,6 +43,7 @@
 			<fieldset id="infoGenero">
 				<legend>Género</legend>
 				<select id="selectGenero" name="genero">
+					<option value="" disabled selected hidden>Seleciona...</option>
 					<option value="rock">Rock</option>
 					<option value="popEs">Pop español</option>
 					<option value="popInt">Pop internacional</option>
@@ -53,10 +54,10 @@
 					<option value="reggaeton">Reggaeton</option>
 				</select>
 			</fieldset>
-			<fieldeset id="estadoDisco">
+			<fieldset id="estadoDisco">
 				<legend>Estado</legend>
 				<label for="prestado">¿Prestado?</label>
-				<select id="selectEstado">
+				<select id="prestado">
 					<option value="false" selected>No</option>
 					<option value="true">Si</option>
 				</select>
@@ -67,7 +68,7 @@
 					id="localizacion"
 					placeholder="Formato: ES-000AA"
 				/>
-			</fieldeset>
+			</fieldset>
 			<fieldset id="botonesForm">
 				<legend>Acciones</legend>
 				<button id="guardar">Guardar</button>
