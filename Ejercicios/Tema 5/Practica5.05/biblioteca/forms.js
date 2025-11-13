@@ -4,58 +4,74 @@
 // Parte II                       |
 // -------------------------------
 
-const validarTitulo = (nameForm, nameCampo) => {
-	const titulo = document.forms[nameForm][nameCampo].value;
+export const getFormulario = (nameForm) => {
+	return document.forms[nameForm]
+}
+
+export const validarTitulo = (form, nameCampo) => {
+	const campo = form[nameCampo];
+	const titulo = campo.value;
 	const expTitulo = /^.{5,}$/;
+
 	let valido = expTitulo.test(titulo);
-	marcarCampo(nameCampo, valido);
+	marcarCampo(campo, valido);
 	return valido;
 }
 
-const validarInterprete = (nameForm, nameCampo) => {
-	const interprete = document.forms[nameForm][nameCampo].value;
+export const validarInterprete = (form, nameCampo) => {
+	const campo = form[nameCampo];
+	const interprete = campo.value;
 	const expInterprete = /^.{5,}$/;
 	let valido = expInterprete.test(interprete);
-	marcarCampo(nameCampo, valido);
+	marcarCampo(campo, valido);
 	return valido;
 }
 
-const validarAnyo = (nameForm, nameCampo) => {
-	const anyo = document.forms[nameForm][nameCampo].value;
+export const validarAnyo = (form, nameCampo) => {
+	const campo = form[nameCampo];
+	const anyo = campo.value
 	const expAnyo = /[0-9]{4}/;
 	let valido = expAnyo.test(anyo);
-	marcarCampo(nameCampo, valido);
+	marcarCampo(campo, valido);
 	return valido;
 }
 
-const validarGenero = (nameForm, nameCampo) => {
-	const select = document.forms[nameForm][nameCampo];
-	let valido = select.value !== "";
-	marcarCampo(nameCampo, valido);
+export const validarGenero = (form, nameCampo) => {
+	const campo = form[nameCampo];
+	let valido = campo.value !== "";
+	marcarCampo(campo, valido);
 	return valido;
 }
 
-const validarLocalizacion = (nameForm, nameCampo) => {
-	const localizacion = document.forms[nameForm][nameCampo].value;
+export const validarLocalizacion = (form, nameCampo) => {
+	const campo = form[nameCampo];
+	const localizacion = campo.value
 	const expLocalizacion = /^ES-\d{3}[A-Z]{2}$/;
 	let valido = expLocalizacion.test(localizacion);
-	marcarCampo(nameCampo, valido);
+	marcarCampo(campo, valido);
 	return valido;
 }
 
-export const comprobarForm = (nameForm) => {
-
-	return validarTitulo(nameForm, "titulo") &&
-	validarInterprete(nameForm, "interprete") &&
-	validarAnyo(nameForm, "anyo") &&
-	validarGenero(nameForm, "genero") && 
-	validarLocalizacion(nameForm, "localizacion")
+const validarUrl = (form, nameCampo) => {
+	const campo = form[nameCampo];
+	const url = campo.value;
+	const expUrl = / ^https?:\/\/ /  
 }
 
-const marcarCampo = (valido, campo) => {
+export const comprobarForm = (form) => {
+
+	return validarTitulo(form, "titulo") &&
+	validarInterprete(form, "interprete") &&
+	validarAnyo(form, "anyo") &&
+	validarGenero(form, "genero") && 
+	validarLocalizacion(form, "localizacion")
+}
+
+const marcarCampo = (campo, valido) => {
+	if (!valido){
+		campo.classList.add("campo-invalido")
+	}
 	if (valido && campo.classList.contains("campo-invalido")) {
-		campo.classList.remove("campo-invalido");
-	}else if (!valido) {
-		campo.classList.add("campo-invalido");
+		campo.classList.remove("campo-invalido")
 	}
 }
