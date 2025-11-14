@@ -1,3 +1,19 @@
 .campo-invalido {
 		border: 2px solid red;
 }
+
+.error {
+		background-color: red;
+		padding: 5px;
+		position: absolute;
+		z-index: 10;
+		margin-top: 25px;
+		border-radius: 5px;
+		border-width: 0 10px 10px 10px;
+		opacity: 0.6;
+}
+
+.oculto {
+		display: none;
+}
+
