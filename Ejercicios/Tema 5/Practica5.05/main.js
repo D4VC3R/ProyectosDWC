@@ -1,6 +1,6 @@
 "use strict";
 
-import { comprobarForm, getFormulario, validarTitulo,validarGenero, validarAnyo, validarInterprete, validarLocalizacion, mostrarError, limpiarErrores, guardarDisco, mostrarDiscos, limpiarDiscos, buscarDiscos } from "./biblioteca/forms.js";
+import { comprobarForm, getFormulario, validarTitulo,validarGenero, validarAnyo, validarInterprete, validarLocalizacion, mostrarError, limpiarErrores, guardarDisco, mostrarDiscos, limpiarListado, buscarDiscos, eliminarDisco } from "./biblioteca/forms.js";
 
 window.onload = () => {
 	const form = getFormulario("formDiscos");
@@ -20,22 +20,22 @@ window.onload = () => {
 		}
 
 		if (evento.target.id === "mostrar") {
-			limpiarDiscos();
+			limpiarListado();
 			mostrarDiscos(listaDiscos);
 		}
 
 		if (evento.target.id === "buscar") {
 			const criterio = form.busqueda.value;
-			limpiarDiscos();
+			limpiarListado();
 			let resultado = buscarDiscos(listaDiscos, criterio);
 			resultado.length !== 0
 			? mostrarDiscos(resultado)
 			: document.getElementById("sinResultados").textContent = "No se han encontrado discos que coincidan con la búsqueda.";
 		}
-		
+
 		if (evento.target.id === "limpiar") {
 			form.busqueda.value = "";
-			limpiarDiscos();
+			limpiarListado();
 			mostrarDiscos(listaDiscos);
 		}
 	}, false);
@@ -63,6 +63,14 @@ window.onload = () => {
 				break;
 		}
 	}, false)
+
+	document.getElementById("contenedorDiscos").addEventListener("click", (evento) => {
+		if (evento.target.classList.contains("borrar")){
+			listaDiscos = eliminarDisco(listaDiscos, parseInt(evento.target.id));
+			limpiarListado();
+			mostrarDiscos(listaDiscos);
+		}
+	}, false);
 
 	
 }

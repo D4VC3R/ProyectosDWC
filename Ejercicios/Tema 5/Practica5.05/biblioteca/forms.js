@@ -35,7 +35,7 @@ export const validarGenero = (campo) => {
 // A partir de aquí, como son opcionales, solo valido si tienen contenido.
 export const validarAnyo = (campo) => {
 	const anyo = campo.value
-	const expAnyo = / ^(19|20)\d{2}/;
+	const expAnyo = /^(19|20)\d{2}$/;
 	let valido = true;
 	
 	if (anyo.trim() !== "") {
@@ -78,7 +78,7 @@ export const comprobarForm = (form) => {
 	if (!validarLocalizacion(form.localizacion) ) {
 		arrayErrores = [...arrayErrores, "El formato, el formato, ¡el formato! Borra lo que hayas escrito y fíjate en el ejemplo."];
 	}
-	errores.length === 5 && (errores = [...errores, "Ya es difícil no rellenarme ni un solo campo bien..."]);
+	arrayErrores.length === 5 && (arrayErrores = [...arrayErrores, "Ya es difícil no rellenarme ni un solo campo bien..."]);
 
 	return arrayErrores;
 	
@@ -109,10 +109,12 @@ const marcarCampo = (campo, valido) => {
 		campo.classList.remove("campo-invalido");
 	}
 }
-
+// Está muy feo pero es para que cada disco tenga un id y poder borrarlos facilmente.
+let contId = 1;
 const crearDisco = (form) => {
 
 	const disco = {
+		id: contId++,
 		titulo: form.titulo.value,
 		interprete: form.interprete.value,
 		anyo: form.anyo?.value,
@@ -135,17 +137,19 @@ export const mostrarDiscos = (json) => {
 	json.forEach(disco => {
 		const fila = document.createElement("tr");
 		tabla.appendChild(fila);
+
 		for (const propiedad in disco) {
 			const celda = document.createElement("td");
 			celda.textContent = disco[propiedad] || "sin especificar";
 			fila.appendChild(celda);
 		}
+		fila.appendChild(document.createElement("td").appendChild(botonEliminar(disco.id)));
 	});
 }
 
-export const limpiarDiscos = () => {
+export const limpiarListado = () => {
   const tabla = document.getElementById("tablaDiscos");
-  tabla.innerHTML = "<tr><th>Título</th><th>Intérprete</th><th>Año</th><th>Género</th><th>Localización</th><th>Prestado</th></tr>";
+  tabla.innerHTML = "<tr><th>ID</th><th>Título</th><th>Intérprete</th><th>Año</th><th>Género</th><th>Localización</th><th>Prestado</th><th>Eliminar</th></tr>";
 };
 
 // Si alguna propiedad del disco contiene el criterio de búsqueda, lo incluyo en los resultados.
@@ -159,4 +163,16 @@ export const buscarDiscos = (json, busqueda) => {
 	);
 
 	return resultados;
+}
+
+const botonEliminar = (id) => {
+	const boton = document.createElement("button");
+	boton.className = "borrar";
+	boton.id = id;
+	boton.textContent = "X";
+	return boton;
+}
+
+export const eliminarDisco = (json, id) => {
+	return json.filter( disco => disco.id !== id);
 }
