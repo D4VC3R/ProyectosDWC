@@ -2,15 +2,12 @@
 		border: 2px solid red;
 }
 
-.error {
-		background-color: red;
+.error li{
+		list-style: none;
+		background-color: rgba(247, 50, 50, 0.459);
 		padding: 5px;
-		position: absolute;
-		z-index: 10;
-		margin-top: 25px;
-		border-radius: 5px;
-		border-width: 0 10px 10px 10px;
-		opacity: 0.6;
+		color: rgb(0, 0, 0);
+
 }
 
 .oculto {

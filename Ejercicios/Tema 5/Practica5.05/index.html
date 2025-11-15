@@ -17,13 +17,6 @@
 					id="titulo"
 					placeholder="Título del disco..."
 				/>
-				<label for="caratula">Carátula</label>
-				<input
-					type="url"
-					name="caratula"
-					id="caratula"
-					value="https://"
-				/>
 				<label for="interprete">Intérprete</label>
 				<input
 					type="text"
@@ -39,6 +32,13 @@
 					name="anyo"
 					id="anyo"
 					placeholder="Año de publicación"
+				/>
+				<label for="caratula">Carátula</label>
+				<input
+					type="url"
+					name="caratula"
+					id="caratula"
+					placeholder="https://"
 				/>
 			</fieldset>
 			<fieldset id="infoGenero">
@@ -70,15 +70,36 @@
 					placeholder="Formato: ES-000AA"
 				/>
 			</fieldset>
+			<ul class="error oculto" id="errores"></ul>
 			<fieldset id="botonesForm">
 				<legend>Acciones</legend>
 				<button id="guardar">Guardar</button>
 				<button id="mostrar">Mostrar</button>
 			</fieldset>
-			<span class="error oculto"></span>
+			<fieldset>
+				<legend>Buscar</legend>
+				<input type="text"
+				id="busqueda"
+				name="busqueda">
+				<button id="buscar">Buscar</button>
+				<button id="limpiar">Limpiar</button>
+			</fieldset>
+
 		</form>
 
-		<div id="coleccionDiscos"></div>
+		<div id="contenedorDiscos">
+			<table id="tablaDiscos">
+				  <tr>
+            <th>Título</th>
+            <th>Intérprete</th>
+            <th>Año</th>
+            <th>Género</th>
+            <th>Localización</th>
+            <th>Prestado</th>
+        </tr>
+			</table>
+			<p id="sinResultados"></p>
+		</div>
     <script type="module" src="./main.js"></script>
   </body>
 </html>
