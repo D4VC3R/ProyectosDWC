@@ -7,24 +7,24 @@
     <title>Práctica 5.05</title>
   </head>
   <body>
-    <form name="formDiscos">
+    <form name="formDiscos" class="formulario">
 			<fieldset id ="infoDisco">
 				<legend>Información del disco</legend>
-				<label for="titulo">Título</label>
+				<label for="titulo">Título:</label>
 				<input
 					type="text"
 					name="titulo"
 					id="titulo"
 					placeholder="Título del disco..."
 				/>
-				<label for="interprete">Intérprete</label>
+				<label for="interprete">Intérprete:</label>
 				<input
 					type="text"
 					name="interprete"
 					id="interprete"
 					placeholder="Grupo / Intérprete"
 				/>
-				<label for="anyo">Año de publicación</label>
+				<label for="anyo">Año de publicación:</label>
 				<input
 					type="number"
 					step="1"
@@ -33,7 +33,7 @@
 					id="anyo"
 					placeholder="Año de publicación"
 				/>
-				<label for="caratula">Carátula</label>
+				<label for="caratula">Carátula:</label>
 				<input
 					type="url"
 					name="caratula"
@@ -62,7 +62,7 @@
 					<option value="false" selected>No</option>
 					<option value="true">Si</option>
 				</select>
-				<label for="localizacion">Localización</label>
+				<label for="localizacion">Localización:</label>
 				<input
 					type="text"
 					name="localizacion"
@@ -76,13 +76,15 @@
 				<button id="guardar">Guardar</button>
 				<button id="mostrar">Mostrar</button>
 			</fieldset>
+			<p class="exito oculto" id="exito"></p>
 			<fieldset>
 				<legend>Buscar</legend>
+				<label for="busqueda">Buscar:</label>
 				<input type="text"
 				id="busqueda"
 				name="busqueda">
-				<button id="buscar">Buscar</button>
-				<button id="limpiar">Limpiar</button>
+				<button id="buscar" type="button">Buscar</button>
+				<button id="limpiar" type="button">Limpiar</button>
 			</fieldset>
 
 		</form>
@@ -90,7 +92,7 @@
 		<div id="contenedorDiscos">
 			<table id="tablaDiscos">
 				  <tr>
-						<th>ID</th>
+						<th>Carátula</th>
             <th>Título</th>
             <th>Intérprete</th>
             <th>Año</th>

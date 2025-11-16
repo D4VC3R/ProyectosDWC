@@ -7,10 +7,70 @@
 		background-color: rgba(247, 50, 50, 0.459);
 		padding: 5px;
 		color: rgb(0, 0, 0);
-
 }
 
 .oculto {
 		display: none;
 }
+.exito {
+		color: green;
+		font-weight: bold;
+		margin-top: 10px;
+}
 
+#contenedorDiscos {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 20px;
+}
+
+#tablaDiscos {
+		border: 2px solid black;
+		width: 90%;
+		border-collapse: collapse;
+		table-layout: auto;
+}
+
+#tablaDiscos th, #tablaDiscos td {
+		border: 1px solid black;
+		padding: 5px;
+		text-align: center;
+		width: fit-content;
+}
+
+
+#tablaDiscos th {
+		background-color: lightgray;
+}
+
+.borrar {
+		background-color: red;
+		color: white;
+		border: none;
+		padding: 5px 10px;
+		cursor: pointer;
+}
+
+.caratula {
+		width: 50px;
+		height: 50px;
+		border-radius: 4px;
+}
+
+.formulario {
+		margin: auto;
+		display: flex;
+		gap: 15px;
+		flex-direction: column;
+}
+.formulario fieldset {
+		border: 2px solid black;
+		padding: 10px;
+}
+.formulario input{
+		margin-bottom: 10px;
+		padding: 5px;
+		margin-left: 5px;
+		margin-right: 10px;
+}
