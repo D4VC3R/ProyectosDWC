@@ -11,7 +11,6 @@ window.onload = () => {
 
 	form.addEventListener("click", (evento) =>{
 		evento.preventDefault();
-		console.log(evento.target)
 		// Cada vez que se intente guardar, hay que limpiar los mensajes previos para no acabar con una lista infinita de errores.
 		if (evento.target.id === "guardar") {
 			limpiarErrores();
@@ -95,7 +94,7 @@ window.onload = () => {
 	 * Lo que menos me ha gustado es tener que usar ocularExito() en tantos sitios, pero no se me ha ocurrido otra forma de hacerlo.
 	 * Según creo, en el momento el usuario se pone a toquetear cualquier cosa del formulario, el mensaje de éxito ya no le interesa y no tiene sentido mantenerlo.
 	 * 
-	 * Y me hubiera gustado hacer el popup de error que saliera al lado del campo que falla, con un appendChild al campo no válido de un <span> con el mensaje de error, 
+	 * Y me hubiera gustado hacer el popup de error que saliera al lado del campo que falla, haciendo appendChild al campo no válido de un <span> con el mensaje de error, 
 	 * pero no he sabido hacerlo funcionar bien y quedaba fatal, me descuadraba el formulario, me complicaba el código... al final lo he dejado. Cuando mi CSS no de pena igual me animo a hacerlo.
 	 * 
 	 * Es la práctica que más me ha costado sacar hasta ahora, con diferencia.

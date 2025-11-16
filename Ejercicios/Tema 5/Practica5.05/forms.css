@@ -1,5 +1,12 @@
+body{
+		font-family: Arial, sans-serif;
+		margin: 20px;
+		background-color: #f0f0f0;
+}
+
 .campo-invalido {
-		border: 2px solid red;
+		border: 4px solid red;
+		border-radius: 5px;
 }
 
 .error li{
@@ -12,10 +19,17 @@
 .oculto {
 		display: none;
 }
+
 .exito {
 		color: green;
 		font-weight: bold;
 		margin-top: 10px;
+}
+legend {
+	background-color: rgba(255, 160, 122, 0.521);
+	border: 2px solid black;
+	border-radius: 20px;
+	padding: 5px;
 }
 
 #contenedorDiscos {
@@ -44,12 +58,22 @@
 		background-color: lightgray;
 }
 
+#mostrar {
+		margin-right: 30px;
+}
+
 .borrar {
-		background-color: red;
+		background-color: rgb(252, 96, 96);
 		color: white;
 		border: none;
-		padding: 5px 10px;
+		padding: 10px 15px;
+		border-radius: 4px;
 		cursor: pointer;
+}
+
+.borrar:hover {
+		background-color: rgb(206, 0, 0);
+		transition: 0.3s;
 }
 
 .caratula {
@@ -66,7 +90,9 @@
 }
 .formulario fieldset {
 		border: 2px solid black;
+		border-radius: 5px;
 		padding: 10px;
+		background-color: antiquewhite;
 }
 .formulario input{
 		margin-bottom: 10px;

@@ -146,7 +146,7 @@ export const guardarDisco = (form, coleccion) => {
 // Pero en principio lo planteé así, asi que he tirado para adelante.
 const mostrarDisco = (disco) => {
     const fila = document.createElement("tr");
-		// Para asegurarme de que el atributo del disco se dibuje en la columna correcta.
+		// Para asegurarme de que el atributo del disco se dibuje en la columna correcta y también es una forma fácil de excluir al ID.
     const columnas = [
         "caratula",
         "titulo",
@@ -182,11 +182,11 @@ const mostrarDisco = (disco) => {
     return fila;
 };
 
-export const mostrarDiscos = (json) => {
+export const mostrarDiscos = (listado) => {
     const tabla = document.getElementById("tablaDiscos");
     document.getElementById("sinResultados").textContent = "";
 
-    json.forEach((disco) => {
+    listado.forEach((disco) => {
         tabla.appendChild(mostrarDisco(disco));
     });
 };
