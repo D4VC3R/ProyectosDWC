@@ -3,10 +3,8 @@ import "./App.css";
 import Contenedor from "./components/common/Contenedor.jsx";
 import Rutas from "./routes/Rutas.jsx";
 import { BrowserRouter } from "react-router-dom";
-import Cabecera from "./components/common/Cabecera.jsx";
-import Footer from "./components/common/Footer.jsx";
 import Contenido from "./components/common/Contenido.jsx";
-import Menu from "./components/common/Menu.jsx";
+
 
 
 function App() {

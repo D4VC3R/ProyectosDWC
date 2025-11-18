@@ -123,7 +123,7 @@ const marcarCampo = (campo, valido) => {
 };
 
 // A tope con la modularidad.
-const crearDisco = (form) => {
+export const crearDisco = (form) => {
   const disco = {
     id: crypto.randomUUID(),
     titulo: form.titulo.value,
