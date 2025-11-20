@@ -8,76 +8,78 @@ export const getFormulario = (nameForm) => {
   return document.forms[nameForm];
 };
 
-// Como título e intérprete son obligatorios, valido si o si. Género al tener que elegir uno si o si, lo he considerado obligatorio también.
-export const validarTitulo = (campo) => {
-  const titulo = campo.value;
+// He tenido que adaptarlas un poco para que reciban el valor directamente en lugar del campo.
+export const validarTitulo = (valor) => {
   const expTitulo = /^.{5,}$/;
+  return expTitulo.test(valor);
 
-  let valido = expTitulo.test(titulo);
-  marcarCampo(campo, valido);
-  return valido;
 };
 
-export const validarInterprete = (campo) => {
-  const interprete = campo.value;
+export const validarInterprete = (valor) => {
   const expInterprete = /^.{5,}$/;
-  let valido = expInterprete.test(interprete);
-  marcarCampo(campo, valido);
-  return valido;
+  return expInterprete.test(valor);
+
 };
 
-export const validarGenero = (campo) => {
-  let valido = campo.value !== "" && campo.value !== "reggaeton";
-  marcarCampo(campo, valido);
-  return valido;
+export const validarGenero = (valor) => {
+  return valor !== "" && valor !== "reggaeton";
 };
 
-// A partir de aquí, como son opcionales, solo valido si tienen contenido.
-export const validarAnyo = (campo) => {
-  const anyo = campo.value;
+
+export const validarAnyo = (valor) => {
   const expAnyo = /^(19|20)\d{2}$/;
-  let valido = true;
 
-  if (anyo.trim() !== "") {
-    valido = expAnyo.test(anyo);
-    marcarCampo(campo, valido);
-    return valido;
-  }
-  return valido;
+  if (valor.trim() !== "") return expAnyo.test(valor);
+  return true;
 };
 
-export const validarLocalizacion = (campo) => {
-  const localizacion = campo.value;
+export const validarLocalizacion = (valor) => {
   const expLocalizacion = /^ES-\d{3}[A-Z]{2}$/;
-  let valido = true;
 
-  if (localizacion.trim() !== "") {
-    valido = expLocalizacion.test(localizacion);
-    marcarCampo(campo, valido);
-    return valido;
-  }
-  return valido;
+  if (valor.trim() !== "") return expLocalizacion.test(valor);
+  return true;
 };
+
+export const getValidador = () => {
+  return {
+    titulo: validarTitulo,
+    interprete: validarInterprete,
+    anyo: validarAnyo,
+    genero: validarGenero,
+    localizacion: validarLocalizacion
+  };
+};
+
+export const getMensajesError = () => {
+  return {
+  titulo: "El título debe tener al menos 5 caracteres.",
+  interprete: "El intérprete debe tener al menos 5 caracteres.",
+  anyo: "¿Seguro que tienes claro el año de publicación?",
+  genero: "Lo siento, tienes que elegir un género musical.",
+  localizacion: "El formato, el formato, ¡el formato! Borra lo que hayas escrito y fíjate en el ejemplo."
+  }
+}
 
 // Al principio pensé en devolver un booleano, si todo valida devuelvo true, pero eso me complicaba luego mostrar los mensajes de error específicos.
 // Devolviendo un array, si está vacío sé que todo ha ido bien y si no, ya tengo los mensajes de error según lo que haya fallado.
 export const comprobarForm = (form) => {
   let arrayErrores = [];
+  let mensajesError = getMensajesError();
 
   if (!validarTitulo(form.titulo)) {
-    arrayErrores = [...arrayErrores, "El título debe tener al menos 5 caracteres."];
+    arrayErrores = [...arrayErrores, mensajesError.titulo];
   }
   if (!validarInterprete(form.interprete)) {
-    arrayErrores = [...arrayErrores, "El intérprete debe tener al menos 5 caracteres."];
+    arrayErrores = [...arrayErrores, mensajesError.interprete];
   }
   if (!validarAnyo(form.anyo)) {
-    arrayErrores = [...arrayErrores, "¿Seguro que tienes claro el año de publicación?"];
+    arrayErrores = [...arrayErrores, mensajesError.anyo];
   }
   if (!validarGenero(form.genero)) {
-    arrayErrores = [...arrayErrores, "Lo siento, tienes que elegir un género musical."];
+    arrayErrores = [...arrayErrores, mensajesError.genero];
   }
   if (!validarLocalizacion(form.localizacion)) {
-    arrayErrores = [...arrayErrores, "El formato, el formato, ¡el formato! Borra lo que hayas escrito y fíjate en el ejemplo."];
+    arrayErrores = [...arrayErrores, mensajesError.localizacion];
   }
   arrayErrores.length === 5 && (arrayErrores = [...arrayErrores, "Ya es difícil no rellenarme ni un solo campo bien..."]);
 
@@ -113,7 +115,7 @@ export const limpiarErrores = () => {
   listaErrores.classList.add("oculto");
 };
 
-const marcarCampo = (campo, valido) => {
+export const marcarCampo = (campo, valido) => {
   if (!valido) {
     campo.classList.add("campo-invalido");
   }

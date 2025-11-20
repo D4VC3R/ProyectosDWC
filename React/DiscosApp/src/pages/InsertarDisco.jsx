@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import discoJson from './../assets/json/disco.json';
+import { getMensajesError, getValidador, marcarCampo, comprobarForm } from '../libraries/forms';
+import './InsertarDisco.css'
 
 const InsertarDisco = () => {
 
 	const valoresIniciales = discoJson;
-
+	const validador = getValidador();
+	const mensajesError = getMensajesError();
 	const [disco, setDisco] = useState(valoresIniciales);
+	const [errores, setErrores] = useState([]);
 
 	const actualizarDato = (evento) => {
 		const {name, value} = evento.target;
@@ -14,10 +18,27 @@ const InsertarDisco = () => {
 
 	const validarDato = (elemento) => {
 		const {name, value} = elemento;
+		let valido = true;
+		if (validador[name]) {
+			valido = validador[name](value);
+			marcarCampo(elemento, valido);
+		}
+		return valido;
 	}
 
-	console.log(disco);
+	const comprobarForm = () => {
+		let fallos = []
 
+		for (const campo in validador) {
+			const valor = disco[campo];
+			if (!validador[campo](valor)){
+				fallos = [...fallos, mensajesError[campo]];
+			}
+		}
+		setErrores(fallos);
+		console.log(fallos.length === 0)
+		return fallos.length === 0;
+	}
 
 	return (
 		<>
@@ -31,6 +52,7 @@ const InsertarDisco = () => {
 						placeholder="Título del disco..."
 						onChange={(evento)=>{
 							actualizarDato(evento)
+							validarDato(evento.target);
 						}}
 					/>
 					<label htmlFor="interprete">Intérprete:</label>
@@ -40,6 +62,7 @@ const InsertarDisco = () => {
 						placeholder="Grupo / Intérprete"
 						onChange={(evento)=>{
 							actualizarDato(evento)
+							validarDato(evento.target);
 						}}
 					/>
 					<label htmlFor="anyo">Año de publicación:</label>
@@ -51,6 +74,7 @@ const InsertarDisco = () => {
 						placeholder="Año de publicación"
 						onChange={(evento)=>{
 							actualizarDato(evento)
+							validarDato(evento.target);
 						}}
 					/>
 					<label htmlFor="caratula">Carátula:</label>
@@ -68,6 +92,7 @@ const InsertarDisco = () => {
 					<select name="genero" 
 						onChange={(evento)=>{
 							actualizarDato(evento)
+							validarDato(evento.target);
 						}}>
 						<option defaultValue={""} disabled  hidden>Seleciona...</option>
 						<option value="rock">Rock</option>
@@ -83,9 +108,7 @@ const InsertarDisco = () => {
 				<fieldset>
 					<legend>Estado</legend>
 					<label htmlFor="prestado">¿Prestado?</label>
-					<select onChange={(evento)=>{
-							actualizarDato(evento)
-						}}>
+					<select name ="prestado">
 						<option defaultValue="false">No</option>
 						<option value="true">Si</option>
 					</select>
@@ -94,16 +117,19 @@ const InsertarDisco = () => {
 						type="text"
 						name="localizacion"
 						placeholder="Formato: ES-000AA"
+						onChange={(evento)=>{
+							actualizarDato(evento)
+							validarDato(evento.target);
+						}}
+
 					/>
 				</fieldset>
-				<ul className="error oculto" id="errores"></ul>
 				<fieldset>
 					<legend>Acciones</legend>
-					<input type="button" value="Guardar"></input>
+					<input type="button" value="Guardar" onClick={comprobarForm}></input>
 					<input type="button" value="Mostrar"></input>
 					<label htmlFor="busqueda">Buscar:</label>
-					<input type="text"
-					name="busqueda"/>
+					<input type="text" name="busqueda"/>
 					<input type="button" value="Buscar"></input>
 					<input type="button" value="Limpiar"></input>
 				</fieldset>
