@@ -28,11 +28,13 @@ const InsertarDisco = () => {
 
 	const comprobarForm = () => {
 		let fallos = []
-
+		
 		for (const campo in validador) {
 			const valor = disco[campo];
+			const elemento = document.forms['formDiscos'].elements[campo]
 			if (!validador[campo](valor)){
 				fallos = [...fallos, mensajesError[campo]];
+				validarDato(elemento);
 			}
 		}
 		setErrores(fallos);
@@ -67,9 +69,7 @@ const InsertarDisco = () => {
 					/>
 					<label htmlFor="anyo">Año de publicación:</label>
 					<input
-						type="number"
-						step="1"
-						min="1900"
+						type="text"
 						name="anyo"
 						placeholder="Año de publicación"
 						onChange={(evento)=>{
@@ -89,12 +89,15 @@ const InsertarDisco = () => {
 				</fieldset>
 				<fieldset>
 					<legend>Género</legend>
-					<select name="genero" 
+					<select name="genero"
+						value={disco.genero}
 						onChange={(evento)=>{
 							actualizarDato(evento)
 							validarDato(evento.target);
 						}}>
-						<option defaultValue={""} disabled  hidden>Seleciona...</option>
+						{disco.genero === "" && (
+                <option value="" hidden disabled>Selecciona...</option>
+            )}
 						<option value="rock">Rock</option>
 						<option value="popEs">Pop español</option>
 						<option value="popInt">Pop internacional</option>
