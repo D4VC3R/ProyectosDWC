@@ -1,20 +1,35 @@
 import { useState } from 'react';
 import discoJson from './../assets/json/disco.json';
-import { getMensajesError, getValidador, marcarCampo } from '../libraries/forms';
+import { getValidador, marcarCampo, comprobarFormObj, isDiscoValido } from '../libraries/forms';
 import './InsertarDisco.css'
 import Errores from '../components/Errores';
+import { useRef } from 'react';
 
 const InsertarDisco = () => {
 
 	const valoresIniciales = discoJson;
 	const validador = getValidador();
-	const mensajesError = getMensajesError();
 	const [disco, setDisco] = useState(valoresIniciales);
 	const [errores, setErrores] = useState([]);
+	const contenedorExito = useRef(null);
+	const form = useRef(null);
 
 	const actualizarDato = (evento) => {
 		const {name, value} = evento.target;
 		setDisco({...disco, [name]: value});
+	}
+
+	const mostrarExito = () => {
+		contenedorExito.current.classList.toggle("oculto");
+		setTimeout(() => {
+      contenedorExito.current?.classList.add("oculto");
+    }, 3000);
+	}
+
+  const resetForm = () => {
+    form.current.reset(); 
+    setDisco(valoresIniciales); 
+    setErrores([]);
 	}
 
 	const validarDato = (elemento) => {
@@ -27,33 +42,26 @@ const InsertarDisco = () => {
 		return valido;
 	}
 
-	const comprobarForm = () => {
-		let fallos = [];
-		
-		for (const campo in validador) {
-			const valor = disco[campo];
-			const elemento = document.forms['formDiscos'].elements[campo]
-			if (!validador[campo](valor)){
-				fallos = [...fallos, mensajesError[campo]];
-				validarDato(elemento);
-			}
-		}
-		if (fallos.length === 5) {
-			fallos = [...fallos, mensajesError['patan']];
-		}
-		setErrores(fallos);
-		return fallos.length === 0;
-	}
-
+	const getErrores = () => {
+    if (isDiscoValido(disco)) {
+				setErrores([]);
+        mostrarExito();
+				resetForm();
+    } else {
+        const nuevosErrores = comprobarFormObj(disco);
+        setErrores(nuevosErrores);
+    }
+}
 
 	return (
 		<>
-			<form name="formDiscos" className="formulario">
+			<form name="formDiscos" className="formulario" ref={form}>
 				<fieldset>
 					<legend>Información del disco</legend>
 					<label htmlFor="titulo">Título:</label>
 					<input
 						type="text"
+						value={disco.titulo}
 						name="titulo"
 						placeholder="Título del disco..."
 						onChange={(evento)=>{
@@ -64,6 +72,7 @@ const InsertarDisco = () => {
 					<label htmlFor="interprete">Intérprete:</label>
 					<input
 						type="text"
+						value={disco.interprete}
 						name="interprete"
 						placeholder="Grupo / Intérprete"
 						onChange={(evento)=>{
@@ -75,6 +84,7 @@ const InsertarDisco = () => {
 					<input
 						type="text"
 						name="anyo"
+						value={disco.anyo}
 						placeholder="Año de publicación"
 						onChange={(evento)=>{
 							actualizarDato(evento)
@@ -85,6 +95,7 @@ const InsertarDisco = () => {
 					<input
 						type="url"
 						name="caratula"
+						value={disco.caratula}
 						placeholder="https://"
 						onChange={(evento)=>{
 							actualizarDato(evento)
@@ -115,34 +126,36 @@ const InsertarDisco = () => {
 				<fieldset>
 					<legend>Estado</legend>
 					<label htmlFor="prestado">¿Prestado?</label>
-					<select name ="prestado">
-						<option defaultValue="false">No</option>
+					<select name="prestado" 
+					value={disco.prestado}
+					onChange={(evento)=>{
+						actualizarDato(evento)
+					}}>
+						<option value="false">No</option>
 						<option value="true">Si</option>
 					</select>
 					<label htmlFor="localizacion">Localización:</label>
 					<input
 						type="text"
 						name="localizacion"
+						value={disco.localizacion}
 						placeholder="Formato: ES-000AA"
 						onChange={(evento)=>{
 							actualizarDato(evento)
 							validarDato(evento.target);
 						}}
-
 					/>
 				</fieldset>
 				<fieldset>
 					<legend>Acciones</legend>
-					<input type="button" value="Guardar" onClick={comprobarForm}></input>
-					<input type="button" value="Mostrar"></input>
-					<label htmlFor="busqueda">Buscar:</label>
-					<input type="text" name="busqueda"/>
-					<input type="button" value="Buscar"></input>
-					<input type="button" value="Limpiar"></input>
+					<input type="button" value="Guardar" className="botonForm" onClick={getErrores}></input>
 				</fieldset>
-				<p className="exito oculto"></p>
+				<p className="exito oculto" ref={contenedorExito}>
+					Disco añadido correctamente.
+				</p>
+				{errores.length > 0 && <Errores errores={errores} />} 
 			</form>
-				<Errores errores={errores} />
+				
 		</>
 	)
 }

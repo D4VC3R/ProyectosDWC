@@ -61,6 +61,27 @@ export const getMensajesError = () => {
   }
 }
 
+export const comprobarFormObj = (disco) => {
+  const validador = getValidador();
+	const mensajesError = getMensajesError();
+  let arrayErrores = [];
+
+  for (const campo in validador) {
+		const valor = disco[campo];
+		if (!validador[campo](valor)){
+			arrayErrores = [...arrayErrores, mensajesError[campo]];
+		}
+	}
+	if (arrayErrores.length === 5) {
+		arrayErrores = [...arrayErrores, mensajesError['patan']];
+		}
+		return arrayErrores;
+}
+
+export const isDiscoValido = (disco) => {
+  return comprobarFormObj(disco).length === 0;
+}
+
 // Al principio pensé en devolver un booleano, si todo valida devuelvo true, pero eso me complicaba luego mostrar los mensajes de error específicos.
 // Devolviendo un array, si está vacío sé que todo ha ido bien y si no, ya tengo los mensajes de error según lo que haya fallado.
 export const comprobarForm = (form) => {
