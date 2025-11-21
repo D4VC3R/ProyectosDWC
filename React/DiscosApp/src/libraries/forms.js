@@ -56,7 +56,8 @@ export const getMensajesError = () => {
   interprete: "El intérprete debe tener al menos 5 caracteres.",
   anyo: "¿Seguro que tienes claro el año de publicación?",
   genero: "Lo siento, tienes que elegir un género musical.",
-  localizacion: "El formato, el formato, ¡el formato! Borra lo que hayas escrito y fíjate en el ejemplo."
+  localizacion: "El formato, el formato, ¡el formato! Borra lo que hayas escrito y fíjate en el ejemplo.",
+  patan: "Ya es difícil no rellenarme ni un solo campo bien..."
   }
 }
 

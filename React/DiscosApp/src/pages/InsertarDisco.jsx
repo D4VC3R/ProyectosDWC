@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import discoJson from './../assets/json/disco.json';
-import { getMensajesError, getValidador, marcarCampo, comprobarForm } from '../libraries/forms';
+import { getMensajesError, getValidador, marcarCampo } from '../libraries/forms';
 import './InsertarDisco.css'
+import Errores from '../components/Errores';
 
 const InsertarDisco = () => {
 
@@ -27,7 +28,7 @@ const InsertarDisco = () => {
 	}
 
 	const comprobarForm = () => {
-		let fallos = []
+		let fallos = [];
 		
 		for (const campo in validador) {
 			const valor = disco[campo];
@@ -37,10 +38,13 @@ const InsertarDisco = () => {
 				validarDato(elemento);
 			}
 		}
+		if (fallos.length === 5) {
+			fallos = [...fallos, mensajesError['patan']];
+		}
 		setErrores(fallos);
-		console.log(fallos.length === 0)
 		return fallos.length === 0;
 	}
+
 
 	return (
 		<>
@@ -138,6 +142,7 @@ const InsertarDisco = () => {
 				</fieldset>
 				<p className="exito oculto"></p>
 			</form>
+				<Errores errores={errores} />
 		</>
 	)
 }
