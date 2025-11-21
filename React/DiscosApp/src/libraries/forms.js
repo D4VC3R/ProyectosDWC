@@ -61,6 +61,18 @@ export const getMensajesError = () => {
   }
 }
 
+export const validar = (disco) => {
+  const validador = getValidador();
+  const invalidos = {};
+
+  for (const campo in validador) {
+    if (!validador[campo](disco[campo])) {
+      invalidos[campo] = true;
+    }
+  }
+  return invalidos;
+}
+
 export const comprobarFormObj = (disco) => {
   const validador = getValidador();
 	const mensajesError = getMensajesError();
@@ -215,7 +227,7 @@ export const mostrarDiscos = (listado) => {
     });
 };
 
-const formatearGenero = (genero) => {
+export const formatearGenero = (genero) => {
   switch (genero) {
     case "rock":
       return "Rock";
@@ -291,6 +303,8 @@ export const getListadoDiscos = () => {
 };
 
 // Le pasamos la colección actualizada para guardarla en el localStorage.
-export const guardarListadoDiscos = (coleccion) => {
-  localStorage.setItem("listadoDiscos", JSON.stringify(coleccion));
+export const guardarListadoDiscos = (disco) => {
+  const listadoActual = getListadoDiscos();
+  const nuevoListado = [...listadoActual, disco];
+  localStorage.setItem("listadoDiscos", JSON.stringify(nuevoListado));
 };

@@ -1,0 +1,9 @@
+.errores-container {
+		background-color: #ffe6e6;
+		border: 1px solid #ff0000;
+		padding: 15px;
+		margin: 10px 0;
+		border-radius: 5px;
+		color: #cc0000;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	}

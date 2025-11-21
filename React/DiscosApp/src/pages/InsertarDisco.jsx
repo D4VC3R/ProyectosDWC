@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import discoJson from './../assets/json/disco.json';
-import { getValidador, marcarCampo, comprobarFormObj, isDiscoValido } from '../libraries/forms';
+import { getValidador, marcarCampo, comprobarFormObj, isDiscoValido, validar, guardarListadoDiscos } from '../libraries/forms';
 import './InsertarDisco.css'
 import Errores from '../components/Errores';
 import { useRef } from 'react';
+import ListarDiscos from './ListarDiscos';
 
 const InsertarDisco = () => {
 
@@ -13,6 +14,7 @@ const InsertarDisco = () => {
 	const [errores, setErrores] = useState([]);
 	const contenedorExito = useRef(null);
 	const form = useRef(null);
+	const [camposInvalidos, setCamposInvalidos] = useState({});
 
 	const actualizarDato = (evento) => {
 		const {name, value} = evento.target;
@@ -30,6 +32,7 @@ const InsertarDisco = () => {
     form.current.reset(); 
     setDisco(valoresIniciales); 
     setErrores([]);
+		setCamposInvalidos({});
 	}
 
 	const validarDato = (elemento) => {
@@ -42,14 +45,16 @@ const InsertarDisco = () => {
 		return valido;
 	}
 
-	const getErrores = () => {
+	const comprobar = () => {
     if (isDiscoValido(disco)) {
-				setErrores([]);
         mostrarExito();
+				guardarListadoDiscos(disco);
 				resetForm();
     } else {
         const nuevosErrores = comprobarFormObj(disco);
+				const camposMal = validar(disco)
         setErrores(nuevosErrores);
+				setCamposInvalidos(camposMal);
     }
 }
 
@@ -61,17 +66,19 @@ const InsertarDisco = () => {
 					<label htmlFor="titulo">Título:</label>
 					<input
 						type="text"
+						className={camposInvalidos.titulo ? "campo-invalido" : ""}
 						value={disco.titulo}
 						name="titulo"
 						placeholder="Título del disco..."
 						onChange={(evento)=>{
-							actualizarDato(evento)
+							actualizarDato(evento);
 							validarDato(evento.target);
 						}}
 					/>
 					<label htmlFor="interprete">Intérprete:</label>
 					<input
 						type="text"
+						className={camposInvalidos.interprete ? "campo-invalido" : ""}
 						value={disco.interprete}
 						name="interprete"
 						placeholder="Grupo / Intérprete"
@@ -83,6 +90,7 @@ const InsertarDisco = () => {
 					<label htmlFor="anyo">Año de publicación:</label>
 					<input
 						type="text"
+						className={camposInvalidos.anyo ? "campo-invalido" : ""}
 						name="anyo"
 						value={disco.anyo}
 						placeholder="Año de publicación"
@@ -104,8 +112,10 @@ const InsertarDisco = () => {
 				</fieldset>
 				<fieldset>
 					<legend>Género</legend>
-					<select name="genero"
+					<select 
+						name="genero"
 						value={disco.genero}
+						className={camposInvalidos.genero ? "campo-invalido" : ""}
 						onChange={(evento)=>{
 							actualizarDato(evento)
 							validarDato(evento.target);
@@ -126,7 +136,9 @@ const InsertarDisco = () => {
 				<fieldset>
 					<legend>Estado</legend>
 					<label htmlFor="prestado">¿Prestado?</label>
-					<select name="prestado" 
+					<select 
+					name="prestado"
+					className={camposInvalidos.prestado ? "campo-invalido" : ""} 
 					value={disco.prestado}
 					onChange={(evento)=>{
 						actualizarDato(evento)
@@ -138,6 +150,7 @@ const InsertarDisco = () => {
 					<input
 						type="text"
 						name="localizacion"
+						className={camposInvalidos.localizacion ? "campo-invalido" : ""}
 						value={disco.localizacion}
 						placeholder="Formato: ES-000AA"
 						onChange={(evento)=>{
@@ -146,16 +159,17 @@ const InsertarDisco = () => {
 						}}
 					/>
 				</fieldset>
+				<div className="insetarDisco-errores">
+					{errores.length > 0 && <Errores errores={errores} />}
+				</div>
 				<fieldset>
 					<legend>Acciones</legend>
-					<input type="button" value="Guardar" className="botonForm" onClick={getErrores}></input>
+					<input type="button" value="Guardar" className="botonForm" onClick={comprobar}></input>
 				</fieldset>
 				<p className="exito oculto" ref={contenedorExito}>
 					Disco añadido correctamente.
-				</p>
-				{errores.length > 0 && <Errores errores={errores} />} 
+				</p> 
 			</form>
-				
 		</>
 	)
 }
