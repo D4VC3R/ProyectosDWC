@@ -1,5 +1,5 @@
 import React from "react";
-import {formatearGenero} from "./../libraries/forms.js"
+import {formatearGenero, formatearEstado} from "./../libraries/forms.js"
 
 const Disco = ({disco}) => {
 	let noInfo = "Sin datos."
@@ -28,6 +28,9 @@ const Disco = ({disco}) => {
 					</div>
 					<div className="disco_localizacion">
 						Localización: {disco.localizacion ? disco.localizacion : noInfo}
+					</div>
+					<div className="disco_prestado">
+						Prestado: {disco.prestado ? formatearEstado(disco.prestado): noInfo}
 					</div>
 				</div>
 			</div>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import discoJson from './../assets/json/disco.json';
-import { getValidador, marcarCampo, comprobarFormObj, isDiscoValido, validar, guardarListadoDiscos } from '../libraries/forms';
+import { getValidador, marcarCampo, comprobarFormObj, isDiscoValido, validar, guardarDisco } from '../libraries/forms';
 import './InsertarDisco.css'
 import Errores from '../components/Errores';
 import { useRef } from 'react';
@@ -48,7 +48,7 @@ const InsertarDisco = () => {
     if (isDiscoValido(disco)) {
 				setDisco({...disco, id:crypto.randomUUID()})
         mostrarExito();
-				guardarListadoDiscos(disco);
+				guardarDisco(disco);
 				resetForm();
     } else {
         const nuevosErrores = comprobarFormObj(disco);

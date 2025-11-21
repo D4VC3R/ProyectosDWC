@@ -1,10 +1,16 @@
-import React from 'react'
-import { getListadoDiscos, eliminarDisco } from '../libraries/forms'
+import React, { useState, useEffect } from 'react'
+import { getListadoDiscos, eliminarDisco, guardarListado } from '../libraries/forms'
 import Disco from '../components/Disco';
 
 const ListarDiscos = () => {
-	const listado = getListadoDiscos() || [];
-	console.log(listado);
+	const [listado, setListado] = useState(getListadoDiscos() || []);
+	
+	const eliminar = (id) => {
+		const nuevoListado = eliminarDisco(id);
+		setListado(nuevoListado);
+	}
+	// Falta hacer que al salir de la pagina, guarde el listado sin los discos borrados.
+
 
 
 	return (
@@ -26,7 +32,7 @@ const ListarDiscos = () => {
 								className="listarDiscos-disco" 
 								key={disco.id}>
 								<Disco disco={disco}/>
-								<input type="button" value="Borrar" onClick={() => {eliminarDisco(listado, disco.id)}}/>
+								<input type="button" value="Borrar" onClick={() => eliminar(disco.id)} />
 								</div>
 							)
 						})

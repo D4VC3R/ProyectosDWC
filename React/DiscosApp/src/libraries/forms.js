@@ -173,10 +173,10 @@ export const crearDisco = (form) => {
   return disco;
 };
 // Nos creamos un disco a partir del formulario y con el desparrame, lo añadimos a la colección.
-export const guardarDisco = (form, coleccion) => {
+/*export const guardarDisco = (form, coleccion) => {
   const disco = crearDisco(form);
   return [...coleccion, disco];
-};
+}; */
 
 // Aquí me he complicado un poco de más la vida, si en lugar de una tabla hubiese hecho como en React con las películas, creando un div por cada disco, habría sido mejor.
 // Pero en principio lo planteé así, asi que he tirado para adelante.
@@ -248,7 +248,7 @@ export const formatearGenero = (genero) => {
   }
 };
 
-const formatearEstado = (prestado) => {
+export const formatearEstado = (prestado) => {
   return prestado === "false" ? "No" : "Sí";
 };
 
@@ -289,8 +289,9 @@ const botonEliminar = (id) => {
 };
 
 // Clásico filter para devolver todo el array menos el disco elegido.
-export const eliminarDisco = (json, id) => {
-  return json.filter((disco) => disco.id !== id);
+export const eliminarDisco = (id) => {
+  const listado = getListadoDiscos() || [];
+  return listado.filter((disco) => disco.id !== id);
 };
 
 // -------------------------------
@@ -303,8 +304,12 @@ export const getListadoDiscos = () => {
 };
 
 // Le pasamos la colección actualizada para guardarla en el localStorage.
-export const guardarListadoDiscos = (disco) => {
+export const guardarDisco = (disco) => {
   const listadoActual = getListadoDiscos() || [];
   const nuevoListado = [...listadoActual, disco];
   localStorage.setItem("listadoDiscos", JSON.stringify(nuevoListado));
 };
+
+export const guardarListado = (listado) => {
+  localStorage.setItem("listadoDiscos", JSON.stringify(listado));
+}
