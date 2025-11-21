@@ -304,7 +304,7 @@ export const getListadoDiscos = () => {
 
 // Le pasamos la colección actualizada para guardarla en el localStorage.
 export const guardarListadoDiscos = (disco) => {
-  const listadoActual = getListadoDiscos();
+  const listadoActual = getListadoDiscos() || [];
   const nuevoListado = [...listadoActual, disco];
   localStorage.setItem("listadoDiscos", JSON.stringify(nuevoListado));
 };

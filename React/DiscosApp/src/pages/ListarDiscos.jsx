@@ -1,9 +1,9 @@
 import React from 'react'
-import { getListadoDiscos } from '../libraries/forms'
+import { getListadoDiscos, eliminarDisco } from '../libraries/forms'
 import Disco from '../components/Disco';
 
 const ListarDiscos = () => {
-	const listado = getListadoDiscos();
+	const listado = getListadoDiscos() || [];
 	console.log(listado);
 
 
@@ -26,7 +26,7 @@ const ListarDiscos = () => {
 								className="listarDiscos-disco" 
 								key={disco.id}>
 								<Disco disco={disco}/>
-								<input type="button" value="Borrar"/>
+								<input type="button" value="Borrar" onClick={() => {eliminarDisco(listado, disco.id)}}/>
 								</div>
 							)
 						})

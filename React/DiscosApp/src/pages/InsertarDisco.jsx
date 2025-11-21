@@ -4,7 +4,6 @@ import { getValidador, marcarCampo, comprobarFormObj, isDiscoValido, validar, gu
 import './InsertarDisco.css'
 import Errores from '../components/Errores';
 import { useRef } from 'react';
-import ListarDiscos from './ListarDiscos';
 
 const InsertarDisco = () => {
 
@@ -47,6 +46,7 @@ const InsertarDisco = () => {
 
 	const comprobar = () => {
     if (isDiscoValido(disco)) {
+				setDisco({...disco, id:crypto.randomUUID()})
         mostrarExito();
 				guardarListadoDiscos(disco);
 				resetForm();
