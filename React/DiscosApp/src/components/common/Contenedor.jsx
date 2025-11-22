@@ -8,22 +8,21 @@ import Contenido from "./Contenido";
 const Contenedor = () => {
 	return (
 		<div className="contenedor_contenedor">
-			<header className="contenedor_cabecera">
+			<div className="contenedor_cabecera">
 				<Cabecera />
-			</header>
-			<div className="contenedor_body">
-				<aside className="contenedor_menu">
-					<Menu vertical />
-				</aside>
-				<main className="contenedor_contenido">
-					<Contenido />
-				</main>
 			</div>
-			<footer>
+			<div className="contenedor_principal">
+				<div className="contenedor_menu">
+					<Menu vertical />
+				</div>
+				<div className="contenedor_contenido">
+					<Contenido />
+				</div>
+			</div>
+			<div className="contenedor_footer">
 				<Footer />
-			</footer>
+			</div>
 		</div>
-	);
-};
-
-export default Contenedor;
+	)
+}
+export default Contenedor

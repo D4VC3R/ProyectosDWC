@@ -4,21 +4,16 @@
 // Parte II                       |
 // -------------------------------
 
-export const getFormulario = (nameForm) => {
-  return document.forms[nameForm];
-};
 
-// He tenido que adaptarlas un poco para que reciban el valor directamente en lugar del campo.
+// He adaptado las validaciones específicas de cada campo para pasarles el valor directamente en lugar del campo completo como hacía en vanilla.
 export const validarTitulo = (valor) => {
   const expTitulo = /^.{5,}$/;
   return expTitulo.test(valor);
-
 };
 
 export const validarInterprete = (valor) => {
   const expInterprete = /^.{5,}$/;
   return expInterprete.test(valor);
-
 };
 
 export const validarGenero = (valor) => {
@@ -40,6 +35,7 @@ export const validarLocalizacion = (valor) => {
   return true;
 };
 
+// Me creo un objeto con todas las funciones de validación asociadas al campo correspondiente.
 export const getValidador = () => {
   return {
     titulo: validarTitulo,
@@ -50,6 +46,7 @@ export const getValidador = () => {
   };
 };
 
+// Lo mismo con los mensajes de error.
 export const getMensajesError = () => {
   return {
   titulo: "El título debe tener al menos 5 caracteres.",
@@ -61,6 +58,7 @@ export const getMensajesError = () => {
   }
 }
 
+// Y un objeto más, este lo utilizo para saber qué campos no han validado al enviar el formulario y así poderlos marcar en rojo.
 export const validar = (disco) => {
   const validador = getValidador();
   const invalidos = {};
@@ -73,6 +71,7 @@ export const validar = (disco) => {
   return invalidos;
 }
 
+// Parecido al de vanilla pero recorriendo el validador en lugar de hacerlo campo por campo usando ifs.
 export const comprobarFormObj = (disco) => {
   const validador = getValidador();
 	const mensajesError = getMensajesError();
@@ -90,65 +89,12 @@ export const comprobarFormObj = (disco) => {
 		return arrayErrores;
 }
 
+// He intentado quitar toda la lógica posible de los componentes.
 export const isDiscoValido = (disco) => {
   return comprobarFormObj(disco).length === 0;
 }
 
-// Al principio pensé en devolver un booleano, si todo valida devuelvo true, pero eso me complicaba luego mostrar los mensajes de error específicos.
-// Devolviendo un array, si está vacío sé que todo ha ido bien y si no, ya tengo los mensajes de error según lo que haya fallado.
-export const comprobarForm = (form) => {
-  let arrayErrores = [];
-  let mensajesError = getMensajesError();
-
-  if (!validarTitulo(form.titulo)) {
-    arrayErrores = [...arrayErrores, mensajesError.titulo];
-  }
-  if (!validarInterprete(form.interprete)) {
-    arrayErrores = [...arrayErrores, mensajesError.interprete];
-  }
-  if (!validarAnyo(form.anyo)) {
-    arrayErrores = [...arrayErrores, mensajesError.anyo];
-  }
-  if (!validarGenero(form.genero)) {
-    arrayErrores = [...arrayErrores, mensajesError.genero];
-  }
-  if (!validarLocalizacion(form.localizacion)) {
-    arrayErrores = [...arrayErrores, mensajesError.localizacion];
-  }
-  arrayErrores.length === 5 && (arrayErrores = [...arrayErrores, "Ya es difícil no rellenarme ni un solo campo bien..."]);
-
-  return arrayErrores;
-};
-
-export const mostrarExito = () => {
-	const mensajeExito = document.getElementById("exito");
-	mensajeExito.textContent = "Disco guardado correctamente.";
-	mensajeExito.classList.toggle("oculto");
-}
-// Rellenamos la lista con tantos errores como haya devuelto comprobarForm y los hacemos visibles al usuario.
-export const mostrarError = (errores) => {
-  const listaErrores = document.getElementById("errores");
-  listaErrores.classList.toggle("oculto");
-
-  errores.map((error) => {
-    const li = document.createElement("li");
-    li.textContent = error;
-    listaErrores.appendChild(li);
-  });
-};
-
-export const ocultarExito = () => {
-	const mensajeExito = document.getElementById("exito");
-	mensajeExito.classList.add("oculto");
-}
-
-// Para que no se me acumulen los errores en cada intento de envío, vacío la lista con innerHTML y la oculto otra vez.
-export const limpiarErrores = () => {
-  const listaErrores = document.getElementById("errores");
-  listaErrores.innerHTML = "";
-  listaErrores.classList.add("oculto");
-};
-
+// Estas tres no he tenido que tocarlas para nada.
 export const marcarCampo = (campo, valido) => {
   if (!valido) {
     campo.classList.add("campo-invalido");
@@ -156,75 +102,6 @@ export const marcarCampo = (campo, valido) => {
   if (valido && campo.classList.contains("campo-invalido")) {
     campo.classList.remove("campo-invalido");
   }
-};
-
-// A tope con la modularidad.
-export const crearDisco = (form) => {
-  const disco = {
-    id: crypto.randomUUID(),
-    titulo: form.titulo.value,
-    interprete: form.interprete.value,
-    anyo: form.anyo?.value,
-    caratula: form.caratula?.value,
-    genero: form.genero?.value,
-    localizacion: form.localizacion?.value,
-    prestado: form.prestado?.value
-  };
-  return disco;
-};
-// Nos creamos un disco a partir del formulario y con el desparrame, lo añadimos a la colección.
-/*export const guardarDisco = (form, coleccion) => {
-  const disco = crearDisco(form);
-  return [...coleccion, disco];
-}; */
-
-// Aquí me he complicado un poco de más la vida, si en lugar de una tabla hubiese hecho como en React con las películas, creando un div por cada disco, habría sido mejor.
-// Pero en principio lo planteé así, asi que he tirado para adelante.
-const mostrarDisco = (disco) => {
-    const fila = document.createElement("tr");
-		// Para asegurarme de que el atributo del disco se dibuje en la columna correcta y también es una forma fácil de excluir al ID.
-    const columnas = [
-        "caratula",
-        "titulo",
-        "interprete",
-        "anyo",
-        "genero",
-        "localizacion",
-        "prestado",
-    ];
-
-    columnas.forEach((columna) => {
-        const celda = document.createElement("td");
-
-        if (columna === "caratula") {
-            const img = document.createElement("img");
-            img.src = disco.caratula || "";
-            img.alt = `Carátula de ${disco.titulo}`;
-            img.className = "caratula";
-            celda.appendChild(img);
-        } else if (columna === "genero") {
-            celda.textContent = formatearGenero(disco[columna]);
-        } else if (columna === "prestado") {
-            celda.textContent = formatearEstado(disco[columna]);
-        } else {
-            celda.textContent = disco[columna] || "Sin especificar";
-        }
-        fila.appendChild(celda);
-    });
-    const celdaBoton = document.createElement("td");
-    celdaBoton.appendChild(botonEliminar(disco.id));
-    fila.appendChild(celdaBoton);
-		// Necesito la fila completa para añadirla a la tabla.
-    return fila;
-};
-
-export const mostrarDiscos = (listado) => {
-    const tabla = document.getElementById("tablaDiscos");
-    document.getElementById("sinResultados").textContent = "";
-
-    listado.forEach((disco) => {
-        tabla.appendChild(mostrarDisco(disco));
-    });
 };
 
 export const formatearGenero = (genero) => {
@@ -252,18 +129,12 @@ export const formatearEstado = (prestado) => {
   return prestado === "false" ? "No" : "Sí";
 };
 
-// Dejo solo la cabecera de la tabla y me cargo lo que haya dentro de ella.
-export const limpiarListado = () => {
-  const tabla = document.getElementById("tablaDiscos");
-  tabla.innerHTML =
-    "<tr><th>Carátula</th><th>Título</th><th>Intérprete</th><th>Año</th><th>Género</th><th>Localización</th><th>Prestado</th><th>Eliminar</th></tr>";
-};
 
 // -------------------------------
 // Parte III                      |
 // -------------------------------
 
-// Si alguna propiedad del disco contiene el criterio de búsqueda, lo incluyo en los resultados.
+// Igual que estaba.
 export const buscarDiscos = (json, busqueda) => {
   const resultados = json.filter((disco) =>
       disco.titulo.toLowerCase().includes(busqueda.toLowerCase()) ||
@@ -279,16 +150,8 @@ export const buscarDiscos = (json, busqueda) => {
 // Parte IV                       |
 // -------------------------------
 
-// Como tiene que aparecer un botón por cada disco, lo tengo que crear dinámicamente.
-const botonEliminar = (id) => {
-  const boton = document.createElement("button");
-  boton.className = "borrar";
-  boton.id = id;
-  boton.textContent = "X";
-  return boton;
-};
 
-// Clásico filter para devolver todo el array menos el disco elegido.
+// En lugar de pasarle el listado como antes, lo obtengo directamente del localStorage y el listado que devuelve se lo paso al estado del componente.
 export const eliminarDisco = (id) => {
   const listado = getListadoDiscos() || [];
   return listado.filter((disco) => disco.id !== id);
@@ -298,18 +161,19 @@ export const eliminarDisco = (id) => {
 // Parte V                        |
 // -------------------------------
 
-// Devuelve el listado para almacenarlo en una variable cuando carguemos la página.
+// Igual que estaba.
 export const getListadoDiscos = () => {
   return JSON.parse(localStorage.getItem("listadoDiscos"));
 };
 
-// Le pasamos la colección actualizada para guardarla en el localStorage.
+// Esta la voy a utilizar cuando añada un disco nuevo para no tener que recuperar el listado en el componente del formulario.
 export const guardarDisco = (disco) => {
   const listadoActual = getListadoDiscos() || [];
   const nuevoListado = [...listadoActual, disco];
   localStorage.setItem("listadoDiscos", JSON.stringify(nuevoListado));
 };
 
+// Y en ListarDiscos utilizo esta para aprovechar el estado del listado que ya tengo ahí.
 export const guardarListado = (listado) => {
   localStorage.setItem("listadoDiscos", JSON.stringify(listado));
 }

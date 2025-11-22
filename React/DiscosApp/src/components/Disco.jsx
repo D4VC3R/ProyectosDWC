@@ -1,5 +1,6 @@
 import React from "react";
 import {formatearGenero, formatearEstado} from "./../libraries/forms.js"
+import './Disco.css'
 
 const Disco = ({disco}) => {
 	let noInfo = "Sin datos."
@@ -8,7 +9,7 @@ const Disco = ({disco}) => {
 			<div className="disco_disco">
 				<div className="disco_imagen">
 					<img
-						src={disco.cartelera}
+						src={disco.caratula ? disco.caratula : null}
 						className="disco_caratula"
 						alt={disco.titulo ? disco.titulo : noInfo}
 					></img>
