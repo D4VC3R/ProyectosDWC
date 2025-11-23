@@ -30,11 +30,11 @@ const InsertarDisco = () => {
 		return valido;
 	}
 
-	// Desaparece solo, como le gusta a Eloy.
+	// Desaparece solo, pero hay que asegurarse de que el contenedor sigue ahí cuando acaba el timeout, si no, si cambiabas rápido al listado de discos daba un fallo en consola.
 	const mostrarExito = () => {
 		contenedorExito.current.classList.toggle("oculto");
 		setTimeout(() => {
-			contenedorExito.current.classList.add("oculto");
+			contenedorExito.current?.classList.add("oculto");
 		}, 3000);
 	}
 
