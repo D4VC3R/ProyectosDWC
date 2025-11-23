@@ -5,8 +5,6 @@ import Contenedor from './components/common/Contenedor';
 
 
 function App() {
-
-
   return (
     <>
       <BrowserRouter>

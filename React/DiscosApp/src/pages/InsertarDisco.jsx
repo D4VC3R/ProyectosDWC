@@ -34,7 +34,7 @@ const InsertarDisco = () => {
 	const mostrarExito = () => {
 		contenedorExito.current.classList.toggle("oculto");
 		setTimeout(() => {
-			contenedorExito.current?.classList.add("oculto");
+			contenedorExito.current.classList.add("oculto");
 		}, 3000);
 	}
 
@@ -60,6 +60,8 @@ const InsertarDisco = () => {
 			setCamposInvalidos(camposMal);
 		}
 	}
+
+	// Falta hacer que al desmontar el componente, si todo está ok, pregunte si quiere guardar el disco.
 
 	return (
 		<>

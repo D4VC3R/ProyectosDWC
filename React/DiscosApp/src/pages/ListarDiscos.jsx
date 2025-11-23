@@ -11,7 +11,7 @@ const ListarDiscos = () => {
 	const resultados = buscarDiscos(listado, busqueda);
 
 	const eliminar = (id) => {
-		const nuevoListado = eliminarDisco(id)
+		const nuevoListado = eliminarDisco(listado, id)
 		setListado(nuevoListado);
 	}
 
@@ -29,11 +29,6 @@ const ListarDiscos = () => {
 		const discosGuardados = getListadoDiscos() || [];
 		setListado(discosGuardados);
 		setCargado(true);
-
-		return () => {
-			// Al desmontar, ponermos cargado a false otra vez.
-			setCargado(false)
-		}
 	}, []);
 
 	return (

@@ -20,7 +20,6 @@ export const validarGenero = (valor) => {
   return valor !== "" && valor !== "reggaeton";
 };
 
-
 export const validarAnyo = (valor) => {
   const expAnyo = /^(19|20)\d{2}$/;
 
@@ -58,7 +57,8 @@ export const getMensajesError = () => {
   }
 }
 
-// Y un objeto más, este lo utilizo para saber qué campos no han validado al enviar el formulario y así poderlos marcar en rojo.
+// Aquí no sé si lo estoy enfocando del todo bien, al final es una función muy parecida a comprobarFormObj
+//  pero necesitaba devolver el objeto con los campos inválidos para marcar los inputs en rojo al enviar el formulario.
 export const validar = (disco) => {
   const validador = getValidador();
   const invalidos = {};
@@ -134,13 +134,13 @@ export const formatearEstado = (prestado) => {
 // Parte III                      |
 // -------------------------------
 
-// Igual que estaba.
+// Me di cuenta de que, en el caso de género, buscaba el valor sin formatear y eso era una cagada, ahora tiene más sentido.
 export const buscarDiscos = (json, busqueda) => {
   const resultados = json.filter((disco) =>
       disco.titulo.toLowerCase().includes(busqueda.toLowerCase()) ||
       disco.interprete.toLowerCase().includes(busqueda.toLowerCase()) ||
       (disco.anyo && disco.anyo.includes(busqueda)) ||
-      (disco.genero && disco.genero.toLowerCase().includes(busqueda.toLowerCase())) ||
+      (formatearGenero(disco.genero) && formatearGenero(disco.genero).toLowerCase().includes(busqueda.toLowerCase())) ||
       (disco.localizacion && disco.localizacion.toLowerCase().includes(busqueda.toLowerCase()))
   );
   return resultados;
@@ -151,9 +151,8 @@ export const buscarDiscos = (json, busqueda) => {
 // -------------------------------
 
 
-// En lugar de pasarle el listado como antes, lo obtengo directamente del localStorage y el listado que devuelve se lo paso al estado del componente.
-export const eliminarDisco = (id) => {
-  const listado = getListadoDiscos() || [];
+//
+export const eliminarDisco = (listado,id) => {
   return listado.filter((disco) => disco.id !== id);
 };
 
