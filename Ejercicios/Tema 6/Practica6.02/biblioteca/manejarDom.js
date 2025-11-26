@@ -19,14 +19,27 @@
   const rellenarHeader = (pelicula) => {
 		const header = document.getElementById("tituloPelicula");
     header.innerHTML = pelicula.title;
+		header.classList.add("cabecera")
   };
 
   const rellenarContenido = (pelicula) => {
 		const infoPeli = document.getElementById("datosPelicula");
 
-    infoPeli.innerHTML = `<p>Director: ${pelicula.director}</p>
-	<p>Productor: ${pelicula.producer}</p>
-	<p>Estreno: ${pelicula.release_date}</p>
-	<p>Sinopsis:</p>
-	<cite>${pelicula.opening_crawl}</cite>`;
+    infoPeli.innerHTML = `<p><span>Director:</span>: ${pelicula.director}</p>
+	<p><span>Productor:</span> ${pelicula.producer}</p>
+	<p><span>Estreno:</span> ${formatearFecha(pelicula.release_date)}</p>
+	<div><span>Sinopsis</span>
+		<cite>${pelicula.opening_crawl}</cite>
+	</div>`;
   };
+
+	export const info404 = () =>{
+		const contenedor = document.getElementById("contenedor");
+		contenedor.classList.add("noCarga");
+		contenedor.innerHTML= "La página no está disponible en estos momentos.";
+	}
+
+	const formatearFecha = (fecha) => {
+		const formateado = new Date(fecha)
+		return formateado.toLocaleDateString();
+	}

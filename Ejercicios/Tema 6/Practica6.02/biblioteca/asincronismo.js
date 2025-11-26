@@ -4,13 +4,13 @@
 // Ejercicio 1 - Enciclopedia SW     |
 // ----------------------------------
 
-export const traerDatos = async (url) => {
+export const traerDatos = (url) => {
 
 	return (
 		fetch(url)
 		.then((respuesta) =>{
 			if (!respuesta.ok) {
-				throw new Error("666");
+				throw new Error("La API no se encuentra disponible en estos momentos.");
 			}
 			return respuesta.json();
 		})

@@ -1,0 +1,101 @@
+#contenedor {
+	display: flex;
+}
+
+#menuNavegacion {
+	flex: 1;
+	background-color: #000000;
+	padding: 10px;
+	border-right: 10px solid #FAB31E;
+}
+
+#contenido {
+	background-color: #252525;
+	flex: 3;
+	padding: 10px;
+
+}
+#listadoPeliculas {
+	list-style: none;
+	padding: 0;
+}
+
+#listadoPeliculas li {
+	margin-bottom: 25px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.432);
+	padding: 15px;
+	border-radius: 10px;
+	background-color: #4b0082;
+	box-shadow: 0 4px 8px 0 #ae40fc;
+	color: #FFF;
+	font-weight: bold;
+}
+
+#listadoPeliculas li:hover {
+	background-color: #FAB31E;
+	box-shadow: 0 4px 8px 0 #ffae00;
+	color: #131313;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 20px;
+	transition: padding 0.1s ease;
+}
+
+.cabecera {
+	font-size: 2em;
+	margin-bottom: 10px;
+	font-weight: bold;
+	background-color: #000;
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+	color: #FAB31E;
+	font-family: 'Montserrat', sans-serif;
+	border-radius: 5px;
+	box-shadow: 0 4px 8px 0 #FAB31E;
+}
+
+#datosPelicula {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+#datosPelicula p {
+	background-color: #000000;
+	padding: 17px;
+	border-radius: 5px;
+	color: #FAB31E;
+	box-shadow: 0 4px 8px 0 #FAB31E;
+}
+
+#datosPelicula span {
+	font-weight: bold;
+	background-color: #000000;
+	padding: 5px 5px 17px;
+	border-radius: 5px;
+	color: #FAB31E;
+
+}
+
+#datosPelicula cite {
+	display: block;
+	margin-top: 10px;
+	background-color: #000000;
+	padding: 10px;
+	border-radius: 5px;
+	color: #FAB31E;
+	box-shadow: 0 4px 8px 0 #FAB31E;
+}
+
+.noCarga {
+	font-size: 2.5em;
+	background-color: #000;
+	color: #FAB31E;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
+}

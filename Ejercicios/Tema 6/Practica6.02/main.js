@@ -1,7 +1,7 @@
 "use strict";
 
 import { traerDatos } from "./biblioteca/asincronismo.js";
-import {mostrarDetalles, rellenarNav} from "./biblioteca/manejarDom.js"
+import {mostrarDetalles, rellenarNav, info404} from "./biblioteca/manejarDom.js"
 
 window.onload = () => {
   const swAPI = "https://swapi.info/api/films";
@@ -20,7 +20,8 @@ window.onload = () => {
         }
       });
     } catch (error) {
-			console.log("La página no está disponible en estos momentos.")
+			info404();
+      console.log(error)
 		}
   };
 
