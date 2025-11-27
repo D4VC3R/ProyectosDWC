@@ -10,7 +10,7 @@ export const traerDatos = (url) => {
 		fetch(url)
 		.then((respuesta) =>{
 			if (!respuesta.ok) {
-				throw new Error("La API no se encuentra disponible en estos momentos.");
+				throw new Error("hola");
 			}
 			return respuesta.json();
 		})
@@ -18,7 +18,7 @@ export const traerDatos = (url) => {
 			return datos;
 		})
 		.catch((error)=>{
-			return error.message;
+			return error;
 		})
 	);
 };
