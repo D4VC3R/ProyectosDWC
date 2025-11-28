@@ -10,7 +10,7 @@ export const traerDatos = (url) => {
 		fetch(url)
 		.then((respuesta) =>{
 			if (!respuesta.ok) {
-				throw new Error("hola");
+				throw new Error("Se cayó la API... otra vez.");
 			}
 			return respuesta.json();
 		})
@@ -18,7 +18,7 @@ export const traerDatos = (url) => {
 			return datos;
 		})
 		.catch((error)=>{
-			return error;
+			return error; // Preguntar si es necesario este catch o si puedo omitirlo y capturarlo en el main.
 		})
 	);
 };
