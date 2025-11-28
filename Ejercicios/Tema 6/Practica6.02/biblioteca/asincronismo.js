@@ -17,8 +17,7 @@ export const traerDatos = (url) => {
 		.then((datos)=>{
 			return datos;
 		})
-		.catch((error)=>{
-			return error; // Preguntar si es necesario este catch o si puedo omitirlo y capturarlo en el main.
-		})
+		// No devuelvo el error porque en caso de haberlo, lo guardaría en la promesa (peliculasSW en el main).
+		// Si se produce un error, lo capturo en el try catch del main.
 	);
 };

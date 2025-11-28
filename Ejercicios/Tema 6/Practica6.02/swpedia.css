@@ -1,4 +1,4 @@
-#contenedor {
+.contenedor {
 	display: flex;
 	min-height: 95vh;
 	border: 10px solid #4b0082;
@@ -95,7 +95,7 @@
 
 
 .noCarga {
-	font-size: 2.5em;
+	font-size: 2.2em;
 	background-color: #000;
 	color: #FAB31E;
 	display: flex;
@@ -104,8 +104,4 @@
 	height: 100vh;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: bold;
-}
-
-.oculto {
-	display: none;
 }
