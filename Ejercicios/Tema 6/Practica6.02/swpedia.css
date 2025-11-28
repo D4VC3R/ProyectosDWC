@@ -18,7 +18,7 @@
 	flex: 3;
 	padding: 10px;
 	background-image: url("https://i.pinimg.com/originals/2c/56/4c/2c564c0bc9d79f9c3ddc601b8020ac2e.gif");
-	background-size: cover;
+	background-size:cover;
 }
 
 #listadoPeliculas {
@@ -60,6 +60,7 @@
 	border-radius: 5px;
 	box-shadow: 0 4px 8px 0 #4b0082;
 	text-shadow: 0 0 5px #FAB31E;
+	word-spacing: .5em;
 }
 
 #datosPelicula {
@@ -83,7 +84,7 @@
 	padding: 5px 5px 17px;
 	border-radius: 5px;
 	color: #FAB31E;
-		font-family: 'Star Wars';
+	font-family: 'Star Wars';
 }
 
 #datosPelicula cite {
