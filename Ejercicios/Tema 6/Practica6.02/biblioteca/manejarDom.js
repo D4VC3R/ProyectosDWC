@@ -27,11 +27,11 @@
   const rellenarContenido = (pelicula) => {
 		const infoPeli = document.getElementById("datosPelicula");
 
-  infoPeli.innerHTML = `<p><span>Director:</span>: ${pelicula.director}</p>
+  infoPeli.innerHTML = `<p><span>Director:</span> ${pelicula.director}</p>
 		<p><span>Productor:</span> ${pelicula.producer}</p>
 		<p><span>Estreno:</span> ${formatearFecha(pelicula.release_date)}</p>
-		<div><span>Sinopsis</span>
-		<cite>${pelicula.opening_crawl}</cite>
+		<div><p><span>Sinopsis:</span>
+		<cite>${pelicula.opening_crawl}</cite></p>
 		</div>`;
   };
 

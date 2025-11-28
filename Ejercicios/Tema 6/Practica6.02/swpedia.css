@@ -1,5 +1,9 @@
 #contenedor {
 	display: flex;
+	min-height: 95vh;
+	border: 10px solid #4b0082;
+	font-size: 20px;
+	font-family: Helvetica, sans-serif;
 }
 
 #menuNavegacion {
@@ -52,9 +56,9 @@
 	justify-content: center;
 	padding: 10px;
 	color: #FAB31E;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Star Wars';
 	border-radius: 5px;
-	box-shadow: 0 4px 8px 0 #FAB31E;
+	box-shadow: 0 4px 8px 0 #4b0082;
 	text-shadow: 0 0 5px #FAB31E;
 }
 
@@ -62,6 +66,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
+
 }
 
 #datosPelicula p {
@@ -69,7 +74,7 @@
 	padding: 17px;
 	border-radius: 5px;
 	color: #FAB31E;
-	box-shadow: 0 4px 8px 0 #FAB31E;
+	box-shadow: 0 8px 9px #4b0082;
 }
 
 #datosPelicula span {
@@ -78,18 +83,16 @@
 	padding: 5px 5px 17px;
 	border-radius: 5px;
 	color: #FAB31E;
-
+		font-family: 'Star Wars';
 }
 
 #datosPelicula cite {
 	display: block;
-	margin-top: 10px;
+	margin-top: 20px;
 	background-color: #000000;
 	padding: 10px;
-	border-radius: 5px;
-	color: #FAB31E;
-	box-shadow: 0 4px 8px 0 #FAB31E;
 }
+
 
 .noCarga {
 	font-size: 2.5em;

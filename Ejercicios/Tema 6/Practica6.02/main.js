@@ -6,7 +6,7 @@ import {mostrarDetalles, rellenarNav, info404, reintentar} from "./biblioteca/ma
 window.onload = () => {
   const swAPI = "https://swapi.info/api/films";
   const listaPeliculas = document.getElementById("listadoPeliculas");
-  // Esto te lo comenté en clase, no funcionaba porque cogía el innerHTML y me quedaba sin la etiqueta de apertura. Me flagelo por ello.
+  // Te dije en clase que no funcionaba y era porque cogía el innerHTML y me quedaba sin la etiqueta de apertura. Me flagelo por ello.
   const estructuraInicial = document.getElementById("contenedor").outerHTML;
 
 
@@ -25,7 +25,7 @@ window.onload = () => {
         }
       });
     } catch (error) {
-      // También podríamos intentar conectarnos a otra API... ¿Lo haría aqui o con una función a parte?
+      // También podríamos intentar conectarnos a otra API...
 			info404();
       reintentar(estructuraInicial, cargaInicial);
 		}
