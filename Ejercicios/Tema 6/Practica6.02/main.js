@@ -29,7 +29,7 @@ window.onload = () => {
   listaPeliculas.addEventListener("click", (evento) => {
     if (evento.target.tagName === "LI") {
       const indice = parseInt(evento.target.id); // El programadorguayquenecesitareafirmación llora al ver esta constante.
-      mostrarDetalles(peliculasSW[indice]);
+      peliculasSW[indice] && mostrarDetalles(peliculasSW[indice]); // Pequeña comprobación para asegurarnos de que el índice corresponde a una película.
     }
   });
 
