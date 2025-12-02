@@ -1,0 +1,17 @@
+.boton_inicio {
+  all: unset;
+  width: fit-content;
+  padding: 8px 20px;
+  background-color: #916d0d;
+  color: white;
+  border: none;
+  border-radius: 50px;
+	align-self: center;
+	margin: 10px;
+}
+
+.boton_inicio:hover {
+	background-color: #e4ab10;
+	cursor: pointer;
+	color: white;
+}
