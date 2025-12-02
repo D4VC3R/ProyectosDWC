@@ -1,9 +1,5 @@
 "use strict";
 
-// ----------------------------------
-// Ejercicio 1 - Enciclopedia SW     |
-// ----------------------------------
-
 export const traerDatos = (url) => {
 
 	return (
