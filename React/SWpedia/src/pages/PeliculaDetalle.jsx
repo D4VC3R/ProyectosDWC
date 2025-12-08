@@ -1,9 +1,10 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { formatearFecha } from './../libraries/utilidades';
+import { useParams } from 'react-router-dom'
 import { traerDatos } from './../libraries/asincronismo';
 import { useState, useEffect } from 'react';
 import './PeliculaDetalle.css';
+import Pelicula from '../components/Pelicula';
+import Personaje from '../components/Personaje';
 
 const PeliculaDetalle = () => {
 
@@ -27,40 +28,25 @@ const PeliculaDetalle = () => {
 		setPersonajes(resultados);
 	}
 
+	// Al IDE sigue sin gustarle que haga esto, pero quedamos en que era la manera de cargar los datos al montar el componente, ¿no?.
 	useEffect(() => {
 		traerPelicula();
 	}, []);
 
+	// Cargamos los personajes cuando se modifique el estado pelicula, es decir, cuando se carguen las películas.
 	useEffect(()=>{
 		pelicula.characters && traerPersonajes();
 	}, [pelicula]);
 
-	// En el futuro esto devolverá un componente <Pelicula> y un map de <Personaje>, lo prometo.
 	return (
 		<>
 			<div>
-				<h1>Episode {pelicula.episode_id}: {pelicula.title}</h1>
-				<div className="peliculasDetalle_pelicula">
-					<p><strong></strong> </p>
-					<p><strong>Director:</strong> {pelicula.director}</p>
-					<p><strong>Productor:</strong> {pelicula.producer}</p>
-					<p><strong>Estreno:</strong> {formatearFecha(pelicula.release_date)}</p>
-				</div>
-
-				<div className="sinopsis">
-					<h2>Sinopsis</h2>
-					<cite>{pelicula.opening_crawl}</cite>
-				</div>
+				<Pelicula pelicula={pelicula} />
 				<h2>Personajes</h2>
 				<div className="peliculasDetalle_personajes">
 					{personajes.length > 0
 						? personajes.map((personaje) => {
-							return (<div key={personaje.value.url} className="peliculasDetalle_personaje">
-								<Link to={`/personajes/detalles/${personaje.value.url.split('/').pop()}`}>
-									<span>{personaje.value.name}</span>
-								</Link>
-							</div>
-							)
+							return <Personaje personaje={personaje} />
 						})
 						: "Cargando..."}
 				</div>

@@ -7,7 +7,6 @@ const Cabecera = () => {
 
 	return (
 		<>
-			<div className="contenedor_cabecera">
 				<header className='cabecera_cabecera'>
 					<div className='cabecera_logo'>
 						<BotonLogo />
@@ -16,7 +15,6 @@ const Cabecera = () => {
 						<Menu />
 					</div>
 				</header >
-			</div>
 		</>
 	)
 }

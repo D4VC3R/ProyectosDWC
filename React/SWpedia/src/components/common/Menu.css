@@ -12,14 +12,14 @@
 }
 
 .menu_elemento {
-    color: #333;
+    color: white;
     font-weight: 500;
     padding: 10px 20px;
     text-decoration: none;
 }
 
 .menu_elemento:hover {
-    color: #d8910d;
+    color: #ffee04;
 }
 
 .menu_nav.menu_vertical {

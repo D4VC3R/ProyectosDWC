@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import './Peliculas.css'
 
 const Peliculas = ( {peliculas} ) => {
-	// Pagina de inicio, un div que contiene tantos divs como peliculas hayan. Llamamos al endpoint /films.
+	// Recibimos por props el listado de películas y mostramos su cartel y título a modo de 'menú principal' para empezar a navegar.
 	let carteles = [
 		episodio4,
 		episodio5,
@@ -18,6 +18,8 @@ const Peliculas = ( {peliculas} ) => {
 		episodio2,
 		episodio3
 	];
+
+	// Haciendo esta práctica me ha surgido la duda de si es posible utilizar <Link> con delegación de eventos, si me acuerdo te preguntaré en clase.
 	return (
 		<>
 			<div className="contenedor_peliculas">

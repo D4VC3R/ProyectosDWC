@@ -15,14 +15,13 @@ const PersonajeDetalle = () => {
 			const datos = await traerDatos(url);
 			setPersonaje(datos);
 		} catch (error) {
-			console.error('Error al cargar personaje:', error);
+			// Lógica para intentar conectar a otra API / mostrar mensaje de error al cargar datos.
 		}
 	}
 
 		useEffect(() => {
 		traerPersonaje();
 	}, []);
-
 
 			return (
 				<div className="contenedor_personaje">

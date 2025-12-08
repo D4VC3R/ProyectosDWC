@@ -1,21 +1,28 @@
-.contenedor_cabecera{
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
-}
 .cabecera_cabecera {
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background-color: #230b3f;
+  height: 12vh;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
 }
 
-.cabecera_logo {
-  align-self: flex-end;
+.cabecera_logo img {
+  cursor: pointer;
+  justify-self: center;
+  width: 150px;
 }
 
 .cabecera_menu {
   justify-self: flex-end;
+  align-self: self-end;
 }
 
 .cabecera_menu .menu_nav {
   box-shadow: none;
+  background-color: inherit;
+
 }
 
