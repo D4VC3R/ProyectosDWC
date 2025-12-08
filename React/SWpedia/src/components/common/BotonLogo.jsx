@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from './../../assets/imgs/movieLogo.png'
+
 import { useNavigate } from 'react-router-dom'
 import './BotonLogo.css'
 
@@ -8,7 +8,7 @@ const BotonLogo = () => {
 	
 	return (
 		<>
-			<img src={logo}
+			<img src={"not"}
 			 alt='Logo' 
 			 className='boton_logo'
 			 onClick={() => navegar("/")}>

@@ -1,12 +1,9 @@
 .contenido_contenido {
-  margin-left: auto;
-  margin-right: auto;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: black;
   background-color: #f9f9f9;
-  align-items: center;
-	justify-content: center;
-	min-width: 1137px;
-
+  padding: 20px;
+  min-height: 80vh;
 }

@@ -1,12 +1,7 @@
 .menu_nav {
-    position: fixed; 
     top: 50px; 
-    left: 50%; 
-    display: flex;    
     background-color: #ffffff;
-    border-radius: 50px;
     box-shadow: 0 4px 12px rgba(99, 99, 99, 0.918);
-    width: fit-content;
 }
 
 .menu_lista {
@@ -38,5 +33,9 @@
 
 .menu_nav.menu_vertical .menu_elemento:hover{
     background-color: #f0f0f0;
+}
+
+.contenedor_menu{
+    justify-content: center;
 }
 

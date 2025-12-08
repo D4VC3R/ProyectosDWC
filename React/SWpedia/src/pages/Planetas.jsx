@@ -1,8 +1,9 @@
 import React from 'react'
 
+
 const Planetas = () => {
 	return (
-		<div>Planetas</div>
+		<div>Estamos trabajando en ello</div>
 	)
 }
 

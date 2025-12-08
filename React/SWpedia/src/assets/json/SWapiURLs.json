@@ -1,0 +1,27 @@
+{
+	"SWapiURLs":[	
+	{
+    "films": "https://swapi.info/api/films",
+    "people": "https://swapi.info/api/people",
+    "planets": "https://swapi.info/api/planets",
+    "species": "https://swapi.info/api/species",
+    "vehicles": "https://swapi.info/api/vehicles",
+    "starships": "https://swapi.info/api/starships"
+	},
+	{
+		"films": "https://swapi.dev/api/films/",
+    "people": "https://swapi.dev/api/people/",
+    "planets": "https://swapi.dev/api/planets/",
+    "species": "https://swapi.dev/api/species/",
+    "vehicles": "https://swapi.dev/api/vehicles/",
+    "starships": "https://swapi.dev/api/starships/"
+	},
+	{
+    "films": "https://www.swapi.tech/api/films",
+    "people": "https://www.swapi.tech/api/people",
+    "planets": "https://www.swapi.tech/api/planets",
+    "species": "https://www.swapi.tech/api/species",
+    "vehicles": "https://www.swapi.tech/api/vehicles",
+    "starships": "https://www.swapi.tech/api/starships"
+	}]
+}
