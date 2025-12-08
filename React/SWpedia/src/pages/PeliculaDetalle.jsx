@@ -12,7 +12,7 @@ const PeliculaDetalle = () => {
 	const { id } = useParams();
 	const [personajes, setPersonajes] = useState([]);
 	const [pelicula, setPelicula] = useState({});
-	const [errores, setErrores] = useState(null); // Falta implementar el tratamiento de errores.
+	const [errores, setErrores] = useState(null);
 
 	// Me duele hacer otra llamada teniendo ya los datos, pero si no, si entras aqui sin pasar por la página de inicio ya te puedes imaginar lo que pasa...
 	const traerPelicula = async () => {
