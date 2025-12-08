@@ -10,12 +10,12 @@ import { useState, useEffect } from 'react';
 
 
 function App() {
-  // Sin que sirva de excusa, no le he podido dedicar el tiempo que me hubiera gustado a esta práctica, verás cosas como falta de delegación de eventos, pocas comprobaciones en los componentes...
+  // Sin que sirva de excusa, no le he podido dedicar el tiempo que me hubiera gustado a esta práctica, verás cosas como falta de delegación de eventos, errores sin tratar...
   // Te la entrego así pero seguiré trabajando en ella para tenerla adecentada de cara a la próxima práctica.
   const [peliculas, setPeliculas] = useState([]);
 
-  // Me traigo las películas en la carga inicial de la página y se las paso a Peliculas.jsx a través de Contenido->Rutas...
-  // Un poco rollo pero como he decidio mostrarlas en la página inicial creo que no me queda otra.
+  // Me traigo las películas en la carga inicial de la web y se las paso a Peliculas.jsx a través de Contenido->Rutas...
+  // Un poco rollo pero como he decidio mostrarlas en la página inicial creo que no me queda otra. No tenía muy claro si hacerlo aqui, en Peliculas.jsx directamente o si da lo mismo.
   const traerPeliculas = async () => { 
       const urlsPeliculas = obtenerURLs('films');
       const datos = await traerDatos(urlsPeliculas[0]);
