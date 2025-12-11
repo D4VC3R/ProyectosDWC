@@ -9,6 +9,7 @@ import PersonajeDetalle from '../pages/PersonajeDetalle'
 import PeliculaDetalle from '../pages/PeliculaDetalle'
 
 const Rutas = ({peliculas}) => {
+
 	return (
 		<Routes>
 			<Route path="/" element={<Peliculas peliculas={peliculas} />} />;

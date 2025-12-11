@@ -1,16 +1,22 @@
 "use strict";
 
-export const traerDatos = (url) => {
-	// En el futuro haré lo que dijiste de si viene de una api me devuelves datos y si viene de otra, datos.results.
-	return (
-		fetch(url)
-		.then((respuesta) =>{
-			return respuesta.json();
-		})
-		.then((datos)=>{
-			return datos;
-		}).catch((error) =>{
-			return error.message;
-		})
-	);
-};
+export const traerDatosBien = async (url) => {
+  try {
+
+    const respuesta = await fetch(url);
+    if (!respuesta.ok) {
+      throw new Error(
+        `Error en traerDatosBien: ${respuesta.status} - ${respuesta.statusText}`
+      );
+    }
+    const datos = await respuesta.json();
+    if (datos.results) {
+      return datos.results;
+    } else {
+      return datos;
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
