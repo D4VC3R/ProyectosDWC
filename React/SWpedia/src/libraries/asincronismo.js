@@ -1,8 +1,7 @@
 "use strict";
 
-export const traerDatosBien = async (url) => {
+export const traerDatos = async (url) => {
   try {
-
     const respuesta = await fetch(url);
     if (!respuesta.ok) {
       throw new Error(

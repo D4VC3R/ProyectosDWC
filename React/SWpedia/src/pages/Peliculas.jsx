@@ -1,21 +1,17 @@
 import React from 'react'
-
-
 import './Peliculas.css'
 import PeliculaTarjeta from '../components/PeliculaTarjeta';
+import ProveedorPeliculas from '../context/ProveedorPeliculas';
+import PeliculaDetalle from './PeliculaDetalle';
+import PeliculaListado from '../components/PeliculaListado';
 
-const Peliculas = ( {peliculas} ) => {
+const Peliculas = () => {
 	return (
 		<>
 			<div className="contenedor_peliculas">
-				{peliculas.length > 0
-					? peliculas.map((pelicula) => {
-						return (
-							<PeliculaTarjeta key={pelicula.episode_id} pelicula={pelicula} />
-						)
-					})
-					: "Cargando..."
-				}
+				<ProveedorPeliculas>
+					<PeliculaListado />
+				</ProveedorPeliculas>
 			</div>
 
 		</>

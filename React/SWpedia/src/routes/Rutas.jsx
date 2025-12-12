@@ -8,11 +8,11 @@ import Peliculas from '../pages/Peliculas'
 import PersonajeDetalle from '../pages/PersonajeDetalle'
 import PeliculaDetalle from '../pages/PeliculaDetalle'
 
-const Rutas = ({peliculas}) => {
+const Rutas = () => {
 
 	return (
 		<Routes>
-			<Route path="/" element={<Peliculas peliculas={peliculas} />} />;
+			<Route path="/" element={<Peliculas />} />;
 			<Route path="/peliculas/detalles/:id" element={<PeliculaDetalle />} />;
 			<Route path="/planetas" element={<Planetas />} />;
 			<Route path="/planetas/detalles/:id" element={<PlanetaDetalle />} />;

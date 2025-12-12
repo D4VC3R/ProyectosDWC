@@ -11,17 +11,6 @@ import { useState, useEffect } from 'react';
 
 function App() {
 
-  const [peliculas, setPeliculas] = useState([]);
-
-  const traerPeliculas = async () => { 
-      const urlsPeliculas = obtenerURLs('films');
-      const datos = await traerDatos(urlsPeliculas[0]);
-      setPeliculas(datos);
-  }
-
-  useEffect(() => {
-		traerPeliculas();
-	}, []);
 
   return (
     <>
@@ -29,7 +18,7 @@ function App() {
         <div className="contenedor_contenedor">
           <Cabecera />
           <div className="contenedor_principal">
-            <Contenido peliculas={peliculas} />
+            <Contenido />
           </div>
           <Footer />
         </div>

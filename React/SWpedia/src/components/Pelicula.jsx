@@ -6,7 +6,6 @@ const Pelicula = ({pelicula}) => {
 		<>
 			<h1>Episode {pelicula.episode_id}: {pelicula.title}</h1>
 				<div className="peliculasDetalle_pelicula">
-					<p><strong></strong> </p>
 					<p><strong>Director:</strong> {pelicula.director}</p>
 					<p><strong>Productor:</strong> {pelicula.producer}</p>
 					<p><strong>Estreno:</strong> {formatearFecha(pelicula.release_date)}</p>
