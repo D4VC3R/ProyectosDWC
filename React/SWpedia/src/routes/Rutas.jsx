@@ -7,19 +7,31 @@ import PlanetaDetalle from '../pages/PlanetaDetalle'
 import Peliculas from '../pages/Peliculas'
 import PersonajeDetalle from '../pages/PersonajeDetalle'
 import PeliculaDetalle from '../pages/PeliculaDetalle'
+import ProveedorPeliculas from '../context/ProveedorPeliculas'
+import ProveedorErrores from '../context/ProveedorErrores'
+import ProveedorPersonajes from '../context/ProveedorPersonajes'
+import ProveedorVehiculos from '../context/ProveedorVehiculos'
 
 const Rutas = () => {
 
 	return (
-		<Routes>
-			<Route path="/" element={<Peliculas />} />;
-			<Route path="/peliculas/detalles/:id" element={<PeliculaDetalle />} />;
-			<Route path="/planetas" element={<Planetas />} />;
-			<Route path="/planetas/detalles/:id" element={<PlanetaDetalle />} />;
-			<Route path="/personajes" element={<Personajes />} />;
-			<Route path="/personajes/detalles/:id" element={<PersonajeDetalle />} />;
-			<Route path="*" element={<Error />} />;
-		</Routes>
+		<ProveedorErrores>
+			<ProveedorPeliculas>
+				<ProveedorPersonajes>
+					<ProveedorVehiculos>
+						<Routes>
+							<Route path="/" element={<Peliculas />} />;
+							<Route path="/peliculas/detalles/:id" element={<PeliculaDetalle />} />;
+							<Route path="/planetas" element={<Planetas />} />;
+							<Route path="/planetas/detalles/:id" element={<PlanetaDetalle />} />;
+							<Route path="/personajes" element={<Personajes />} />;
+							<Route path="/personajes/detalles/:id" element={<PersonajeDetalle />} />;
+							<Route path="*" element={<Error />} />;
+						</Routes>
+					</ProveedorVehiculos>
+				</ProveedorPersonajes>
+			</ProveedorPeliculas>
+		</ProveedorErrores>
 	)
 }
 

@@ -5,8 +5,8 @@ const Personaje = ({ personaje }) => {
 	return (
 		<>
 			<div  className="peliculasDetalle_personaje">
-				<Link to={`/personajes/detalles/${personaje.value.url.split('/').pop()}`}>
-					<span>{personaje.value.name}</span>
+				<Link to={`/personajes/detalles/${personaje.url.split('/').pop()}`}>
+					<span>{personaje.name}</span>
 				</Link>
 			</div>
 		</>

@@ -2,11 +2,11 @@ import React from 'react'
 import { useContext } from 'react'
 import { ContextoPeliculas } from '../context/ProveedorPeliculas'
 import PeliculaTarjeta from './PeliculaTarjeta'
+import { ContextoErrores } from '../context/ProveedorErrores'
 
 const PeliculaListado = () => {
-	const { peliculas, error } = useContext(ContextoPeliculas);
-
-
+	const { peliculas } = useContext(ContextoPeliculas);
+	const {error} = useContext(ContextoErrores);
 	return (
 		<>
 			<div className="contenedor_peliculaListado">

@@ -1,14 +1,6 @@
-.contenedor_peliculas{
-	display: flex;
-	flex-wrap: wrap;
-	max-width: fit-content;
-	justify-content: space-around;
-	padding: 1.5vh;
-}
-
 .peliculas_tarjeta {
-	width: 40vh;
-	margin: 1.5vh;
+	width: 20vw;
+	margin: 1.5vw;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	border-radius: 5px;
 	transition: 0.3s;
@@ -19,16 +11,22 @@
 }
 
 .contenedor_cartel img {
-	width: 40vh;
+	width: 20vw;
+	border-radius: 0;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
+	margin: 0;
 }
 
 .peliculas_titulo {
 	font-size: 24px;
 	font-weight: bold;
+	text-decoration: none;
+	color: black;
 }
 
 .peliculas_titulo p {
 	margin: 0.3em 0;
 }
+
+
