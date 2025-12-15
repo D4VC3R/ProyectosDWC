@@ -11,6 +11,7 @@ import ProveedorPeliculas from '../context/ProveedorPeliculas'
 import ProveedorErrores from '../context/ProveedorErrores'
 import ProveedorPersonajes from '../context/ProveedorPersonajes'
 import ProveedorVehiculos from '../context/ProveedorVehiculos'
+import ProveedorNaves from '../context/ProveedorNaves'
 
 const Rutas = () => {
 
@@ -19,6 +20,7 @@ const Rutas = () => {
 			<ProveedorPeliculas>
 				<ProveedorPersonajes>
 					<ProveedorVehiculos>
+						<ProveedorNaves>
 						<Routes>
 							<Route path="/" element={<Peliculas />} />;
 							<Route path="/peliculas/detalles/:id" element={<PeliculaDetalle />} />;
@@ -28,6 +30,7 @@ const Rutas = () => {
 							<Route path="/personajes/detalles/:id" element={<PersonajeDetalle />} />;
 							<Route path="*" element={<Error />} />;
 						</Routes>
+						</ProveedorNaves>
 					</ProveedorVehiculos>
 				</ProveedorPersonajes>
 			</ProveedorPeliculas>

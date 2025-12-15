@@ -1,0 +1,26 @@
+.contenedor_personaje {
+	display: flex;
+	flex-direction: column;
+}
+
+.personaje_info {
+  height: fit-content;
+  width: 50vh;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  font-size: 1.1rem;
+
+}
+
+.personaje_info p {
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+}
+
+.personaje_info strong {
+  color: #555;
+  font-weight: 600;
+
+}

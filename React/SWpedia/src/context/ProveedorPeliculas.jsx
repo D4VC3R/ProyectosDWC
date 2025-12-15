@@ -15,7 +15,7 @@ const ContextoPeliculas = createContext();
 const ProveedorPeliculas = ({children}) => {
 
 	const [peliculas, setPeliculas] = useState([]);
-	const {error, addError} = useContext(ContextoErrores)
+	const {addError} = useContext(ContextoErrores)
 	const urlsPeliculas = obtenerURLs('films');
 	let carteles = [
 		episodio4,
@@ -48,7 +48,7 @@ const ProveedorPeliculas = ({children}) => {
 	}, []);
 
 
-	const exportaciones = {peliculas, error, getPeliculaById}
+	const exportaciones = {peliculas,  getPeliculaById}
 	return (
 		<ContextoPeliculas value={exportaciones}>{children}</ContextoPeliculas>
 	)

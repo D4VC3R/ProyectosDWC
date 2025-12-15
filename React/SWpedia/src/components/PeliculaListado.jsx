@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { ContextoPeliculas } from '../context/ProveedorPeliculas'
 import PeliculaTarjeta from './PeliculaTarjeta'
 import { ContextoErrores } from '../context/ProveedorErrores'
+import './PeliculaListado.css'
 
 const PeliculaListado = () => {
 	const { peliculas } = useContext(ContextoPeliculas);

@@ -1,45 +1,38 @@
-.contenedor_personaje {
+.contenedor_personajeDetalle {
   display: flex;
   flex-direction: column;
-  width: 80vw;
-  min-height: 85vh;
   align-items: center;
+  min-height: 85vh;
 }
 
-.contenedor_personaje h1 {
+.contenedor_personajeDetalle h1 {
   font-size: 2.5rem;
   color: #333;
-  margin-bottom: 2rem;
+  margin-top: 2rem;
   border-bottom: 2px solid #000000;
   text-align: center;
   width: 100%;
 }
 
-
-.info_personaje {
-  width: 60%;
-  height: fit-content;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  font-size: 1.1rem;
-  justify-content: space-around;
+.contenedor_personajeDetalle input {
+  width: 5vw;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
 }
 
-.info_personaje p {
-  border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-}
-
-.info_personaje strong {
-  color: #555;
-  font-weight: 600;
-}
 
 .vehiculos_personaje {
   display: flex;
-  flex-direction: row;
-  width: 100%;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.boton_atras {
+  cursor: pointer;
+  align-self: start;
 }

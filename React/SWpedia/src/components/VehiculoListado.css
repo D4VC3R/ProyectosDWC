@@ -1,8 +1,9 @@
 .contenedor_listado_vehiculos {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
-  justify-content: flex-start;
+  margin-top: 2rem;
 }
 
 .vehiculo_detalles {

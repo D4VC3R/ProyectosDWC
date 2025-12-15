@@ -5,18 +5,22 @@ import { ContextoErrores } from '../context/ProveedorErrores'
 import './PersonajeListado.css'
 import { ContextoVehiculos } from '../context/ProveedorVehiculos'
 import './VehiculoListado.css'
+import { ContextoNaves } from '../context/ProveedorNaves'
 
 
 const VehiculoListado = ({ personaje }) => {
 	const {error} = useContext(ContextoErrores);
 	const {getVehiculosByPersonaje} = useContext(ContextoVehiculos);
+	const {getNavesByPersonaje} = useContext(ContextoNaves);
 	const vehiculos = getVehiculosByPersonaje(personaje.url);
+	const naves = getNavesByPersonaje(personaje.url);
+	const vehiculosTotales = [...vehiculos, ...naves];
 
 	return (
 		<>
 			<div className="contenedor_listado_vehiculos">
-				{Array.isArray(vehiculos) && vehiculos.length > 0
-					? vehiculos.slice(0,10).map((vehiculo) => {
+				{Array.isArray(vehiculosTotales) && vehiculosTotales.length > 0
+					? vehiculosTotales.map((vehiculo) => {
 						return (
 							<Vehiculo key={vehiculo.url} vehiculo={vehiculo} />
 						)

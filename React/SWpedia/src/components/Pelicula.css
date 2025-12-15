@@ -1,5 +1,28 @@
-img {
-		width: 35vw;
-		border-radius: 10px;
-		margin-bottom: 20px;
+.contenedor_peliculaDetalle {
+    display: flex;
+    flex-direction: column;
+}
+
+.peliculaDetalle_pelicula {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.peliculaDetalle_pelicula > img {
+    width: 35vw;
+    border-radius: 10px;
+}
+
+.peliculaDetalle_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+		align-items: flex-start;
+}
+
+.peliculaDetalle_info p {
+    margin: 10px 0;
+    font-size: 1.1rem;
 }
