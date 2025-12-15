@@ -6,6 +6,7 @@ import './PersonajeListado.css'
 
 
 const PersonajeListado = ({ personajes }) => {
+	// Los recibe por props porque ya se han filtrado en la página PeliculaDetalle.jsx.
 	const { error } = useContext(ContextoErrores);
 
 	return (

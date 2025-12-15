@@ -5,7 +5,7 @@ export const traerDatos = async (url) => {
     const respuesta = await fetch(url);
     if (!respuesta.ok) {
       throw new Error(
-        `Error en traerDatosBien: ${respuesta.status} - ${respuesta.statusText}`
+        `Error recuperando los datos: ${respuesta.status} - ${respuesta.statusText}`
       );
     }
     const datos = await respuesta.json();

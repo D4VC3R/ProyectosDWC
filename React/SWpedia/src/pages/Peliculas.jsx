@@ -10,6 +10,8 @@ const Peliculas = () => {
 	const {peliculas} = useContext(ContextoPeliculas);
 	const [cargando, setCargando] = useState(true);
 
+	// Verás que todos los componentes son muy similares en cuanto a estructura.
+	// Casi siempre es asegurarse de que los datos estén cargados.
 	useEffect(()=>{
 		if (peliculas && peliculas.length > 0) {
 			setCargando(false);

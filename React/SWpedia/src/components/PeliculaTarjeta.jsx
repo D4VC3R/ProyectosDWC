@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './PeliculaTarjeta.css';
 
 const PeliculaTarjeta = ({ pelicula }) => {
-
+	// ¿Te acuerdas de las películas? Han vuelto, en forma de tarjeta.
 	const peliculaID = pelicula.url.split('/').pop();
 	return (
 		<>

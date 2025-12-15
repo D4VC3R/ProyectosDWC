@@ -15,15 +15,17 @@ const PeliculaDetalle = () => {
 	const [cargando, setCargando] = useState(true);
 	const pelicula = cargando ? null : getPeliculaById(id);
 
+	// Con esto nos aseguramos de tener los datos cargados antes de intentar usarlos (pasaría si se recarga la página).
 	useEffect(() => {
 		if (peliculas && peliculas.length > 0) {
 			setCargando(false);
 		}
 	}, [peliculas]);
 
+	// Recuperamos los personajes de la película, como ya estaban cargados en el contexto no hace falta esperar a nada.
 	useEffect(() => {
 		pelicula && pelicula.characters && getPersonajesByPelicula(pelicula.url);
-	}, [pelicula]);
+	}, [peliculas]);
 
 	return (
 		<>

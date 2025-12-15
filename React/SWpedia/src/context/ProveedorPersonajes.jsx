@@ -1,15 +1,15 @@
-import React, {useState, useEffect, createContext} from 'react'
+import React, {useState, useEffect, createContext, useContext} from 'react'
 import { obtenerURLs } from '../libraries/utilidades.js';
 import { traerDatos } from '../libraries/asincronismo.js';
+import { ContextoErrores } from './ProveedorErrores.jsx';
 
 
 const ContextoPersonajes = createContext();
 
 const ProveedorPersonajes = ({children}) => {
-
 	const [personajes, setPersonajes] = useState([]);
 	const urlsPersonajes = obtenerURLs('people');
-
+	const {addError} = useContext(ContextoErrores);
 
   const getAllPersonajes = async () => { 
 		try {
@@ -19,6 +19,7 @@ const ProveedorPersonajes = ({children}) => {
 			addError(`No se pudo cargar el listado de personajes: ${error.message}`);
 		}
   }
+
 	const getPersonajeById = (id) => {
 		return personajes.find(personaje => personaje.url.split('/').pop() === id);
 	}
@@ -27,10 +28,8 @@ const ProveedorPersonajes = ({children}) => {
 		return personajes.filter(personaje => personaje.films.includes(urlPelicula));
 	}
 
-
   useEffect(() => {
 		getAllPersonajes();
-		
 	}, []);
 
 

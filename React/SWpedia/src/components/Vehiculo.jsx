@@ -2,7 +2,7 @@ import React from 'react'
 
 
 const Vehiculo = ({ vehiculo }) => {
-	console.log(vehiculo);
+	// Ficha (algo) detallada para vehículos y naves, son tan parecidos que he decidido juntarlos en un solo componente.
 	return (
 		<>
 			<div className="vehiculo_detalles">

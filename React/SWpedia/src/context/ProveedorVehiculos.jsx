@@ -1,22 +1,23 @@
 import React, {useState, useEffect, createContext} from 'react'
 import { obtenerURLs } from '../libraries/utilidades.js';
 import { traerDatos } from '../libraries/asincronismo.js';
+import { ContextoErrores } from './ProveedorErrores.jsx';
+import { useContext } from 'react';
 
 
 const ContextoVehiculos = createContext();
 
 const ProveedorVehiculos = ({children}) => {
-
 	const [vehiculos, setVehiculos] = useState([]);
 	const urlsVehiculos = obtenerURLs('vehicles');
-
+	const {addError} = useContext(ContextoErrores);
 
 	const getAllVehiculos = async () => { 
 		try {
 			const datos = await traerDatos(urlsVehiculos[0]);
 			setVehiculos(datos);
 		} catch (error) {
-			addError(`No se pudo cargar el listado de vehiculos: ${error.message}`);
+			addError(`No se pudo cargar el listado de vehículos: ${error.message}`);
 		}
 	}
 	const getVehiculoById = (id) => {
@@ -31,10 +32,8 @@ const ProveedorVehiculos = ({children}) => {
 		return vehiculos.filter(vehiculo => vehiculo.pilots.includes(urlPersonaje));
 	}
 
-
 	useEffect(() => {
 		getAllVehiculos();
-		
 	}, []);
 
 

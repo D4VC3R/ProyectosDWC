@@ -26,6 +26,7 @@ const ProveedorPeliculas = ({children}) => {
 		episodio3
 	];
 
+	// Nos traemos las peliculas y de paso les colocamos ya el cartel correspondiente.
   const traerPeliculas = async () => { 
 		try {
       const datos = await traerDatos(urlsPeliculas[0]);

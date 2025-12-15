@@ -6,7 +6,8 @@ import { ContextoErrores } from '../context/ProveedorErrores'
 import './PeliculaListado.css'
 
 const PeliculaListado = () => {
-	const { peliculas } = useContext(ContextoPeliculas);
+	// Componente que recorre el listado de películas y muestra una tarjeta por cada una.
+	const {peliculas} = useContext(ContextoPeliculas);
 	const {error} = useContext(ContextoErrores);
 	return (
 		<>

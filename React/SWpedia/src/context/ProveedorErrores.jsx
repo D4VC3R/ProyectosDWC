@@ -5,6 +5,7 @@ const ContextoErrores = createContext();
 
 const ProveedorErrores = ({children}) => {
 
+	// Esto lo tengo a medias a falta de hacer un componente que muestre los errores.
 	const [error, setError] = useState("");
 
 	const limpiarError = () => {
@@ -13,6 +14,7 @@ const ProveedorErrores = ({children}) => {
 	const addError = (mensaje) => {
 		setError(mensaje);
 	}
+
 	const exportaciones = {error, limpiarError, addError};
 
 

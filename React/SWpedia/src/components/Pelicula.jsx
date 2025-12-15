@@ -3,6 +3,7 @@ import { formatearFecha } from './../libraries/utilidades';
 import './Pelicula.css';
 
 const Pelicula = ({ pelicula }) => {
+	// Componente que hace de ficha detallada de una película.
 	return (
 		<>
 			<div className="contenedor_peliculaDetalle">

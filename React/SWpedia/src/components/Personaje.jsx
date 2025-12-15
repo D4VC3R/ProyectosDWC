@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './Personaje.css';
 
 const Personaje = ({ personaje }) => {
+	// Como Pelicula.jsx, pero para personajes.
 	return (
 		<>
 			<div className="contenedor_personaje">

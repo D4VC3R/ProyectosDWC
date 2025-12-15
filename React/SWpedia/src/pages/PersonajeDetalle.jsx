@@ -17,17 +17,23 @@ const PersonajeDetalle = () => {
 	const personaje = cargando ? null : getPersonajeById(id);
 	const navegar = useNavigate();
 
+	// Necesitaba repasar el useNavigate y no lo encontré en tu GitHub, he acabado copiando esta solución por su sencillez: 
+	// https://stackoverflow.com/questions/65948671/how-to-go-back-to-previous-route-in-react-router-dom-v6
 	const volverAtras = () => {
 		navegar(-1);
 	}
 
+	// Esta vez si, delegación de eventos.
 	const controlarClic = (evento) => {
 		evento.preventDefault();
-		if (evento.target.tagName === 'INPUT') setMostrarVehiculos(!mostrarVehiculos);
-		if (evento.target.className === 'boton_atras') volverAtras();	}
+		if (evento.target.tagName === 'BUTTON'){
+			evento.target.nextSibling.classList.toggle('oculto');
+			setMostrarVehiculos(!mostrarVehiculos);
+		} 
+		if (evento.target.className === 'boton_atras') volverAtras();	
+	}
 
-
-
+	// Como siempre, nos aseguramos de tener los datos antes de pintarlos.
 	useEffect(()=>{
 		if (personajes && personajes.length > 0) {
 			setCargando(false);
@@ -42,8 +48,8 @@ const PersonajeDetalle = () => {
 			<div className="contenedor_personajeDetalle" onClick={((evento)=>{controlarClic(evento)})}>
 				<span className="boton_atras">← Volver atrás</span>
 				<Personaje personaje={personaje} />
-				<input value="Pilota" readOnly />
-					<h2>Vehículos y Naves</h2>
+				<button>Pilota</button>
+				<h2 className="oculto">Vehículos y Naves</h2>
 				<div className="vehiculos_personaje">
 					{personaje.vehicles.length && personaje.starships.length !== 0 
 					? mostrarVehiculos && <VehiculoListado personaje={personaje} />

@@ -14,13 +14,14 @@
   width: 100%;
 }
 
-.contenedor_personajeDetalle input {
+.contenedor_personajeDetalle button {
   width: 5vw;
   padding: 0.5rem;
   font-size: 1rem;
   border-radius: 5px;
   text-align: center;
   cursor: pointer;
+  margin-top: 1vh;
 }
 
 
@@ -35,4 +36,12 @@
 .boton_atras {
   cursor: pointer;
   align-self: start;
+}
+
+.contenedor_personajeDetalle h2 {
+  margin-bottom: 0;
+}
+
+.contenedor_personajeDetalle .oculto {
+  display: none;
 }
