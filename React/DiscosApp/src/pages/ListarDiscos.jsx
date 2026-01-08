@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getListadoDiscos, eliminarDisco, guardarListado, buscarDiscos } from '../libraries/forms'
 import Disco from '../components/Disco';
-import "./listarDiscos.css"
+import "./ListarDiscos.css"
 
 const ListarDiscos = () => {
 	const [listado, setListado] = useState([]);
@@ -18,13 +18,12 @@ const ListarDiscos = () => {
 	const limpiar = () => {
 		setBusqueda("");
 	}
-	// Cuando se monte el componente, cargado será false y no ejecutará guardarListado, solo cuando se actualice al borrar un disco.
+	
 	useEffect(() => {
 		cargado && guardarListado(listado);
 	}, [listado, cargado]);
 
-	// El IDE me dice que estoy loco por usar setListado aquí dentro y que me voy a cargar
-	// el rendimiento de la página. Como funciona y no hay nada raro en consola, no le voy a hacer mucho caso.
+	
 	useEffect(() => {
 		const discosGuardados = getListadoDiscos() || [];
 		setListado(discosGuardados);

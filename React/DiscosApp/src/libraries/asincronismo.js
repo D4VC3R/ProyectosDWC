@@ -1,0 +1,17 @@
+"use strict";
+
+export const traerDatos = async (url) => {
+  try {
+    const respuesta = await fetch(url);
+    if (!respuesta.ok) {
+      throw new Error(
+        `Error recuperando los datos: ${respuesta.status} - ${respuesta.statusText}`
+      );
+    }
+    const datos = await respuesta.json();
+    return datos;
+  } catch (error) {
+    throw error;
+  }
+}
+
