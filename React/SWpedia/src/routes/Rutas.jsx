@@ -14,6 +14,7 @@ import ProveedorVehiculos from '../context/ProveedorVehiculos'
 import ProveedorNaves from '../context/ProveedorNaves'
 
 const Rutas = () => {
+	// Los proveedores más anidados son los más dependientes de los demás.
 
 	return (
 		<ProveedorErrores>

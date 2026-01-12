@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./css/examen.css">
+	<title>Repaso de examen</title>
+</head>
+<body>
+	<form name="form">
+		<fieldset>
+			<legend>Información del disco</legend>
+			<label for="titulo">Titulo: </label>
+			<input type="text" name="titulo" id="titulo">
+			<label for="artista">Artista: </label>
+			<input type="text" name="artista" id="artista">
+			<label for="anyo">Publicado en: </label>
+			<input type="text" name="anyo" id="anyo">
+			<label for="caratula">URL Carátula: </label>
+			<input type="url" name="caratula" id="caratula">
+			<label for="genero">Género musical</label>
+			<select name="genero" id="genero">
+				<option value="" hidden disabled selected>Selecciona</option>
+				<option value="rock">Rock</option>
+				<option value="rap">Rap</option>
+				<option value="pop">Pop</option>
+				<option value="clasica">Música clásica</option>
+				<option value="reggae">Reggae</option>
+				<option value="reggaeton">Reggaeton</option>
+			</select>
+			<label for="prestado">¿Prestado?</label>
+			<input type="checkbox" name="prestado" id="prestado">
+			<label for="ubicacion">Ubicación: </label>
+			<input type="text" name="ubicacion" id="ubicacion">
+			<button type="button">Guardar</button>
+			<button type="button">Mostrar</button>
+		</fieldset>
+		<p class="error oculto"></p>
+		<fieldset>
+			<legend>Buscador</legend>
+			<label for="buscador">Término de búsqueda: </label>
+			<input type="text" name="buscador" id="buscador">
+			<button type="button">Buscar</button>
+			<button type="button">Limpiar</button>
+		</fieldset>
+	</form>
+	<script type="module" src="./js/main.js"></script>
+</body>
+</html>

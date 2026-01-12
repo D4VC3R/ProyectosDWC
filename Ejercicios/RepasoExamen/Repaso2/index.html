@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="./css/forms.css">
+		<link rel="stylesheet" href="./css/repaso.css">
     <title>Práctica 5.05</title>
   </head>
   <body>
@@ -58,10 +58,7 @@
 			<fieldset id="estadoDisco">
 				<legend>Estado</legend>
 				<label for="prestado">¿Prestado?</label>
-				<select id="prestado">
-					<option value="false" selected>No</option>
-					<option value="true">Si</option>
-				</select>
+				<input type="checkbox" id="prestado" value="prestado"></input>
 				<label for="localizacion">Localización:</label>
 				<input
 					type="text"
@@ -82,12 +79,12 @@
 				<button id="buscar" type="button">Buscar</button>
 				<button id="limpiar" type="button">Limpiar</button>
 			</fieldset>
-			<p class="exito oculto" id="exito"></p>
+			<p class="exito oculto" id="exito">¡Disco guardado correctamente!</p>
 		</form>
 
-		<div id="contenedorDiscos">
-			<table id="tablaDiscos">
-				  <tr>
+		<div id="contenedorDiscos" >
+			<table id="tablaDiscos" class="oculto">
+				  <thead>
 						<th>Carátula</th>
             <th>Título</th>
             <th>Intérprete</th>
@@ -96,10 +93,10 @@
             <th>Localización</th>
             <th>Prestado</th>
 						<th>Eliminar</th>
-        </tr>
+        </thead>
 			</table>
 			<p id="sinResultados"></p>
 		</div>
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>

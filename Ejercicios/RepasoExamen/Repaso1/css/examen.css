@@ -1,0 +1,12 @@
+.oculto {
+	display: none;
+}
+
+.error {
+	color: red;
+	font-weight: bold;
+}
+
+.invalido {
+	border: 2px solid red;
+}
