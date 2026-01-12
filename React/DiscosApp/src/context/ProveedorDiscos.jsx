@@ -1,8 +1,6 @@
 import React from 'react'
-import { useState } from 'react';
-import { createContext } from 'react'
+import { useState, createContext, useEffect } from 'react';
 import useAPI from '../hooks/useAPI';
-// Esto seria algo parecido al controlador de php
 
 const ContextoDiscos = createContext();
 
@@ -45,6 +43,10 @@ const ProveedorDiscos = ({children}) => {
 		guardarDisco,
 		borrarDisco
 	}
+
+	useEffect(()=>{
+		getDiscos();
+	}, [])
 
 	return (
 		<>
