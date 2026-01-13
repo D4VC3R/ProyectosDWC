@@ -36,8 +36,27 @@ const useAPI = () => {
 		return solicitar(url);
 	}
 
-	const guardarDatos = (url, body, metodo) => {
-		const solicitud = {method: metodo, body: JSON.stringify(body)};
+	const guardarDatos = (url, body) => {
+		const solicitud = {
+			method: "POST", 
+			body: JSON.stringify(body)
+		};
+		solicitar(url, solicitud);
+	}
+
+	const editarDatos = (url, body) => {
+		const solicitud = {
+			method: "PUT", 
+			body: JSON.stringify(body)
+		};
+		solicitar(url, solicitud);
+	}
+
+	const modificarDato = (url, body) => {
+		const solicitud = {
+			method: "PATCH", 
+			body: JSON.stringify(body)
+		};
 		solicitar(url, solicitud);
 	}
 
@@ -54,6 +73,8 @@ const useAPI = () => {
 		error,
 		getDatos,
 		guardarDatos,
+		editarDatos,
+		modificarDato,
 		borrarDatos
 	};
 };

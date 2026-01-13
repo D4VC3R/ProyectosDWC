@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import discoJson from './../assets/json/disco.json';
-import { getValidador, marcarCampo, comprobarFormObj, isDiscoValido, validar, guardarDisco } from '../libraries/forms';
+import { getValidador, marcarCampo, comprobarFormObj, isDiscoValido, validar } from '../libraries/forms';
+import useDiscosContext from '../hooks/useDiscosContext';
 import './InsertarDisco.css'
 import Errores from '../components/Errores';
 import { useRef } from 'react';
@@ -14,6 +15,8 @@ const InsertarDisco = () => {
 	const [camposInvalidos, setCamposInvalidos] = useState({});
 	const contenedorExito = useRef(null);
 	const form = useRef(null);
+	const {guardarDisco, cargando} = useDiscosContext;
+
 
 	const actualizarDato = (evento) => {
 		const { name, value } = evento.target;
@@ -61,10 +64,10 @@ const InsertarDisco = () => {
 		}
 	}
 
-	// Falta hacer que al desmontar el componente, si todo está ok, pregunte si quiere guardar el disco.
 
 	return (
 		<>
+			{cargando ? <Cargando /> :
 			<div className="insertarDisco-container">
 				<form name="formDiscos" className="formulario" ref={form}>
 					<fieldset>
@@ -177,6 +180,7 @@ const InsertarDisco = () => {
 					</p>
 				</form>
 			</div>
+		}
 		</>
 	)
 }

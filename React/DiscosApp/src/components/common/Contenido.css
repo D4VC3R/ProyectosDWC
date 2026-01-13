@@ -1,7 +1,7 @@
-.contenido_contenido {
-  display: flex;
-  color: black;
-  background-color: #f9f9f9;
-  padding: 20px;
-  width: 100%;
+.contenedor_contenido {
+    display: flex;
+    flex: 1; 
+    color: black;
+    background-color: #f9f9f9;
+    padding: 20px;
 }

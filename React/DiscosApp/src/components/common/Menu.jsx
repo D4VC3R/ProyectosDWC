@@ -6,13 +6,15 @@ const Menu = ({vertical = false}) => {
 
 	return (
 		<>
-        <nav className={`menu_nav ${vertical ? 'menu_vertical' : ''}`}>
+		<div className="contenedor_menu">
+      <nav className={`menu_nav ${vertical ? 'menu_vertical' : ''}`}>
 				<ul className='menu_lista'>
 					<Link className='menu_elemento' to='/'>Inicio</Link>
 					<Link className='menu_elemento' to='/addDisco'>Insertar Disco</Link>
 					<Link className='menu_elemento' to='/miColección'>Mi Colección</Link>
 				</ul>
 			</nav>
+		</div>
 		</>
 	)
 }

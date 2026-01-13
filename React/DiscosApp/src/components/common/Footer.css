@@ -1,3 +1,10 @@
+.contenedor_footer {
+    margin-top: auto;
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}
+
 .footer_footer {
   background-color: #c0c0c09f;
   color: #000000;

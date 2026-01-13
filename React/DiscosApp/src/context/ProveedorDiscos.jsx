@@ -4,12 +4,12 @@ import useAPI from '../hooks/useAPI';
 
 const ContextoDiscos = createContext();
 
-const ProveedorDiscos = ({children}) => {
+const ProveedorDiscos = ({ children }) => {
 	const [discos, setDiscos] = useState([]);
 	const URL = "http://localhost:3000/coleccion";
 
-	const {getDatos, guardarDatos} = useAPI();
-	
+	const { getDatos, guardarDatos, editarDatos, modificarDato, borrarDatos, cargando } = useAPI();
+
 	const getDiscos = async () => {
 		try {
 			const datos = await getDatos(URL);
@@ -19,19 +19,37 @@ const ProveedorDiscos = ({children}) => {
 		}
 	}
 
-	const guardarDisco = async (disco, metodo) => {
+	const guardarDisco = async (disco) => {
 		try {
-			const discos = await guardarDatos(URL, disco, metodo);
-			setDiscos(discos);
+			await guardarDatos(URL, disco);
+			getDiscos();
 		} catch (error) {
 			// Gestionar el error
 		}
 	}
 
+	const editarDisco = async (disco, id) => {
+		try {
+			await editarDatos(`${URL}/${id}`, disco);
+			getDiscos();
+		} catch (error) {
+			// Gestionar el error
+		}
+	}
+
+	const editarCampo = async (disco, id) => {
+		try {
+			await modificarDato(`${URL}/${id}`, disco);
+			getDiscos();
+		} catch (error) {
+			
+		}
+	}
+
 	const borrarDisco = async (id) => {
 		try {
-			const discos = await borrarDisco(id);
-			setDiscos(discos);
+			await borrarDatos(`${URL}/${id}`);
+			getDiscos();
 		} catch (error) {
 			// Gestionar el error
 		}
@@ -39,12 +57,15 @@ const ProveedorDiscos = ({children}) => {
 
 	const exportaciones = {
 		discos,
+		cargando,
 		getDiscos,
 		guardarDisco,
+		editarDisco,
+		modificarDato,
 		borrarDisco
 	}
 
-	useEffect(()=>{
+	useEffect(() => {
 		getDiscos();
 	}, [])
 
@@ -58,4 +79,4 @@ const ProveedorDiscos = ({children}) => {
 }
 
 export default ProveedorDiscos;
-export {ContextoDiscos};
+export { ContextoDiscos };
