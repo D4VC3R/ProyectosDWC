@@ -1,9 +1,9 @@
-/* HTML: <div class="loader"></div> */
 .loader {
-  width: 50px;
+  width: 40px;
   aspect-ratio: 1;
   display: grid;
   animation: l14 4s infinite;
+  margin: 50px auto;
 }
 .loader::before,
 .loader::after {    

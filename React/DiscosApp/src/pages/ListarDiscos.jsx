@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { getListadoDiscos, eliminarDisco, guardarListado, buscarDiscos } from '../libraries/forms'
+import { eliminarDisco, guardarListado, buscarDiscos } from '../libraries/forms'
+import useDiscosContext from '../hooks/useDiscosContext.js';
 import Disco from '../components/Disco';
 import "./ListarDiscos.css"
 
 const ListarDiscos = () => {
+	const {discos, cargando, borrarDisco} = useDiscosContext();
 	const [listado, setListado] = useState([]);
 	const [busqueda, setBusqueda] = useState("");
 	const [cargado, setCargado] = useState(false);
 
 	const resultados = buscarDiscos(listado, busqueda);
-
-	const eliminar = (id) => {
-		const nuevoListado = eliminarDisco(listado, id)
-		setListado(nuevoListado);
-	}
 
 	const limpiar = () => {
 		setBusqueda("");
@@ -25,10 +22,9 @@ const ListarDiscos = () => {
 
 	
 	useEffect(() => {
-		const discosGuardados = getListadoDiscos() || [];
-		setListado(discosGuardados);
+		setListado(discos);
 		setCargado(true);
-	}, []);
+	}, [discos]);
 
 	return (
 		<>
@@ -61,7 +57,7 @@ const ListarDiscos = () => {
 									type="button"
 									value="Borrar"
 									className="botonBorrar"
-									onClick={() => eliminar(disco.id)}
+									onClick={() => borrarDisco(disco.id)}
 								/>
 							</div>
 						))

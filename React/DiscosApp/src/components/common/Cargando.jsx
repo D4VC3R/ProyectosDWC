@@ -1,4 +1,5 @@
 import React from 'react'
+import './Cargando.css';
 
 const Cargando = () => {
 	return (

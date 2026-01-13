@@ -15,7 +15,7 @@ const ProveedorDiscos = ({ children }) => {
 			const datos = await getDatos(URL);
 			setDiscos(datos);
 		} catch (error) {
-			// Gestionar el error
+			throw error
 		}
 	}
 
@@ -24,7 +24,7 @@ const ProveedorDiscos = ({ children }) => {
 			await guardarDatos(URL, disco);
 			getDiscos();
 		} catch (error) {
-			// Gestionar el error
+			throw error
 		}
 	}
 
@@ -33,7 +33,7 @@ const ProveedorDiscos = ({ children }) => {
 			await editarDatos(`${URL}/${id}`, disco);
 			getDiscos();
 		} catch (error) {
-			// Gestionar el error
+			throw error
 		}
 	}
 
@@ -61,7 +61,7 @@ const ProveedorDiscos = ({ children }) => {
 		getDiscos,
 		guardarDisco,
 		editarDisco,
-		modificarDato,
+		editarCampo,
 		borrarDisco
 	}
 

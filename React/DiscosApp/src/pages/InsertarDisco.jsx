@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import discoJson from './../assets/json/disco.json';
 import { getValidador, marcarCampo, comprobarFormObj, isDiscoValido, validar } from '../libraries/forms';
-import useDiscosContext from '../hooks/useDiscosContext';
+import useDiscosContext from '../hooks/useDiscosContext.js';
 import './InsertarDisco.css'
 import Errores from '../components/Errores';
 import { useRef } from 'react';
+import Cargando from '../components/common/Cargando';
 
 const InsertarDisco = () => {
 
@@ -15,8 +16,8 @@ const InsertarDisco = () => {
 	const [camposInvalidos, setCamposInvalidos] = useState({});
 	const contenedorExito = useRef(null);
 	const form = useRef(null);
-	const {guardarDisco, cargando} = useDiscosContext;
-
+	const {guardarDisco, cargando} = useDiscosContext();
+	
 
 	const actualizarDato = (evento) => {
 		const { name, value } = evento.target;
@@ -38,7 +39,7 @@ const InsertarDisco = () => {
 		contenedorExito.current.classList.toggle("oculto");
 		setTimeout(() => {
 			contenedorExito.current?.classList.add("oculto");
-		}, 3000);
+		}, 4000);
 	}
 
 	// Devolvemos todo a sus valores iniciales.
@@ -49,11 +50,10 @@ const InsertarDisco = () => {
 		setCamposInvalidos({});
 	}
 
-	const comprobar = () => {
+	const comprobar = async () => {
 		if (isDiscoValido(disco)) {
-			// He intentado hacer esto directamente con setDisco sin crear otra variable, pero unas veces el disco se guardaba con ID y otras sin él. De esta manera no falla (hasta donde yo he probado).
 			const discoConId = { ...disco, id: crypto.randomUUID() };
-			guardarDisco(discoConId);
+			await guardarDisco(discoConId);
 			mostrarExito();
 			resetForm();
 		} else {
@@ -67,7 +67,7 @@ const InsertarDisco = () => {
 
 	return (
 		<>
-			{cargando ? <Cargando /> :
+			
 			<div className="insertarDisco-container">
 				<form name="formDiscos" className="formulario" ref={form}>
 					<fieldset>
@@ -169,18 +169,18 @@ const InsertarDisco = () => {
 						/>
 					</fieldset>
 					<div className="insetarDisco-errores">
-						{errores.length > 0 && <Errores errores={errores} />}
+						{ errores.length > 0 &&  <Errores errores={errores} />}
 					</div>
 					<fieldset>
 						<legend>Acciones</legend>
 						<input type="button" value="Guardar" className="botonForm" onClick={comprobar}></input>
 					</fieldset>
-					<p className="exito oculto" ref={contenedorExito}>
-						Disco añadido correctamente.
-					</p>
+					<div className="exito oculto" ref={contenedorExito}>
+						{cargando ? <Cargando /> : <p>{"Disco guardado correctamente."}</p>}
+					</div>
 				</form>
 			</div>
-		}
+		
 		</>
 	)
 }
