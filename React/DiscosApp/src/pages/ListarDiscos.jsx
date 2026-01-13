@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { eliminarDisco, guardarListado, buscarDiscos } from '../libraries/forms'
+import { guardarListado, buscarDiscos } from '../libraries/forms'
 import useDiscosContext from '../hooks/useDiscosContext.js';
 import Disco from '../components/Disco';
 import "./ListarDiscos.css"
 
 const ListarDiscos = () => {
-	const {discos, cargando, borrarDisco} = useDiscosContext();
+	const {discos, borrarDisco} = useDiscosContext();
 	const [listado, setListado] = useState([]);
 	const [busqueda, setBusqueda] = useState("");
 	const [cargado, setCargado] = useState(false);

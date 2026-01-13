@@ -42,7 +42,7 @@ const ProveedorDiscos = ({ children }) => {
 			await modificarDato(`${URL}/${id}`, disco);
 			getDiscos();
 		} catch (error) {
-			
+			throw error
 		}
 	}
 
@@ -51,7 +51,7 @@ const ProveedorDiscos = ({ children }) => {
 			await borrarDatos(`${URL}/${id}`);
 			getDiscos();
 		} catch (error) {
-			// Gestionar el error
+			throw error
 		}
 	}
 
