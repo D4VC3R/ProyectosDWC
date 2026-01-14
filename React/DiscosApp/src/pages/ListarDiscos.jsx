@@ -1,34 +1,40 @@
 import React, { useState, useEffect } from 'react'
-import { guardarListado, buscarDiscos } from '../libraries/forms'
+import { buscarDiscos } from '../libraries/forms'
 import useDiscosContext from '../hooks/useDiscosContext.js';
 import Disco from '../components/Disco';
 import "./ListarDiscos.css"
+import Cargando from '../components/common/Cargando.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const ListarDiscos = () => {
-	const {discos, borrarDisco} = useDiscosContext();
+	const {discos, borrarDisco, cargando} = useDiscosContext();
 	const [listado, setListado] = useState([]);
 	const [busqueda, setBusqueda] = useState("");
-	const [cargado, setCargado] = useState(false);
-
 	const resultados = buscarDiscos(listado, busqueda);
+	const navegar = useNavigate();
 
 	const limpiar = () => {
 		setBusqueda("");
 	}
-	
-	useEffect(() => {
-		cargado && guardarListado(listado);
-	}, [listado, cargado]);
 
+	const manejarClic = async (evento) => {
+		const {id, value} = evento.target;
+		value === "Limpiar" && limpiar();
+		value === "Borrar" && id && await borrarDisco(id);
+		value === "Editar" && id && navegar(`/editar/${id}`);
+	}
 	
 	useEffect(() => {
 		setListado(discos);
-		setCargado(true);
 	}, [discos]);
+
+
 
 	return (
 		<>
-			<div className="container-listarDiscos">
+		{cargando ? <Cargando /> 
+		:
+			<div className="container-listarDiscos" onClick={((e)=>{manejarClic(e)})}>
 				<div className="listarDiscos-buscar">
 					<input
 						type="text"
@@ -42,7 +48,6 @@ const ListarDiscos = () => {
 						type="button"
 						value="Limpiar"
 						className="botonLimpiar"
-						onClick={limpiar}
 					/>
 				</div>
 				<div className="listarDiscos-resultados">
@@ -57,7 +62,13 @@ const ListarDiscos = () => {
 									type="button"
 									value="Borrar"
 									className="botonBorrar"
-									onClick={() => borrarDisco(disco.id)}
+									id={disco.id}
+								/>
+								<input 
+								type="button"
+								value="Editar"
+								className="botonEditar"
+								id={disco.id}
 								/>
 							</div>
 						))
@@ -69,7 +80,7 @@ const ListarDiscos = () => {
 						</p>
 					}
 				</div>
-			</div>
+			</div>}
 		</>
 	)
 }

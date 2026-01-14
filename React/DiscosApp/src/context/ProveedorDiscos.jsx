@@ -8,7 +8,7 @@ const ProveedorDiscos = ({ children }) => {
 	const [discos, setDiscos] = useState([]);
 	const URL = "http://localhost:3000/coleccion";
 
-	const { getDatos, guardarDatos, editarDatos, modificarDato, borrarDatos, cargando } = useAPI();
+	const { getDatos, getDato, guardarDatos, editarDatos, modificarDato, borrarDatos, cargando } = useAPI();
 
 	const getDiscos = async () => {
 		try {
@@ -17,6 +17,19 @@ const ProveedorDiscos = ({ children }) => {
 		} catch (error) {
 			throw error
 		}
+	}
+
+	const getDisco = async (id) => {
+		const disco = discos.find(disco => disco.id === id);
+		if (!disco) {		
+			try {
+				disco = await getDato(URL, id);
+				return disco;
+			} catch (error) {
+				throw error;
+			}
+		}
+		return disco;
 	}
 
 	const guardarDisco = async (disco) => {
@@ -59,6 +72,7 @@ const ProveedorDiscos = ({ children }) => {
 		discos,
 		cargando,
 		getDiscos,
+		getDisco,
 		guardarDisco,
 		editarDisco,
 		editarCampo,

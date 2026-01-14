@@ -13,6 +13,7 @@ const Rutas = () => {
 				<Routes>
 					<Route path="/" element={<Inicio />} />
 					<Route path="/addDisco" element={<InsertarDisco />} />
+					<Route path="/editar/:id" element={<InsertarDisco disco />}/>
 					<Route path="/miColección" element={<ListarDiscos />} />
 					<Route path="*" element={<Error />} />
 				</Routes>

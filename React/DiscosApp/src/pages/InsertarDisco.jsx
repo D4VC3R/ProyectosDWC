@@ -6,17 +6,20 @@ import './InsertarDisco.css'
 import Errores from '../components/Errores';
 import { useRef } from 'react';
 import Cargando from '../components/common/Cargando';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 const InsertarDisco = () => {
 
 	const valoresIniciales = discoJson;
 	const validador = getValidador();
-	const [disco, setDisco] = useState(valoresIniciales);
+	const [disco, setDisco] = useState();
 	const [errores, setErrores] = useState([]);
 	const [camposInvalidos, setCamposInvalidos] = useState({});
 	const contenedorExito = useRef(null);
 	const form = useRef(null);
-	const {guardarDisco, cargando} = useDiscosContext();
+	const {guardarDisco, cargando, getDisco} = useDiscosContext();
+	const {id} = useParams();
 	
 
 	const actualizarDato = (evento) => {
@@ -49,6 +52,12 @@ const InsertarDisco = () => {
 		setErrores([]);
 		setCamposInvalidos({});
 	}
+
+	// Si cuando se carga el componente, recibimos un id, rellenamos el formulario con la información de ese disco.
+	useEffect(()=>{
+		if(id) setDisco(getDisco(id));
+		if(!id) setDisco(valoresIniciales);
+	}, [])
 
 	const comprobar = async () => {
 		if (isDiscoValido(disco)) {
