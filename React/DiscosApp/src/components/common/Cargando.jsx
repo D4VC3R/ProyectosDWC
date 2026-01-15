@@ -3,7 +3,12 @@ import './Cargando.css';
 
 const Cargando = () => {
 	return (
-		<div className="loader"></div>
+		<>
+		<div className="contenedor_cargando">
+			<div className="loader"></div>
+		</div>
+		
+		</>
 	)
 }
 

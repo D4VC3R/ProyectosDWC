@@ -4,39 +4,9 @@
       "id": "6752a2d0-e77a-475c-b546-42f7b702803f",
       "titulo": "Meteora",
       "interprete": "Linkin Park",
-      "anyo": "1999",
+      "anyo": "1997",
       "caratula": "",
       "genero": "rock",
-      "localizacion": "",
-      "prestado": "false"
-    },
-    {
-      "id": "e6d2eefa-20a1-4f88-8164-01c334d42efe",
-      "titulo": "Estopa",
-      "interprete": "Estopa",
-      "anyo": "1998",
-      "caratula": "",
-      "genero": "popEs",
-      "localizacion": "",
-      "prestado": "false"
-    },
-    {
-      "id": "180e2d83-4df6-48cb-85f5-1ec462125ee9",
-      "titulo": "The Eminem Show",
-      "interprete": "Eminem",
-      "anyo": "2001",
-      "caratula": "",
-      "genero": "rap",
-      "localizacion": "",
-      "prestado": "false"
-    },
-    {
-      "id": "2518b6f9-3280-4456-8a2b-7231258940c6",
-      "titulo": "La calle es tuya",
-      "interprete": "Estopa",
-      "anyo": "2004",
-      "caratula": "",
-      "genero": "popEs",
       "localizacion": "",
       "prestado": "false"
     }

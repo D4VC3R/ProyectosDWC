@@ -20,7 +20,8 @@ const ProveedorDiscos = ({ children }) => {
 	}
 
 	const getDisco = async (id) => {
-		const disco = discos.find(disco => disco.id === id);
+		let disco = discos.find(d => (d.id) === (id));
+
 		if (!disco) {		
 			try {
 				disco = await getDato(URL, id);
@@ -33,6 +34,8 @@ const ProveedorDiscos = ({ children }) => {
 	}
 
 	const guardarDisco = async (disco) => {
+		if (!disco.id) disco 	= { ...disco, id: crypto.randomUUID() };
+
 		try {
 			await guardarDatos(URL, disco);
 			getDiscos();

@@ -7,20 +7,21 @@ import Errores from '../components/Errores';
 import { useRef } from 'react';
 import Cargando from '../components/common/Cargando';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const InsertarDisco = () => {
 
 	const valoresIniciales = discoJson;
 	const validador = getValidador();
-	const [disco, setDisco] = useState();
+	const [disco, setDisco] = useState(valoresIniciales);
 	const [errores, setErrores] = useState([]);
 	const [camposInvalidos, setCamposInvalidos] = useState({});
 	const contenedorExito = useRef(null);
 	const form = useRef(null);
-	const {guardarDisco, cargando, getDisco} = useDiscosContext();
-	const {id} = useParams();
-	
+	const { guardarDisco, cargando, getDisco, editarDisco } = useDiscosContext();
+	let { id } = useParams();
+	const navegar = useNavigate();
+
 
 	const actualizarDato = (evento) => {
 		const { name, value } = evento.target;
@@ -53,30 +54,49 @@ const InsertarDisco = () => {
 		setCamposInvalidos({});
 	}
 
-	// Si cuando se carga el componente, recibimos un id, rellenamos el formulario con la información de ese disco.
-	useEffect(()=>{
-		if(id) setDisco(getDisco(id));
-		if(!id) setDisco(valoresIniciales);
-	}, [])
 
 	const comprobar = async () => {
-		if (isDiscoValido(disco)) {
-			const discoConId = { ...disco, id: crypto.randomUUID() };
-			await guardarDisco(discoConId);
-			mostrarExito();
-			resetForm();
-		} else {
+		if (!isDiscoValido(disco)) {
 			const nuevosErrores = comprobarFormObj(disco);
 			const camposMal = validar(disco)
 			setErrores(nuevosErrores);
 			setCamposInvalidos(camposMal);
 		}
+		if (isDiscoValido && id) {
+			try {
+				await editarDisco(disco, id)
+				mostrarExito();
+				setTimeout(() => {
+					navegar('/miColección')
+				}, 1000);
+			} catch (error) {
+				setErrores(error.message);
+			}
+		}
+		if (isDiscoValido && !id) {
+			await guardarDisco(disco);
+			mostrarExito();
+			resetForm();
+		}
 	}
+
+	const cargarDisco = async () => {
+		if (id) {
+			const discoAEditar = await getDisco(id);
+			setDisco(discoAEditar);
+		} else {
+			setDisco(valoresIniciales);
+		}
+	};
+
+	useEffect(() => {
+		cargarDisco();
+	}, [id, getDisco]);
 
 
 	return (
 		<>
-			
+
 			<div className="insertarDisco-container">
 				<form name="formDiscos" className="formulario" ref={form}>
 					<fieldset>
@@ -178,7 +198,7 @@ const InsertarDisco = () => {
 						/>
 					</fieldset>
 					<div className="insetarDisco-errores">
-						{ errores.length > 0 &&  <Errores errores={errores} />}
+						{errores.length > 0 && <Errores errores={errores} />}
 					</div>
 					<fieldset>
 						<legend>Acciones</legend>
@@ -189,7 +209,7 @@ const InsertarDisco = () => {
 					</div>
 				</form>
 			</div>
-		
+
 		</>
 	)
 }
