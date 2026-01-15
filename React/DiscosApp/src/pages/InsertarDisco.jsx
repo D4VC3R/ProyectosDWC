@@ -62,7 +62,7 @@ const InsertarDisco = () => {
 			setErrores(nuevosErrores);
 			setCamposInvalidos(camposMal);
 		}
-		if (isDiscoValido && id) {
+		if (isDiscoValido(disco) && id) {
 			try {
 				await editarDisco(disco, id)
 				mostrarExito();
@@ -73,7 +73,7 @@ const InsertarDisco = () => {
 				setErrores(error.message);
 			}
 		}
-		if (isDiscoValido && !id) {
+		if (isDiscoValido(disco) && !id) {
 			await guardarDisco(disco);
 			mostrarExito();
 			resetForm();
@@ -96,7 +96,6 @@ const InsertarDisco = () => {
 
 	return (
 		<>
-
 			<div className="insertarDisco-container">
 				<form name="formDiscos" className="formulario" ref={form}>
 					<fieldset>

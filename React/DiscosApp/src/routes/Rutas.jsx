@@ -4,20 +4,22 @@ import Inicio from '../pages/Inicio'
 import InsertarDisco from '../pages/InsertarDisco'
 import ListarDiscos from '../pages/ListarDiscos'
 import Error from '../pages/Error'
-import ProveedorDiscos from '../context/ProveedorDiscos'
+import EnvolverProveedor from '../components/EnvolverProveedor'
 
 const Rutas = () => {
+
+
 	return (
 		<>
-			<ProveedorDiscos>
-				<Routes>
+			<Routes>
+				<Route element={<EnvolverProveedor />}>
 					<Route path="/" element={<Inicio />} />
-					<Route path="/addDisco" element={<InsertarDisco />} />
-					<Route path="/editar/:id" element={<InsertarDisco disco />}/>
-					<Route path="/miColección" element={<ListarDiscos />} />
-					<Route path="*" element={<Error />} />
-				</Routes>
-			</ProveedorDiscos>
+					<Route path="/addDisco" element={ <InsertarDisco />} />
+					<Route path="/editar/:id" element={ <InsertarDisco />} />
+					<Route path="/miColección" element={ <ListarDiscos />} />
+				</Route>
+				<Route path="*" element={<Error />} />
+			</Routes>
 		</>
 	)
 }
