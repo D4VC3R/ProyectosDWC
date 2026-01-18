@@ -54,7 +54,7 @@
 }
 
 .botonBorrar {
-    margin-top: 10px;
+    margin: 10px;
     padding: 8px 16px;
     background-color: #dc3545;
     color: white;
@@ -65,4 +65,18 @@
 
 .botonBorrar:hover {
     background-color: #960c1a;
+}
+
+.botonEditar {
+    margin: 10px;
+    padding: 8px 16px;
+    background-color: #a7a7a7;
+    color: rgb(255, 255, 255);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botonEditar:hover {
+    background-color: #5c5c5c;
 }
