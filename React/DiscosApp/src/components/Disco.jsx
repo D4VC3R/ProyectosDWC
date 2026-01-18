@@ -19,7 +19,7 @@ const Disco = ({disco}) => {
 						{disco.titulo ? disco.titulo : noInfo}
 					</h1>
 					<h3 className="disco_interprete">
-						Interprete: <em>{disco.interprete ? disco.interprete : noInfo}</em>
+						Intérprete: <em>{disco.interprete ? disco.interprete : noInfo}</em>
 					</h3>
 					<div className="disco_genero">
 						Género:	<em>{disco.genero ? formatearGenero(disco.genero) : noInfo}</em>

@@ -1,12 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import discoJson from './../assets/json/disco.json';
 import { getValidador, marcarCampo, comprobarFormObj, isDiscoValido, validar } from '../libraries/forms';
 import useDiscosContext from '../hooks/useDiscosContext.js';
 import './InsertarDisco.css'
 import Errores from '../components/Errores';
-import { useRef } from 'react';
 import Cargando from '../components/common/Cargando';
-import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const InsertarDisco = () => {
@@ -18,10 +16,10 @@ const InsertarDisco = () => {
 	const [camposInvalidos, setCamposInvalidos] = useState({});
 	const contenedorExito = useRef(null);
 	const form = useRef(null);
+	const botonGuardar = useRef(null);
 	const { guardarDisco, cargando, getDisco, editarDisco } = useDiscosContext();
 	let { id } = useParams();
 	const navegar = useNavigate();
-
 
 	const actualizarDato = (evento) => {
 		const { name, value } = evento.target;
@@ -54,35 +52,56 @@ const InsertarDisco = () => {
 		setCamposInvalidos({});
 	}
 
+	const manejarErrores = () => {
+		const nuevosErrores = comprobarFormObj(disco);
+		const camposMal = validar(disco)
+		setErrores(nuevosErrores);
+		setCamposInvalidos(camposMal);
+	}
 
-	const comprobar = async () => {
-		if (!isDiscoValido(disco)) {
-			const nuevosErrores = comprobarFormObj(disco);
-			const camposMal = validar(disco)
-			setErrores(nuevosErrores);
-			setCamposInvalidos(camposMal);
-		}
-		if (isDiscoValido(disco) && id) {
-			try {
-				await editarDisco(disco, id)
-				mostrarExito();
-				setTimeout(() => {
-					navegar('/miColección')
-				}, 1000);
-			} catch (error) {
-				setErrores(error.message);
-			}
-		}
-		if (isDiscoValido(disco) && !id) {
+	// La lógica para cuando creas un nuevo disco.
+	const manejarCreacion = async () => {
+		try {
 			await guardarDisco(disco);
 			mostrarExito();
 			resetForm();
+		} catch (error) {
+			setErrores(error.message);
+		}
+	};
+	// La lógica para cuando editas un disco existente, como no he sabido limpiar la url pues navego a la lista de discos tras guardar los cambios y 'apañao'.
+	const manejarEdicion = async () => {
+		try {
+			await editarDisco(disco, id);
+			mostrarExito();
+			setTimeout(() => {
+				navegar('/miColección');
+			}, 500);
+		} catch (error) {
+			setErrores(error.message);
 		}
 	}
 
+	// Hago el return para evitar anidar mucho código con comprobaciones if/else como isDiscoValido && id, isDiscoValido && !id, etc.
+	const comprobar = async () => {
+		if (!isDiscoValido(disco)) {
+			manejarErrores();
+			return;
+		}
+
+		if (id) {
+			await manejarEdicion();
+		} else {
+			await manejarCreacion();
+		}
+	};
+
+	// Si accedemos con un id en la url, cargamos el disco a editar. 
+	// Lo que no veo es porque no muestra "Guardar cambios" en el botón, si hago console.log del valor de botonGuardar.current.value aquí dentro me sale el valor correcto...
 	const cargarDisco = async () => {
 		if (id) {
 			const discoAEditar = await getDisco(id);
+			botonGuardar.current.value = "Guardar cambios";
 			setDisco(discoAEditar);
 		} else {
 			setDisco(valoresIniciales);
@@ -93,7 +112,8 @@ const InsertarDisco = () => {
 		cargarDisco();
 	}, [id, getDisco]);
 
-
+	// He tratado de varias maneras utilizar delegación de eventos para manejar los cambios en los inputs del formulario,
+	// pero no he conseguido que funcione correctamente, así que al final he optado por dejar el onChange en cada input, no me gusta pero funciona.
 	return (
 		<>
 			<div className="insertarDisco-container">
@@ -201,7 +221,7 @@ const InsertarDisco = () => {
 					</div>
 					<fieldset>
 						<legend>Acciones</legend>
-						<input type="button" value="Guardar" className="botonForm" onClick={comprobar}></input>
+						<input type="button" value="Guardar" className="botonForm" onClick={comprobar} ref={botonGuardar}></input>
 					</fieldset>
 					<div className="exito oculto" ref={contenedorExito}>
 						{cargando ? <Cargando /> : <p>{"Disco guardado correctamente."}</p>}

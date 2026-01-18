@@ -37,8 +37,8 @@ const useAPI = () => {
     return solicitar(url);
   };
 
-  const getDato = (url, id) => {
-    return solicitar(`${url}/${id}`);
+  const getDato = (url) => {
+    return solicitar(url);
   };
 
   const guardarDatos = (url, body) => {

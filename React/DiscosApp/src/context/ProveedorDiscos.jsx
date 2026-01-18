@@ -19,12 +19,13 @@ const ProveedorDiscos = ({ children }) => {
 		}
 	}
 
+	// Trato de obtener el disco del estado primero y si no lo encuentra, petición a la API.
 	const getDisco = async (id) => {
 		let disco = discos.find(d => (d.id) === (id));
 
 		if (!disco) {		
 			try {
-				disco = await getDato(URL, id);
+				disco = await getDato(`${URL}/${id}`);
 				return disco;
 			} catch (error) {
 				throw error;
@@ -86,6 +87,8 @@ const ProveedorDiscos = ({ children }) => {
 		getDiscos();
 	}, [])
 
+	// Pensé en devolver el componente <Cargando /> aquí mientras se cargan los discos por comodidad, pero eso implicaba cosas como que el formulario no se mostrase hasta que se cargaran los discos,
+	// lo cual no tiene mucho sentido, así que al final cada componente que se gestione el estado de carga como considere oportuno.
 	return (
 		<>
 			<ContextoDiscos.Provider value={exportaciones}>

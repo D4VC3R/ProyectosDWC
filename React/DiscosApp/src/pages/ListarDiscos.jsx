@@ -17,6 +17,7 @@ const ListarDiscos = () => {
 		setBusqueda("");
 	}
 
+	// Delegación de eventos que la entrega anterior no hice.
 	const manejarClic = async (evento) => {
 		const {id, value} = evento.target;
 		value === "Limpiar" && limpiar();
@@ -24,11 +25,10 @@ const ListarDiscos = () => {
 		value === "Editar" && id && navegar(`/editar/${id}`);
 	}
 	
+	// Actualizo el listado cada vez que cambian los discos en el contexto.
 	useEffect(() => {
 		setListado(discos);
 	}, [discos]);
-
-
 
 	return (
 		<>

@@ -8,6 +8,7 @@ import Footer from './components/common/Footer';
 
 
 function App() {
+  // He corregido lo que me comentaste sobre la estructura del contenedor principal, ahora se ve claramente en lugar de renderizar un componente que contenga esa estructura.
   return (
     <>
       <BrowserRouter>

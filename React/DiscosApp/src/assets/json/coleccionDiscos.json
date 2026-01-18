@@ -1,14 +1,94 @@
 {
   "coleccion": [
     {
-      "id": "6752a2d0-e77a-475c-b546-42f7b702803f",
+      "id": "e861d7d6-1670-418c-9901-d981d8d190ea",
+      "titulo": "Slim Shady LP",
+      "interprete": "Eminem",
+      "anyo": "1999",
+      "caratula": "https://media.senscritique.com/media/000004798484/source_big/The_Slim_Shady_LP.jpg",
+      "genero": "rap",
+      "localizacion": "ES-000AA",
+      "prestado": "false"
+    },
+    {
+      "id": "f8a1b97c-2099-4494-b3e7-866df544d140",
       "titulo": "Meteora",
       "interprete": "Linkin Park",
-      "anyo": "1999",
-      "caratula": "",
+      "anyo": "2003",
+      "caratula": "https://media.senscritique.com/media/000004816157/source_big/meteora.jpg",
+      "genero": "rock",
+      "localizacion": "ES-000AB",
+      "prestado": "false"
+    },
+    {
+      "id": "01e31c5d-524d-4de2-8971-4741c6616e44",
+      "titulo": "Bórrame",
+      "interprete": "Por favor",
+      "anyo": "2026",
+      "caratula": "https://i.ytimg.com/vi/ieWF9xX5KQk/maxresdefault.jpg",
+      "genero": "clasica",
+      "localizacion": "ES-111EE",
+      "prestado": "true"
+    },
+    {
+      "id": "e6d42656-f9ca-466f-91a7-b004e38bcc88",
+      "titulo": "Destrangis",
+      "interprete": "Estopa",
+      "anyo": "2001",
+      "caratula": "https://lastfm.freetls.fastly.net/i/u/500x500/f47a0987d787004e7efe2a723a294e54.jpg",
+      "genero": "popEs",
+      "localizacion": "ES-010AA",
+      "prestado": "false"
+    },
+    {
+      "id": "04cbae7c-6a0f-494a-a317-f1e1f1a223c2",
+      "titulo": "The Wall",
+      "interprete": "Pink Floyd",
+      "anyo": "1979",
+      "caratula": "https://www.remindmagazine.com/wp-content/uploads/2024/11/Pink-Floyd-The-Wall-Album.jpg",
       "genero": "rock",
       "localizacion": "",
       "prestado": "false"
+    },
+    {
+      "id": "c6702395-9f85-4328-b0ec-a1fc39610dcd",
+      "titulo": "A Night at the Opera",
+      "interprete": "Edítame",
+      "anyo": "1975",
+      "caratula": "https://c8.alamy.com/comp/HCPDJW/a-night-at-the-opera-chico-marx-groucho-marx-harpo-marx-the-marx-brothers-HCPDJW.jpg",
+      "genero": "rock",
+      "localizacion": "",
+      "prestado": "false"
+    },
+    {
+      "id": "700a004f-ab66-47e5-876a-a0cc4b38d4ce",
+      "titulo": "Blurryface",
+      "interprete": "Twenty One Pilots",
+      "anyo": "2015",
+      "caratula": "https://media.s-bol.com/Jqr3w8rQklGg/1143x1200.jpg",
+      "genero": "popInt",
+      "localizacion": "ES-111XE",
+      "prestado": "false"
+    },
+    {
+      "id": "61acdf7a-fa50-4542-bf3b-4b9edf42cc5f",
+      "titulo": "Santacruz",
+      "interprete": "Supersubmarina",
+      "anyo": "2012",
+      "caratula": "https://media.hitparade.ch/cover/800/supersubmarina-santacruz_a.jpg",
+      "genero": "popEs",
+      "localizacion": "",
+      "prestado": "false"
+    },
+    {
+      "id": "87d94848-eed4-4a10-8bb8-bf3be4e9118e",
+      "titulo": "Dragon Ball Z OST",
+      "interprete": "Un chino",
+      "anyo": "1990",
+      "caratula": "https://fredcrash.com/db/audios/Compilations/2003_02_21_Dragon%20Ball%20Z%20-%20Complete%20Song%20Collection%202/big.jpg",
+      "genero": "techno",
+      "localizacion": "",
+      "prestado": "true"
     }
   ]
 }

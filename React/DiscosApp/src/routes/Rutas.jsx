@@ -7,8 +7,9 @@ import Error from '../pages/Error'
 import EnvolverProveedor from '../components/EnvolverProveedor'
 
 const Rutas = () => {
-
-
+	// Lo he hecho asi para poder envolver solo las rutas que necesitan el contexto del proveedor de discos utilizando un único <Routes>.
+	// El componente <Inicio> se podría haber quedado fuera pero viene bien incluirlo para que vaya cargando el contexto nada más iniciar la app
+	// y mantener el estado si se navega de nuevo a la página de inicio.
 	return (
 		<>
 			<Routes>
