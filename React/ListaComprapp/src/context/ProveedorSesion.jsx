@@ -1,6 +1,6 @@
 import React, {createContext, useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
-import {useSupabaseAuth} from './../hooks/useSupabaseAuth.js';
+import useSupabaseAuth from './../hooks/useSupabaseAuth.js';
 
 const ContextoSesion = createContext();
 

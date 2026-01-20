@@ -1,5 +1,8 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import  Login  from './../pages/Login'
+import  Listado  from './../pages/Listado'
+import  Inicio  from './../pages/Inicio.jsx'
 
 const Rutas = () => {
 	return (
