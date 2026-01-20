@@ -12,4 +12,4 @@ const useDiscosContext = () => {
 	
 }
 
-export default useDiscosContext
+export default useDiscosContext;

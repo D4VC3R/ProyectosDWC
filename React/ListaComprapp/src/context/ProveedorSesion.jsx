@@ -112,3 +112,4 @@ const ProveedorSesion = ({children}) => {
 }
 
 export default ProveedorSesion
+export {ContextoSesion};
