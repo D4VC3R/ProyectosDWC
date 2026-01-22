@@ -1,8 +1,9 @@
 .contenedor_footer {
-    margin-top: auto;
     background-color: #f0f0f0;
-    padding: 20px;
     text-align: center;
+    width: 100%;
+    margin-top: auto;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .footer_footer {
@@ -11,6 +12,6 @@
   font-size: 14px;
   text-align: center;
   display: flex; 
-  justify-content: space-evenly; 
+  justify-content: space-around; 
   align-items: center;
 }
