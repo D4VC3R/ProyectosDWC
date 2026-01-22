@@ -21,6 +21,7 @@ const ProveedorSesion = ({children}) => {
 	const [usuario, setUsuario] = useState(usuarioInicial);
 	const [errorUsuario, setErrorUsuario] = useState(errorUsuarioInicial);
 	const [sesionIniciada, setSesionIniciada] = useState(sesionIniciadaInicial);
+	const [username, setUsername] = useState("");
 
 	// Hooks
 	const {cargando, crearCuenta, iniciarSesion, cerrarSesion, getUsuario, getSuscripcion} = useSupabaseAuth();
@@ -28,7 +29,7 @@ const ProveedorSesion = ({children}) => {
 	// Funciones
 	const manejarCrearCuenta = async () => {
 		try {
-			await crearCuenta(datosSesion.email, datosSesion.password);
+			await crearCuenta(datosSesion.email, datosSesion.password, datosSesion.display_name);
 			setErrorUsuario("Comprueba tu correo para verificar la cuenta.");
 		} catch (error) {
 			setErrorUsuario(error.message);
@@ -60,9 +61,17 @@ const ProveedorSesion = ({children}) => {
 			const {user} = await getUsuario();
 			setUsuario(user);
 			setErrorUsuario(errorUsuarioInicial);
-
 		}catch (error) {
 			setErrorUsuario(error.message);
+		}
+	}
+
+	const obtenerUsername = async () => {
+		try {
+			const {user} = await getUsuario();
+			setUsername(user?.user_metadata?.display_name.toUpperCase());
+		} catch (error) {
+			setErrorUsuario("No se pudo recuperar el nombre de usuario: "+ error.message);
 		}
 	}
 
@@ -78,11 +87,12 @@ const ProveedorSesion = ({children}) => {
 	useEffect(()=>{
 		getSuscripcion((evento, sesion) => {
 			if (sesion){
-				navegar("/listado");
+				navegar("/");
 				setSesionIniciada(true);
 				obtenerUsuario();
+				obtenerUsername(); // Podría sacarlo directamente del usuario pero así no accedo a tantas claves.
 			} else {
-				navegar("/login");
+				navegar("/");
 				setSesionIniciada(false);
 				setUsuario(usuarioInicial);
 		}
@@ -95,6 +105,8 @@ const ProveedorSesion = ({children}) => {
 		manejarInicioSesion,
 		manejarCierreSesion,
 		manejarDatosSesion,
+		obtenerUsuario,
+		username,
 		sesionIniciada,
 		usuario,
 		datosSesion,

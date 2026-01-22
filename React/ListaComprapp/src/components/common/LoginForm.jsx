@@ -8,8 +8,6 @@ const Login = () => {
 	const contenedor = useRef(null);
 
 
-
-
 	const manejarForm = async (e) => {
 		e.preventDefault();
 		e.target.textContent === "Iniciar Sesión" && await manejarInicioSesion();
@@ -21,22 +19,21 @@ const Login = () => {
 	return (
 		<>
 			<div className="login-container">
-				{cargando && <Cargando />}
 				<div className="container" id="container" onClick={((e) => { manejarForm(e) })} ref={contenedor}>
 					<div className="form-container sign-up-container">
 						<form>
 							<h1>Registro</h1>
-							<input type="text" placeholder="Nombre de usuario" onChange={(e) => manejarDatosSesion(e)} />
-							<input type="email" placeholder="Email" onChange={(e) => manejarDatosSesion(e)} />
-							<input type="password" placeholder="Contraseña" onChange={(e) => manejarDatosSesion(e)} />
+							<input type="text" name="display_name" placeholder="Nombre de usuario" onChange={(e) => manejarDatosSesion(e)} />
+							<input type="email" name="email" placeholder="Email" onChange={(e) => manejarDatosSesion(e)} />
+							<input type="password" name="password" placeholder="Contraseña" onChange={(e) => manejarDatosSesion(e)} />
 							<button>Crear Cuenta</button>
 						</form>
 					</div>
 					<div className="form-container sign-in-container">
 						<form >
 							<h1>Acceder</h1>
-							<input type="email" placeholder="Email" onChange={(e) => manejarDatosSesion(e)} />
-							<input type="password" placeholder="Contraseña" onChange={(e) => manejarDatosSesion(e)} />
+							<input type="email" name="email" placeholder="Email" onChange={(e) => manejarDatosSesion(e)} />
+							<input type="password" name="password" placeholder="Contraseña" onChange={(e) => manejarDatosSesion(e)} />
 							<button>Iniciar Sesión</button>
 						</form>
 					</div>
@@ -55,6 +52,7 @@ const Login = () => {
 						</div>
 					</div>
 				</div>
+					{cargando && <Cargando />}
 					{errorUsuario && <p className="error-mensaje">{errorUsuario}</p>}
 			</div>
 

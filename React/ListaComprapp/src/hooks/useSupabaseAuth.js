@@ -26,11 +26,16 @@ const useSupabaseAuth = () => {
 		}
 	}
 
-	const crearCuenta = (email, password) => {
+	const crearCuenta = (email, password, display_name) => {
 		return solicitar(
 			sb.auth.signUp({
 				email,
-				password
+				password,
+				options: {
+					data: {
+						display_name: display_name
+					}
+				}
 			})
 		);
 	};

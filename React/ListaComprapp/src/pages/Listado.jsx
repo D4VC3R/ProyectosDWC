@@ -1,12 +1,12 @@
 import React from 'react'
-import useSesionContext from './../hooks/useSesionContext.js'
+import useSesionContext from '../hooks/useSesionContext'
+
 const Listado = () => {
-	const { manejarCierreSesion } = useSesionContext();
+	const {} = useSesionContext();
+	
 
 	return (
-		<div>Listado
-			<button type="button" value="cerrar sesión" onClick={((e)=>{e.preventDefault(); manejarCierreSesion()})} />
-		</div>
+		<div><p>Aquí se mostrará la lista de la compra</p></div>
 	)
 }
 

@@ -1,0 +1,42 @@
+.contenedor_cabecera {
+	justify-items: end;
+	border: 2px solid black;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 1em;
+	padding: 0.5em;
+}
+
+.contenedor_cabecera h1 {
+	margin: 0;
+	padding: 0;
+	font-size: 3em;
+}
+
+.info_usuario {
+	text-align: right;
+	margin-top: 0.3em;
+}
+
+.info_usuario p{
+	margin: 0;
+	padding: 0;
+	font-size: 1.3em;
+}
+
+.cerrarSesion {
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+	font-size: small;
+}
+
+.logo-container {
+	display: flex;
+	align-items: center;
+	margin-right: 7em;
+}
+
+
+
