@@ -14,7 +14,6 @@ function App() {
         <div className="contenedor_principal">
           <Rutas />
         </div>
-        <Footer />
       </div>
     </>
   )

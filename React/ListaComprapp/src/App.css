@@ -3,7 +3,8 @@
   height: 90vh;
   margin: 0 auto;
   text-align: center;
-  border: 2px solid blue;
+  border: 2px solid #36dd0d;
+  background-color: #ececec;
 }
 
 .contenedor_contenedor {
@@ -15,12 +16,12 @@
 }
 
 .contenedor_principal {
-  display: flex;
-  flex-direction: row;
+
   height: 100%;
   width: 100%;
   gap: 1rem;
   justify-content: center;
   align-items: center;
+  color: black;
 }
 

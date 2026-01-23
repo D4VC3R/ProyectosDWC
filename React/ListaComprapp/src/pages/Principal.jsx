@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
+import './Principal.css'
 
 const Principal = () => {
+	// Este componente aún está verde, no le hagas mucho caso.
 	return (
 		<>
-			<div>
+			<div className="menu-opciones">
 				<nav>
-					<Link to="/listado"><p>Mi carrito de la compra</p></Link>
-					<Link to="/productos"><p>Productos disponibles</p></Link>
+					<Link to="/principal/listado"><p>LISTA DE LA COMPRA</p></Link>
+					<Link to="/principal/productos"><p>MOSTRAR PRODUCTOS DISPONIBLES</p></Link>
 				</nav>
 			</div>
 

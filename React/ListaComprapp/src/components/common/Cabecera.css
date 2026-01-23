@@ -1,41 +1,63 @@
 .contenedor_cabecera {
 	justify-items: end;
-	border: 2px solid black;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	margin: 1em;
 	padding: 0.5em;
+	border-radius: 2em;
+  background: #ff416c;
+  background: -webkit-linear-gradient(to right, #7ea80a, #36dd0d);
+  background: linear-gradient(to right, #3e8544dc, #4ba53f);
+  color: #ffffff;
 }
 
 .contenedor_cabecera h1 {
 	margin: 0;
 	padding: 0;
 	font-size: 3em;
+	color: white;
+	text-shadow: 3px 2px 5px black;
+	cursor: pointer;
 }
 
 .info_usuario {
 	text-align: right;
 	margin-top: 0.3em;
+	
 }
 
 .info_usuario p{
-	margin: 0;
+	margin: 5px 0;
 	padding: 0;
 	font-size: 1.3em;
+	text-shadow: 2px 1px 2px black;
 }
 
 .cerrarSesion {
 	cursor: pointer;
-	margin: 0;
 	padding: 0;
 	font-size: small;
+	text-shadow: .3px .2px 1px black;
+	border-radius: 1em;
+	color: #fff;
+	padding: 0.1em 0.3em;
+	border: 1px solid white;
+}
+
+.cerrarSesion:hover {
+	color: white;
+	border: 2px solid white;
 }
 
 .logo-container {
 	display: flex;
 	align-items: center;
 	margin-right: 7em;
+}
+
+svg {
+	cursor: pointer;
 }
 
 

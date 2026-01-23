@@ -12,10 +12,10 @@ const Rutas = () => {
 		<>
 			<Routes>
 				<Route path ="/login" element={<Login />}></Route>
-				<Route path ="/" element={<Inicio />}>
-				<Route path ="/principal" element={<Principal />}></Route>
-					<Route path ="/listado" element={<Listado />}></Route>
-					<Route path ="/productos" element={<ListadoProductos />}></Route>
+				<Route path ="/" element={<Inicio />}></Route>
+				<Route path ="/principal" element={<Principal />}>
+					<Route path ="/principal/listado" element={<Listado />}></Route>
+					<Route path ="/principal//productos" element={<ListadoProductos />}></Route>
 				</Route>
 				<Route path="*" element={<Error />}></Route>
 			</Routes>

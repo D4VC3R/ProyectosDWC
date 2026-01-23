@@ -4,9 +4,8 @@ import useSesionContext from '../hooks/useSesionContext'
 const Listado = () => {
 	const {} = useSesionContext();
 	
-
 	return (
-		<div><p>Aquí se mostrará la lista de la compra</p></div>
+		<div><p>Aquí se mostrará la lista de la compra.</p></div>
 	)
 }
 

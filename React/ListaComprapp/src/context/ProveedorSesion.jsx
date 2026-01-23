@@ -2,6 +2,7 @@ import React, {createContext, useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import useSupabaseAuth from './../hooks/useSupabaseAuth.js';
 
+
 const ContextoSesion = createContext();
 
 const ProveedorSesion = ({children}) => {
@@ -29,6 +30,9 @@ const ProveedorSesion = ({children}) => {
 	// Funciones
 	const manejarCrearCuenta = async () => {
 		try {
+			if (!datosSesion.display_name) {
+				throw new Error("Debes introducir un nombre de usuario ahora, que aún no he implementado ni PUT ni PATCH.");
+			}
 			await crearCuenta(datosSesion.email, datosSesion.password, datosSesion.display_name);
 			setErrorUsuario("Comprueba tu correo para verificar la cuenta.");
 		} catch (error) {

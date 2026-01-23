@@ -2,7 +2,7 @@
   all: unset;
   width: fit-content;
   padding: 8px 20px;
-  background-color: #916d0d;
+  background-color: #4ba53f;
   color: white;
   border: none;
   border-radius: 50px;
@@ -11,7 +11,7 @@
 }
 
 .boton_inicio:hover {
-	background-color: #e4ab10;
+	background-color: #36dd0d;
 	cursor: pointer;
 	color: white;
 }

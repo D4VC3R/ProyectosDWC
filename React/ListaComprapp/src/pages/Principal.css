@@ -1,0 +1,9 @@
+.menu-opciones {
+	align-self: flex-start;
+}
+
+.menu-opciones p {
+	display: inline;
+	margin: 15em;
+	color: #4ba53f;
+}

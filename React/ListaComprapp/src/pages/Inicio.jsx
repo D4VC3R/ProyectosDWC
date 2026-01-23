@@ -1,22 +1,28 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import useSesionContext from '../hooks/useSesionContext'
-import Principal from './Principal';
+import './Inicio.css';
 
 const Inicio = () => {
 
-	const {sesionIniciada} = useSesionContext();
+	const navegar = useNavigate();
+
+	const {sesionIniciada, username} = useSesionContext();
 	return (
-		<>
-		{!sesionIniciada ?
 			<div>
-				<p>Inicia sesión para acceder a tus listas de la compra.</p>
-				<Link to="/login">Ir a Login</Link>
+				{!sesionIniciada ? (
+					<>
+						<p>Inicia sesión para acceder a tus listas de la compra.</p>
+						<span className="boton-inicio" onClick={()=>{navegar('/login')}}>Ir a Login</span>
+					</>
+
+				) : (
+					<>
+						<p>Bienvenido de nuevo{username && `, ${username}`}, pulsa el botón para iniciar una lista de la compra.</p>
+						<span className="boton-inicio" onClick={()=>{navegar('/principal')}}>Comenzar</span>
+					</>
+				)}
 			</div>
-		:
-			<Principal />
-		}
-		</>
 	)
 }
 

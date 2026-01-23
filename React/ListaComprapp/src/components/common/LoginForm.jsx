@@ -4,18 +4,20 @@ import { useRef } from 'react';
 import Cargando from './Cargando.jsx';
 
 const Login = () => {
+	// Nos traemos las funciones y datos que necesitamos del contexto.
 	const { manejarCrearCuenta, manejarInicioSesion, manejarDatosSesion, errorUsuario, cargando } = useSesionContext();
 	const contenedor = useRef(null);
 
-
+	// He delegado lo que he podido, el onChange no se deja.
 	const manejarForm = async (e) => {
 		e.preventDefault();
 		e.target.textContent === "Iniciar Sesión" && await manejarInicioSesion();
 		e.target.textContent === "Crear Cuenta" && await manejarCrearCuenta();
 		e.target.textContent === "Regístrate" && contenedor.current.classList.add('right-panel-active');
 		e.target.textContent === "Inicia Sesión" && contenedor.current.classList.remove('right-panel-active');
-	}
-
+	};
+	// Sobra decir que el CSS es una plantilla... La he adaptado a React, eso sí. https://codepen.io/Rh2o/pen/yLgxJoG
+	// Estaba genial para gestionar el inicio de sesión y el creado de cuentas desde la misma página.
 	return (
 		<>
 			<div className="login-container">

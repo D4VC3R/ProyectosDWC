@@ -1,5 +1,6 @@
 import {useState} from "react";
 import { sb } from "../supabase/supabase.js";
+import {traducirError} from './../libraries/utilidades.js'
 
 
 const useSupabaseAuth = () => {
@@ -15,6 +16,7 @@ const useSupabaseAuth = () => {
 			const {data, error} = await promesa;
 
 			if (error) {
+				error.message = traducirError(error.message);
 				throw error;
 			}
 			return data;

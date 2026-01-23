@@ -1,0 +1,18 @@
+{
+  "invalid login credentials": "El correo electrónico o la contraseña son incorrectos.",
+  "user already registered": "Ya existe una cuenta registrada con este correo electrónico.",
+  "password should be at least 6 characters.": "La contraseña debe tener al menos 6 caracteres.",
+  "email not confirmed": "Tu correo electrónico no ha sido confirmado. Por favor, revisa tu bandeja de entrada.",
+  "token has expired or is invalid": "El enlace de verificación ha caducado o no es válido. Solicita uno nuevo.",
+  "auth session missing!": "La sesión de usuario no se ha encontrado. Por favor, inicia sesión nuevamente.",
+  "rate limit exceeded": "Has realizado demasiados intentos. Por favor, espera unos minutos antes de volver a intentarlo.",
+  "signups not allowed for this instance": "El registro de nuevos usuarios está deshabilitado temporalmente.",
+  "email link is invalid or has expired": "El enlace de acceso es inválido o ha caducado.",
+  "unable to validate email address: invalid format": "El formato del correo electrónico no es válido.",
+  "password requirement: at least 6 characters": "La contraseña debe tener un mínimo de 6 caracteres.",
+  "new password should be different from the old password.": "La nueva contraseña debe ser diferente a la anterior.",
+	"missing email or phone": "Campo de teléfono o correo electrónico faltante.",
+	"anonymous sign-ins are disabled": "Los inicios de sesión anónimos están deshabilitados.",
+	"operation not allowed": "Esta operación no está permitida.",
+	"signup requires a valid password": "El registro requiere una contraseña válida."
+}
