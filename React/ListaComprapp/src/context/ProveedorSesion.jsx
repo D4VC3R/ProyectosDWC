@@ -54,6 +54,8 @@ const ProveedorSesion = ({children}) => {
 	const manejarCierreSesion = async () => {
 		try {
 			await cerrarSesion();
+			setUsuario(usuarioInicial);
+			setDatosSesion(datosSesionInicial);
 			setErrorUsuario("");
 			// No utilizo navegar aquí porque ya lo hago en el useEffect.
 	} catch (error) {
