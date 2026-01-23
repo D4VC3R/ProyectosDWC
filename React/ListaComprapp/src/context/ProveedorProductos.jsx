@@ -43,7 +43,7 @@ const ProveedorProductos = ({children}) => {
 		}
 	};
 
-	// Por prácticar lo haré llamando a la base de datos, pero me gusta mas filtrar el listado completo desde el estado.
+	// Por practicar lo haré llamando a la base de datos, pero me gusta más filtrar el listado completo desde el estado.
 	const getSameValue = async (columna, valor) => {
 		try {
 			const filtrados = await filtrarIguales('producto', columna, valor);
@@ -105,5 +105,5 @@ const ProveedorProductos = ({children}) => {
 	)
 }
 
-export default ProveedorProductos
-export {ContextoProductos}
+export default ProveedorProductos;
+export {ContextoProductos};
