@@ -30,6 +30,7 @@ const ProveedorSesion = ({children}) => {
 	// Funciones
 	const manejarCrearCuenta = async () => {
 		try {
+			// Sin nombre de usuario, no hay registro, decisión de diseño.
 			if (!datosSesion.display_name) {
 				throw new Error("Debes introducir un nombre de usuario ahora, que aún no he implementado ni PUT ni PATCH.");
 			}
@@ -63,6 +64,9 @@ const ProveedorSesion = ({children}) => {
 	const obtenerUsuario = async () => {
 		try {
 			const {user} = await getUsuario();
+			if (!user) {
+				throw new Error("No se puede recuperar la información de usuario.");
+			}
 			setUsuario(user);
 			setErrorUsuario(errorUsuarioInicial);
 		}catch (error) {

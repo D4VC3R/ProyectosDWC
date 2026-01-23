@@ -4,10 +4,10 @@ import useSesionContext from '../hooks/useSesionContext'
 import './Inicio.css';
 
 const Inicio = () => {
-
 	const navegar = useNavigate();
-
 	const {sesionIniciada, username} = useSesionContext();
+
+	// Dependiendo de si ha iniciado sesión, el usuario verá unas cosas u otras.
 	return (
 			<div>
 				{!sesionIniciada ? (

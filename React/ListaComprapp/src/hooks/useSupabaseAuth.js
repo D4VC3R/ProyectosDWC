@@ -8,6 +8,7 @@ const useSupabaseAuth = () => {
 	const [cargando, setCargando] = useState(false);
 	const [error, setError] = useState(null);
 
+	// Función que se encarga de la comunicación exclusivamente.
 	const solicitar = async (promesa) => {
 		setCargando(true);
 		setError(null);
@@ -16,6 +17,7 @@ const useSupabaseAuth = () => {
 			const {data, error} = await promesa;
 
 			if (error) {
+				// Si traducimos aqui los errores de supabase, ya no hay que hacerlo en ningún otro sitio.
 				error.message = traducirError(error.message);
 				throw error;
 			}
@@ -28,6 +30,8 @@ const useSupabaseAuth = () => {
 		}
 	}
 
+	// Funciones de sesión
+	
 	const crearCuenta = (email, password, display_name) => {
 		return solicitar(
 			sb.auth.signUp({

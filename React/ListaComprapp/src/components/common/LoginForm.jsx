@@ -54,8 +54,7 @@ const Login = () => {
 						</div>
 					</div>
 				</div>
-					{cargando && <Cargando />}
-					{errorUsuario && <p className="error-mensaje">{errorUsuario}</p>}
+					{cargando ? <Cargando /> : errorUsuario && <p className="error-mensaje">{errorUsuario}</p>}
 			</div>
 
 		</>
