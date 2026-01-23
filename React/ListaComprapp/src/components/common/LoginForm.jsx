@@ -21,7 +21,7 @@ const Login = () => {
 	return (
 		<>
 			<div className="login-container">
-				<div className="container" id="container" onClick={((e) => { manejarForm(e) })} ref={contenedor}>
+				<div className="container" onClick={((e) => { manejarForm(e) })} ref={contenedor}>
 					<div className="form-container sign-up-container">
 						<form>
 							<h1>Registro</h1>

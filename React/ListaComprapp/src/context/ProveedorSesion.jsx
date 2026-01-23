@@ -1,6 +1,6 @@
 import React, {createContext, useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
-import useSupabaseAuth from './../hooks/useSupabaseAuth.js';
+import useSupabase from './../hooks/useSupabase.js';
 
 
 const ContextoSesion = createContext();
@@ -25,7 +25,7 @@ const ProveedorSesion = ({children}) => {
 	const [username, setUsername] = useState("");
 
 	// Hooks
-	const {cargando, crearCuenta, iniciarSesion, cerrarSesion, getUsuario, getSuscripcion} = useSupabaseAuth();
+	const {cargando, crearCuenta, iniciarSesion, cerrarSesion, getUsuario, getSuscripcion} = useSupabase();
 
 	// Funciones
 	const manejarCrearCuenta = async () => {
@@ -54,7 +54,6 @@ const ProveedorSesion = ({children}) => {
 	const manejarCierreSesion = async () => {
 		try {
 			await cerrarSesion();
-			setUsuario(usuarioInicial);
 			setDatosSesion(datosSesionInicial);
 			setErrorUsuario("");
 			// No utilizo navegar aquí porque ya lo hago en el useEffect.

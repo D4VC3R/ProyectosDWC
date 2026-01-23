@@ -1,9 +1,9 @@
 import {useState} from "react";
 import { sb } from "../supabase/supabase.js";
-import {traducirError} from './../libraries/utilidades.js'
+import {traducirError} from '../libraries/utilidades.js'
 
 
-const useSupabaseAuth = () => {
+const useSupabase = () => {
 
 	const [cargando, setCargando] = useState(false);
 	const [error, setError] = useState(null);
@@ -31,7 +31,6 @@ const useSupabaseAuth = () => {
 	}
 
 	// Funciones de sesión
-	
 	const crearCuenta = (email, password, display_name) => {
 		return solicitar(
 			sb.auth.signUp({
@@ -66,7 +65,30 @@ const useSupabaseAuth = () => {
 
 	const getSuscripcion = (funcion) => {
 		return sb.auth.onAuthStateChange(funcion);
-	}
+	};
+
+	// Funciones para CRUD
+	const obtenerTodo = (tabla) => {
+		return solicitar(sb.from(tabla).select('*'));
+	};
+
+	const obtenerUno = (tabla, uuid) => {
+		return solicitar(sb.from(tabla).select('*').eq("uuid", uuid));
+	};
+
+	const filtrarIguales = (tabla, columna, valor) => {
+		return solicitar(sb.from(tabla).select('*').eq(columna, valor));
+	};
+
+	const filtrarIgualOMenor = (tabla, columna, valor) => {
+		return solicitar(sb.from(tabla).select('*').lte(columna, valor))
+	};
+
+	const ordenarTabla = (tabla, columna, asc = true) => {
+		return solicitar(sb.from(tabla).select('*').order(columna, {ascending:asc}));
+	};
+
+
 
 	return {
 		cargando,
@@ -76,7 +98,12 @@ const useSupabaseAuth = () => {
 		cerrarSesion,
 		getUsuario,
 		getSuscripcion,
+		obtenerTodo,
+		obtenerUno,
+		filtrarIguales,
+		filtrarIgualOMenor,
+		ordenarTabla
 	};
 };
 
-export default useSupabaseAuth;
+export default useSupabase;
