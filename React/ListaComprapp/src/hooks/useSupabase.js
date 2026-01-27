@@ -76,8 +76,8 @@ const useSupabase = () => {
 		return solicitar(sb.from(tabla).select('*').eq("uuid", uuid));
 	};
 
-	const filtrarIguales = (tabla, columna, valor) => {
-		return solicitar(sb.from(tabla).select('*').eq(columna, valor));
+	const filtrarILike = (tabla, columna, valor) => {
+		return solicitar(sb.from(tabla).select('*').ilike(columna, `%${valor}%`));
 	};
 
 	const filtrarIgualOMenor = (tabla, columna, valor) => {
@@ -87,7 +87,6 @@ const useSupabase = () => {
 	const ordenarTabla = (tabla, columna, asc = true) => {
 		return solicitar(sb.from(tabla).select('*').order(columna, {ascending:asc}));
 	};
-
 
 
 	return {
@@ -100,7 +99,7 @@ const useSupabase = () => {
 		getSuscripcion,
 		obtenerTodo,
 		obtenerUno,
-		filtrarIguales,
+		filtrarILike,
 		filtrarIgualOMenor,
 		ordenarTabla
 	};

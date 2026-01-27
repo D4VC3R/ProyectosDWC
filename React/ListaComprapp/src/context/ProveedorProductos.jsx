@@ -8,7 +8,7 @@ const ContextoProductos = createContext();
 
 const ProveedorProductos = ({children}) => {
 
-	console.log("ProveedorProductos renderizándose");
+	
 
 	// Valores iniciales
 	const productosIniciales = [];
@@ -21,11 +21,10 @@ const ProveedorProductos = ({children}) => {
 	const [errorProducto, setErrorProducto] = useState(errorProductoInicial);
 
 	//Hooks
-	const {cargando, obtenerTodo, obtenerUno, filtrarIguales, filtrarIgualOMenor, ordenarTabla} = useSupabase();
+	const {cargando, obtenerTodo, obtenerUno, filtrarILike, filtrarIgualOMenor, ordenarTabla} = useSupabase();
 
 	//Funciones
 	const getAllProducts = async () => {
-		console.log("getAllProducts ejecutándose");
 		try {
 			const productos = await obtenerTodo('producto');
 			setListadoProductos(productos)
@@ -47,7 +46,7 @@ const ProveedorProductos = ({children}) => {
 	// Por practicar lo haré llamando a la base de datos, pero me gusta más filtrar el listado completo desde el estado.
 	const getSameValue = async (columna, valor) => {
 		try {
-			const filtrados = await filtrarIguales('producto', columna, valor);
+			const filtrados = await filtrarILike('producto', columna, valor);
 			setListadoProductos(filtrados);
 		} catch (error) {
 			setErrorProducto(error.message);

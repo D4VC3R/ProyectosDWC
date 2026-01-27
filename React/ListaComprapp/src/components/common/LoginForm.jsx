@@ -23,7 +23,7 @@ const Login = () => {
 			<div className="login-container">
 				<div className="container" onClick={((e) => { manejarForm(e) })} ref={contenedor}>
 					<div className="form-container sign-up-container">
-						<form>
+						<form className="form-login">
 							<h1>Registro</h1>
 							<input type="text" name="display_name" placeholder="Nombre de usuario" onChange={(e) => manejarDatosSesion(e)} />
 							<input type="email" name="email" placeholder="Email" onChange={(e) => manejarDatosSesion(e)} />
@@ -32,7 +32,7 @@ const Login = () => {
 						</form>
 					</div>
 					<div className="form-container sign-in-container">
-						<form >
+						<form className="form-login">
 							<h1>Acceder</h1>
 							<input type="email" name="email" placeholder="Email" onChange={(e) => manejarDatosSesion(e)} />
 							<input type="password" name="password" placeholder="Contraseña" onChange={(e) => manejarDatosSesion(e)} />

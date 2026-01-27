@@ -3,12 +3,14 @@ import './Principal.css'
 import { useState } from 'react'
 import Listado from './Listado'
 import ListadoProductos from './ListadoProductos'
+import Cargando from '../components/common/Cargando'
 
 
 const Principal = () => {
 
 	const [mostrarLista, setMostrarLista] = useState(false);
 	const [mostrarProductos, setMostrarProductos] = useState(false);
+	
 
 	const manejarClic = (e) => {
 		e.target.textContent === "LISTA DE LA COMPRA" && setMostrarLista(!mostrarLista);

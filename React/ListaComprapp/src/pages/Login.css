@@ -5,22 +5,21 @@
 }
 
 body {
-
   font-family: "Montserrat", sans-serif;
 }
 
-h1 {
+.form-login h1 {
   font-weight: bold;
   margin: 0;
 	color: #4ba53f; 
   text-shadow: #000 1px 1px 2px;
 }
 
-h2 {
+.form-login h2 {
   text-align: center;
 }
 
-p {
+.form-login p {
   font-size: 14px;
   font-weight: 100;
   line-height: 20px;
@@ -55,7 +54,7 @@ button.ghost {
   border-color: #ffffff;
 }
 
-form {
+.form-login {
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -66,7 +65,7 @@ form {
   text-align: center;
 }
 
-input {
+.form-login input {
   background-color: #4ba53f;
   border: 2px solid #4ba53f;
   border-radius: 15px;
@@ -74,11 +73,11 @@ input {
   margin: 8px 0;
   width: 100%;
 }
-input:focus {
+.form-login input:focus {
   outline: none;
   border: 5px solid #fff;
 }
-input::placeholder {
+.form-login input::placeholder {
   color: #fff;
   opacity: 1;
   font-family: Arial, sans-serif;
