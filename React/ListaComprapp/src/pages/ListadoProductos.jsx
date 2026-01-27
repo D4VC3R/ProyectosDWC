@@ -12,8 +12,6 @@ const ListadoProductos = () => {
 	const { listadoProductos, cargando } = useProductContext();
 	const {sesionIniciada} = useSesionContext();
 
-	const getResumen = () => {}
-
 	return (
 		<>
 			{cargando && <Cargando />}
