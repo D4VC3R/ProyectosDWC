@@ -5,7 +5,7 @@ const Listado = () => {
 	const {} = useSesionContext();
 	
 	return (
-		<div><p>Aquí se mostrará la lista de la compra.</p></div>
+		<div className='listado-compra'><p>Aquí se mostrará la lista de la compra.</p></div>
 	)
 }
 

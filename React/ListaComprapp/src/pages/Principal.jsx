@@ -1,22 +1,35 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
 import './Principal.css'
+import { useState } from 'react'
+import Listado from './Listado'
+import ListadoProductos from './ListadoProductos'
+
 
 const Principal = () => {
-	// Este componente aún está verde, no le hagas mucho caso.
+
+	const [mostrarLista, setMostrarLista] = useState(false);
+	const [mostrarProductos, setMostrarProductos] = useState(false);
+
+	const manejarClic = (e) => {
+		e.target.textContent === "LISTA DE LA COMPRA" && setMostrarLista(!mostrarLista);
+		e.target.textContent === "MOSTRAR PRODUCTOS" && setMostrarProductos(!mostrarProductos);
+	}
+
 	return (
-		<>
-			<div className="menu-opciones">
-				<nav>
-					<Link to="/principal/listado"><p>LISTA DE LA COMPRA</p></Link>
-					<Link to="/principal/productos"><p>MOSTRAR PRODUCTOS DISPONIBLES</p></Link>
-				</nav>
+		<div className="contenido-principal" onClick={((e)=> manejarClic(e))}>
+			<nav>
+				<span>LISTA DE LA COMPRA</span>
+				<span>MOSTRAR PRODUCTOS</span>
+			</nav>
+
+			<div className="contenido-listado">
+				{mostrarLista && <Listado />}
 			</div>
 
-			<div className="contenido">
-				<Outlet />
+			<div className="contenido-productos">
+				{mostrarProductos && <ListadoProductos />}
 			</div>
-		</>
+		</div>
 	)
 }
 

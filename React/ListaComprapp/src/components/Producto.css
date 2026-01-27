@@ -1,0 +1,50 @@
+.producto {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    align-items: flex-start;
+}
+
+.producto-imagen {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.producto-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.producto-nombre {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.producto-descripcion {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.producto-detalles {
+    display: flex;
+    gap: 1rem;
+    font-weight: bold;
+}
+
+.producto-precio {
+    color: #4ba53f;
+}
+
+.producto-peso {
+    color: #666;
+}

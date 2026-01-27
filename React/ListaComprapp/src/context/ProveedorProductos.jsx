@@ -8,16 +8,16 @@ const ContextoProductos = createContext();
 
 const ProveedorProductos = ({children}) => {
 
+	console.log("ProveedorProductos renderizándose");
+
 	// Valores iniciales
-	const productosIniciales = [{}];
+	const productosIniciales = [];
 	const errorProductoInicial = "";
 	const productoInicial = {};
 
 	// Estados
 	const [listadoProductos, setListadoProductos] = useState(productosIniciales);
 	const [producto, setProducto] = useState(productoInicial);
-	const [productosFiltrados, setProductosFiltrados] = useState(productosIniciales);
-	const [productosOrdenados, setProductosOrdenados] = useState(productosIniciales);
 	const [errorProducto, setErrorProducto] = useState(errorProductoInicial);
 
 	//Hooks
@@ -25,6 +25,7 @@ const ProveedorProductos = ({children}) => {
 
 	//Funciones
 	const getAllProducts = async () => {
+		console.log("getAllProducts ejecutándose");
 		try {
 			const productos = await obtenerTodo('producto');
 			setListadoProductos(productos)
@@ -47,7 +48,7 @@ const ProveedorProductos = ({children}) => {
 	const getSameValue = async (columna, valor) => {
 		try {
 			const filtrados = await filtrarIguales('producto', columna, valor);
-			setProductosFiltrados(filtrados);
+			setListadoProductos(filtrados);
 		} catch (error) {
 			setErrorProducto(error.message);
 		}
@@ -56,7 +57,7 @@ const ProveedorProductos = ({children}) => {
 	const getLessOrEqual = async (columna, valor) => {
 		try {
 			const filtrados = await filtrarIgualOMenor('producto', columna, valor);
-			setProductosFiltrados(filtrados);
+			setListadoProductos(filtrados);
 		} catch (error) {
 			setErrorProducto(error.message)
 		}
@@ -65,7 +66,7 @@ const ProveedorProductos = ({children}) => {
 	const sortProducts = async (columna, orden) => {
 		try {
 			const ordenados = await ordenarTabla('producto', columna, orden);
-			setProductosOrdenados(ordenados);
+			setListadoProductos(ordenados);
 		} catch (error) {
 			setErrorProducto(error)
 		}
@@ -73,12 +74,8 @@ const ProveedorProductos = ({children}) => {
 
 	// Efectos
 	useEffect(()=>{
-		// Al montar el componente, cargamos el listado de productos y al desmontarlo, lo devolvemos a los valores iniciales.
+		// Al montar el componente, cargamos el listado de productos.
 		getAllProducts();
-		return () => {
-			setListadoProductos(productosIniciales);
-			setErrorProducto(errorProductoInicial);
-		}
 	}, []);
 
 	// En principio lo exporto todo, luego ya veré que necesito utilizar.
@@ -89,8 +86,6 @@ const ProveedorProductos = ({children}) => {
 		getLessOrEqual,
 		sortProducts,
 		producto,
-		productosFiltrados,
-		productosOrdenados,
 		listadoProductos,
 		errorProducto,
 		cargando
