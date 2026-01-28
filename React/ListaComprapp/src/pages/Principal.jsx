@@ -1,11 +1,11 @@
 import React from 'react'
 import './Principal.css'
 import { useState } from 'react'
-import Listado from './Listado'
-import ListadoProductos from './ListadoProductos'
-import useSesionContext from '../hooks/useSesionContext'
-import FiltrarProductos from '../components/FiltrarProductos';
-import ResumenProductos from '../components/ResumenProductos';
+import Listado from './../components/Listado'
+import ListadoProductos from './../components/ListadoProductos'
+import useSesionContext from './../hooks/useSesionContext'
+import FiltrarProductos from './../components/FiltrarProductos';
+import ResumenProductos from './../components/ResumenProductos';
 
 
 const Principal = () => {

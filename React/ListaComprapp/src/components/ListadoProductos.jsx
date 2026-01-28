@@ -1,14 +1,12 @@
 import React from 'react'
-import Producto from '../components/Producto';
+import Producto from './Producto';
 import useProductContext from '../hooks/useProductContext'
 import './ListadoProductos.css'
-import Cargando from './../components/common/Cargando';
-
-
+import Cargando from './common/Cargando';
 
 const ListadoProductos = () => {
 
-	// Tengo que mover esto a 'components', ya que finalmente no será una página independiente.
+	// He movido esto a 'components', ya que finalmente no será una página independiente.
 	const { listadoProductos, cargando } = useProductContext();
 
 	return (
