@@ -4,9 +4,14 @@ import { useState } from 'react'
 import Listado from './Listado'
 import ListadoProductos from './ListadoProductos'
 import Cargando from '../components/common/Cargando'
+import useSesionContext from '../hooks/useSesionContext'
+import FiltrarProductos from '../components/FiltrarProductos';
+import ResumenProductos from '../components/ResumenProductos';
 
 
 const Principal = () => {
+
+	const {sesionIniciada} = useSesionContext();
 
 	const [mostrarLista, setMostrarLista] = useState(false);
 	const [mostrarProductos, setMostrarProductos] = useState(false);
@@ -19,14 +24,20 @@ const Principal = () => {
 
 	return (
 		<div className="contenido-principal" onClick={((e)=> manejarClic(e))}>
-			<nav>
-				<span>LISTA DE LA COMPRA</span>
+			<nav className='nav-opciones'>
+				{sesionIniciada && <span>LISTA DE LA COMPRA</span>}
 				<span>MOSTRAR PRODUCTOS</span>
 			</nav>
 
 			<div className="contenido-listado">
 				{mostrarLista && <Listado />}
 			</div>
+
+			{mostrarProductos && 
+			<div className='filtros-productos'>
+				{sesionIniciada && <FiltrarProductos />}
+				<ResumenProductos />
+			</div>}
 
 			<div className="contenido-productos">
 				{mostrarProductos && <ListadoProductos />}

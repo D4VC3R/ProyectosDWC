@@ -68,8 +68,8 @@ const useSupabase = () => {
 	};
 
 	// Funciones para CRUD
-	const obtenerTodo = (tabla) => {
-		return solicitar(sb.from(tabla).select('*'));
+	const obtenerTodo =  (tabla) => {
+		return  solicitar(sb.from(tabla).select('*'));
 	};
 
 	const obtenerUno = (tabla, uuid) => {

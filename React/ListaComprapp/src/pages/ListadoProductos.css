@@ -1,4 +1,26 @@
 .listado-productos {
   padding: 1rem;
-  height: 100%;
+  max-height: 50vh;
+  border: 1px solid #ccc;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.resumen-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1rem;
+  font-size: 1.2rem;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.resumen-info span:last-child {
+  font-weight: bold;
+  color: #4ba53f;
+}
+
+.resumen-info p {
+  margin: 0.2rem;
 }

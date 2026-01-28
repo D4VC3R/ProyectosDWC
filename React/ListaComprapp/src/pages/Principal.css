@@ -2,42 +2,45 @@
   display: grid;
   grid-template-areas:
     "btnlista btnproductos"
+    "cabecera filtros"
     "lista productos";
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: auto 1fr;
-  gap: 1rem;
+  grid-template-rows: auto auto 1fr;
+  gap: 1vh 1vw;
   height: 100%;
   overflow: hidden;
 }
 
-.contenido-principal nav {
+.nav-opciones {
   grid-column: 1 / 3; 
   grid-row: 1;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  padding: 1rem;
+  place-items: center;
 }
 
-.contenido-principal nav span {
+.nav-opciones span {
   cursor: pointer;
   color: #4ba53f;
-  padding: 0.5rem;
+  width: fit-content;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-shadow: -1.2px 0.5px 1px #4b4b4b;
 }
 
-.contenido-principal nav span:hover {
+.nav-opciones span:hover {
   text-decoration: underline;
 }
 
 .contenido-listado {
   grid-area: lista;
-  overflow-y: auto;
-  overflow-x: hidden;
-  min-height: 0;
 }
 
 .contenido-productos {
   grid-area: productos;
-  overflow-y: auto;
-  overflow-x: hidden;
-  min-height: 0;
+}
+
+.filtros-productos {
+  grid-area: filtros;
+  grid-row: 2;
 }

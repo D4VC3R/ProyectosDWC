@@ -10,11 +10,13 @@ const ResumenProductos = () => {
 		const total = listadoProductos.reduce((total, producto) => total + producto.precio, 0);
 		return total / listadoProductos.length;
 	}
+
 	return (
 		<>
-		<span>Nº de productos: {listadoProductos.length}</span>
-		<span>Precio medio:</span>
-		
+		<div className="resumen-info">
+			<p>Total productos: <span>{listadoProductos.length}</span></p>
+			<p>Precio medio: <span>{getPrecioMedio().toFixed(2)}€</span></p>
+		</div>
 		</>
 	)
 }

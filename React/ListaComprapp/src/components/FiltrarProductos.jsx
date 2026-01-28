@@ -39,8 +39,8 @@ const FiltrarProductos = () => {
 	}
 	const manejarFiltrar = () => {
 		tipoFiltro === 'nombre' && valorFiltro !== '' && getSameValue("nombre", valorFiltro);
-		tipoFiltro === 'peso' && valorFiltro !== '' && getLessOrEqual("peso", valorFiltro);
-		tipoFiltro === 'precio' && valorFiltro !== '' && getLessOrEqual("precio", valorFiltro);
+		tipoFiltro === 'peso' && !isNaN(valorFiltro) && getLessOrEqual("peso", valorFiltro);
+		tipoFiltro === 'precio' && !isNaN(valorFiltro) && getLessOrEqual("precio", valorFiltro);
 	}
 
 	const manejarForm = (e) => {

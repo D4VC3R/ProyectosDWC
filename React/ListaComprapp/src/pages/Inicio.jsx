@@ -14,7 +14,7 @@ const Inicio = () => {
 					<>
 						<p>Inicia sesión para acceder a tus listas de la compra.</p>
 						<span className="boton-inicio" onClick={()=>{navegar('/login')}}>Ir a Login</span>
-						<p>O echa un vistazo a nuestros productos</p>
+						<p>O echa un vistazo a nuestros productos.</p>
 						<span className="boton-inicio" onClick={()=>{navegar('/principal')}}>Ver Productos</span>
 					</>
 

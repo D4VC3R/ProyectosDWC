@@ -1,24 +1,24 @@
 .form-filtrado {
-    display: inline;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 0 auto;
-		background: #ececec;
+  display: inline;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 auto;
+  background: #ececec;
 }
 
 .form-filtrado > div {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-		justify-content: center;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .form-filtrado label {
-    display: flex;
-    align-items: center;
-    gap: 0.15rem;
-    cursor: pointer;
-    font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  cursor: pointer;
+  font-size: 0.9rem;
 }
 
 .form-filtrado input[type="text"] {
@@ -37,22 +37,27 @@
 }
 
 .form-filtrado span {
-    padding: 0.4rem 0.8rem;
-    background-color: #4ba53f;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #4ba53f;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
 }
 
 .form-filtrado span:hover {
-    background-color: #429238;
+  background-color: #429238;
 }
 
 .form-filtrado span:last-child {
-    background-color: #6c757d;
+  background-color: #6c757d;
 }
 
 .form-filtrado span:last-child:hover {
-    background-color: #545b62;
+  background-color: #545b62;
+}
+
+.form-filtrado input[type="radio"] {
+  cursor: pointer;
+  accent-color: #4ba53f;
 }
