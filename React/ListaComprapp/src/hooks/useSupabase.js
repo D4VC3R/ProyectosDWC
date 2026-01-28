@@ -67,7 +67,7 @@ const useSupabase = () => {
 		return sb.auth.onAuthStateChange(funcion);
 	};
 
-	// Funciones para CRUD
+	// Funciones para CRUD, no las hago asíncronas porque todas dependen de solicitar(), que ya lo es.
 	const obtenerTodo =  (tabla) => {
 		return  solicitar(sb.from(tabla).select('*'));
 	};

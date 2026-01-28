@@ -33,7 +33,6 @@ const ProveedorProductos = ({children}) => {
 		}
 	};
 
-	// ¿Devolver el producto o utilizar estados para estas funciones?
 	const getProduct = async (uuid) => {
 		try {
 			const producto = await obtenerUno('producto', uuid);
@@ -43,7 +42,7 @@ const ProveedorProductos = ({children}) => {
 		}
 	};
 
-	// Por practicar lo haré llamando a la base de datos, pero me gusta más filtrar el listado completo desde el estado.
+	// Por practicar y cambiar un poco, lo he hecho llamando a la base de datos, pero me gusta más filtrar el listado completo desde el estado.
 	const getSameValue = async (columna, valor) => {
 		try {
 			const filtrados = await filtrarILike('producto', columna, valor);

@@ -8,8 +8,8 @@ import Cargando from './../components/common/Cargando';
 
 const ListadoProductos = () => {
 
+	// Tengo que mover esto a 'components', ya que finalmente no será una página independiente.
 	const { listadoProductos, cargando } = useProductContext();
-
 
 	return (
 		<>

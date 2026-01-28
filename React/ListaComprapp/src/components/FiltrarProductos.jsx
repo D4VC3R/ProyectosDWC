@@ -6,11 +6,14 @@ const FiltrarProductos = () => {
 	// Uso nombre como estado inicial para que aparezca ese campo ya marcado, que como el usuario es idiota lo mismo se piensa que no funciona el filtrado...
 	const [tipoFiltro, setTipoFiltro] = useState('nombre');
 	const [valorFiltro, setValorFiltro] = useState('');
+	// Tres estados para manejar el ordenado de productos... algo me dice que se podría hacer más eficientemente.
 	const [ordenAsc, setOrdenAsc] = useState(true);
 	const [ordenado, setOrdenado] = useState(false);
 	const [columnaOrdenada, setColumnaOrdenada] = useState(null);
+
 	const { getSameValue, getLessOrEqual, getAllProducts, sortProducts } = useProductContext();
 
+	// Si se cambia el tipo de filtro, reseteo el estado 'ordenado'.
 	const cambiarFiltro = (e) => {
 		setTipoFiltro(e.target.value);
 		if (columnaOrdenada !== null && columnaOrdenada !== tipoFiltro) {
@@ -24,7 +27,8 @@ const FiltrarProductos = () => {
 		setColumnaOrdenada(null);
 		setValorFiltro('')
 	}
-
+	// Si se pulsa el botón de ordenar y no es la misma columna, ordeno ascendente por defecto.
+	// Si es la misma columna, invierto el orden.
 	const manejarOrden = () => {
 		if (columnaOrdenada !== tipoFiltro) {
 			setColumnaOrdenada(tipoFiltro);
@@ -37,6 +41,8 @@ const FiltrarProductos = () => {
 			sortProducts(tipoFiltro, nuevoOrden);
 		}
 	}
+
+	// Comprobaciones chichinabescas, lo suyo sería utilizar una validación más fiable.
 	const manejarFiltrar = () => {
 		tipoFiltro === 'nombre' && valorFiltro !== '' && getSameValue("nombre", valorFiltro);
 		tipoFiltro === 'peso' && !isNaN(valorFiltro) && getLessOrEqual("peso", valorFiltro);
