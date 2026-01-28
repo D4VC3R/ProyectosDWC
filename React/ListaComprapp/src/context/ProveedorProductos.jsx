@@ -23,7 +23,7 @@ const ProveedorProductos = ({children}) => {
 	//Hooks
 	const {cargando, obtenerTodo, obtenerUno, filtrarILike, filtrarIgualOMenor, ordenarTabla} = useSupabase();
 
-	//Funciones
+	//Funciones de lectura
 	const getAllProducts = async () => {
 		try {
 			const productos = await obtenerTodo('producto');
@@ -69,6 +69,12 @@ const ProveedorProductos = ({children}) => {
 			setErrorProducto(error)
 		}
 	};
+
+	// Funciones de escritura (crear, actualizar, borrar).
+
+	const createProduct = async () => {
+
+	}
 
 	// Efectos
 	useEffect(()=>{

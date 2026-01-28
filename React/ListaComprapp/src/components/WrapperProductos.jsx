@@ -1,13 +1,13 @@
 import React from 'react'
 import ProveedorProductos from '../context/ProveedorProductos'
-import Principal from '../pages/Principal'
+import { Outlet } from 'react-router-dom'
 
 const WrapperProductos = () => {
 	return (
 		<>
 			<ProveedorProductos>
-        <Principal />
-    </ProveedorProductos>
+				<Outlet />
+			</ProveedorProductos>
 		</>
 	)
 }
