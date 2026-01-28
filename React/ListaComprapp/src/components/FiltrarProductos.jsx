@@ -49,16 +49,24 @@ const FiltrarProductos = () => {
 		tipoFiltro === 'precio' && !isNaN(valorFiltro) && getLessOrEqual("precio", valorFiltro);
 	}
 
+	// No hago preventDefault aquí para no cargarme la funcionalidad de los botones radio.
+	// Lo hago en el onSubmit del formulario que me da el mismo resultado y me resulta más cómodo.
 	const manejarForm = (e) => {
 		e.target.textContent === 'Filtrar' && manejarFiltrar();
 		e.target.classList.contains('btn-ordenar') && manejarOrden();
 		e.target.textContent === 'Limpiar filtros' && resetFiltros();
 	}
 
+	const manejarEnter = (e) => {
+		e.key === 'Enter' && manejarFiltrar();
+	}
 
 	return (
 		<>
-			<form className='form-filtrado' onClick={((e) => { manejarForm(e) })}>
+			<form className='form-filtrado'
+				onClick={((e) => { manejarForm(e) })}
+				onSubmit={e => e.preventDefault()}
+				onKeyDown={((e) => { manejarEnter(e) })}>
 				<div>
 					<input
 						type="text"
