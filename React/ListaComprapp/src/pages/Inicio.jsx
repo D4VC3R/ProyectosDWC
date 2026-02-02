@@ -22,6 +22,7 @@ const Inicio = () => {
 					<>
 						<p>Bienvenido de nuevo{username && `, ${username}`}, pulsa el botón para iniciar una lista de la compra.</p>
 						<span className="boton-inicio" onClick={()=>{navegar('/principal')}}>Comenzar</span>
+						<p>O gestiona los productos de la base de datos desde el apartado de <span className="boton-inicio" onClick={()=>{navegar('/gestion')}}>Gestión</span></p>
 					</>
 				)}
 			</div>

@@ -16,8 +16,7 @@ const Login = () => {
 		e.target.textContent === "Regístrate" && contenedor.current.classList.add('right-panel-active');
 		e.target.textContent === "Inicia Sesión" && contenedor.current.classList.remove('right-panel-active');
 	};
-	// Sobra decir que el CSS es una plantilla... La he adaptado a React, eso sí. https://codepen.io/Rh2o/pen/yLgxJoG
-	// Estaba genial para gestionar el inicio de sesión y el creado de cuentas desde la misma página.
+	// Añadida la confirmación de contraseña durante el registro.
 	return (
 		<>
 			<div className="login-container">
@@ -28,6 +27,7 @@ const Login = () => {
 							<input type="text" name="display_name" placeholder="Nombre de usuario" onChange={(e) => manejarDatosSesion(e)} />
 							<input type="email" name="email" placeholder="Email" onChange={(e) => manejarDatosSesion(e)} />
 							<input type="password" name="password" placeholder="Contraseña" onChange={(e) => manejarDatosSesion(e)} />
+							<input type="password" name="confirmPassword" placeholder="Confirmar contraseña" onChange={(e) => manejarDatosSesion(e)} />
 							<button>Crear Cuenta</button>
 						</form>
 					</div>

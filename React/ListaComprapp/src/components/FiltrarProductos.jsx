@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useProductContext from '../hooks/useProductContext';
 import './FiltrarProductos.css';
 
@@ -13,9 +13,27 @@ const FiltrarProductos = () => {
 
 	const { getSameValue, getLessOrEqual, getAllProducts, sortProducts } = useProductContext();
 
-	// Si se cambia el tipo de filtro, reseteo el estado 'ordenado'.
+	// Filtrado en tiempo real utilizando la base de datos en lugar de filtrar el estado.
+	useEffect(() => {
+		if (valorFiltro === '') {
+			getAllProducts();
+			return;
+		}
+
+		tipoFiltro === 'nombre' && valorFiltro !== '' && getSameValue("nombre", valorFiltro);
+		tipoFiltro === 'peso' && !isNaN(valorFiltro) && getLessOrEqual("peso", valorFiltro);
+		tipoFiltro === 'precio' && !isNaN(valorFiltro) && getLessOrEqual("precio", valorFiltro);
+	}, [valorFiltro]);
+
+	// Si se cambia el tipo de filtro, reseteo el estado 'ordenado' y el input del filtro.
+	// Así si el usuario cambia de nombre a precio, no se queda el input con un valor que no tiene sentido.
 	const cambiarFiltro = (e) => {
 		setTipoFiltro(e.target.value);
+		// Si ya estaba filtrado, lo limpio al cambiar de tipo de filtro.
+		if (valorFiltro !== '') {
+			getAllProducts();
+			setValorFiltro('');
+		}
 		if (columnaOrdenada !== null && columnaOrdenada !== tipoFiltro) {
 			setOrdenado(false);
 		}
@@ -25,8 +43,9 @@ const FiltrarProductos = () => {
 		getAllProducts();
 		setOrdenado(false);
 		setColumnaOrdenada(null);
-		setValorFiltro('')
+		setValorFiltro('');
 	}
+
 	// Si se pulsa el botón de ordenar y no es la misma columna, ordeno ascendente por defecto.
 	// Si es la misma columna, invierto el orden.
 	const manejarOrden = () => {
@@ -42,35 +61,22 @@ const FiltrarProductos = () => {
 		}
 	}
 
-	// Comprobaciones chichinabescas, lo suyo sería utilizar una validación más fiable.
-	const manejarFiltrar = () => {
-		tipoFiltro === 'nombre' && valorFiltro !== '' && getSameValue("nombre", valorFiltro);
-		tipoFiltro === 'peso' && !isNaN(valorFiltro) && getLessOrEqual("peso", valorFiltro);
-		tipoFiltro === 'precio' && !isNaN(valorFiltro) && getLessOrEqual("precio", valorFiltro);
-	}
-
 	// No hago preventDefault aquí para no cargarme la funcionalidad de los botones radio.
 	// Lo hago en el onSubmit del formulario que me da el mismo resultado y me resulta más cómodo.
 	const manejarForm = (e) => {
-		e.target.textContent === 'Filtrar' && manejarFiltrar();
 		e.target.classList.contains('btn-ordenar') && manejarOrden();
 		e.target.textContent === 'Limpiar filtros' && resetFiltros();
-	}
-
-	const manejarEnter = (e) => {
-		e.key === 'Enter' && manejarFiltrar();
 	}
 
 	return (
 		<>
 			<form className='form-filtrado'
 				onClick={((e) => { manejarForm(e) })}
-				onSubmit={e => e.preventDefault()}
-				onKeyDown={((e) => { manejarEnter(e) })}>
+				onSubmit={e => e.preventDefault()}>
 				<div>
 					<input
 						type="text"
-						placeholder="Buscar..."
+						placeholder="Filtrar..."
 						value={valorFiltro}
 						onChange={(e) => setValorFiltro(e.target.value)}
 					/>
@@ -107,7 +113,6 @@ const FiltrarProductos = () => {
 					</label>
 				</div>
 				<div>
-					<span>Filtrar</span>
 					<span className="btn-ordenar">Ordenar{ordenado && columnaOrdenada === tipoFiltro && (ordenAsc ? "↑" : "↓")}</span>
 					<span>Limpiar filtros</span>
 				</div>

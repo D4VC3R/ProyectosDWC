@@ -1,6 +1,6 @@
 import React, {createContext, useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
-import useSupabase from './../hooks/useSupabase.js';
+import useSupabaseAUTH from '../hooks/useSupabaseAUTH.js';
 
 
 const ContextoSesion = createContext();
@@ -25,7 +25,7 @@ const ProveedorSesion = ({children}) => {
 	const [username, setUsername] = useState("");
 
 	// Hooks
-	const {cargando, crearCuenta, iniciarSesion, cerrarSesion, getUsuario, getSuscripcion} = useSupabase();
+	const {cargando, crearCuenta, iniciarSesion, cerrarSesion, getUsuario, getSuscripcion} = useSupabaseAUTH();
 
 	// Funciones
 	const manejarCrearCuenta = async () => {
@@ -33,6 +33,10 @@ const ProveedorSesion = ({children}) => {
 			// Sin nombre de usuario, no hay registro, decisión de diseño.
 			if (!datosSesion.display_name) {
 				throw new Error("Debes introducir un nombre de usuario ahora, que aún no he implementado ni PUT ni PATCH.");
+			}
+			// Validar que las contraseñas coincidan
+			if (datosSesion.password !== datosSesion.confirmPassword) {
+				throw new Error("Las contraseñas no coinciden.");
 			}
 			await crearCuenta(datosSesion.email, datosSesion.password, datosSesion.display_name);
 			setErrorUsuario("Comprueba tu correo para verificar la cuenta.");
