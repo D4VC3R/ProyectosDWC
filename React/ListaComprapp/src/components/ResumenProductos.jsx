@@ -16,7 +16,7 @@ const ResumenProductos = () => {
 		<>
 		<div className="resumen-info">
 			<p>Total productos: <span>{listadoProductos.length}</span></p>
-			<p>Precio medio: <span>{getPrecioMedio().toFixed(2)}€</span></p>
+			<p>Precio medio: <span>{getPrecioMedio().toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}€</span></p>
 		</div>
 		</>
 	)

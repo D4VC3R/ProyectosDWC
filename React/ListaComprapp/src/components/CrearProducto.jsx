@@ -1,46 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useProductContext from '../hooks/useProductContext';
 import Cargando from './common/Cargando';
 import './CrearProducto.css';
 
 const CrearProducto = () => {
-	const { 
-		createProduct, 
-		manejarDatosProducto, 
-		datosProducto, 
-		cargando, 
-		errorProducto, 
+	const {
+		createProduct,
+		updateProduct,
+		manejarDatosProducto,
+		datosProducto,
+		cargando,
+		errorProducto,
 		mensajeExito,
 		modoEdicion,
 		limpiarDatosProducto
 	} = useProductContext();
-	
-	const [mensaje, setMensaje] = useState('');
+
 	const navegar = useNavigate();
 
-	const manejarSubmit = async (e) => {
+	const manejarClick = async (e) => {
 		e.preventDefault();
-		setMensaje('');
+		e.target.textContent === 'Crear Producto' && await createProduct()
+		e.target.textContent === 'Actualizar Producto' && await updateProduct() && setTimeout(() => navegar('/principal'), 2000); 
 
-		try {
-			await createProduct();
-			navegar('/principal');
-		} catch (error) {
-			setMensaje(error.message);
-		}
 	};
 
 	const manejarCancelar = () => {
 		limpiarDatosProducto();
-		setMensaje('');
 		navegar('/principal');
 	};
 
 	return (
 		<div className="crear-producto-container">
 			<h2>{modoEdicion ? 'Editar Producto' : 'Añadir Producto'}</h2>
-			<form className="crear-producto-form" onSubmit={manejarSubmit}>
+			<form className="crear-producto-form" onClick={manejarClick}>
 				<div className="form-group">
 					<label htmlFor="nombre">Nombre *</label>
 					<input
@@ -98,7 +92,7 @@ const CrearProducto = () => {
 				</div>
 
 				<div className="form-group">
-					<label htmlFor="imagen">URL de la Imagen</label>
+					<label htmlFor="imagen">URL de la imagen</label>
 					<input
 						type="url"
 						name="imagen"
@@ -111,34 +105,21 @@ const CrearProducto = () => {
 				</div>
 
 				<div className="form-buttons">
-					<button type="submit" className="btn-crear" disabled={cargando}>
-						{cargando ? (modoEdicion ? 'Actualizando...' : 'Creando...') : (modoEdicion ? 'Actualizar Producto' : 'Crear Producto')}
-					</button>
-					
+					<span className="btn-crear" disabled={cargando}>
+						{cargando ? 'Dame un segundo...' : (modoEdicion ? 'Actualizar Producto' : 'Crear Producto')}
+					</span>
+
 					{modoEdicion && (
-						<button type="button" className="btn-cancelar" onClick={manejarCancelar} disabled={cargando}>
+						<span className="btn-cancelar" onClick={manejarCancelar} disabled={cargando}>
 							Cancelar
-						</button>
+						</span>
 					)}
 				</div>
 
 				{cargando && <Cargando />}
-				
-				{mensajeExito && (
-					<p className="mensaje mensaje-exito">
-						{mensajeExito}
-					</p>
-				)}
-				
-				{mensaje && (
-					<p className={`mensaje ${mensaje.includes('correctamente') ? 'mensaje-exito' : 'mensaje-error'}`}>
-						{mensaje}
-					</p>
-				)}
-				
-				{errorProducto && !mensaje && (
-					<p className="mensaje mensaje-error">{errorProducto}</p>
-				)}
+				{mensajeExito && <p className="mensaje mensaje-exito">{mensajeExito}</p>}
+				{errorProducto && <p className="mensaje mensaje-error">{errorProducto}</p>
+				}
 			</form>
 		</div>
 	);

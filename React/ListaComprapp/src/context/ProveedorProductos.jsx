@@ -101,6 +101,7 @@ const ProveedorProductos = ({ children }) => {
 		try {
 			const productoAEditar = await obtenerUno('producto', id);
 			setDatosProducto({
+				id: productoAEditar[0].id,
 				nombre: productoAEditar[0].nombre || '',
 				descripcion: productoAEditar[0].descripcion || '',
 				precio: productoAEditar[0].precio || '',
@@ -114,8 +115,8 @@ const ProveedorProductos = ({ children }) => {
 	};
 
 	const validarDatosProducto = () => {
-		if (!datosProducto.nombre.trim()) {
-			throw new Error('El nombre del producto es obligatorio');
+		if (!datosProducto.nombre.trim() || datosProducto.nombre.length < 3) {
+			throw new Error('El nombre del producto es obligatorio y debe contener al menos tres caracteres');
 		}
 		if (!datosProducto.precio || isNaN(datosProducto.precio) || parseFloat(datosProducto.precio) <= 0) {
 			throw new Error('El precio debe ser un número positivo');
@@ -138,31 +139,32 @@ const ProveedorProductos = ({ children }) => {
 	// Funciones de escritura (crear, actualizar, borrar).
 	const createProduct = async () => {
 		try {
-			// Si falla validar producto, saltará la excepción y no se ejecutará el resto.
+			// Si falla validar producto, saltará a la excepción y no se ejecutará el resto.
 			validarDatosProducto();
 			const productoFormateado = formatearProducto(datosProducto);
 			await insertar('producto', productoFormateado);
-			setMensajeExito('Producto creado correctamente');
+			setMensajeExito('Producto creado correctamente.');
 			setErrorProducto('');
-			setTimeout(() => setMensajeExito(''), 3000);
+			setTimeout(() => setMensajeExito(''), 2000);
 			limpiarDatosProducto();
+			return true; // Devuelvo true para poder navegar tras la creación si todo ha ido bien.
 		} catch (error) {
 			setErrorProducto(error.message);
 			setMensajeExito('');
-			throw error;
 		}
 	}
 
-	const updateProduct = async (id, datosProducto) => {
+	const updateProduct = async () => {
 		try {
-			await actualizar('producto', id, datosProducto);
-			setMensajeExito('Producto actualizado correctamente');
+			validarDatosProducto();
+			await actualizar('producto', datosProducto.id, datosProducto);
+			setMensajeExito('Producto actualizado correctamente, serás redirigido en breve...');
 			setErrorProducto('');
-			setTimeout(() => setMensajeExito(''), 3000);
+			setTimeout(() => setMensajeExito(''), 2000);
 			limpiarDatosProducto();
+			return true;
 		} catch (error) {
 			setErrorProducto(error.message);
-			throw error;
 		}
 	}
 
@@ -171,7 +173,6 @@ const ProveedorProductos = ({ children }) => {
 			await eliminar('producto', id);
 		} catch (error) {
 			setErrorProducto(error.message);
-			throw error;
 		}
 	}
 

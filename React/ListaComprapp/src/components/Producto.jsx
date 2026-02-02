@@ -27,8 +27,8 @@ const Producto = ({ producto }) => {
                 <h3 className="producto-nombre">{producto.nombre ? producto.nombre : sinDatos}</h3>
                 <p className="producto-descripcion">{producto.descripcion ? producto.descripcion : sinDatos}</p>
                 <div className="producto-detalles">
-                    <span className="producto-precio">{producto.precio ? producto.precio + "€" : sinDatos}</span>
-                    <span className="producto-peso">{producto.peso ? producto.peso + "kg" : sinDatos}</span>
+                    <span className="producto-precio">{producto.precio ? producto.precio.toLocaleString('es-ES') + "€" : sinDatos}</span>
+                    <span className="producto-peso">{producto.peso ? producto.peso.toLocaleString('es-ES') + "kg" : sinDatos}</span>
                 </div>
             </div>
         </div>

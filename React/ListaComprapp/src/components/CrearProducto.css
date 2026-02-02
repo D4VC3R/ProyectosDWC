@@ -38,6 +38,9 @@
 	border-radius: 4px;
 	font-size: 1rem;
 	transition: border-color 0.3s;
+	background-color: #4ba53f;
+	color: #fff;
+	font-family: inherit;
 }
 
 .form-group input:focus,
