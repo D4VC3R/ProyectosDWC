@@ -6,9 +6,9 @@ import { useEffect } from 'react';
 
 const ContextoProductos = createContext();
 
-const ProveedorProductos = ({children}) => {
+const ProveedorProductos = ({ children }) => {
 
-	
+
 
 	// Valores iniciales
 	const productosIniciales = [];
@@ -31,10 +31,9 @@ const ProveedorProductos = ({children}) => {
 	const [productoAEliminar, setProductoAEliminar] = useState(null);
 	const [mensajeExito, setMensajeExito] = useState('');
 	const [modoEdicion, setModoEdicion] = useState(false);
-	const [productoEditandoId, setProductoEditandoId] = useState(null);
 
 	//Hooks
-	const {cargando, obtenerTodo, obtenerUno, filtrarILike, filtrarIgualOMenor, ordenarTabla, insertar, actualizar, eliminar} = useSupabaseCRUD();
+	const { cargando, obtenerTodo, obtenerUno, filtrarILike, filtrarIgualOMenor, ordenarTabla, insertar, actualizar, eliminar } = useSupabaseCRUD();
 
 	//Funciones de lectura
 	const getAllProducts = async () => {
@@ -95,24 +94,20 @@ const ProveedorProductos = ({children}) => {
 	const limpiarDatosProducto = () => {
 		setDatosProducto(datosProductoInicial);
 		setModoEdicion(false);
-		setProductoEditandoId(null);
 	};
 
+	// Como devuelve los datos en forma de array, hay que especificar el primer elemento.
 	const cargarProductoParaEditar = async (id) => {
 		try {
-			const productoData = await obtenerUno('producto', id);
-			if (productoData && productoData.length > 0) {
-				const prod = productoData[0];
-				setDatosProducto({
-					nombre: prod.nombre || '',
-					descripcion: prod.descripcion || '',
-					precio: prod.precio || '',
-					peso: prod.peso || '',
-					imagen: prod.imagen || ''
-				});
-				setModoEdicion(true);
-				setProductoEditandoId(id);
-			}
+			const productoAEditar = await obtenerUno('producto', id);
+			setDatosProducto({
+				nombre: productoAEditar[0].nombre || '',
+				descripcion: productoAEditar[0].descripcion || '',
+				precio: productoAEditar[0].precio || '',
+				peso: productoAEditar[0].peso || '',
+				imagen: productoAEditar[0].imagen || ''
+			});
+			setModoEdicion(true);
 		} catch (error) {
 			setErrorProducto(error.message);
 		}
@@ -143,23 +138,13 @@ const ProveedorProductos = ({children}) => {
 	// Funciones de escritura (crear, actualizar, borrar).
 	const createProduct = async () => {
 		try {
+			// Si falla validar producto, saltará la excepción y no se ejecutará el resto.
 			validarDatosProducto();
 			const productoFormateado = formatearProducto(datosProducto);
-			
-			if (modoEdicion && productoEditandoId) {
-				// Actualizar producto existente
-				await actualizar('producto', productoEditandoId, productoFormateado);
-				setMensajeExito('Producto actualizado correctamente');
-			} else {
-				// Crear nuevo producto
-				await insertar('producto', productoFormateado);
-				setMensajeExito('Producto creado correctamente');
-			}
-			
+			await insertar('producto', productoFormateado);
+			setMensajeExito('Producto creado correctamente');
 			setErrorProducto('');
 			setTimeout(() => setMensajeExito(''), 3000);
-			// Actualizar el listado después de crear/actualizar
-			await getAllProducts();
 			limpiarDatosProducto();
 		} catch (error) {
 			setErrorProducto(error.message);
@@ -170,21 +155,20 @@ const ProveedorProductos = ({children}) => {
 
 	const updateProduct = async (id, datosProducto) => {
 		try {
-			const productoActualizado = await actualizar('producto', uuid, datosProducto);
-			// Actualizar el listado después de modificar
-			await getAllProducts();
-			return productoActualizado;
+			await actualizar('producto', id, datosProducto);
+			setMensajeExito('Producto actualizado correctamente');
+			setErrorProducto('');
+			setTimeout(() => setMensajeExito(''), 3000);
+			limpiarDatosProducto();
 		} catch (error) {
 			setErrorProducto(error.message);
 			throw error;
 		}
 	}
 
-	const deleteProduct = async (uuid) => {
+	const deleteProduct = async (id) => {
 		try {
-			await eliminar('producto', uuid);
-			// Actualizar el listado después de eliminar
-			await getAllProducts();
+			await eliminar('producto', id);
 		} catch (error) {
 			setErrorProducto(error.message);
 			throw error;
@@ -220,7 +204,7 @@ const ProveedorProductos = ({children}) => {
 	};
 
 	// Efectos
-	useEffect(()=>{
+	useEffect(() => {
 		// Al montar el componente, cargamos el listado de productos.
 		getAllProducts();
 	}, []);
@@ -249,7 +233,6 @@ const ProveedorProductos = ({children}) => {
 		modalOpen,
 		productoAEliminar,
 		modoEdicion,
-		productoEditandoId,
 		cargando
 	}
 
@@ -263,4 +246,4 @@ const ProveedorProductos = ({children}) => {
 }
 
 export default ProveedorProductos;
-export {ContextoProductos};
+export { ContextoProductos };

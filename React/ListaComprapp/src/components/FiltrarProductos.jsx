@@ -6,7 +6,7 @@ const FiltrarProductos = () => {
 	// Uso nombre como estado inicial para que aparezca ese campo ya marcado, que como el usuario es idiota lo mismo se piensa que no funciona el filtrado...
 	const [tipoFiltro, setTipoFiltro] = useState('nombre');
 	const [valorFiltro, setValorFiltro] = useState('');
-	// Tres estados para manejar el ordenado de productos... algo me dice que se podría hacer más eficientemente.
+	// Tres estados para saber si está ordenado, en qué orden y por qué columna.
 	const [ordenAsc, setOrdenAsc] = useState(true);
 	const [ordenado, setOrdenado] = useState(false);
 	const [columnaOrdenada, setColumnaOrdenada] = useState(null);
@@ -14,31 +14,32 @@ const FiltrarProductos = () => {
 	const { getSameValue, getLessOrEqual, getAllProducts, sortProducts } = useProductContext();
 
 	// Filtrado en tiempo real utilizando la base de datos en lugar de filtrar el estado.
+	// Como depende del valor del input, si no esta vacío el campo, filtramos.
+	// El if sirve para evitar que, si se cambia a un campo númerico, no intente filtrar recibiendo un string vacío.
 	useEffect(() => {
-		if (valorFiltro === '') {
-			getAllProducts();
-			return;
+		if (valorFiltro !== '') {
+			tipoFiltro === 'nombre'  && getSameValue("nombre", valorFiltro);
+			tipoFiltro === 'peso' && !isNaN(valorFiltro) && getLessOrEqual("peso", valorFiltro);
+			tipoFiltro === 'precio' && !isNaN(valorFiltro) && getLessOrEqual("precio", valorFiltro);
 		}
-
-		tipoFiltro === 'nombre' && valorFiltro !== '' && getSameValue("nombre", valorFiltro);
-		tipoFiltro === 'peso' && !isNaN(valorFiltro) && getLessOrEqual("peso", valorFiltro);
-		tipoFiltro === 'precio' && !isNaN(valorFiltro) && getLessOrEqual("precio", valorFiltro);
 	}, [valorFiltro]);
 
 	// Si se cambia el tipo de filtro, reseteo el estado 'ordenado' y el input del filtro.
 	// Así si el usuario cambia de nombre a precio, no se queda el input con un valor que no tiene sentido.
 	const cambiarFiltro = (e) => {
-		setTipoFiltro(e.target.value);
-		// Si ya estaba filtrado, lo limpio al cambiar de tipo de filtro.
+		// Si ya estaba filtrado, limpiamos el campo y recuperamos todos los productos.
 		if (valorFiltro !== '') {
-			getAllProducts();
 			setValorFiltro('');
+			getAllProducts();
 		}
+		setTipoFiltro(e.target.value);
+		// Si estaba ordenado por otra columna o no estaba ordenado, reseteamos el estado.
 		if (columnaOrdenada !== null && columnaOrdenada !== tipoFiltro) {
 			setOrdenado(false);
 		}
 	}
 
+	// Resetear todo.
 	const resetFiltros = () => {
 		getAllProducts();
 		setOrdenado(false);
@@ -46,15 +47,16 @@ const FiltrarProductos = () => {
 		setValorFiltro('');
 	}
 
-	// Si se pulsa el botón de ordenar y no es la misma columna, ordeno ascendente por defecto.
-	// Si es la misma columna, invierto el orden.
+
 	const manejarOrden = () => {
+		// Si no estaba ordenado o se cambia de columna, ordenamos ascendente.
 		if (columnaOrdenada !== tipoFiltro) {
 			setColumnaOrdenada(tipoFiltro);
 			setOrdenAsc(true);
 			setOrdenado(true);
 			sortProducts(tipoFiltro, true);
 		} else {
+			// Si ya estaba ordenado en esa misma columna, invertimos el orden.
 			const nuevoOrden = !ordenAsc;
 			setOrdenAsc(nuevoOrden);
 			sortProducts(tipoFiltro, nuevoOrden);

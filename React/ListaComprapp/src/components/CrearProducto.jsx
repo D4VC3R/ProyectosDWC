@@ -31,7 +31,7 @@ const CrearProducto = () => {
 		}
 	};
 
-	const handleCancelar = () => {
+	const manejarCancelar = () => {
 		limpiarDatosProducto();
 		setMensaje('');
 		navegar('/principal');
@@ -46,6 +46,7 @@ const CrearProducto = () => {
 					<input
 						type="text"
 						name="nombre"
+						id="nombre"
 						value={datosProducto.nombre}
 						onChange={manejarDatosProducto}
 						placeholder="Nombre del producto"
@@ -57,6 +58,7 @@ const CrearProducto = () => {
 					<label htmlFor="descripcion">Descripción</label>
 					<textarea
 						name="descripcion"
+						id="descripcion"
 						value={datosProducto.descripcion}
 						onChange={manejarDatosProducto}
 						placeholder="Descripción del producto"
@@ -70,6 +72,7 @@ const CrearProducto = () => {
 					<input
 						type="number"
 						name="precio"
+						id="precio"
 						value={datosProducto.precio}
 						onChange={manejarDatosProducto}
 						placeholder="0.00"
@@ -84,6 +87,7 @@ const CrearProducto = () => {
 					<input
 						type="number"
 						name="peso"
+						id="peso"
 						value={datosProducto.peso}
 						onChange={manejarDatosProducto}
 						placeholder="0.00"
@@ -98,6 +102,7 @@ const CrearProducto = () => {
 					<input
 						type="url"
 						name="imagen"
+						id="imagen"
 						value={datosProducto.imagen}
 						onChange={manejarDatosProducto}
 						placeholder="https://ejemplo.com/imagen.jpg"
@@ -111,7 +116,7 @@ const CrearProducto = () => {
 					</button>
 					
 					{modoEdicion && (
-						<button type="button" className="btn-cancelar" onClick={handleCancelar} disabled={cargando}>
+						<button type="button" className="btn-cancelar" onClick={manejarCancelar} disabled={cargando}>
 							Cancelar
 						</button>
 					)}

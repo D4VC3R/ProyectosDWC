@@ -24,18 +24,19 @@ const ListadoProductos = () => {
 	} = useProductContext();
 
 	// Delegación de eventos: un solo manejador para todos los botones
-	const handleClickListado = async (e) => {
+	const manejarClic = async (e) => {
 		// Verificar si se hizo clic en el botón de eliminar
 		if (e.target.dataset.action === 'eliminar') {
 			const productoId = e.target.dataset.productoId;
 			abrirModalEliminacion(productoId);
 		}
 		
-		// Verificar si se hizo clic en el botón de editar
+		// Si clicamos en editar, nos vamos al formulario y recuperamos los datos del producto.
+		// Navego primero para evitar que se vea el retardo de la carga de datos.
 		if (e.target.dataset.action === 'editar') {
+			navegar('/gestion');
 			const productoId = e.target.dataset.productoId;
 			await cargarProductoParaEditar(productoId);
-			navegar('/gestion');
 		}
 	};
 
@@ -44,7 +45,7 @@ const ListadoProductos = () => {
 			{cargando && <Cargando />}
 			{mensajeExito && <div className="mensaje-exito">{mensajeExito}</div>}
 			{errorProducto && <div className="mensaje-error">{errorProducto}</div>}
-			<div className='listado-productos' onClick={handleClickListado}>
+			<div className='listado-productos' onClick={manejarClic}>
 				{listadoProductos.length > 0 ? listadoProductos.map((producto) => {
 					return <Producto key={producto.id} producto={producto} />
 				})
