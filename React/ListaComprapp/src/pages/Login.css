@@ -94,6 +94,7 @@ button.ghost {
   width: 768px;
   max-width: 100%;
   min-height: 480px;
+  margin-bottom: 2vh;
 }
 
 .form-container {

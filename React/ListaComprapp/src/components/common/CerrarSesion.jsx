@@ -31,10 +31,7 @@ const CerrarSesion = () => {
 						isOpen={modalOpen}
 						onClose={cancelarCierreSesion}
 						onConfirm={confirmarCierreSesion}
-						title="Cerrar sesión"
-						message="¿Estás seguro de que deseas cerrar sesión?"
-						confirmText="Cerrar sesión"
-						cancelText="Cancelar"
+						tipo="cerrarSesion"
 					/>
 				</>
 			}

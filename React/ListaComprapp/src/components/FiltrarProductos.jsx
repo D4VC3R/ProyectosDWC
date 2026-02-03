@@ -51,10 +51,10 @@ const FiltrarProductos = () => {
 	const manejarOrden = () => {
 		// Si no estaba ordenado o se cambia de columna, ordenamos ascendente.
 		if (columnaOrdenada !== tipoFiltro) {
-			setColumnaOrdenada(tipoFiltro);
-			setOrdenAsc(true);
-			setOrdenado(true);
-			sortProducts(tipoFiltro, true);
+			setColumnaOrdenada(tipoFiltro); // Que columna está ordenada.
+			setOrdenAsc(true); // Indicamos hemos ordenado de manera ascendente.
+			setOrdenado(true); // Indicamos que ya está ordenado.
+			sortProducts(tipoFiltro, true); // Ordenamos ascendente.
 		} else {
 			// Si ya estaba ordenado en esa misma columna, invertimos el orden.
 			const nuevoOrden = !ordenAsc;

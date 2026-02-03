@@ -23,4 +23,6 @@ export const opcionesModal = {
         confirmText: "Eliminar",
         cancelText: "Cancelar"
     }
-	}
+}
+
+export default opcionesModal

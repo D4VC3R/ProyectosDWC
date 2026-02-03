@@ -2,54 +2,75 @@ import { sb } from "../supabase/supabase.js";
 import useSupabase from "./useSupabase.js";
 
 const useSupabaseCRUD = () => {
+  const { cargando, error, solicitar } = useSupabase();
 
-	const { cargando, error, solicitar } = useSupabase();
+  // Funciones para CRUD, no las hago asíncronas porque todas dependen de solicitar(), que ya lo es.
+  const obtenerTodo = (tabla) => {
+    return solicitar(sb.from(tabla).select("*"));
+  };
 
-	// Funciones para CRUD, no las hago asíncronas porque todas dependen de solicitar(), que ya lo es.
-	const obtenerTodo =  (tabla) => {
-		return  solicitar(sb.from(tabla).select('*'));
-	};
+  const obtenerUno = (tabla, uuid) => {
+    return solicitar(sb.from(tabla).select("*").eq("id", uuid));
+  };
 
-	const obtenerUno = (tabla, uuid) => {
-		return solicitar(sb.from(tabla).select('*').eq("id", uuid));
-	};
+  const filtrarILike = (tabla, columna, valor) => {
+    return solicitar(sb.from(tabla).select("*").ilike(columna, `%${valor}%`));
+  };
 
-	const filtrarILike = (tabla, columna, valor) => {
-		return solicitar(sb.from(tabla).select('*').ilike(columna, `%${valor}%`));
-	};
+  const filtrarIgualOMenor = (tabla, columna, valor) => {
+    return solicitar(sb.from(tabla).select("*").lte(columna, valor));
+  };
 
-	const filtrarIgualOMenor = (tabla, columna, valor) => {
-		return solicitar(sb.from(tabla).select('*').lte(columna, valor))
-	};
+  const ordenarTabla = (tabla, columna, asc = true) => {
+    return solicitar(
+      sb.from(tabla).select("*").order(columna, { ascending: asc }),
+    );
+  };
 
-	const ordenarTabla = (tabla, columna, asc = true) => {
-		return solicitar(sb.from(tabla).select('*').order(columna, {ascending:asc}));
-	};
+  const insertar = (tabla, datos) => {
+    return solicitar(sb.from(tabla).insert(datos).select());
+  };
 
-	const insertar = (tabla, datos) => {
-		return solicitar(sb.from(tabla).insert(datos).select());
-	};
+  const actualizar = (tabla, uuid, datos) => {
+    return solicitar(sb.from(tabla).update(datos).eq("id", uuid).select());
+  };
 
-	const actualizar = (tabla, uuid, datos) => {
-		return solicitar(sb.from(tabla).update(datos).eq("id", uuid).select());
-	};
+  const eliminar = (tabla, uuid) => {
+    return solicitar(sb.from(tabla).delete().eq("id", uuid));
+  };
 
-	const eliminar = (tabla, uuid) => {
-		return solicitar(sb.from(tabla).delete().eq("id", uuid));
-	};
+	// Fusilada de la documentación de supabase
+  const suscripcionATabla = (tabla, callback) => {
+    const canal = sb
+      .channel(`custom-${tabla}-channel`)
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: tabla },
+        (payload) => callback(payload), // payload incluye un montón de opciones para hacerlo más quirúrjico todo, además del listado anterior y posterior a la acción.
+      )
+      .subscribe();
 
-	return {
-		cargando,
-		error,
-		obtenerTodo,
-		obtenerUno,
-		filtrarILike,
-		filtrarIgualOMenor,
-		ordenarTabla,
-		insertar,
-		actualizar,
-		eliminar
-	};
+    return canal;
+  };
+
+  const cancelarSuscripcion = (canal) => {
+    sb.removeChannel(canal);
+  };
+
+  return {
+    cargando,
+    error,
+    obtenerTodo,
+    obtenerUno,
+    filtrarILike,
+    filtrarIgualOMenor,
+    ordenarTabla,
+    insertar,
+    actualizar,
+    eliminar,
+    suscripcionATabla,
+    cancelarSuscripcion,
+  };
 };
 
 export default useSupabaseCRUD;

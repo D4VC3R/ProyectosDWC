@@ -9,7 +9,6 @@ const ContextoProductos = createContext();
 const ProveedorProductos = ({ children }) => {
 
 
-
 	// Valores iniciales
 	const productosIniciales = [];
 	const errorProductoInicial = "";
@@ -35,7 +34,7 @@ const ProveedorProductos = ({ children }) => {
 	const [modalOpen, setModalOpen] = useState(false);
 
 	//Hooks
-	const { cargando, obtenerTodo, obtenerUno, filtrarILike, filtrarIgualOMenor, ordenarTabla, insertar, actualizar, eliminar } = useSupabaseCRUD();
+	const { cargando, obtenerTodo, obtenerUno, filtrarILike, filtrarIgualOMenor, ordenarTabla, insertar, actualizar, eliminar, suscripcionATabla, cancelarSuscripcion } = useSupabaseCRUD();
 
 	//Funciones de lectura
 	const getAllProducts = async () => {
@@ -98,11 +97,11 @@ const ProveedorProductos = ({ children }) => {
 		setModoEdicion(false);
 	};
 
-	
+
 	const cargarProductoParaEditar = async (id) => {
 		try {
 			await getProduct(id);
-			setModoEdicion(true); 
+			setModoEdicion(true);
 		} catch (error) {
 			setErrorProducto(error.message);
 		}
@@ -110,18 +109,18 @@ const ProveedorProductos = ({ children }) => {
 
 	const validarDatosProducto = () => {
 		if (!producto.nombre.trim() || producto.nombre.length < 3) {
-			throw new Error('El nombre del producto es obligatorio y debe contener al menos tres caracteres');
+			throw new Error('El nombre del producto es obligatorio y debe contener al menos tres caracteres.');
 		}
 		if (!producto.precio || isNaN(producto.precio) || parseFloat(producto.precio) <= 0) {
-			throw new Error('El precio debe ser un número positivo');
+			throw new Error('El precio debe ser un número positivo.');
 		}
 		if (!producto.peso || isNaN(producto.peso) || parseFloat(producto.peso) <= 0) {
-			throw new Error('El peso debe ser un número positivo');
+			throw new Error('El peso debe ser un número positivo.');
 		}
 	};
 
 	// Para quitar espacios en blanco y convertir a decimal antes de enviar a la base de datos (Solo en los campos obligatorios)
-	const formatearProducto = (producto) => {
+	const formatearProducto = () => {
 		return {
 			nombre: producto.nombre.trim(),
 			descripcion: producto.descripcion || '',
@@ -131,6 +130,27 @@ const ProveedorProductos = ({ children }) => {
 		};
 	};
 
+	// Para no repetir código, según la acción se muestra un mensaje u otro.
+	const manejarExito = (accion) => {
+		const mensajes = {
+			crear: 'Producto creado correctamente.',
+			actualizar: 'Producto actualizado correctamente, serás redirigido en breve.',
+			eliminar: 'Producto eliminado correctamente.'
+		};
+
+		setMensajeExito(mensajes[accion]);
+		setTimeout(() => setMensajeExito(''), 2000);
+		setErrorProducto('');
+
+		accion === 'crear' || accion === 'actualizar' && limpiarDatosProducto() ;
+		accion === 'eliminar' && cerrarModalEliminacion();
+	}
+
+	const manejarFallo = (error) => {
+		setErrorProducto(error.message);
+		setTimeout(() => setErrorProducto(''), 2000);
+	}
+
 	// Funciones de escritura (crear, actualizar, borrar).
 	// En lugar de pasarles parámetros, usan el estado 'producto'.
 
@@ -139,73 +159,75 @@ const ProveedorProductos = ({ children }) => {
 		try {
 			// Si falla validar producto, saltará a la excepción y no se ejecutará el resto.
 			validarDatosProducto();
-			const productoFormateado = formatearProducto(producto);
+			const productoFormateado = formatearProducto();
 			await insertar('producto', productoFormateado);
-			await getAllProducts();
-			setMensajeExito('Producto creado correctamente.');
-			setErrorProducto('');
-			setTimeout(() => setMensajeExito(''), 2000);
-			limpiarDatosProducto();
-			return true; // Devuelvo true para poder navegar tras la creación si todo ha ido bien.
+			manejarExito('crear');
+			return true;
 		} catch (error) {
-			setErrorProducto(error.message);
+			manejarFallo(error);
 			return false;
 		}
 	}
 
+	// Cogemos el estado producto, lo validamos, formateamos, guardamos en la base de datos y nos traemos el listado actualizado.
 	const updateProduct = async () => {
 		try {
 			validarDatosProducto();
 			const productoFormateado = formatearProducto(producto);
 			await actualizar('producto', producto.id, productoFormateado);
-			await getAllProducts();
-			setMensajeExito('Producto actualizado correctamente, serás redirigido en breve...');
-			setErrorProducto('');
-			setTimeout(() => setMensajeExito(''), 2000);
-			limpiarDatosProducto();
-			return true;
+			manejarExito('actualizar');
+			return true; // Devuelvo true para poder navegar tras la creación si todo ha ido bien.
 		} catch (error) {
-			setErrorProducto(error.message);
+			manejarFallo(error);
 			return false;
 		}
 	}
 
 	const confirmarEliminacion = async () => {
-		if (producto) {
-			try {
-				// Como solo guardamos el id del producto a eliminar, lo pasamos directamente en lugar de producto.id.
-				await eliminar('producto', producto);
-				await getAllProducts();
-				setMensajeExito('Producto eliminado correctamente');
-				setErrorProducto('');
-				setTimeout(() => setMensajeExito(''), 3000);
-				cerrarModalEliminacion();
-			} catch (error) {
-				setErrorProducto(error.message);
-				cerrarModalEliminacion();
-			}
+		try {
+			// Como solo guardamos el id del producto a eliminar, lo pasamos directamente en lugar de producto.id.
+			await eliminar('producto', producto);
+			manejarExito('eliminar');
+			return true; // Por si en el futuro quiero hacer algo tras eliminar.
+		} catch (error) {
+			manejarFallo(error);
+			cerrarModalEliminacion();
 		}
 	};
 
 
 	// Funciones de manejo de modal de eliminación.
-	// Al abrir el modal, guardamos solo el id del producto a eliminar.
+	// Al abrir el modal, guardamos solo el id del producto a eliminar e indicamos que el modal está abierto.
 	const abrirModalEliminacion = (id) => {
 		setProducto(id);
 		setModalOpen(true);
 	};
-	// Al cerrarlo, ya sea por cancelar o tras eliminar, limpiamos el id del producto.
+	// Al cerrarlo, ya sea por cancelar o tras eliminar, limpiamos el id del producto y ponemos el modal como cerrado.
 	const cerrarModalEliminacion = () => {
 		setModalOpen(false);
 		setProducto(null);
 	};
 
+	const getSuscripcion = () => {
+		// Necesitamos el return para poder eliminar la suscripción cuando desmontemos el componente, si no, se crearía una suscripcion cada vez que entramos y salimos del contexto.
+		return suscripcionATabla('producto',  () => {
+			getAllProducts(); // La acción a ejecutar cuando se produce un cambio en la tabla productos.
+		});
+	};
+
 
 	// Efectos
 	useEffect(() => {
-		// Al montar el componente, cargamos el listado de productos.
+		// Carga inicial de datos
 		getAllProducts();
-	}, []);
+		// Suscripción a cambios en la tabla productos
+		const canal = getSuscripcion();
+
+		// Al desmontar el componente, eliminamos la suscripción para evitar problemas.
+		return () => {
+			cancelarSuscripcion(canal);
+		};
+	}, []); // No hacen falta dependencias porque getSuscripcion ya actualiza el listado cuando hay cambios.
 
 	const exportaciones = {
 		getAllProducts,

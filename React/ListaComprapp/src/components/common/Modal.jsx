@@ -1,14 +1,14 @@
 import React from 'react';
 import './Modal.css';
-import opcionesModal from './../../libraries/utilidades'
+import opcionesModal from './../../libraries/utilidades.js';
 
 const Modal = ({ isOpen, onClose, onConfirm, tipo }) => {
 	/**
 	 * El modal recibe:
 	 * isOpen: booleano para saber si se muestra o no el modal.
-	 * onClose: la función que se ejecuta al cerrar el modal.
-	 * onConfirm: la función que se ejecuta al confirmar la acción en el modal.
-	 * tipo: tipo de modal, para seleccionar las opciones adecuadas desde utilidades.js
+	 * onClose: la función que se ejecuta al cerrar el modal. La especificamos desde el componente que lo use.
+	 * onConfirm: la función que se ejecuta al confirmar la acción en el modal. La especificamos desde el componente que lo use.
+	 * tipo: tipo de modal, para seleccionar las opciones adecuadas desde utilidades.js. Si se necesitan más tipos, se añaden allí.
 	 */
 
 	const opciones = opcionesModal[tipo];
@@ -23,6 +23,7 @@ const Modal = ({ isOpen, onClose, onConfirm, tipo }) => {
 	};
 
 	return (
+		isOpen && (
 		<div className="modal-overlay" onClick={manejarClic}>
 			<div className="modal-content">
 				<h2 className="modal-title">{opciones.title}</h2>
@@ -37,6 +38,7 @@ const Modal = ({ isOpen, onClose, onConfirm, tipo }) => {
 				</div>
 			</div>
 		</div>
+		)
 	);
 };
 

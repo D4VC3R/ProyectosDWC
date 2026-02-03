@@ -25,10 +25,9 @@ const ListadoProductos = () => {
 
 	// Recuperamos el id del producto y la acción del botón desde el componente Producto gracias a los data-attributes.
 	const manejarClic = async (e) => {
-		
 		if (e.target.dataset.action === 'eliminar') {
 			const productoId = e.target.dataset.productoId;
-			abrirModalEliminacion(productoId);
+			abrirModalEliminacion(productoId); // Solo necesitamos el id para eliminar.
 		}
 		
 		// Si clicamos en editar, nos vamos al formulario y recuperamos los datos del producto.
@@ -56,10 +55,7 @@ const ListadoProductos = () => {
 				isOpen={modalOpen}
 				onClose={cerrarModalEliminacion}
 				onConfirm={confirmarEliminacion}
-				title="Confirmar eliminación"
-				message="¿Estás seguro de que deseas eliminar este producto? Esta acción no se puede deshacer."
-				confirmText="Eliminar"
-				cancelText="Cancelar"
+				tipo="borrarProducto"
 			/>
 		</>
 	)

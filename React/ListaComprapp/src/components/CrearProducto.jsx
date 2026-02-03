@@ -21,12 +21,13 @@ const CrearProducto = () => {
 
 	const manejarClick = async (e) => {
 		e.preventDefault();
-		e.target.textContent === 'Crear Producto' && await createProduct()
+		// Si no devuelvía true en updateProduct, no podía navegar tras actualizar. Por consistencia devuelvo true también en createProduct aunque no lo use aquí.
+		e.target.textContent === 'Crear Producto' && await createProduct(); 
 		e.target.textContent === 'Actualizar Producto' && await updateProduct() && setTimeout(() => navegar('/principal'), 2000); 
 		e.target.textContent === 'Cancelar' && manejarCancelar();
-
 	};
 
+	// Si cancelamos la edición, limpiamos los datos del producto y volvemos a la página principal.
 	const manejarCancelar = () => {
 		limpiarDatosProducto();
 		navegar('/principal');
@@ -113,8 +114,7 @@ const CrearProducto = () => {
 						{cargando ? 'Dame un segundo...' : (modoEdicion ? 'Actualizar Producto' : 'Crear Producto')}
 					</span>
 
-					{modoEdicion && 
-						<span className="btn-cancelar" disabled={cargando}>Cancelar</span>}
+					{modoEdicion && <span className="btn-cancelar" disabled={cargando}>Cancelar</span>}
 				</div>
 
 				{cargando && <Cargando />}
