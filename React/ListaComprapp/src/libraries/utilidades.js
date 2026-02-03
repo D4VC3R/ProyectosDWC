@@ -9,3 +9,18 @@ export const traducirError = (error) => {
 	}
 	return  traduccion;
 }
+
+export const opcionesModal = {
+    cerrarSesion: {
+        title: "Cerrar sesión",
+        message: "¿Estás seguro de que deseas cerrar sesión?",
+        confirmText: "Cerrar sesión",
+        cancelText: "Cancelar"
+    },
+    borrarProducto: {
+        title: "Confirmar eliminación",
+        message: "¿Estás seguro de que deseas eliminar este producto? Esta acción no se puede deshacer.",
+        confirmText: "Eliminar",
+        cancelText: "Cancelar"
+    }
+	}

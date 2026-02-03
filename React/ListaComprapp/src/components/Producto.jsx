@@ -6,9 +6,10 @@ const Producto = ({ producto }) => {
 
     const imgDefecto = "https://media.istockphoto.com/id/1222357475/vector/image-preview-icon-picture-placeholder-for-website-or-ui-ux-design-vector-illustration.jpg"
     const sinDatos = "Sin datos";
+    // Guardamos el id del producto para usarlo en los data-attributes y recuperarlo en el componente padre ListadoProductos.
     const productoId = producto.id;
     const {sesionIniciada} = useSesionContext();
-
+    // Me ha sugerido la IA lo de utilizar los data-attributes y resulta bastante cómodo para delegar eventos en el componente padre.
     
     return (
         <div className="producto" data-producto-id={productoId}>

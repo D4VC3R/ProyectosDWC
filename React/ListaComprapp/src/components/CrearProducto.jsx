@@ -9,7 +9,7 @@ const CrearProducto = () => {
 		createProduct,
 		updateProduct,
 		manejarDatosProducto,
-		datosProducto,
+		producto,
 		cargando,
 		errorProducto,
 		mensajeExito,
@@ -23,6 +23,7 @@ const CrearProducto = () => {
 		e.preventDefault();
 		e.target.textContent === 'Crear Producto' && await createProduct()
 		e.target.textContent === 'Actualizar Producto' && await updateProduct() && setTimeout(() => navegar('/principal'), 2000); 
+		e.target.textContent === 'Cancelar' && manejarCancelar();
 
 	};
 
@@ -30,6 +31,9 @@ const CrearProducto = () => {
 		limpiarDatosProducto();
 		navegar('/principal');
 	};
+	// Como el formulario es practicamente igual para crear que para editar, utilizamos el booleano 'modoEdicion' para cambiar el texto de la cabecera y del botón.
+	// Si estamos en modo edición, también se añade un botón para cancelar y volver a la página principal sin guardar cambios.
+	// Los inputs y botones no están disponibles mientras cargando sea true. 
 
 	return (
 		<div className="crear-producto-container">
@@ -41,7 +45,7 @@ const CrearProducto = () => {
 						type="text"
 						name="nombre"
 						id="nombre"
-						value={datosProducto.nombre}
+						value={producto.nombre}
 						onChange={manejarDatosProducto}
 						placeholder="Nombre del producto"
 						disabled={cargando}
@@ -53,7 +57,7 @@ const CrearProducto = () => {
 					<textarea
 						name="descripcion"
 						id="descripcion"
-						value={datosProducto.descripcion}
+						value={producto.descripcion}
 						onChange={manejarDatosProducto}
 						placeholder="Descripción del producto"
 						rows="4"
@@ -67,9 +71,9 @@ const CrearProducto = () => {
 						type="number"
 						name="precio"
 						id="precio"
-						value={datosProducto.precio}
+						value={producto.precio}
 						onChange={manejarDatosProducto}
-						placeholder="0.00"
+						placeholder="0,00"
 						step="0.01"
 						min="0"
 						disabled={cargando}
@@ -82,9 +86,9 @@ const CrearProducto = () => {
 						type="number"
 						name="peso"
 						id="peso"
-						value={datosProducto.peso}
+						value={producto.peso}
 						onChange={manejarDatosProducto}
-						placeholder="0.00"
+						placeholder="0,00"
 						step="0.01"
 						min="0"
 						disabled={cargando}
@@ -97,7 +101,7 @@ const CrearProducto = () => {
 						type="url"
 						name="imagen"
 						id="imagen"
-						value={datosProducto.imagen}
+						value={producto.imagen}
 						onChange={manejarDatosProducto}
 						placeholder="https://ejemplo.com/imagen.jpg"
 						disabled={cargando}
@@ -109,11 +113,8 @@ const CrearProducto = () => {
 						{cargando ? 'Dame un segundo...' : (modoEdicion ? 'Actualizar Producto' : 'Crear Producto')}
 					</span>
 
-					{modoEdicion && (
-						<span className="btn-cancelar" onClick={manejarCancelar} disabled={cargando}>
-							Cancelar
-						</span>
-					)}
+					{modoEdicion && 
+						<span className="btn-cancelar" disabled={cargando}>Cancelar</span>}
 				</div>
 
 				{cargando && <Cargando />}

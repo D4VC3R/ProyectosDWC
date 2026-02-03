@@ -23,9 +23,9 @@ const ListadoProductos = () => {
 		cargarProductoParaEditar
 	} = useProductContext();
 
-	// Delegación de eventos: un solo manejador para todos los botones
+	// Recuperamos el id del producto y la acción del botón desde el componente Producto gracias a los data-attributes.
 	const manejarClic = async (e) => {
-		// Verificar si se hizo clic en el botón de eliminar
+		
 		if (e.target.dataset.action === 'eliminar') {
 			const productoId = e.target.dataset.productoId;
 			abrirModalEliminacion(productoId);
