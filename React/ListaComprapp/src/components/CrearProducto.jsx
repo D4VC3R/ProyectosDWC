@@ -107,6 +107,7 @@ const CrearProducto = () => {
 						placeholder="https://ejemplo.com/imagen.jpg"
 						disabled={cargando}
 					/>
+					<small>Visita este endpoint si necesitas imágenes en buena calidad: https://dummyjson.com/products/category/groceries</small>
 				</div>
 
 				<div className="form-buttons">

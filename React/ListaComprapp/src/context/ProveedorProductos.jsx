@@ -145,7 +145,7 @@ const ProveedorProductos = ({ children }) => {
 		setTimeout(() => setMensajeExito(''), 2000);
 		setErrorProducto(''); // Limpiar cualquier error que se haya podido producir antes del éxito.
 
-		accion === 'crear' || accion === 'actualizar' && limpiarDatosProducto(); // Estas dos acciones repiten lógica, así que las agrupo.
+		(accion === 'crear' || accion === 'actualizar') && limpiarDatosProducto(); // Estas dos acciones repiten lógica, así que las agrupo.
 		accion === 'eliminar' && cerrarModalEliminacion();
 	}
 
