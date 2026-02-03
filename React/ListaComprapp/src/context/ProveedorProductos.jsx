@@ -37,6 +37,7 @@ const ProveedorProductos = ({ children }) => {
 	const { cargando, obtenerTodo, obtenerUno, filtrarILike, filtrarIgualOMenor, ordenarTabla, insertar, actualizar, eliminar, suscripcionATabla, cancelarSuscripcion } = useSupabaseCRUD();
 
 	//Funciones de lectura
+	// Traer todos los productos.
 	const getAllProducts = async () => {
 		try {
 			const productos = await obtenerTodo('producto');
@@ -46,6 +47,7 @@ const ProveedorProductos = ({ children }) => {
 		}
 	};
 
+	// Obtener un solo producto, como devuelve un array aún así, hay que especificar la primera posición.
 	const getProduct = async (uuid) => {
 		try {
 			const producto = await obtenerUno('producto', uuid);
@@ -55,7 +57,7 @@ const ProveedorProductos = ({ children }) => {
 		}
 	};
 
-	// Por practicar y cambiar un poco, lo he hecho llamando a la base de datos, pero me gusta más filtrar el listado completo desde el estado.
+	// Por practicar y cambiar un poco, lo he hecho todo llamando a la base de datos, pero me gusta más filtrar el listado completo desde el estado.
 	const getSameValue = async (columna, valor) => {
 		try {
 			const filtrados = await filtrarILike('producto', columna, valor);
@@ -83,7 +85,7 @@ const ProveedorProductos = ({ children }) => {
 		}
 	};
 
-	// Funciones de manejo de datos de producto
+	// Funciones de manejo de datos de producto.
 	const manejarDatosProducto = (e) => {
 		const { name, value } = e.target;
 		setProducto({
@@ -94,10 +96,10 @@ const ProveedorProductos = ({ children }) => {
 
 	const limpiarDatosProducto = () => {
 		setProducto(productoInicial);
-		setModoEdicion(false);
+		setModoEdicion(false); 
 	};
 
-
+	// Recupera un producto a partir del id y pone el formulario en modo edición.
 	const cargarProductoParaEditar = async (id) => {
 		try {
 			await getProduct(id);
@@ -107,6 +109,7 @@ const ProveedorProductos = ({ children }) => {
 		}
 	};
 
+	// Las validaciones chichinabescas ahora se hacen aquí en lugar de en el componente CrearProducto.
 	const validarDatosProducto = () => {
 		if (!producto.nombre.trim() || producto.nombre.length < 3) {
 			throw new Error('El nombre del producto es obligatorio y debe contener al menos tres caracteres.');
@@ -126,7 +129,7 @@ const ProveedorProductos = ({ children }) => {
 			descripcion: producto.descripcion || '',
 			precio: parseFloat(producto.precio),
 			peso: parseFloat(producto.peso),
-			imagen: producto.imagen || null
+			imagen: producto.imagen || ''
 		};
 	};
 
@@ -140,12 +143,13 @@ const ProveedorProductos = ({ children }) => {
 
 		setMensajeExito(mensajes[accion]);
 		setTimeout(() => setMensajeExito(''), 2000);
-		setErrorProducto('');
+		setErrorProducto(''); // Limpiar cualquier error que se haya podido producir antes del éxito.
 
-		accion === 'crear' || accion === 'actualizar' && limpiarDatosProducto() ;
+		accion === 'crear' || accion === 'actualizar' && limpiarDatosProducto(); // Estas dos acciones repiten lógica, así que las agrupo.
 		accion === 'eliminar' && cerrarModalEliminacion();
 	}
 
+	// No siempre va a ser éxito, a veces hay que lidiar con el fracaso...
 	const manejarFallo = (error) => {
 		setErrorProducto(error.message);
 		setTimeout(() => setErrorProducto(''), 2000);

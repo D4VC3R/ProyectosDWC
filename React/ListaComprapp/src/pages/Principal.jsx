@@ -12,6 +12,7 @@ const Principal = () => {
 
 	const {sesionIniciada} = useSesionContext();
 
+	// Booleanos para mostrar y ocular sus respectivos componentes.
 	const [mostrarLista, setMostrarLista] = useState(false);
 	const [mostrarProductos, setMostrarProductos] = useState(false);
 	

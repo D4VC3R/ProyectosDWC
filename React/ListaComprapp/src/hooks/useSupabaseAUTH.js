@@ -19,7 +19,7 @@ const useSupabaseAUTH = () => {
 			})
 		);
 	};
-
+	// options sirve para especificar redirecciones, entre otras cosas.
 	const iniciarSesion = (email, password, options = {}) => {
 		return solicitar(
 			sb.auth.signInWithPassword({

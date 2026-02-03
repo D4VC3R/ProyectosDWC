@@ -9,8 +9,8 @@ const useSupabaseCRUD = () => {
     return solicitar(sb.from(tabla).select("*"));
   };
 
-  const obtenerUno = (tabla, uuid) => {
-    return solicitar(sb.from(tabla).select("*").eq("id", uuid));
+  const obtenerUno = (tabla, id) => {
+    return solicitar(sb.from(tabla).select("*").eq("id", id));
   };
 
   const filtrarILike = (tabla, columna, valor) => {
@@ -31,15 +31,15 @@ const useSupabaseCRUD = () => {
     return solicitar(sb.from(tabla).insert(datos).select());
   };
 
-  const actualizar = (tabla, uuid, datos) => {
-    return solicitar(sb.from(tabla).update(datos).eq("id", uuid).select());
+  const actualizar = (tabla, id, datos) => {
+    return solicitar(sb.from(tabla).update(datos).eq("id", id).select());
   };
 
-  const eliminar = (tabla, uuid) => {
-    return solicitar(sb.from(tabla).delete().eq("id", uuid));
+  const eliminar = (tabla, id) => {
+    return solicitar(sb.from(tabla).delete().eq("id", id));
   };
 
-	// Fusilada de la documentación de supabase
+	// Fusilada de la documentación de supabase.
   const suscripcionATabla = (tabla, callback) => {
     const canal = sb
       .channel(`custom-${tabla}-channel`)

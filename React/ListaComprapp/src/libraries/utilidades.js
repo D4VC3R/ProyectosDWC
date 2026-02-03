@@ -10,19 +10,20 @@ export const traducirError = (error) => {
 	return  traduccion;
 }
 
+// Objeto escalable para controlar los parámetros del modal.
 export const opcionesModal = {
     cerrarSesion: {
         title: "Cerrar sesión",
-        message: "¿Estás seguro de que deseas cerrar sesión?",
-        confirmText: "Cerrar sesión",
-        cancelText: "Cancelar"
+        message: "¿Seguro que quieres cerrar sesión?",
+        confirmText: "Sabré yo...",
+        cancelText: "Ah, pues no."
     },
     borrarProducto: {
         title: "Confirmar eliminación",
-        message: "¿Estás seguro de que deseas eliminar este producto? Esta acción no se puede deshacer.",
-        confirmText: "Eliminar",
-        cancelText: "Cancelar"
+        message: "¿Estás seguro de eliminar este producto? Mira que esta acción no se puede deshacer...",
+        confirmText: "Que sí, pesao, déjame.",
+        cancelText: "Mejor no."
     }
 }
 
-export default opcionesModal
+export default opcionesModal;
