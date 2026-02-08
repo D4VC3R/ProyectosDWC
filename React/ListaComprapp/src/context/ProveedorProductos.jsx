@@ -122,7 +122,7 @@ const ProveedorProductos = ({ children }) => {
 		}
 	};
 
-	// Para quitar espacios en blanco y convertir a decimal antes de enviar a la base de datos (Solo en los campos obligatorios)
+	// Para quitar espacios en blanco y convertir a decimal antes de enviar a la base de datos (Solo en los campos obligatorios).
 	const formatearProducto = () => {
 		return {
 			nombre: producto.nombre.trim(),

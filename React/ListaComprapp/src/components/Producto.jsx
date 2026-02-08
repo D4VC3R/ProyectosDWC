@@ -9,7 +9,7 @@ const Producto = ({ producto }) => {
     // Guardamos el id del producto para usarlo en los data-attributes y recuperarlo en el componente padre ListadoProductos.
     const productoId = producto.id;
     const {sesionIniciada} = useSesionContext();
-    // Me ha sugerido la IA lo de utilizar los data-attributes y resulta bastante cómodo para delegar eventos en el componente padre.
+    //Ahora si que si, el formato de la moneda tiene dos decimales separados por una coma.
     
     return (
         <div className="producto" data-producto-id={productoId}>
@@ -28,7 +28,7 @@ const Producto = ({ producto }) => {
                 <h3 className="producto-nombre">{producto.nombre ? producto.nombre : sinDatos}</h3>
                 <p className="producto-descripcion">{producto.descripcion ? producto.descripcion : sinDatos}</p>
                 <div className="producto-detalles">
-                    <span className="producto-precio">{producto.precio ? producto.precio.toLocaleString('es-ES') + "€" : sinDatos}</span>
+                    <span className="producto-precio">{producto.precio ? producto.precio.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "€" : sinDatos}</span>
                     <span className="producto-peso">{producto.peso ? producto.peso.toLocaleString('es-ES') + "kg" : sinDatos}</span>
                 </div>
             </div>
