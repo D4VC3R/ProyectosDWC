@@ -20,8 +20,22 @@ const ProveedorListas = ({children}) => {
 	const {usuario} = useSupabaseAUTH();
 	const {obtenerUno, obtenerTodo, insertar, actualizar, eliminar, suscripcionATabla, cancelarSuscripcion} = useSupabaseCRUD();
 	
-	const getListas = async () => {}
-	const getLista = async () => {}
+	const getListas = async () => {
+		try {
+			const lists = await obtenerTodo('listas_compra');
+			setListas(lists)
+		} catch (error) {
+			setErrorLista(error.message);
+		}
+	}
+	const getLista = async (idLista) => {
+		try {
+			const list = await obtenerUno('listas_compra', idLista);
+			setListaActual(list);
+		} catch (error) {
+			setErrorLista(error.message);
+		}
+	}
 	const createLista = async () => {
 		try {
 			await insertar('lista_compra', listaActual.nombre)
@@ -29,9 +43,29 @@ const ProveedorListas = ({children}) => {
 			setErrorLista(error);
 		}
 	}
-	const rmLista = async () => {}
-	const addProducto = async (idProd) => {}
-	const rmProducto = async (idProd) => {}
+	const rmLista = async () => {
+		try {
+			await eliminar('listas_compra', listaActual);
+			return true;
+		} catch (error) {
+			setErrorLista(error.message);
+		}
+	}
+
+	const addProducto = async (idProd) => {
+		try {
+			await insertar('items_lista', idProd)
+		} catch (error) {
+			setErrorLista(error.message)
+		}
+	}
+	const rmProducto = async (idProd) => {
+		try {
+			await eliminar('items_lista', idProd)
+		} catch (error) {
+			setErrorLista(error.message)
+		}
+	}
 
 		const manejarDatosLista = (e) => {
 		const { name, value } = e.target;
