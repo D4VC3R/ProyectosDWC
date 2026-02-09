@@ -5,7 +5,7 @@
     "crearLista filtros"
     "lista productos";
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto 1fr 4fr;
   gap: 1vh 1vw;
   height: 100%;
   overflow: hidden;
