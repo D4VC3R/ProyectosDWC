@@ -45,9 +45,9 @@ const ProveedorListas = ({children}) => {
 			setErrorLista(error);
 		}
 	}
-	const rmLista = async () => {
+	const rmLista = async (idLista) => {
 		try {
-			await eliminar('listas_compra', listaActual);
+			await eliminar('listas_compra', idLista);
 			return true;
 		} catch (error) {
 			setErrorLista(error.message);
