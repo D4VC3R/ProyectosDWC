@@ -9,16 +9,18 @@ const ContextoListas = createContext();
 const ProveedorListas = ({children}) => {
 
 	// Valores iniciales
-	const listasIniciales = [];
 	const listaInicial = {nombre: ''}
+	const listasIniciales = [];
+	const itemsIniciales = [];
 
 	// Estados
-	const [listas, setListas] = useState(listasIniciales);
 	const [listaActual, setListaActual] = useState(listaInicial);
+	const [listas, setListas] = useState(listasIniciales);
+	const [items, setItems] = useState(itemsIniciales);
 	const [errorLista, setErrorLista] = useState('');
 
 	const {usuario} = useSupabaseAUTH();
-	const {obtenerUno, obtenerTodo, insertar, actualizar, eliminar, suscripcionATabla, cancelarSuscripcion} = useSupabaseCRUD();
+	const {obtenerUno, obtenerTodo, obtenerRelacionados, insertar, actualizar, eliminar, suscripcionATabla, cancelarSuscripcion} = useSupabaseCRUD();
 	
 	const getListas = async () => {
 		try {
@@ -67,6 +69,17 @@ const ProveedorListas = ({children}) => {
 		}
 	}
 
+const getProductosEnLista = async () => {
+  const columnas = 'id, cantidad, comprado, producto:producto_id(id, nombre, precio, peso)';
+  try {
+    const resultado = await obtenerRelacionados('items_lista', 'lista_id', listaActual.id, columnas);
+    console.log("Items recuperados:", resultado);
+    // setItems(resultado);
+  } catch (error) {
+    setErrorLista(error.message);
+  }
+}
+
 		const manejarDatosLista = (e) => {
 		const { name, value } = e.target;
 		setProducto({
@@ -77,7 +90,17 @@ const ProveedorListas = ({children}) => {
 
 
 	const exportaciones = {
-
+		getListas,
+		getLista,
+		createLista,
+		rmLista,
+		addProducto,
+		rmProducto,
+		getProductosEnLista,
+		manejarDatosLista,
+		listas,
+		listaActual,
+		errorLista
 	}
 
 
@@ -92,3 +115,4 @@ const ProveedorListas = ({children}) => {
 }
 
 export default ProveedorListas
+export {ContextoListas}

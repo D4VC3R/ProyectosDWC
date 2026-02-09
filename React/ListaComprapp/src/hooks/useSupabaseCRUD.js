@@ -39,6 +39,11 @@ const useSupabaseCRUD = () => {
     return solicitar(sb.from(tabla).delete().eq("id", id));
   };
 
+  // Consultas multitabla
+const obtenerRelacionados = (tabla, filtro, id, columnas = '*') => {
+  return solicitar(sb.from(tabla).select(columnas).eq(filtro, id));
+}
+
 	// Fusilada de la documentación de supabase.
   const suscripcionATabla = (tabla, callback) => {
     const canal = sb
@@ -62,6 +67,7 @@ const useSupabaseCRUD = () => {
     error,
     obtenerTodo,
     obtenerUno,
+    obtenerRelacionados,
     filtrarILike,
     filtrarIgualOMenor,
     ordenarTabla,
