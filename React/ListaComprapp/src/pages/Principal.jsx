@@ -1,11 +1,12 @@
 import React from 'react'
 import './Principal.css'
 import { useState } from 'react'
-import Listado from './../components/Listado'
+import Listado from '../components/ListadoListas'
 import ListadoProductos from './../components/ListadoProductos'
 import useSesionContext from './../hooks/useSesionContext'
 import FiltrarProductos from './../components/FiltrarProductos';
 import ResumenProductos from './../components/ResumenProductos';
+import CrearLista from '../components/CrearLista'
 
 
 const Principal = () => {
@@ -18,16 +19,20 @@ const Principal = () => {
 	
 
 	const manejarClic = (e) => {
-		e.target.textContent === "LISTA DE LA COMPRA" && setMostrarLista(!mostrarLista);
+		e.target.textContent === "LISTAS DE LA COMPRA" && setMostrarLista(!mostrarLista);
 		e.target.textContent === "MOSTRAR PRODUCTOS" && setMostrarProductos(!mostrarProductos);
 	}
 
 	return (
 		<div className="contenido-principal" onClick={((e)=> manejarClic(e))}>
 			<nav className='nav-opciones'>
-				{sesionIniciada && <span>LISTA DE LA COMPRA</span>}
+				{sesionIniciada && <span>LISTAS DE LA COMPRA</span>}
 				<span>MOSTRAR PRODUCTOS</span>
 			</nav>
+
+			<div className='crear-lista'>
+				{<CrearLista />}
+			</div>
 
 			<div className="contenido-listado">
 				{mostrarLista && <Listado />}

@@ -2,7 +2,7 @@
   display: grid;
   grid-template-areas:
     "btnlista btnproductos"
-    "cabecera filtros"
+    "crearLista filtros"
     "lista productos";
   grid-template-columns: 1fr 2fr;
   grid-template-rows: auto auto 1fr;
@@ -42,5 +42,9 @@
 
 .filtros-productos {
   grid-area: filtros;
+  grid-row: 2;
+}
+.crear-lista {
+  grid-area: crearLista;
   grid-row: 2;
 }

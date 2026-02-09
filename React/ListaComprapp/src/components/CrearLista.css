@@ -1,0 +1,41 @@
+.crear-lista-container {
+  width: 100%;
+  padding: 1rem;
+	border-top: 1px solid #14a73e;
+}
+
+.crear-lista-container form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.crear-lista-container label {
+  width: 100%;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.crear-lista-container input {
+  flex: 2;
+  /* Ocupa 2/4 del espacio */
+  padding: 0.7rem;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.crear-lista-container input:focus {
+  border-color: #14a73e;
+}
+
+.crear-lista-container .form-btn {
+  flex: 1;
+  /* Ocupa 1/4 del espacio */
+  display: flex;
+  justify-content: flex-end;
+  /* Alinea el botón a la derecha */
+}
