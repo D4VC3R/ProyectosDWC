@@ -35,7 +35,7 @@ const Principal = () => {
 			</div>
 
 			<div className="contenido-listado">
-				{mostrarLista && <Listado />}
+				{sesionIniciada && mostrarLista && <Listado />}
 			</div>
 
 			{mostrarProductos && 

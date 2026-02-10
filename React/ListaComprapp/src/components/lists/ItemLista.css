@@ -29,6 +29,8 @@
   width: 20px;
   height: 20px;
   cursor: pointer;
+  accent-color: #4ba53f;
+  
 }
 
 .item-info {
@@ -130,38 +132,3 @@
   transform: scale(1.2);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .item-lista {
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto auto;
-    gap: 0.5rem;
-  }
-  
-  .item-checkbox {
-    grid-row: 1 / 2;
-  }
-  
-  .item-info {
-    grid-row: 1 / 2;
-    grid-column: 2 / 3;
-  }
-  
-  .item-cantidad {
-    grid-row: 2 / 3;
-    grid-column: 1 / 2;
-    justify-self: start;
-  }
-  
-  .item-totales {
-    grid-row: 2 / 3;
-    grid-column: 2 / 3;
-    justify-self: end;
-  }
-  
-  .item-acciones {
-    grid-row: 3 / 4;
-    grid-column: 1 / -1;
-    justify-self: center;
-  }
-}

@@ -46,7 +46,7 @@ const obtenerRelacionados = (tabla, filtro, id, columnas = '*') => {
   return solicitar(sb.from(tabla).select(columnas).eq(filtro, id).order('created_at', { ascending: true })); 
 }
 
-	// Fusilada de la documentación de supabase.
+	// Suscripción a tabla, se dispara con cualquier tipo de evento (insertar, actualizar, borrar...).
   const suscripcionATabla = (tabla, callback) => {
     const canal = sb
       .channel(`custom-${tabla}-channel`)
@@ -59,7 +59,7 @@ const obtenerRelacionados = (tabla, filtro, id, columnas = '*') => {
 
     return canal;
   };
-
+  // Eliminar la suscripción.
   const cancelarSuscripcion = (canal) => {
     sb.removeChannel(canal);
   };

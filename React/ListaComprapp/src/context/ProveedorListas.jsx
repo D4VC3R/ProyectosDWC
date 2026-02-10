@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect , createContext } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import useSupabaseCRUD from '../hooks/useSupabaseCRUD';
 
 const ContextoListas = createContext();
@@ -41,13 +41,13 @@ const ProveedorListas = ({ children }) => {
 			setErrorLista(error.message);
 		}
 	}
-
+	// Consulta multitabla para recuperar los productos de una lista en concreto.
+	// Indicamos que recupere todos los campos de 'columnas' que pertenezan a la lista con el uid que recibe la función.
 	const getProductosEnLista = async (idLista) => {
 		const columnas = 'id, cantidad, comprado, producto:producto_id(id, nombre, precio, peso)';
 		try {
 			const resultado = await obtenerRelacionados('items_lista', 'lista_id', idLista, columnas);
 			setItems(resultado);
-			return resultado;
 		} catch (error) {
 			setErrorLista(error.message);
 			setItems([itemsIniciales]);
@@ -72,11 +72,12 @@ const ProveedorListas = ({ children }) => {
 		}
 	}
 
+	// Borrar lista, en Supabase está configurado para que, si se borra una lista, los productos asociados se eliminen en cascada.
 	const rmLista = async (idLista) => {
 		try {
 			await eliminar('listas_compra', idLista);
 			manejarExito('eliminar');
-			await getListas(); 
+			await getListas(); // Recargo las listas tras eliminar una porque no he configurado una suscripción a la tabla 'listas_compra'.
 			return true;
 		} catch (error) {
 			manejarFallo(error);
@@ -86,15 +87,14 @@ const ProveedorListas = ({ children }) => {
 
 	const addProducto = async (productoId, cantidad = 1) => {
 		try {
-
-			// Verificar si el producto ya está en la lista
+			// Verificar si el producto ya está en la lista utilizando el estado 'items'.
 			const itemExistente = items.find(item => item.producto.id === productoId);
-			
+
 			if (itemExistente) {
-				// Si existe, actualizar la cantidad
+				// Si existe, actualizar la cantidad en la base de datos.
 				await updateCantidadProducto(itemExistente.id, itemExistente.cantidad + cantidad);
 			} else {
-				// Si no existe, crear nuevo item
+				// Si no existe, crear nuevo ítem.
 				const nuevoItem = {
 					lista_id: listaActual.id,
 					producto_id: productoId,
@@ -103,7 +103,7 @@ const ProveedorListas = ({ children }) => {
 				};
 				await insertar('items_lista', nuevoItem);
 			}
-			
+			// Recarga manual de los productos en la lista.
 			await getProductosEnLista(listaActual.id);
 			manejarExito('addProducto');
 			return true;
@@ -112,7 +112,7 @@ const ProveedorListas = ({ children }) => {
 			return false;
 		}
 	}
-
+	// Quitar un producto de la lista y actualizar el listado.
 	const rmProducto = async (itemId) => {
 		try {
 			await eliminar('items_lista', itemId);
@@ -124,14 +124,14 @@ const ProveedorListas = ({ children }) => {
 			return false;
 		}
 	}
-
+	// Al actualizar una cantidad, si la cantidad es 0, se elimina el producto de la lista.
+	// Para todo lo demás, actualizamos la cantidad.
 	const updateCantidadProducto = async (itemId, nuevaCantidad) => {
 		try {
 			if (nuevaCantidad <= 0) {
 				await rmProducto(itemId);
 				return true;
 			}
-			
 			await actualizar('items_lista', itemId, { cantidad: nuevaCantidad });
 			await getProductosEnLista(listaActual.id);
 			return true;
@@ -190,13 +190,13 @@ const ProveedorListas = ({ children }) => {
 	};
 
 	const confirmarEliminacion = async () => {
-		if (listaParaEliminar) {
-			await rmLista(listaParaEliminar);
-			cerrarModalEliminacion();
-		}
+		await rmLista(listaParaEliminar);
+		cerrarModalEliminacion();
+
 	};
 
 	// Funciones de avisos
+	// Acciones comunes para cuando algo sale bien.
 	const manejarExito = (accion) => {
 		const mensajes = {
 			crear: 'Lista creada correctamente.',
@@ -204,19 +204,18 @@ const ProveedorListas = ({ children }) => {
 			addProducto: 'Producto añadido a la lista.',
 			removeProducto: 'Producto eliminado de la lista.'
 		};
-
 		setMensajeExito(mensajes[accion]);
 		setTimeout(() => setMensajeExito(''), 2000);
 		setErrorLista('');
 	};
-
+	// Acción común para cuando algo sale mal.
 	const manejarFallo = (error) => {
 		setErrorLista(error.message);
 		setTimeout(() => setErrorLista(''), 3000);
 	};
 
 	// Cálculos de resumen
-	// Con reduce guardamos el total acumulado y lo vamos sumando con el precio o peso de cada producto multiplicado por su cantidad.
+	// Con reduce guardamos el total acumulado y lo vamos sumando con el precio o peso de cada producto, multiplicado por su cantidad.
 	const calcularPesoTotal = () => {
 		return items.reduce((total, item) => {
 			return total + item.producto?.peso * item.cantidad;
@@ -230,7 +229,7 @@ const ProveedorListas = ({ children }) => {
 	};
 	// Si nos pasamos del peso determinado, devolvemos true y necesitamos el coche. Si no, false y podemos ir andando.
 	const necesitaCoche = () => {
-		const UMBRAL_PESO = 5; 
+		const UMBRAL_PESO = 5;
 		return calcularPesoTotal() > UMBRAL_PESO;
 	};
 
@@ -238,19 +237,11 @@ const ProveedorListas = ({ children }) => {
 	// Esta vez no he hecho la suscripción a la tabla porque no hay una acción que repita siempre tras un cambio como ocurre con el listado de productos.
 	// Tendría que hacer una suscripción distinta según la acción y no parece que merezca la pena, mejor ejecuto la función que necesite en cada caso.
 	useEffect(() => {
-			getListas();
-		
+		getListas();
 	}, []);
 
 
 	const exportaciones = {
-		listas,
-		listaActual,
-		items,
-		errorLista,
-		cargando,
-		mensajeExito,
-		modalOpen,
 		getListas,
 		getLista,
 		getProductosEnLista,
@@ -268,16 +259,21 @@ const ProveedorListas = ({ children }) => {
 		confirmarEliminacion,
 		calcularPesoTotal,
 		calcularPrecioTotal,
-		necesitaCoche
+		necesitaCoche,
+		listas,
+		listaActual,
+		items,
+		errorLista,
+		cargando,
+		mensajeExito,
+		modalOpen
 	}
-
 
 	return (
 		<>
 			<ContextoListas.Provider value={exportaciones}>
 				{children}
 			</ContextoListas.Provider>
-
 		</>
 	)
 }

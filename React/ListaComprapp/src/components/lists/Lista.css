@@ -3,8 +3,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  margin-bottom: 0.5rem;
-  border: 1px solid #ddd;
+  margin: 0 0 0.5rem 0.5rem;
+  border: 1px solid #4ba53f;
   border-radius: 8px;
   background-color: #fff;
   transition: box-shadow 0.3s;
