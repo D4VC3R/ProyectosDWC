@@ -5,12 +5,10 @@ import Cabecera from './components/common/Cabecera';
 
 function App() {
   /**
-   * Cambios realizados:
-   * - He dividido el hook useSupabase en tres hooks diferentes: useSupabase(comunicación con supabase), useSupabaseAUTH(funciones de sesión) y useSupabaseCRUD (funciones CRUD).
-   * - He añadido doble confirmación de contraseña en el formulario de registro.
-   * - Ya no hace falta pulsar el botón de filtrar, ahora filtra conforme se escribe.
-   * - A tomar por saco el sistema imperial, ahora hay comas en lugar de puntos para los decimales en peso y precio.
-   * - El contenido de la práctica 6.09
+   * A la tercera va la vencida, el formato de peso y precio se muestra correctamente en toda la aplicación. Las funciones de formateo estan libraries/utilidades.js.
+   * La consulta multitabla genérica está en useSupabaseCRUD.js y la específica para la tabla en ProveedorListas.jsx
+   * Las mayor parte de las novedades están en components/lists y en context/ProveedorListas.jsx.
+   * La página para agregar/quitar cosas de la lista es pages/Gestion.jsx.
    */
 
   return (

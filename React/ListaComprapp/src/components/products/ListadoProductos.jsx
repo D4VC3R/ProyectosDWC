@@ -7,6 +7,7 @@ import './ListadoProductos.css'
 import Cargando from '../common/Cargando';
 import Modal from '../common/Modal';
 
+	// Se le pasa un parámetro para cambiar los botones que se muestran en Producto.jsx en función de si nos encontramos en /principal o en /gestion.
 const ListadoProductos = ({ mostrarBotonesAgregar = false }) => {
 
 	const navegar = useNavigate();

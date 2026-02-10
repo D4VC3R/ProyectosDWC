@@ -229,7 +229,7 @@ const ProveedorListas = ({ children }) => {
 	};
 	// Si nos pasamos del peso determinado, devolvemos true y necesitamos el coche. Si no, false y podemos ir andando.
 	const necesitaCoche = () => {
-		const UMBRAL_PESO = 5;
+		const UMBRAL_PESO = 4;
 		return calcularPesoTotal() > UMBRAL_PESO;
 	};
 

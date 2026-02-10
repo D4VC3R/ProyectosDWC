@@ -11,7 +11,7 @@ const ItemLista = ({ item }) => {
 
 	const { rmProducto, updateCantidadProducto, toggleComprado } = useListContext();
 
-	// Delegación de eventos
+	// Delegación de eventos.
 	const manejarClic = async (e) => {
 		if (e.target.classList.contains('cantidad-btn')) {
 			e.target.textContent === '+' && manejarCantidad('sumar');
@@ -38,7 +38,7 @@ const ItemLista = ({ item }) => {
 					type="checkbox"
 					checked={item.comprado}
 					onChange={() => toggleComprado(itemId, item.comprado)}
-					title="Marcar como comprado"
+					title={item.comprado ? "Marcar como no comprado" : "Marcar como comprado"}
 				/>
 			</div>
 

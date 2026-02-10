@@ -1,6 +1,7 @@
 import React from 'react'
 import './Producto.css'
 import useSesionContext from '../../hooks/useSesionContext';
+import { formatearPrecio, formatearPeso } from '../../libraries/utilidades.js';
 
 const Producto = ({ producto, mostrarBotonesAgregar = false }) => {
 
@@ -30,7 +31,7 @@ const Producto = ({ producto, mostrarBotonesAgregar = false }) => {
                     data-producto-id={productoId}
                     title="Agregar a la lista"
                 >
-                    + Agregar
+                    + Añadir
                 </button>
             )}
             <img src={producto.imagen ? producto.imagen : imgDefecto} alt={producto.nombre} className="producto-imagen" />
@@ -38,8 +39,8 @@ const Producto = ({ producto, mostrarBotonesAgregar = false }) => {
                 <h3 className="producto-nombre">{producto.nombre ? producto.nombre : sinDatos}</h3>
                 <p className="producto-descripcion">{producto.descripcion ? producto.descripcion : sinDatos}</p>
                 <div className="producto-detalles">
-                    <span className="producto-precio">{producto.precio ? producto.precio.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "€" : sinDatos}</span>
-                    <span className="producto-peso">{producto.peso ? producto.peso.toLocaleString('es-ES') + "kg" : sinDatos}</span>
+                    <span className="producto-precio">{producto.precio ? formatearPrecio(producto.precio) : sinDatos}</span>
+                    <span className="producto-peso">{producto.peso ? formatearPeso(producto.peso) : sinDatos}</span>
                 </div>
             </div>
         </div>
