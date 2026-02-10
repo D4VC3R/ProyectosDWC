@@ -40,8 +40,10 @@ const useSupabaseCRUD = () => {
   };
 
   // Consultas multitabla
+  // tabla de inicio  -> campo y valor para filtrar -> consulta sql
+  // order para que el producto mantenga simpre la misma posición en supabase. Así al actualizar la cantidad de un producto no se desordena la lista.
 const obtenerRelacionados = (tabla, filtro, id, columnas = '*') => {
-  return solicitar(sb.from(tabla).select(columnas).eq(filtro, id));
+  return solicitar(sb.from(tabla).select(columnas).eq(filtro, id).order('created_at', { ascending: true })); 
 }
 
 	// Fusilada de la documentación de supabase.

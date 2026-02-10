@@ -6,6 +6,7 @@ import Error from './../pages/Error.jsx'
 import WrapperProductos from './../components/WrapperProductos.jsx'
 import Principal from './../pages/Principal.jsx'
 import Gestion from './../pages/Gestion.jsx'
+import Creacion from '../pages/Creacion.jsx'
 
 const Rutas = () => {
 	return (
@@ -16,6 +17,7 @@ const Rutas = () => {
 				<Route element={<WrapperProductos />}>
 					<Route path="/principal" element={<Principal />}></Route>
 					<Route path="/gestion" element={<Gestion />}></Route>
+					<Route path="/creacion" element={<Creacion />}></Route>
 				</Route>
 				<Route path="*" element={<Error />}></Route>
 			</Routes>

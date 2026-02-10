@@ -61,6 +61,28 @@
     box-shadow: 0 2px 8px rgba(0, 123, 255, 0.4);
 }
 
+.btn-agregar-lista {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #4ba53f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.btn-agregar-lista:hover {
+    background-color: #3d8834;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(75, 165, 63, 0.4);
+}
+
 .producto-imagen {
     width: 100px;
     height: 100px;

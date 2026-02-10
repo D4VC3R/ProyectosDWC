@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import useProductContext from '../hooks/useProductContext';
-import Cargando from './common/Cargando';
+import useProductContext from '../../hooks/useProductContext';
+import Cargando from '../common/Cargando';
 import './CrearProducto.css';
 
 const CrearProducto = () => {

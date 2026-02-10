@@ -3,7 +3,7 @@ import './BotonAgregar.css'
 
 const BotonAgregar = ({size, text}) => {
 	return (
-		<button class="cssbuttons-io-button">
+		<button type="submit" className="cssbuttons-io-button">
 			<svg
 				height={size}
 				width={size}

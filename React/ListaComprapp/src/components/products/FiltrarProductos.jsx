@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import useProductContext from '../hooks/useProductContext';
+import useProductContext from '../../hooks/useProductContext';
 import './FiltrarProductos.css';
 
 const FiltrarProductos = () => {

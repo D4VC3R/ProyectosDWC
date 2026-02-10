@@ -1,12 +1,12 @@
 import React from 'react'
 import './Principal.css'
 import { useState } from 'react'
-import Listado from '../components/ListadoListas'
-import ListadoProductos from './../components/ListadoProductos'
+import Listado from '../components/lists/ListadoListas'
+import ListadoProductos from '../components/products/ListadoProductos'
 import useSesionContext from './../hooks/useSesionContext'
-import FiltrarProductos from './../components/FiltrarProductos';
-import ResumenProductos from './../components/ResumenProductos';
-import CrearLista from '../components/CrearLista'
+import FiltrarProductos from '../components/products/FiltrarProductos';
+import ResumenProductos from '../components/products/ResumenProductos';
+import CrearLista from '../components/lists/CrearLista'
 
 
 const Principal = () => {
@@ -14,24 +14,24 @@ const Principal = () => {
 	const {sesionIniciada} = useSesionContext();
 
 	// Booleanos para mostrar y ocular sus respectivos componentes.
-	const [mostrarLista, setMostrarLista] = useState(false);
+	const [mostrarLista, setMostrarLista] = useState(true);
 	const [mostrarProductos, setMostrarProductos] = useState(false);
 	
 
 	const manejarClic = (e) => {
-		e.target.textContent === "LISTAS DE LA COMPRA" && setMostrarLista(!mostrarLista);
-		e.target.textContent === "MOSTRAR PRODUCTOS" && setMostrarProductos(!mostrarProductos);
+		e.target.tagName === "SPAN" && e.target.textContent.includes("LISTAS") && setMostrarLista(!mostrarLista);
+		e.target.tagName === "SPAN" && e.target.textContent.includes("PRODUCTOS") && setMostrarProductos(!mostrarProductos);
 	}
 
 	return (
 		<div className="contenido-principal" onClick={((e)=> manejarClic(e))}>
 			<nav className='nav-opciones'>
-				{sesionIniciada && <span>LISTAS DE LA COMPRA</span>}
-				<span>MOSTRAR PRODUCTOS</span>
+				{sesionIniciada && <span>{mostrarLista ? "OCULTAR LISTAS" : "MOSTRAR LISTAS"}</span>}
+				<span>{mostrarProductos ? "OCULTAR PRODUCTOS" : "MOSTRAR PRODUCTOS"}</span>
 			</nav>
 
 			<div className='crear-lista'>
-				{<CrearLista />}
+				{sesionIniciada && <CrearLista />}
 			</div>
 
 			<div className="contenido-listado">

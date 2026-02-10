@@ -1,8 +1,8 @@
 import React from 'react'
 import './Producto.css'
-import useSesionContext from '../hooks/useSesionContext';
+import useSesionContext from '../../hooks/useSesionContext';
 
-const Producto = ({ producto }) => {
+const Producto = ({ producto, mostrarBotonesAgregar = false }) => {
 
     const imgDefecto = "https://media.istockphoto.com/id/1222357475/vector/image-preview-icon-picture-placeholder-for-website-or-ui-ux-design-vector-illustration.jpg"
     const sinDatos = "Sin datos";
@@ -13,7 +13,7 @@ const Producto = ({ producto }) => {
     
     return (
         <div className="producto" data-producto-id={productoId}>
-            {sesionIniciada && 
+            {sesionIniciada && !mostrarBotonesAgregar && 
             <>
             <span className="btn-eliminar" data-action="eliminar" data-producto-id={productoId} title="Eliminar producto">
                 X
@@ -23,6 +23,16 @@ const Producto = ({ producto }) => {
             </span>
             </>
             }
+            {mostrarBotonesAgregar && sesionIniciada && (
+                <button 
+                    className="btn-agregar-lista" 
+                    data-action="agregar" 
+                    data-producto-id={productoId}
+                    title="Agregar a la lista"
+                >
+                    + Agregar
+                </button>
+            )}
             <img src={producto.imagen ? producto.imagen : imgDefecto} alt={producto.nombre} className="producto-imagen" />
             <div className="producto-info">
                 <h3 className="producto-nombre">{producto.nombre ? producto.nombre : sinDatos}</h3>

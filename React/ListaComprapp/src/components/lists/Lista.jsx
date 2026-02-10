@@ -1,24 +1,13 @@
 import React from 'react'
 import './Lista.css'
+import { formatearFecha } from '../../libraries/utilidades.js';
 
 const Lista = ({ lista }) => {
+	// Información básica de la lista y botones para ver detalles o eliminar.
+	// Los clics se manejan en el componente padre ListadoListas.jsx, desde aquí le pasamos el id de la lista y la acción seleccionada.
 	const listaId = lista.id;
 	const sinDatos = "Sin datos."
 
-	const formatearFecha = (fecha) => {
-		const date = new Date(fecha);
-		const options = {
-			day: '2-digit',
-			month: '2-digit',
-			year: 'numeric',
-			hour: '2-digit',
-			minute: '2-digit',
-			hour12: false
-		};
-		const localeString = date.toLocaleString('es-ES', options);
-
-		return localeString.replace(',', ' a las');
-	}
 
 	return (
 		<div className="lista" data-lista-id={listaId}>

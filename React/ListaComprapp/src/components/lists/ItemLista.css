@@ -1,0 +1,167 @@
+.item-lista {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: all 0.3s;
+}
+
+.item-lista:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.item-lista.comprado {
+  opacity: 0.6;
+  background-color: #f5f5f5;
+}
+
+.item-lista.comprado .item-nombre {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.item-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.item-nombre {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.item-detalles {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.item-cantidad {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #f9f9f9;
+  padding: 0.3rem;
+  border-radius: 6px;
+}
+
+.cantidad-btn {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #4ba53f;
+  background-color: #fff;
+  color: #4ba53f;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.cantidad-btn:hover:not(:disabled) {
+  background-color: #4ba53f;
+  color: white;
+}
+
+.cantidad-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.cantidad-valor {
+  min-width: 30px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.item-totales {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  text-align: right;
+  min-width: 80px;
+}
+
+.total-precio {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4ba53f;
+}
+
+.total-peso {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.item-acciones {
+  display: flex;
+  align-items: center;
+}
+
+.btn-eliminar-item {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 0.3rem;
+  transition: transform 0.2s;
+}
+
+.btn-eliminar-item:hover {
+  transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .item-lista {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 0.5rem;
+  }
+  
+  .item-checkbox {
+    grid-row: 1 / 2;
+  }
+  
+  .item-info {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+  }
+  
+  .item-cantidad {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    justify-self: start;
+  }
+  
+  .item-totales {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    justify-self: end;
+  }
+  
+  .item-acciones {
+    grid-row: 3 / 4;
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+}

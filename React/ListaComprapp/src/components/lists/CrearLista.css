@@ -18,6 +18,27 @@
   color: #555;
 }
 
+.mensaje-error-lista,
+.mensaje-exito-lista {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.mensaje-error-lista {
+  background-color: #ffe5e5;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+
+.mensaje-exito-lista {
+  background-color: #e8f5e9;
+  color: #4ba53f;
+  border: 1px solid #4ba53f;
+}
+
 .crear-lista-container input {
   flex: 2;
   /* Ocupa 2/4 del espacio */

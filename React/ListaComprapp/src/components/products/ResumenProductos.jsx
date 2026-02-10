@@ -1,5 +1,5 @@
 import React from 'react'
-import useProductContext from '../hooks/useProductContext'
+import useProductContext from '../../hooks/useProductContext'
 
 const ResumenProductos = () => {
 
