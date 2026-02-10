@@ -30,7 +30,6 @@
   height: 20px;
   cursor: pointer;
   accent-color: #4ba53f;
-  
 }
 
 .item-info {
@@ -81,6 +80,7 @@
 .cantidad-btn:hover:not(:disabled) {
   background-color: #4ba53f;
   color: white;
+    border: 1px solid #fff;
 }
 
 .cantidad-btn:disabled {

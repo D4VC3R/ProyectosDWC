@@ -71,3 +71,13 @@
   overflow-y: auto;
   padding-right: 0.5rem;
 }
+@media (max-width: 1024px) {
+  .gestion-contenido {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  
+  .seccion-detalle-lista {
+    max-height: 40vh;
+  }
+}

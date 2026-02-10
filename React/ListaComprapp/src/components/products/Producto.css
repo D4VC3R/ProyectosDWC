@@ -25,8 +25,6 @@
     font-size: 1.2rem;
     font-weight: bold;
     transition: all 0.3s ease;
-    user-select: none;
-    z-index: 10;
 }
 
 .btn-eliminar:hover {
@@ -51,8 +49,6 @@
     font-size: 1.2rem;
     font-weight: bold;
     transition: all 0.3s ease;
-    user-select: none;
-    z-index: 10;
 }
 
 .btn-editar:hover {
@@ -63,7 +59,7 @@
 
 .btn-agregar-lista {
     position: absolute;
-    top: 0.5rem;
+    bottom: 0.5rem;
     right: 0.5rem;
     padding: 0.5rem 1rem;
     background-color: #4ba53f;
@@ -71,15 +67,12 @@
     border: none;
     border-radius: 6px;
     font-size: 0.9rem;
-    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    z-index: 10;
 }
 
 .btn-agregar-lista:hover {
     background-color: #3d8834;
-    transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(75, 165, 63, 0.4);
 }
 
@@ -122,4 +115,11 @@
 
 .producto-peso {
     color: #666;
+}
+
+@media (max-width: 800px){
+    .btn-agregar-lista {
+        content: "+";
+        padding: 0.1rem 0.2rem;
+    }
 }
