@@ -5,10 +5,69 @@ import Cabecera from './components/common/Cabecera';
 
 function App() {
   /**
-   * A la tercera va la vencida, el formato de peso y precio se muestra correctamente en toda la aplicación. Las funciones de formateo estan libraries/utilidades.js.
-   * La consulta multitabla genérica está en useSupabaseCRUD.js y la específica para la tabla en ProveedorListas.jsx
-   * Las mayor parte de las novedades están en components/lists y en context/ProveedorListas.jsx.
-   * La página para agregar/quitar cosas de la lista es pages/Gestion.jsx.
+   * SQL utilizado en la pŕactica:
+   * -----------------------------------------------
+   * |  Crear la columna 'roles' de tipo enum:      |
+   * -----------------------------------------------
+   * create type roles as enum (
+   * 'usuario',
+   * 'admin'
+   * )
+   * -----------------------------------------------
+   * |            Función security definer          |
+   * -----------------------------------------------
+   * create or replace function public.insertar_rol_usuario()
+   *        returns trigger as $$
+   *        begin
+   *          insert into public.roles_usuario (id_rol, email, rol)
+   *          values (new.id, new.email, 'usuario');
+   *          return new;
+   *        end;
+   *        $$ language plpgsql security definer;
+   * -----------------------------------------------
+   * |                  Trigger                     |
+   * -----------------------------------------------
+   * create trigger usuario_creado
+   * after insert on auth.users
+   * for each row execute function public.insertar_rol_usuario();       
+   * -----------------------------------------------
+   * |        Función de comprobación de roles      |
+   * -----------------------------------------------
+   * create or replace function public.is_admin()
+   * returns boolean as $$
+   * begin
+   *   return exists (
+   *   select 1
+   *   from public.roles_usuario
+   *   where id_rol = auth.uid()
+   *   and rol = 'admin'
+   *   );
+   * end;
+   * $$ language plpgsql security definer set search_path = public;
+   * -----------------------------------------------
+   * | Función para crear perfil                   |
+   * -----------------------------------------------
+   * CREATE OR REPLACE FUNCTION public.crear_perfil_usuario()
+   * RETURNS trigger AS $$
+   * BEGIN
+   *   INSERT INTO public.perfil_usuario (id_usuario, nombre)
+   *   VALUES (
+   *     new.id, 
+   *     COALESCE(new.raw_user_meta_data ->> 'display_name', 'anónimo')
+   *   );
+   *   RETURN new;
+   * END;
+   * $$ LANGUAGE plpgsql SECURITY DEFINER;
+   *  
+   * -----------------------------------------------
+   * | Trigger para la creación de perfiles        |
+   * -----------------------------------------------
+   * CREATE TRIGGER usuario_creado_con_perfil
+   *   AFTER INSERT ON auth.users 
+   *   FOR EACH ROW EXECUTE FUNCTION public.crear_perfil_usuario();
+   * ---------------------------------------------------------------
+   *  
+   *
    */
 
   return (
