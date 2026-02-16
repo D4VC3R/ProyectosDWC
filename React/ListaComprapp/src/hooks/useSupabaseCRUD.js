@@ -9,8 +9,8 @@ const useSupabaseCRUD = () => {
     return solicitar(sb.from(tabla).select("*"));
   };
 
-  const obtenerUno = (tabla, id) => {
-    return solicitar(sb.from(tabla).select("*").eq("id", id));
+  const obtenerUno = (tabla, id, campo="id") => {
+    return solicitar(sb.from(tabla).select("*").eq(campo, id));
   };
 
   const filtrarILike = (tabla, columna, valor) => {

@@ -23,9 +23,11 @@ const ProveedorSesion = ({children}) => {
 	const [errorUsuario, setErrorUsuario] = useState(errorUsuarioInicial);
 	const [sesionIniciada, setSesionIniciada] = useState(sesionIniciadaInicial);
 	const [username, setUsername] = useState("");
+	const [perfil, setPerfil] = useState({});
+	const [rol, setRol] = useState('usuario');
 
 	// Hooks
-	const {cargando, crearCuenta, iniciarSesion, cerrarSesion, getUsuario, getSuscripcion} = useSupabaseAUTH();
+	const {cargando, crearCuenta, iniciarSesion, cerrarSesion, getUsuario, getSuscripcion, obtenerRelacionados} = useSupabaseAUTH();
 
 	// Funciones
 	const manejarCrearCuenta = async () => {
@@ -94,6 +96,15 @@ const ProveedorSesion = ({children}) => {
 			...datosSesion,
 			[name]: value
 		});
+	}
+
+	const getPerfil = async () => {
+		try {
+			const perfilUsuario = await obtenerUno('perfil_usuario', usuario.id, 'id_usuario');
+			setPerfil(perfilUsuario);
+		} catch (error) {
+			setErrorUsuario(error.message);
+		}
 	}
 
 	// Efectos
