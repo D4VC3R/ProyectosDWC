@@ -3,9 +3,13 @@ import useUsersContext from '../../hooks/useUsersContext'
 import Cargando from '../common/Cargando'
 import './DetallesUser.css'
 import { formatearFecha } from '../../libraries/utilidades'
+import useListContext from '../../hooks/useListContext'
+
 
 const DetallesUser = ({ onVolver }) => {
-  const { usuarioSeleccionado } = useUsersContext();
+  const { usuarioSeleccionado, listasUsuario } = useUsersContext();
+  const {getListasPropias} = useListContext();
+
 
 
   return (

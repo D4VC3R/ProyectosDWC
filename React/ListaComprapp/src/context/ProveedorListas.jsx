@@ -36,11 +36,10 @@ const ProveedorListas = ({ children }) => {
 		}
 	}
 
-
-	const getListasPropias = async () => {
+	const getListasPropias = async (id = usuario.id) => {
 		try {
 			// Desde Supabase se encarga de obtener solamente las que haya creado el usuario con sesión activa.
-			const lists = await obtenerUno('listas_compra', usuario.id, 'id_propietario');
+			const lists = await obtenerUno('listas_compra', id, 'id_propietario');
 			setListas(lists);
 		} catch (error) {
 			setErrorLista(error.message);

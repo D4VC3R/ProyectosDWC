@@ -2,6 +2,7 @@ import React from 'react'
 import useListContext from '../../hooks/useListContext';
 import { formatearPeso, formatearPrecio } from '../../libraries/utilidades.js';
 import './ItemLista.css';
+import useSesionContext from '../../hooks/useSesionContext.js';
 
 const ItemLista = ({ item }) => {
 	// Recibimos una fila de la tabla 'items_lista' con la cantidad, estado de compra y nombre, precio y peso del producto que contiene.
@@ -10,6 +11,7 @@ const ItemLista = ({ item }) => {
 	const sinDatos = "Sin datos.";
 
 	const { rmProducto, updateCantidadProducto, toggleComprado } = useListContext();
+	const {isAdmin} = useSesionContext();
 
 	// Delegación de eventos.
 	const manejarClic = async (e) => {
@@ -39,6 +41,7 @@ const ItemLista = ({ item }) => {
 					checked={item.comprado}
 					onChange={() => toggleComprado(itemId, item.comprado)}
 					title={item.comprado ? "Marcar como no comprado" : "Marcar como comprado"}
+					disabled={isAdmin}
 				/>
 			</div>
 
@@ -58,7 +61,7 @@ const ItemLista = ({ item }) => {
 				<button
 					className="cantidad-btn"
 					title='Quitar'
-					disabled={item.comprado}
+					disabled={item.comprado || isAdmin}
 				>
 					-
 				</button>
@@ -66,7 +69,7 @@ const ItemLista = ({ item }) => {
 				<button
 					className="cantidad-btn"
 					title="Añadir"
-					disabled={item.comprado}
+					disabled={item.comprado || isAdmin}
 				>
 					+
 				</button>
@@ -85,6 +88,7 @@ const ItemLista = ({ item }) => {
 				<button
 					className="btn-eliminar-item"
 					title="Eliminar de la lista"
+					disabled={isAdmin}
 				>
 					🗑️
 				</button>

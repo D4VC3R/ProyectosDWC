@@ -9,6 +9,7 @@ const ProveedorUsuarios = ({ children }) => {
 	const [listaUsuarios, setListaUsuarios] = useState([]);
 	const [errorUsuarios, setErrorUsuarios] = useState('');
 	const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
+	const [listasUsuario, setListasUsuario] = useState([]);
 
 	const { obtenerTodo, obtenerUno, cargando } = useSupabaseCRUD();
 	const { isAdmin } = useSesionContext();
@@ -19,10 +20,8 @@ const ProveedorUsuarios = ({ children }) => {
 			if (!isAdmin()) {
 				throw new Error("No tienes permisos de administrador");
 			}
-
 			const perfiles = await obtenerTodo('perfil_usuario');
 
-			// Para cada perfil, obtener su rol
 			const usuariosConRol = await Promise.all(
 				perfiles.map(async (perfil) => {
 					const rol = await obtenerUno('roles_usuario', perfil.id, 'id_rol');
@@ -50,6 +49,21 @@ const ProveedorUsuarios = ({ children }) => {
 		return usuario;
 	}
 
+	const obtenerListasDelUsuario = async () => {
+    try {
+      const listas = await obtenerRelacionados(
+        'listas_compra',
+        'id_propietario',
+        usuarioSeleccionado.id,
+        'id, nombre, created_at'
+      );
+      setListasUsuario(listas);
+    } catch (error) {
+			setErrorUsuarios(error.message);
+      setListasUsuario([]);
+    }
+  };
+
 
 	useEffect(() => {
 		isAdmin() && obtenerUsuarios();
@@ -60,7 +74,10 @@ const ProveedorUsuarios = ({ children }) => {
 		usuarioSeleccionado,
 		cargando,
 		errorUsuarios,
-		obtenerUsuarioPorId
+		listasUsuario,
+		obtenerUsuarioPorId,
+		obtenerListasDelUsuario
+
 	}
 
 	return (
