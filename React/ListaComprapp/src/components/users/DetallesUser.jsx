@@ -2,6 +2,7 @@ import React from 'react'
 import useUsersContext from '../../hooks/useUsersContext'
 import Cargando from '../common/Cargando'
 import './DetallesUser.css'
+import { formatearFecha } from '../../libraries/utilidades'
 
 const DetallesUser = ({ onVolver }) => {
   const { usuarioSeleccionado } = useUsersContext();
@@ -43,9 +44,7 @@ const DetallesUser = ({ onVolver }) => {
               <p><strong>Email:</strong> {usuarioSeleccionado.email}</p>
               <p><strong>Rol:</strong> {usuarioSeleccionado.rol}</p>
               <p><strong>Fecha de registro:</strong> {
-                usuarioSeleccionado.created_at
-                  ? new Date(usuarioSeleccionado.created_at).toLocaleDateString('es-ES')
-                  : 'No disponible'
+                formatearFecha(usuarioSeleccionado.created_at)
               }</p>
             </div>
           </div>
