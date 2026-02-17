@@ -21,6 +21,8 @@ const ProveedorSesion = ({ children }) => {
 	// Estados
 	const [datosSesion, setDatosSesion] = useState(datosSesionInicial);
 	const [usuario, setUsuario] = useState(usuarioInicial);
+
+
 	const [errorUsuario, setErrorUsuario] = useState(errorUsuarioInicial);
 	const [sesionIniciada, setSesionIniciada] = useState(sesionIniciadaInicial);
 
@@ -73,13 +75,13 @@ const ProveedorSesion = ({ children }) => {
 			if (!user) {
 				throw new Error("No se puede recuperar la información de usuario.");
 			}
-			setUsuario(user);
 			await obtenerDatosUsuario(user.id);
 			setErrorUsuario(errorUsuarioInicial);
 		} catch (error) {
 			setErrorUsuario(error.message);
 		}
 	}
+
 
 	const manejarDatosSesion = (evento) => {
 		const { name, value } = evento.target;
@@ -95,6 +97,7 @@ const ProveedorSesion = ({ children }) => {
 			const { avatar, nombre, biografia } = perfilUsuario[0];
 			setUsuario(usuario => ({
 				...usuario,
+				id,
 				avatar,
 				nombre,
 				biografia
@@ -140,8 +143,8 @@ const ProveedorSesion = ({ children }) => {
 		getSuscripcion((evento, sesion) => {
 			if (sesion) {
 				navegar("/");
-				setSesionIniciada(true);
 				obtenerUsuario();
+				setSesionIniciada(true);
 			} else {
 				navegar("/");
 				setSesionIniciada(false);

@@ -252,7 +252,7 @@ const ProveedorListas = ({ children }) => {
 	// Tendría que hacer una suscripción distinta según la acción y no parece que merezca la pena, mejor ejecuto la función que necesite en cada caso.
 	useEffect(() => {
 		getListasPropias();
-	}, []);
+	}, [usuario.id]);
 
 
 	const exportaciones = {

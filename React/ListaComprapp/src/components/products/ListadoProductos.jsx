@@ -8,7 +8,7 @@ import Cargando from '../common/Cargando';
 import Modal from '../common/Modal';
 
 	// Se le pasa un parámetro para cambiar los botones que se muestran en Producto.jsx en función de si nos encontramos en /principal o en /gestion.
-const ListadoProductos = ({ mostrarBotonesAgregar = false }) => {
+const ListadoProductos = ({ mostrarBotonesAgregar = false, editando = false }) => {
 
 	const navegar = useNavigate();
 
@@ -37,7 +37,7 @@ const ListadoProductos = ({ mostrarBotonesAgregar = false }) => {
 		// Si clicamos en editar, nos vamos al formulario y recuperamos los datos del producto.
 		// Navego primero para evitar que se vea el retardo de la carga de datos.
 		if (e.target.dataset.action === 'editar') {
-			navegar('/gestion');
+			navegar('/creacion');
 			const productoId = e.target.dataset.productoId;
 			await cargarProductoParaEditar(productoId);
 		}
@@ -56,7 +56,7 @@ const ListadoProductos = ({ mostrarBotonesAgregar = false }) => {
 			{errorProducto && <div className="mensaje-error">{errorProducto}</div>}
 			<div className='listado-productos' onClick={manejarClic}>
 				{listadoProductos.length > 0 ? listadoProductos.map((producto) => {
-					return <Producto key={producto.id} producto={producto} mostrarBotonesAgregar={mostrarBotonesAgregar} />
+					return <Producto key={producto.id} producto={producto} mostrarBotonesAgregar={mostrarBotonesAgregar} editando={editando} />
 				})
 				:<p>Sin resultados.</p>}
 			</div>

@@ -11,7 +11,10 @@ import CrearLista from '../components/lists/CrearLista'
 
 const Principal = () => {
 
-	const {sesionIniciada} = useSesionContext();
+	const {sesionIniciada, usuario} = useSesionContext();
+
+	console.log(usuario)
+
 
 
 	// Booleanos para mostrar y ocular sus respectivos componentes.

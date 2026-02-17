@@ -3,7 +3,7 @@ import './Producto.css'
 import useSesionContext from '../../hooks/useSesionContext';
 import { formatearPrecio, formatearPeso } from '../../libraries/utilidades.js';
 
-const Producto = ({ producto, mostrarBotonesAgregar = false }) => {
+const Producto = ({ producto, mostrarBotonesAgregar = false, editando = false }) => {
 
     const imgDefecto = "https://media.istockphoto.com/id/1222357475/vector/image-preview-icon-picture-placeholder-for-website-or-ui-ux-design-vector-illustration.jpg"
     const sinDatos = "Sin datos";
@@ -14,7 +14,7 @@ const Producto = ({ producto, mostrarBotonesAgregar = false }) => {
     
     return (
         <div className="producto" data-producto-id={productoId}>
-            {sesionIniciada && !mostrarBotonesAgregar && 
+            {sesionIniciada && !mostrarBotonesAgregar && editando &&
             <>
             <span className="btn-eliminar" data-action="eliminar" data-producto-id={productoId} title="Eliminar producto">
                 X
