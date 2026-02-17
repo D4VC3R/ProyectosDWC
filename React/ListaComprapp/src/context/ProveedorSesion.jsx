@@ -1,11 +1,12 @@
-import React, {createContext, useState, useEffect} from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import useSupabaseAUTH from '../hooks/useSupabaseAUTH.js';
+import useSupabaseCRUD from '../hooks/useSupabaseCRUD.js';
 
 
 const ContextoSesion = createContext();
 
-const ProveedorSesion = ({children}) => {
+const ProveedorSesion = ({ children }) => {
 
 	// Valores iniciales
 	const datosSesionInicial = {
@@ -27,7 +28,8 @@ const ProveedorSesion = ({children}) => {
 	const [rol, setRol] = useState('usuario');
 
 	// Hooks
-	const {cargando, crearCuenta, iniciarSesion, cerrarSesion, getUsuario, getSuscripcion, obtenerRelacionados} = useSupabaseAUTH();
+	const { cargando, crearCuenta, iniciarSesion, cerrarSesion, getUsuario, getSuscripcion } = useSupabaseAUTH();
+	const { obtenerUno } = useSupabaseCRUD();
 
 	// Funciones
 	const manejarCrearCuenta = async () => {
@@ -52,7 +54,7 @@ const ProveedorSesion = ({children}) => {
 			await iniciarSesion(datosSesion.email, datosSesion.password, {
 				emailRedirectTo: "http://localhost:3000/inicio"
 			});
-	} catch (error) {
+		} catch (error) {
 			setErrorUsuario(error.message);
 		}
 	}
@@ -63,35 +65,35 @@ const ProveedorSesion = ({children}) => {
 			setDatosSesion(datosSesionInicial);
 			setErrorUsuario("");
 			// No utilizo navegar aquí porque ya lo hago en el useEffect.
-	} catch (error) {
+		} catch (error) {
 			setErrorUsuario(error.message);
 		}
 	}
 
 	const obtenerUsuario = async () => {
 		try {
-			const {user} = await getUsuario();
+			const { user } = await getUsuario();
 			if (!user) {
 				throw new Error("No se puede recuperar la información de usuario.");
 			}
 			setUsuario(user);
 			setErrorUsuario(errorUsuarioInicial);
-		}catch (error) {
+		} catch (error) {
 			setErrorUsuario(error.message);
 		}
 	}
 
 	const obtenerUsername = async () => {
 		try {
-			const {user} = await getUsuario();
+			const { user } = await getUsuario();
 			setUsername(user?.user_metadata?.display_name.toUpperCase());
 		} catch (error) {
-			setErrorUsuario("No se pudo recuperar el nombre de usuario: "+ error.message);
+			setErrorUsuario("No se pudo recuperar el nombre de usuario: " + error.message);
 		}
 	}
 
 	const manejarDatosSesion = (evento) => {
-		const {name, value} = evento.target;
+		const { name, value } = evento.target;
 		setDatosSesion({
 			...datosSesion,
 			[name]: value
@@ -103,14 +105,42 @@ const ProveedorSesion = ({children}) => {
 			const perfilUsuario = await obtenerUno('perfil_usuario', usuario.id, 'id_usuario');
 			setPerfil(perfilUsuario);
 		} catch (error) {
-			setErrorUsuario(error.message);
+			manejarFallo(error);
 		}
 	}
 
+	const getRol = async () => {
+		try {
+			const rolUsuario = await obtenerUno('roles_usuario', usuario.id, 'id_rol');
+			setRol(rolUsuario.rol);
+
+		} catch (error) {
+			manejarFallo(error);
+		}
+	}
+
+	const obtenerDatosUsuario = async () => {
+		try {
+			await Promise.all([
+				getPerfil(),
+				getRol()
+			]);
+		} catch (error) {
+			manejarFallo(error);
+		}
+	}
+
+	const manejarFallo = (error) => {
+		setErrorUsuario(error.message);
+		setTimeout(() => {
+			setErrorUsuario("");
+		}, 5000);
+	}
+
 	// Efectos
-	useEffect(()=>{
+	useEffect(() => {
 		getSuscripcion((evento, sesion) => {
-			if (sesion){
+			if (sesion) {
 				navegar("/");
 				setSesionIniciada(true);
 				obtenerUsuario();
@@ -119,9 +149,15 @@ const ProveedorSesion = ({children}) => {
 				navegar("/");
 				setSesionIniciada(false);
 				setUsuario(usuarioInicial);
-		}
-	})
+				setPerfil({});
+				setRol('usuario');
+			}
+		})
 	}, []);
+
+	useEffect(() => {
+		obtenerDatosUsuario();
+	}, [usuario.id]);
 
 	// Exportaciones
 	const exportaciones = {
@@ -130,9 +166,12 @@ const ProveedorSesion = ({children}) => {
 		manejarCierreSesion,
 		manejarDatosSesion,
 		obtenerUsuario,
+		obtenerDatosUsuario,
 		username,
 		sesionIniciada,
 		usuario,
+		perfil,
+		rol,
 		datosSesion,
 		errorUsuario,
 		cargando
@@ -148,4 +187,4 @@ const ProveedorSesion = ({children}) => {
 }
 
 export default ProveedorSesion
-export {ContextoSesion};
+export { ContextoSesion };

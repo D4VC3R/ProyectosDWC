@@ -7,6 +7,7 @@ import Principal from './../pages/Principal.jsx'
 import Gestion from './../pages/Gestion.jsx'
 import Creacion from '../pages/Creacion.jsx'
 import WrapperProveedores from '../components/WrapperProveedores.jsx'
+import PanelAdmin from '../pages/PanelAdmin.jsx'
 
 const Rutas = () => {
 	return (
@@ -18,6 +19,7 @@ const Rutas = () => {
 					<Route path="/principal" element={<Principal />}></Route>
 					<Route path="/gestion" element={<Gestion />}></Route>
 					<Route path="/creacion" element={<Creacion />}></Route>
+					<Route path="/admin" element={<PanelAdmin />}></Route>
 				</Route>
 				<Route path="*" element={<Error />}></Route>
 			</Routes>
