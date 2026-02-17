@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect, createContext } from 'react';
 import useSupabaseCRUD from '../hooks/useSupabaseCRUD';
+import useSesionContext from '../hooks/useSesionContext';
 
 const ContextoListas = createContext();
 
@@ -21,12 +22,25 @@ const ProveedorListas = ({ children }) => {
 	const [listaParaEliminar, setListaParaEliminar] = useState(null);
 
 	const { cargando, obtenerUno, obtenerTodo, obtenerRelacionados, insertar, actualizar, eliminar } = useSupabaseCRUD();
+	const {usuario, isAdmin} = useSesionContext();
 
 	// Funciones de lectura
 	const getListas = async () => {
 		try {
+			if (isAdmin()) {
+				const lists = await obtenerTodo('listas_compra');
+				setListas(lists);
+			}
+		} catch (error) {
+			setErrorLista(error.message);
+		}
+	}
+
+
+	const getListasPropias = async () => {
+		try {
 			// Desde Supabase se encarga de obtener solamente las que haya creado el usuario con sesión activa.
-			const lists = await obtenerTodo('listas_compra');
+			const lists = await obtenerUno('listas_compra', usuario.id, 'id_propietario');
 			setListas(lists);
 		} catch (error) {
 			setErrorLista(error.message);
@@ -64,7 +78,7 @@ const ProveedorListas = ({ children }) => {
 			await insertar('listas_compra', listaActual);
 			manejarExito('crear');
 			limpiarDatosLista(); // Limpiar el formulario después de crear la lista.
-			await getListas(); // Actualizar el listado
+			await getListasPropias(); // Actualizar el listado
 			return true;
 		} catch (error) {
 			manejarFallo(error);
@@ -77,7 +91,7 @@ const ProveedorListas = ({ children }) => {
 		try {
 			await eliminar('listas_compra', idLista);
 			manejarExito('eliminar');
-			await getListas(); // Recargo las listas tras eliminar una porque no he configurado una suscripción a la tabla 'listas_compra'.
+			await getListasPropias(); // Recargo las listas tras eliminar una porque no he configurado una suscripción a la tabla 'listas_compra'.
 			return true;
 		} catch (error) {
 			manejarFallo(error);
@@ -237,12 +251,13 @@ const ProveedorListas = ({ children }) => {
 	// Esta vez no he hecho la suscripción a la tabla porque no hay una acción que repita siempre tras un cambio como ocurre con el listado de productos.
 	// Tendría que hacer una suscripción distinta según la acción y no parece que merezca la pena, mejor ejecuto la función que necesite en cada caso.
 	useEffect(() => {
-		getListas();
+		getListasPropias();
 	}, []);
 
 
 	const exportaciones = {
-		getListas,
+		getListas, 
+		getListasPropias,
 		getLista,
 		getProductosEnLista,
 		cargarListaParaMostrar,

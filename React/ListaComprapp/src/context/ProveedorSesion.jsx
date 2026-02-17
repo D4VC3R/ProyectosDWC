@@ -23,9 +23,6 @@ const ProveedorSesion = ({ children }) => {
 	const [usuario, setUsuario] = useState(usuarioInicial);
 	const [errorUsuario, setErrorUsuario] = useState(errorUsuarioInicial);
 	const [sesionIniciada, setSesionIniciada] = useState(sesionIniciadaInicial);
-	const [username, setUsername] = useState("");
-	const [perfil, setPerfil] = useState({});
-	const [rol, setRol] = useState('usuario');
 
 	// Hooks
 	const { cargando, crearCuenta, iniciarSesion, cerrarSesion, getUsuario, getSuscripcion } = useSupabaseAUTH();
@@ -77,18 +74,10 @@ const ProveedorSesion = ({ children }) => {
 				throw new Error("No se puede recuperar la información de usuario.");
 			}
 			setUsuario(user);
+			await obtenerDatosUsuario(user.id);
 			setErrorUsuario(errorUsuarioInicial);
 		} catch (error) {
 			setErrorUsuario(error.message);
-		}
-	}
-
-	const obtenerUsername = async () => {
-		try {
-			const { user } = await getUsuario();
-			setUsername(user?.user_metadata?.display_name.toUpperCase());
-		} catch (error) {
-			setErrorUsuario("No se pudo recuperar el nombre de usuario: " + error.message);
 		}
 	}
 
@@ -100,30 +89,39 @@ const ProveedorSesion = ({ children }) => {
 		});
 	}
 
-	const getPerfil = async () => {
+	const getPerfil = async (id) => {
 		try {
-			const perfilUsuario = await obtenerUno('perfil_usuario', usuario.id, 'id_usuario');
-			setPerfil(perfilUsuario);
+			const perfilUsuario = await obtenerUno('perfil_usuario', id, 'id');
+			const { avatar, nombre, biografia } = perfilUsuario[0];
+			setUsuario(usuario => ({
+				...usuario,
+				avatar,
+				nombre,
+				biografia
+			}));
 		} catch (error) {
 			manejarFallo(error);
 		}
 	}
 
-	const getRol = async () => {
+	const getRol = async (id) => {
 		try {
-			const rolUsuario = await obtenerUno('roles_usuario', usuario.id, 'id_rol');
-			setRol(rolUsuario.rol);
-
+			const rolUsuario = await obtenerUno('roles_usuario', id, 'id_rol');
+			setUsuario(usuario => ({ ...usuario, rol: rolUsuario[0].rol }));
 		} catch (error) {
 			manejarFallo(error);
 		}
 	}
 
-	const obtenerDatosUsuario = async () => {
+	const isAdmin = () => {
+		return usuario.rol === 'admin';
+	}
+
+	const obtenerDatosUsuario = async (id) => {
 		try {
 			await Promise.all([
-				getPerfil(),
-				getRol()
+				getPerfil(id),
+				getRol(id)
 			]);
 		} catch (error) {
 			manejarFallo(error);
@@ -144,20 +142,14 @@ const ProveedorSesion = ({ children }) => {
 				navegar("/");
 				setSesionIniciada(true);
 				obtenerUsuario();
-				obtenerUsername(); // Podría sacarlo directamente del usuario pero así no accedo a tantas claves.
 			} else {
 				navegar("/");
 				setSesionIniciada(false);
 				setUsuario(usuarioInicial);
-				setPerfil({});
-				setRol('usuario');
 			}
 		})
 	}, []);
 
-	useEffect(() => {
-		obtenerDatosUsuario();
-	}, [usuario.id]);
 
 	// Exportaciones
 	const exportaciones = {
@@ -167,11 +159,9 @@ const ProveedorSesion = ({ children }) => {
 		manejarDatosSesion,
 		obtenerUsuario,
 		obtenerDatosUsuario,
-		username,
+		isAdmin,
 		sesionIniciada,
 		usuario,
-		perfil,
-		rol,
 		datosSesion,
 		errorUsuario,
 		cargando

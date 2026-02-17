@@ -5,6 +5,7 @@ import Lista from './Lista';
 import Cargando from '../common/Cargando';
 import Modal from '../common/Modal';
 
+
 const ListadoListas = () => {
 	const navegar = useNavigate();
 	
@@ -17,6 +18,7 @@ const ListadoListas = () => {
 		confirmarEliminacion,
 		cargarListaParaMostrar
 	} = useListContext();
+
 
 	// La información de los dataset se recibe desde Lista.jsx.
 	const manejarClic = async (e) => {

@@ -5,7 +5,7 @@ import './Inicio.css';
 
 const Inicio = () => {
 	const navegar = useNavigate();
-	const {sesionIniciada, username} = useSesionContext();
+	const {sesionIniciada, usuario} = useSesionContext();
 
 	// Dependiendo de si ha iniciado sesión, el usuario verá unas cosas u otras.
 	return (
@@ -20,7 +20,7 @@ const Inicio = () => {
 
 				) : (
 					<>
-						<p>Bienvenido de nuevo{username && `, ${username}`}, pulsa el botón para ver tus <span className="boton-inicio" onClick={()=>{navegar('/principal')}}>Listas</span></p>
+						<p>Bienvenido de nuevo{usuario.nombre && `, ${usuario.nombre}`}, pulsa el botón para ver tus <span className="boton-inicio" onClick={()=>{navegar('/principal')}}>Listas</span></p>
 
 						<p>O añade productos a la base de datos desde el apartado de <span className="boton-inicio" onClick={()=>{navegar('/creacion')}}>Creación</span></p>
 					</>

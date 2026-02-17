@@ -11,8 +11,8 @@ import CrearLista from '../components/lists/CrearLista'
 
 const Principal = () => {
 
-	const {sesionIniciada, usuario} = useSesionContext();
-	console.log(usuario);
+	const {sesionIniciada} = useSesionContext();
+
 
 	// Booleanos para mostrar y ocular sus respectivos componentes.
 	const [mostrarLista, setMostrarLista] = useState(true);

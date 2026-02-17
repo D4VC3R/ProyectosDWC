@@ -5,12 +5,12 @@ const useSupabaseCRUD = () => {
   const { cargando, error, solicitar } = useSupabase();
 
   // Funciones para CRUD, no las hago asíncronas porque todas dependen de solicitar(), que ya lo es.
-  const obtenerTodo = (tabla) => {
-    return solicitar(sb.from(tabla).select("*"));
+  const obtenerTodo = async (tabla) => {
+    return await solicitar(sb.from(tabla).select("*"));
   };
 
-  const obtenerUno = (tabla, id, campo="id") => {
-    return solicitar(sb.from(tabla).select("*").eq(campo, id));
+  const obtenerUno = async (tabla, id, campo="id") => {
+    return await solicitar(sb.from(tabla).select("*").eq(campo, id));
   };
 
   const filtrarILike = (tabla, columna, valor) => {
