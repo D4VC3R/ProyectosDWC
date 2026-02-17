@@ -8,6 +8,7 @@ const ProveedorUsuarios = ({ children }) => {
 
 	const [listaUsuarios, setListaUsuarios] = useState([]);
 	const [errorUsuarios, setErrorUsuarios] = useState('');
+	const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
 
 	const { obtenerTodo, obtenerUno, cargando } = useSupabaseCRUD();
 	const { isAdmin } = useSesionContext();
@@ -43,6 +44,12 @@ const ProveedorUsuarios = ({ children }) => {
 		}
 	}
 
+	const obtenerUsuarioPorId = (id) => {
+		const usuario = listaUsuarios.find(u => u.id === id);
+		setUsuarioSeleccionado(usuario);
+		return usuario;
+	}
+
 
 	useEffect(() => {
 		isAdmin() && obtenerUsuarios();
@@ -50,8 +57,10 @@ const ProveedorUsuarios = ({ children }) => {
 
 	const exportaciones = {
 		listaUsuarios,
+		usuarioSeleccionado,
 		cargando,
-		errorUsuarios
+		errorUsuarios,
+		obtenerUsuarioPorId
 	}
 
 	return (

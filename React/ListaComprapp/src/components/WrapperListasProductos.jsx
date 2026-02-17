@@ -3,7 +3,7 @@ import ProveedorProductos from '../context/ProveedorProductos'
 import { Outlet } from 'react-router-dom'
 import ProveedorListas from '../context/ProveedorListas'
 
-const WrapperProveedores = () => {
+const WrapperListasProductos = () => {
 	return (
 		<>
 			<ProveedorListas>
@@ -15,4 +15,4 @@ const WrapperProveedores = () => {
 	)
 }
 
-export default WrapperProveedores
+export default WrapperListasProductos

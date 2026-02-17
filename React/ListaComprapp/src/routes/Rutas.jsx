@@ -6,9 +6,10 @@ import Error from './../pages/Error.jsx'
 import Principal from './../pages/Principal.jsx'
 import Gestion from './../pages/Gestion.jsx'
 import Creacion from '../pages/Creacion.jsx'
-import WrapperProveedores from '../components/WrapperProveedores.jsx'
+import WrapperListasProductos from '../components/WrapperListasProductos.jsx'
 import PanelAdmin from '../pages/PanelAdmin.jsx'
-import ProveedorUsuarios from '../context/ProveedorUsuarios.jsx'
+import WrapperUsuarios from '../components/WrapperUsuarios.jsx'
+import DetallesUser from '../components/users/DetallesUser.jsx'
 
 const Rutas = () => {
 	return (
@@ -16,18 +17,14 @@ const Rutas = () => {
 			<Routes>
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/" element={<Inicio />}></Route>
-				<Route element={<WrapperProveedores />}>
+				<Route element={<WrapperListasProductos />}>
 					<Route path="/principal" element={<Principal />}></Route>
 					<Route path="/gestion" element={<Gestion />}></Route>
 					<Route path="/creacion" element={<Creacion />}></Route>
-					<Route
-						path="/admin"
-						element={
-							<ProveedorUsuarios>
-								<PanelAdmin />
-							</ProveedorUsuarios>
-						}
-					></Route>
+					<Route element ={<WrapperUsuarios />}>
+						<Route path="/admin" element={<PanelAdmin />}></Route>
+						<Route path="/admin/:id" element={<DetallesUser />}></Route>
+					</Route>
 				</Route>
 				<Route path="*" element={<Error />}></Route>
 			</Routes>
