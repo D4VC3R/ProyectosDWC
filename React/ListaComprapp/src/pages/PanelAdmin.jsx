@@ -4,6 +4,7 @@ import ListadoListas from '../components/lists/ListadoListas';
 import ListadoProductos from '../components/products/ListadoProductos';
 import useListContext from '../hooks/useListContext';
 import ListadoUsers from '../components/users/ListadoUsers';
+import './PanelAdmin.css';
 
 const PanelAdmin = () => {
 	// Se listarán todos los usuarios en formato tarjeta incluyendo nombre de usuario + lista. Al pinchar la lista, se visualizan los productos y resumen sin opciones de crud.
