@@ -22,13 +22,12 @@ const ListadoUsers = () => {
     setMostrarDetalles(false);
   };
 
-  if (mostrarDetalles) {
-    return <DetallesUser onVolver={volverAlListado} />;
-  }
-
   return (
     <>
-      {cargando ? <Cargando /> :
+      {cargando ? <Cargando /> 
+      :
+      mostrarDetalles ? <DetallesUser volver={volverAlListado} /> 
+      :
         <div className='listado-usuarios' onClick={manejarClic}>
           {listaUsuarios.length > 0 ?
             listaUsuarios.map((usuario) =>

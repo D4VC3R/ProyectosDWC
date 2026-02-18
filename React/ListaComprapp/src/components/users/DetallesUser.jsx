@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import useAdminContext from '../../hooks/useAdminContext'
 import Cargando from '../common/Cargando'
 import './DetallesUser.css'
@@ -6,7 +6,7 @@ import { formatearFecha } from '../../libraries/utilidades'
 import useListContext from '../../hooks/useListContext'
 import ListadoListas from '../lists/ListadoListas'
 
-const DetallesUser = ({ onVolver }) => {
+const DetallesUser = ({ volver }) => {
   const { usuarioSeleccionado, obtenerListasDelUsuario, actualizarRol, errorAdmin } = useAdminContext();
   const {listas} = useListContext();
 
@@ -25,7 +25,7 @@ const DetallesUser = ({ onVolver }) => {
 
   return (
     <div className="usuario-detalle">
-      <button onClick={onVolver} className="btn-volver">
+      <button onClick={volver} className="btn-volver">
         ← Volver al listado
       </button>
 
