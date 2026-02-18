@@ -8,7 +8,7 @@ import Gestion from './../pages/Gestion.jsx'
 import Creacion from '../pages/Creacion.jsx'
 import WrapperListasProductos from '../components/WrapperListasProductos.jsx'
 import PanelAdmin from '../pages/PanelAdmin.jsx'
-import WrapperUsuarios from '../components/WrapperUsuarios.jsx'
+import WrapperAdmin from '../components/WrapperAdmin.jsx'
 import DetallesUser from '../components/users/DetallesUser.jsx'
 
 const Rutas = () => {
@@ -21,7 +21,7 @@ const Rutas = () => {
 					<Route path="/principal" element={<Principal />}></Route>
 					<Route path="/gestion" element={<Gestion />}></Route>
 					<Route path="/creacion" element={<Creacion />}></Route>
-					<Route element ={<WrapperUsuarios />}>
+					<Route element ={<WrapperAdmin />}>
 						<Route path="/admin" element={<PanelAdmin />}></Route>
 						<Route path="/admin/:id" element={<DetallesUser />}></Route>
 					</Route>

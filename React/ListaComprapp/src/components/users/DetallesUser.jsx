@@ -30,7 +30,7 @@ const DetallesUser = ({ volver }) => {
       </button>
 
       <div className="grid-container">
-        {/* Columna izquierda - Información del usuario */}
+
         <div className="columna-usuario">
           <div className="usuario-card">
             <div className="usuario-header">

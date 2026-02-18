@@ -1,15 +1,15 @@
 import React from 'react'
-import ProveedorUsuarios from '../context/ProveedorAdmin'
+import ProveedorAdmin from '../context/ProveedorAdmin'
 import { Outlet } from 'react-router-dom'
 
-const WrapperUsuarios = () => {
+const WrapperAdmin = () => {
 	return (
 		<>
-			<ProveedorUsuarios>
+			<ProveedorAdmin>
 				<Outlet />
-			</ProveedorUsuarios>
+			</ProveedorAdmin>
 		</>
 	)
 }
 
-export default WrapperUsuarios
+export default WrapperAdmin
