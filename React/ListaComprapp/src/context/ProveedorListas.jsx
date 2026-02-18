@@ -251,7 +251,7 @@ const ProveedorListas = ({ children }) => {
 	// Esta vez no he hecho la suscripción a la tabla porque no hay una acción que repita siempre tras un cambio como ocurre con el listado de productos.
 	// Tendría que hacer una suscripción distinta según la acción y no parece que merezca la pena, mejor ejecuto la función que necesite en cada caso.
 	useEffect(() => {
-		getListasPropias();
+		usuario.id && getListasPropias();
 	}, [usuario.id]);
 
 

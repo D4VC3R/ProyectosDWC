@@ -3,11 +3,11 @@ import useSesionContext from '../hooks/useSesionContext'
 import useListContext from '../hooks/useListContext'
 import ListadoListas from '../components/lists/ListadoListas'
 import { formatearFecha } from '../libraries/utilidades.js'
-import '../components/users/DetallesUser.css'
+import './PerfilUsuario.css'
 
 const PerfilUsuario = () => {
 
-	const { manejarDatosSesion, usuario, isAdmin } = useSesionContext();
+	const { usuario, actualizarUsuario } = useSesionContext();
 	const { listas } = useListContext();
 
 	const [usuarioEditado, setUsuarioEditado] = useState(usuario);
@@ -22,11 +22,25 @@ const PerfilUsuario = () => {
 	}
 
 	const manejarClic = (e) => {
-		e.target.tagName === "INPUT" && setEditando(true);
-		e.target.tagName === "DIV" && setEditando(false);
+		e.target.tagName === "H3" && setEditando(true);
+		editando === true && e.target.tagName !== "TEXTAREA" && e.target.tagName !== "INPUT" && setEditando(false);
 	}
 
-	// Se mostrará el avatar, nombre y biografia junto con un boton para editar los campos.
+	const hayCambios = () => {
+		return (
+			usuario?.nombre !== usuarioEditado?.nombre.trim() ||
+			usuario?.avatar !== usuarioEditado?.avatar ||
+			usuario?.biografia !== usuarioEditado?.biografia
+		);
+	}
+
+	useEffect(() => {
+		if (!editando && hayCambios()) {
+			console.log("hay cambios")
+			actualizarUsuario(usuarioEditado);
+		}
+	}, [editando])
+
 	return (
 		<div className="usuario-detalle" onClick={((e) => { manejarClic(e) })}>
 			<div className="grid-container">
@@ -60,7 +74,7 @@ const PerfilUsuario = () => {
 									value={usuarioEditado.nombre}
 									onChange={manejarDatosUsuario}
 									className="input-edicion-nombre"
-									readonly={!editando}
+									disabled={!editando}
 								/>
 							</div>
 
@@ -73,7 +87,7 @@ const PerfilUsuario = () => {
 									onChange={manejarDatosUsuario}
 									className="input-edicion"
 									placeholder="URL de tu avatar"
-									readonly={!editando}
+									disabled={!editando}
 								/>
 							</div>
 
@@ -86,7 +100,7 @@ const PerfilUsuario = () => {
 									className="textarea-edicion"
 									rows="4"
 									placeholder="Cuéntate algo..."
-									readonly={!editando}
+									disabled={!editando}
 								/>
 							</div>
 						</form>

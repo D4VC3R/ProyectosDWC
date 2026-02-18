@@ -28,7 +28,7 @@ const ProveedorSesion = ({ children }) => {
 
 	// Hooks
 	const { cargando, crearCuenta, iniciarSesion, cerrarSesion, getUsuario, getSuscripcion } = useSupabaseAUTH();
-	const { obtenerUno } = useSupabaseCRUD();
+	const { obtenerUno, actualizar } = useSupabaseCRUD();
 
 	// Funciones
 	const manejarCrearCuenta = async () => {
@@ -135,7 +135,8 @@ const ProveedorSesion = ({ children }) => {
 	const actualizarUsuario = async (usuarioEditado) => {
 		try {
 			const datos = {nombre: usuarioEditado.nombre, biografia: usuarioEditado.biografia, avatar: usuarioEditado.avatar};
-			await actualizar('perfiles_usuario', 'id', usuario.id, datos);
+			const resultado = await actualizar('perfil_usuario', 'id', usuario.id, datos);
+			resultado && setUsuario(user => ({...user, ...datos}));
 		} catch (error) {
 			manejarFallo(error);
 		}
