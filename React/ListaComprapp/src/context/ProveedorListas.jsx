@@ -41,6 +41,7 @@ const ProveedorListas = ({ children }) => {
 			// Desde Supabase se encarga de obtener solamente las que haya creado el usuario con sesión activa.
 			const lists = await obtenerUno('listas_compra', id, 'id_propietario');
 			setListas(lists);
+			return lists;
 		} catch (error) {
 			setErrorLista(error.message);
 		}
@@ -145,7 +146,7 @@ const ProveedorListas = ({ children }) => {
 				await rmProducto(itemId);
 				return true;
 			}
-			await actualizar('items_lista', itemId, { cantidad: nuevaCantidad });
+			await actualizar('items_lista', 'id', itemId, { cantidad: nuevaCantidad });
 			await getProductosEnLista(listaActual.id);
 			return true;
 		} catch (error) {

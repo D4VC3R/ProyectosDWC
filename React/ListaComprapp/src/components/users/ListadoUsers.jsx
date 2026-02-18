@@ -1,13 +1,13 @@
 import React from 'react'
 import { useState } from 'react';
-import useUsersContext from '../../hooks/useUsersContext'
+import useAdminContext from '../../hooks/useAdminContext'
 import Cargando from '../common/Cargando';
 import DetallesUser from './DetallesUser';
 import User from './User';
 import './ListadoUsers.css'
 
 const ListadoUsers = () => {
-  const { listaUsuarios, cargando, obtenerUsuarioPorId } = useUsersContext();
+  const { listaUsuarios, cargando, obtenerUsuarioPorId } = useAdminContext();
   const [mostrarDetalles, setMostrarDetalles] = useState(false);
 
   const manejarClic = (e) => {

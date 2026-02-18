@@ -5,8 +5,8 @@ const useSupabaseCRUD = () => {
   const { cargando, error, solicitar } = useSupabase();
 
   // Funciones para CRUD, no las hago asíncronas porque todas dependen de solicitar(), que ya lo es.
-  const obtenerTodo = async (tabla) => {
-    return await solicitar(sb.from(tabla).select("*"));
+  const obtenerTodo = async (tabla, columnas = "*") => {
+    return await solicitar(sb.from(tabla).select(columnas));
   };
 
   const obtenerUno = async (tabla, id, campo="id") => {
@@ -31,8 +31,8 @@ const useSupabaseCRUD = () => {
     return solicitar(sb.from(tabla).insert(datos).select());
   };
 
-  const actualizar = (tabla, id, datos) => {
-    return solicitar(sb.from(tabla).update(datos).eq("id", id).select());
+  const actualizar = (tabla, campo, valor, datos) => {
+    return solicitar(sb.from(tabla).update(datos).eq(campo, valor).select());
   };
 
   const eliminar = (tabla, id) => {

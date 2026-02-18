@@ -1,4 +1,4 @@
-/* Estilos generales del componente */
+
 .usuario-detalle {
   max-width: 1400px;
   margin: 0 auto;
@@ -6,7 +6,7 @@
 }
 
 .btn-volver {
-  background-color: #f0f0f0;
+  background-color: #45a049;
   border: none;
   padding: 10px 20px;
   border-radius: 6px;
@@ -17,10 +17,9 @@
 }
 
 .btn-volver:hover {
-  background-color: #e0e0e0;
+  background-color: #4CAF50;
 }
 
-/* Grid de dos columnas */
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
@@ -34,7 +33,7 @@
   }
 }
 
-/* Columna izquierda - Usuario */
+
 .columna-usuario {
   display: flex;
   flex-direction: column;
@@ -45,9 +44,6 @@
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  height: fit-content;
-  position: sticky;
-  top: 20px;
 }
 
 .usuario-header {
@@ -120,12 +116,7 @@
   margin-right: 8px;
 }
 
-/* Campo de rol editable */
-.campo-rol {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+
 
 .select-rol {
   padding: 8px 12px;
@@ -135,7 +126,7 @@
   font-weight: 600;
   cursor: pointer;
   background-color: white;
-  color: #333;
+  color: #333333;
   transition: all 0.2s ease;
   outline: none;
 }
@@ -187,161 +178,4 @@
   display: flex;
   align-items: center;
   gap: 10px;
-}
-
-.listas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.lista-card {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  border-radius: 10px;
-  padding: 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.lista-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.lista-icono {
-  font-size: 3em;
-  margin-bottom: 10px;
-}
-
-.lista-card h3 {
-  color: #333;
-  margin: 10px 0;
-  font-size: 1.2em;
-}
-
-.lista-fecha {
-  color: #666;
-  font-size: 0.9em;
-  margin: 5px 0;
-}
-
-.sin-listas {
-  text-align: center;
-  padding: 60px 20px;
-  color: #999;
-}
-
-.sin-listas p {
-  font-size: 1.1em;
-  margin: 0;
-}
-
-/* Modal para ver detalles de la lista */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  animation: fadeIn 0.2s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.modal-content {
-  background: white;
-  border-radius: 12px;
-  max-width: 500px;
-  width: 90%;
-  max-height: 80vh;
-  overflow-y: auto;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 30px;
-  border-bottom: 2px solid #f0f0f0;
-}
-
-.modal-header h2 {
-  margin: 0;
-  color: #333;
-  font-size: 1.5em;
-}
-
-.btn-cerrar {
-  background: none;
-  border: none;
-  font-size: 2em;
-  color: #999;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-}
-
-.btn-cerrar:hover {
-  background-color: #f0f0f0;
-  color: #333;
-}
-
-.modal-body {
-  padding: 30px;
-}
-
-.modal-body p {
-  margin: 15px 0;
-  font-size: 1em;
-  color: #555;
-}
-
-.modal-body p strong {
-  color: #333;
-  margin-right: 8px;
-}
-
-.info-nota {
-  margin-top: 20px;
-  padding: 12px;
-  background-color: #fff3cd;
-  border-left: 4px solid #ffc107;
-  border-radius: 4px;
-}
-
-.info-nota small {
-  color: #856404;
-  font-size: 0.9em;
 }

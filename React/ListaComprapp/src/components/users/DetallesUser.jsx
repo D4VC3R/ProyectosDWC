@@ -1,39 +1,27 @@
 import React, { useState, useEffect } from 'react'
-import useUsersContext from '../../hooks/useUsersContext'
+import useAdminContext from '../../hooks/useAdminContext'
 import Cargando from '../common/Cargando'
 import './DetallesUser.css'
 import { formatearFecha } from '../../libraries/utilidades'
+import useListContext from '../../hooks/useListContext'
+import ListadoListas from '../lists/ListadoListas'
 
 const DetallesUser = ({ onVolver }) => {
-  const { usuarioSeleccionado, listasUsuario, obtenerListasDelUsuario } = useUsersContext();
-  const [listaSeleccionada, setListaSeleccionada] = useState(null);
-  const [rolEditado, setRolEditado] = useState(usuarioSeleccionado?.rol || 'user');
+  const { usuarioSeleccionado, obtenerListasDelUsuario, actualizarRol, errorAdmin } = useAdminContext();
+  const {listas} = useListContext();
+
 
   useEffect(() => {
     if (usuarioSeleccionado) {
       obtenerListasDelUsuario();
-      setRolEditado(usuarioSeleccionado.rol);
     }
-  }, [usuarioSeleccionado]);
+  }, []);
 
-  const handleCambioRol = (e) => {
+  const handleCambioRol = async (e) => {
     const nuevoRol = e.target.value;
-    setRolEditado(nuevoRol);
-    // Aquí puedes agregar la lógica para guardar en el backend
-    console.log('Nuevo rol:', nuevoRol);
+    await actualizarRol(nuevoRol);
   };
 
-  const handleClickLista = (lista) => {
-    setListaSeleccionada(lista);
-  };
-
-  const cerrarDetallesLista = () => {
-    setListaSeleccionada(null);
-  };
-
-  if (!usuarioSeleccionado) {
-    return <Cargando />;
-  }
 
   return (
     <div className="usuario-detalle">
@@ -53,28 +41,26 @@ const DetallesUser = ({ onVolver }) => {
               />
               <div className="usuario-info-principal">
                 <h1>{usuarioSeleccionado.nombre}</h1>
-                <span className={`rol-badge ${rolEditado}`}>
-                  {rolEditado}
+                <span className={`rol-badge ${usuarioSeleccionado.roles_usuario.rol}`}>
+                  {usuarioSeleccionado.roles_usuario.rol}
                 </span>
               </div>
             </div>
 
             <div className="info-seccion">
-              <h3>Detalles de Cuenta</h3>
-              <p><strong>Email:</strong> {usuarioSeleccionado.email}</p>
-              
+              <h3>Detalles</h3>
               <p className="campo-rol">
                 <strong>Rol:</strong>
                 <select 
-                  value={rolEditado} 
+                  value={usuarioSeleccionado.roles_usuario.rol} 
                   onChange={handleCambioRol}
                   className="select-rol"
                 >
-                  <option value="user">Usuario</option>
+                  <option value="usuario">Usuario</option>
                   <option value="admin">Admin</option>
                 </select>
               </p>
-
+              <p><strong>Email:</strong> {usuarioSeleccionado.roles_usuario.email}</p>
               <p><strong>Fecha de registro:</strong> {formatearFecha(usuarioSeleccionado.created_at)}</p>
 
               {usuarioSeleccionado.biografia && (
@@ -86,54 +72,12 @@ const DetallesUser = ({ onVolver }) => {
             </div>
           </div>
         </div>
-
-        {/* Columna derecha - Listas del usuario */}
         <div className="columna-listas">
-          <h2>Listas de Compra ({listasUsuario?.length || 0})</h2>
-          
-          {listasUsuario && listasUsuario.length > 0 ? (
-            <div className="listas-grid">
-              {listasUsuario.map((lista) => (
-                <div 
-                  key={lista.id} 
-                  className="lista-card"
-                  onClick={() => handleClickLista(lista)}
-                >
-                  <div className="lista-icono">🛒</div>
-                  <h3>{lista.nombre}</h3>
-                  <p className="lista-fecha">
-                    Creada: {formatearFecha(lista.created_at)}
-                  </p>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="sin-listas">
-              <p>Este usuario no ha creado ninguna lista todavía.</p>
-            </div>
-          )}
+          <h2>Listas de Compra ({listas?.length || 0})</h2>
+          <ListadoListas />
         </div>
       </div>
-
-      {/* Modal para ver detalles de la lista */}
-      {listaSeleccionada && (
-        <div className="modal-overlay" onClick={cerrarDetallesLista}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h2>{listaSeleccionada.nombre}</h2>
-              <button onClick={cerrarDetallesLista} className="btn-cerrar">✕</button>
-            </div>
-            <div className="modal-body">
-              <p><strong>ID:</strong> {listaSeleccionada.id}</p>
-              <p><strong>Fecha de creación:</strong> {formatearFecha(listaSeleccionada.created_at)}</p>
-              <p><strong>Propietario:</strong> {usuarioSeleccionado.nombre}</p>
-              <div className="info-nota">
-                <small>📌 Vista de solo lectura</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {errorAdmin && <div className="mensaje-error">{errorAdmin}</div>}
     </div>
   );
 };

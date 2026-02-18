@@ -11,13 +11,13 @@ const User = ({ usuario }) => {
             data-usuario-id={usuarioId}
         >
             <img
-                src={usuario.avatar || avatarDefecto}
+                src={usuario.avatar}
                 alt={usuario.nombre}
                 className="avatar-usuario"
             />
             <h3>{usuario.nombre || sinDatos}</h3>
-            <span className={`rol-badge ${usuario.rol}`}>
-                {usuario.rol}
+            <span className={`rol-badge ${usuario.roles_usuario.rol}`}>
+                {usuario.roles_usuario.rol}
             </span>
         </div>
     )

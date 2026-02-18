@@ -38,13 +38,13 @@ const ListadoListas = () => {
 
 	return (
 		<>
-			{cargando && <Cargando />}
+			{cargando ? <Cargando />:
 			<div className='listado-compra' onClick={manejarClic}>
 				{listas.length > 0 ? listas.map((lista) => {
 						return <Lista key={lista.id} lista={lista} />
 					})
-					:<p>Todavía no has creado ninguna lista.</p>}
-			</div>
+					:<p>Sin listas todavía.</p>}
+			</div>}
 
 			<Modal
 				isOpen={modalOpen}

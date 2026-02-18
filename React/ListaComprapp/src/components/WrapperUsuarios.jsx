@@ -1,5 +1,5 @@
 import React from 'react'
-import ProveedorUsuarios from '../context/ProveedorUsuarios'
+import ProveedorUsuarios from '../context/ProveedorAdmin'
 import { Outlet } from 'react-router-dom'
 
 const WrapperUsuarios = () => {
