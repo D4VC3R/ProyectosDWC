@@ -11,6 +11,7 @@ const InfoUsuario = () => {
 		<> {sesionIniciada &&
 			<div className="info_usuario">
 				<p>Bienvenido{usuario && usuario.nombre && `, ${usuario.nombre}`} </p>
+				<span>Ver mi perfil</span>
 				<CerrarSesion />
 			</div>
 		}

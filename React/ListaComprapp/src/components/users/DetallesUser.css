@@ -139,13 +139,19 @@
   box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
 }
 
-/* Biografía */
 .biografia-seccion {
   margin-top: 15px;
   padding: 15px;
   background-color: #f9f9f9;
   border-radius: 8px;
   border-left: 4px solid #4CAF50;
+}
+
+.biografia-seccion textarea{
+  padding: 5px;
+  border-radius: 8px;
+  border-left: 4px solid #4CAF50;
+  width: 100%;
 }
 
 .biografia-seccion strong {

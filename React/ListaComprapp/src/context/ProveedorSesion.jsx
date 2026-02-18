@@ -94,13 +94,14 @@ const ProveedorSesion = ({ children }) => {
 	const getPerfil = async (id) => {
 		try {
 			const perfilUsuario = await obtenerUno('perfil_usuario', id, 'id');
-			const { avatar, nombre, biografia } = perfilUsuario[0];
+			const { avatar, nombre, biografia, created_at } = perfilUsuario[0];
 			setUsuario(usuario => ({
 				...usuario,
 				id,
 				avatar,
 				nombre,
-				biografia
+				biografia,
+				created_at,
 			}));
 		} catch (error) {
 			manejarFallo(error);
@@ -110,14 +111,14 @@ const ProveedorSesion = ({ children }) => {
 	const getRol = async (id) => {
 		try {
 			const rolUsuario = await obtenerUno('roles_usuario', id, 'id_rol');
-			setUsuario(usuario => ({ ...usuario, rol: rolUsuario[0].rol }));
+			setUsuario(usuario => ({ ...usuario, roles_usuario: rolUsuario[0] }));
 		} catch (error) {
 			manejarFallo(error);
 		}
 	}
 
 	const isAdmin = () => {
-		return usuario.rol === 'admin';
+		return usuario?.roles_usuario?.rol === 'admin';
 	}
 
 	const obtenerDatosUsuario = async (id) => {
@@ -126,6 +127,15 @@ const ProveedorSesion = ({ children }) => {
 				getPerfil(id),
 				getRol(id)
 			]);
+		} catch (error) {
+			manejarFallo(error);
+		}
+	}
+
+	const actualizarUsuario = async (usuarioEditado) => {
+		try {
+			const datos = {nombre: usuarioEditado.nombre, biografia: usuarioEditado.biografia, avatar: usuarioEditado.avatar};
+			await actualizar('perfiles_usuario', 'id', usuario.id, datos);
 		} catch (error) {
 			manejarFallo(error);
 		}
@@ -142,8 +152,8 @@ const ProveedorSesion = ({ children }) => {
 	useEffect(() => {
 		getSuscripcion((evento, sesion) => {
 			if (sesion) {
-				navegar("/");
 				obtenerUsuario();
+				navegar("/");
 				setSesionIniciada(true);
 			} else {
 				navegar("/");
@@ -160,6 +170,7 @@ const ProveedorSesion = ({ children }) => {
 		manejarInicioSesion,
 		manejarCierreSesion,
 		manejarDatosSesion,
+		actualizarUsuario,
 		obtenerUsuario,
 		obtenerDatosUsuario,
 		isAdmin,

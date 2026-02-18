@@ -14,15 +14,18 @@ const Cabecera = () => {
 		e.preventDefault();
 		e.target.tagName === "H1" && navegar('/');
 		e.target.tagName === "svg" && navegar('/');
+		e.target.tagName === "SPAN" && navegar('/miperfil');
 	}
 
 	return (
 		<>
-			<div className="contenedor_cabecera" onClick={((e)=>{irAInicio(e)})}>
+			<div className="contenedor_cabecera" onClick={((e) => { irAInicio(e) })}>
 				<LogoCarrito size='72' />
 				<h1>Mi Compra</h1>
 				{sesionIniciada &&
-					<InfoUsuario />
+					<div className="opciones-user">
+						<InfoUsuario />
+					</div>
 				}
 			</div>
 

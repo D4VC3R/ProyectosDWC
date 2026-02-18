@@ -10,7 +10,6 @@ const DetallesUser = ({ volver }) => {
   const { usuarioSeleccionado, obtenerListasDelUsuario, actualizarRol, errorAdmin } = useAdminContext();
   const {listas} = useListContext();
 
-
   useEffect(() => {
     if (usuarioSeleccionado) {
       obtenerListasDelUsuario();
