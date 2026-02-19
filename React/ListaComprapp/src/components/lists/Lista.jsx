@@ -32,7 +32,7 @@ const Lista = ({ lista }) => {
 					</>
 				:
 					<span className="btn-ver-lista" data-action="ver" data-lista-id={listaId} title="Ver lista">
-						👁️
+						Ver
 					</span>
 				}
 			</div>

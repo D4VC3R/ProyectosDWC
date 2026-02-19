@@ -12,11 +12,9 @@ const DetallesUser = () => {
   const {listas} = useListContext();
   const navegar = useNavigate();
 
-  useEffect(() => {
-    if (usuarioSeleccionado) {
+    useEffect(() => {
       obtenerListasDelUsuario();
-    }
-  }, []);
+  }, [usuarioSeleccionado]);
 
   const handleCambioRol = async (e) => {
     const nuevoRol = e.target.value;

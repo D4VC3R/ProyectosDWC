@@ -8,7 +8,7 @@ import './PerfilUsuario.css'
 const PerfilUsuario = () => {
 
 	const { usuario, actualizarUsuario } = useSesionContext();
-	const { listas } = useListContext();
+	const { listas, getListasPropias } = useListContext();
 
 	const [usuarioEditado, setUsuarioEditado] = useState(usuario);
 	const [editando, setEditando] = useState(false);
@@ -36,10 +36,14 @@ const PerfilUsuario = () => {
 
 	useEffect(() => {
 		if (!editando && hayCambios()) {
-			console.log("hay cambios")
 			actualizarUsuario(usuarioEditado);
 		}
 	}, [editando])
+
+	useEffect(()=>{
+		getListasPropias();
+	}, []);
+	
 
 	return (
 		<div className="usuario-detalle" onClick={((e) => { manejarClic(e) })}>

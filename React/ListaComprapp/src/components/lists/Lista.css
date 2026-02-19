@@ -72,4 +72,13 @@
   background-color: #4ba53f;
   color: white;
 }
+.btn-ver-lista {
+  color: #3498db;
+  background-color: #e3f2fd;
+  width:2.5em;
+}
+.btn-ver-lista:hover {
+  background-color: #3498db;
+  color: white; 
+}
   

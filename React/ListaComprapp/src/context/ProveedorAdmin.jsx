@@ -13,7 +13,7 @@ const ProveedorAdmin = ({ children }) => {
 	const [vista, setVista] = useState('usuarios');
 
 	const { obtenerTodo, actualizar, cargando } = useSupabaseCRUD();
-	const {getListasPropias, getListas} = useListContext();
+	const {getListasPropias} = useListContext();
 	const { isAdmin, usuario } = useSesionContext();
 
 
@@ -36,6 +36,10 @@ const ProveedorAdmin = ({ children }) => {
 		const usuario = listaUsuarios.find(u => u.id === id);
 		setUsuarioSeleccionado(usuario);
 		return usuario;
+	}
+
+	const limpiarUsuarioSeleccionado = () => {
+		setUsuarioSeleccionado(null);
 	}
 
 	const obtenerListasDelUsuario = async () => {
@@ -99,7 +103,8 @@ const ProveedorAdmin = ({ children }) => {
 		verListas,
 		obtenerUsuarioPorId,
 		obtenerListasDelUsuario,
-		actualizarRol
+		actualizarRol,
+		limpiarUsuarioSeleccionado
 
 	}
 
