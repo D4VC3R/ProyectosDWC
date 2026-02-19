@@ -11,6 +11,7 @@ import PanelAdmin from '../pages/PanelAdmin.jsx'
 import WrapperAdmin from '../components/WrapperAdmin.jsx'
 import DetallesUser from '../components/users/DetallesUser.jsx'
 import PerfilUsuario from '../pages/PerfilUsuario.jsx'
+import ListaDetalles from '../components/lists/ListaDetalles.jsx'
 
 const Rutas = () => {
 	return (
@@ -21,11 +22,12 @@ const Rutas = () => {
 				<Route element={<WrapperListasProductos />}>
 					<Route path="/principal" element={<Principal />}></Route>
 					<Route path="/gestion" element={<Gestion />}></Route>
-					<Route path="/creacion" element={<Creacion />}></Route>
 					<Route path="/miperfil" element={<PerfilUsuario />}></Route>
 					<Route element ={<WrapperAdmin />}>
 						<Route path="/admin" element={<PanelAdmin />}></Route>
-						<Route path="/admin/:id" element={<DetallesUser />}></Route>
+						<Route path="/admin/detallesLista" element={<ListaDetalles panelAdmin={true} />}></Route>
+						<Route path="/admin/detallesUsuario" element={<DetallesUser />}></Route>
+						<Route path="/admin/creacion" element={<Creacion />}></Route>
 					</Route>
 				</Route>
 				<Route path="*" element={<Error />}></Route>

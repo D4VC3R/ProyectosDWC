@@ -5,21 +5,28 @@ import ListadoProductos from '../components/products/ListadoProductos';
 import useListContext from '../hooks/useListContext';
 import ListadoUsers from '../components/users/ListadoUsers';
 import './PanelAdmin.css';
+import { useEffect } from 'react';
+import useAdminContext from '../hooks/useAdminContext';
 
 const PanelAdmin = () => {
 	// Se listarán todos los usuarios en formato tarjeta incluyendo nombre de usuario + lista. Al pinchar la lista, se visualizan los productos y resumen sin opciones de crud.
-	const [vista, setVista] = useState('usuarios');
+	
 	const { getListas } = useListContext();
+	const {vista, verProductos, verUsuarios, verListas} = useAdminContext();
 
 	const manejarClic = async (e) => {
 		e.preventDefault();
-		e.target.dataset.id === 'productos' && setVista('productos');
-		e.target.dataset.id === 'usuarios' && setVista('usuarios');
+		e.target.dataset.id === 'productos' && verProductos();
+		e.target.dataset.id === 'usuarios' && verUsuarios();
 		if (e.target.dataset.id === 'listas') {
 			await getListas();
-			setVista('listas');
+			verListas();
 		}
 	}
+
+	useEffect(()=>{
+		vista === '' && verUsuarios();
+	}, []);
 
 	return (
 		<>

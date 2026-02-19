@@ -10,8 +10,9 @@ const ItemLista = ({ item }) => {
 	const producto = item.producto; // El producto que contiene el ítem.
 	const sinDatos = "Sin datos.";
 
-	const { rmProducto, updateCantidadProducto, toggleComprado } = useListContext();
+	const { rmProducto, updateCantidadProducto, toggleComprado, soyPropietario } = useListContext();
 	const {isAdmin} = useSesionContext();
+
 
 	// Delegación de eventos.
 	const manejarClic = async (e) => {
@@ -41,7 +42,7 @@ const ItemLista = ({ item }) => {
 					checked={item.comprado}
 					onChange={() => toggleComprado(itemId, item.comprado)}
 					title={item.comprado ? "Marcar como no comprado" : "Marcar como comprado"}
-					disabled={isAdmin}
+					disabled={(isAdmin() && !soyPropietario())}
 				/>
 			</div>
 
@@ -61,7 +62,7 @@ const ItemLista = ({ item }) => {
 				<button
 					className="cantidad-btn"
 					title='Quitar'
-					disabled={item.comprado || isAdmin}
+					disabled={item.comprado || (isAdmin() && !soyPropietario())}
 				>
 					-
 				</button>
@@ -69,7 +70,7 @@ const ItemLista = ({ item }) => {
 				<button
 					className="cantidad-btn"
 					title="Añadir"
-					disabled={item.comprado || isAdmin}
+					disabled={item.comprado || (isAdmin() && !soyPropietario())}
 				>
 					+
 				</button>
@@ -88,7 +89,7 @@ const ItemLista = ({ item }) => {
 				<button
 					className="btn-eliminar-item"
 					title="Eliminar de la lista"
-					disabled={isAdmin}
+					disabled={(isAdmin() && !soyPropietario())}
 				>
 					🗑️
 				</button>

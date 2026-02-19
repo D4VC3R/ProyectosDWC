@@ -22,8 +22,6 @@ const Inicio = () => {
 					<>
 						<p>Bienvenido de nuevo{usuario.nombre && `, ${usuario.nombre}`}, pulsa el botón para ver tus <span className="boton-inicio" onClick={()=>{navegar('/principal')}}>Listas</span></p>
 
-						<p>O añade productos a la base de datos desde el apartado de <span className="boton-inicio" onClick={()=>{navegar('/creacion')}}>Creación</span></p>
-
 						{ isAdmin() && <p>Accede al panel de <span className="boton-inicio" onClick={()=>{navegar('/admin')}}>Administración</span></p>}
 					</>
 				)}

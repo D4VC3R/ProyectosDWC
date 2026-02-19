@@ -37,7 +37,7 @@ const ListadoProductos = ({ mostrarBotonesAgregar = false, editando = false }) =
 		// Si clicamos en editar, nos vamos al formulario y recuperamos los datos del producto.
 		// Navego primero para evitar que se vea el retardo de la carga de datos.
 		if (e.target.dataset.action === 'editar') {
-			navegar('/creacion');
+			navegar('/admin/creacion');
 			const productoId = e.target.dataset.productoId;
 			await cargarProductoParaEditar(productoId);
 		}
@@ -60,6 +60,7 @@ const ListadoProductos = ({ mostrarBotonesAgregar = false, editando = false }) =
 				})
 				:<p>Sin resultados.</p>}
 			</div>
+			{editando && <span className="boton-inicio" onClick={()=>{navegar('/admin/creacion')}}>Nuevo producto</span>}
 			{mensajeExitoLista && <div className="mensaje-exito">{mensajeExitoLista}</div>}
 
 			<Modal

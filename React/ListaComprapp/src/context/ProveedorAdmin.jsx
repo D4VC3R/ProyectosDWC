@@ -10,6 +10,7 @@ const ProveedorAdmin = ({ children }) => {
 	const [listaUsuarios, setListaUsuarios] = useState([]);
 	const [errorAdmin, setErrorAdmin] = useState('');
 	const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
+	const [vista, setVista] = useState('usuarios');
 
 	const { obtenerTodo, actualizar, cargando } = useSupabaseCRUD();
 	const {getListasPropias, getListas} = useListContext();
@@ -78,6 +79,10 @@ const ProveedorAdmin = ({ children }) => {
 		setTimeout(() => setErrorAdmin(''), 2000);
 	}
 
+	const verProductos = () => setVista('productos');
+	const verUsuarios = () => setVista('usuarios');
+	const verListas = () => setVista('listas');
+
 
 	useEffect(() => {
 		isAdmin() && obtenerUsuarios();
@@ -88,6 +93,10 @@ const ProveedorAdmin = ({ children }) => {
 		usuarioSeleccionado,
 		cargando,
 		errorAdmin,
+		vista,
+		verProductos,
+		verUsuarios,
+		verListas,
 		obtenerUsuarioPorId,
 		obtenerListasDelUsuario,
 		actualizarRol

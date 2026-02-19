@@ -27,12 +27,19 @@ const ListadoListas = () => {
 			abrirModalEliminacion(listaId);
 		}
 		
-		// Si clicamos en detalles, nos vamos a la página de gestión y cargamos los datos de la lista que rec.
-		if (e.target.dataset.action === 'detalles') {
+		// Si clicamos en editar, nos vamos a la página de gestión y cargamos los datos de la lista que rec.
+		if (e.target.dataset.action === 'editar') {
 			const listaId = e.target.dataset.listaId;
 			// Navegar después de cargar los datos para evitar que se muestre una lista a la que hayamos accedido previamente.
 			await cargarListaParaMostrar(listaId);
 			navegar('/gestion');
+		}
+
+		if (e.target.dataset.action === 'ver') {
+			const listaId = e.target.dataset.listaId;
+			// Navegar después de cargar los datos para evitar que se muestre una lista a la que hayamos accedido previamente.
+			await cargarListaParaMostrar(listaId);
+			navegar('/admin/detallesLista');
 		}
 	};
 

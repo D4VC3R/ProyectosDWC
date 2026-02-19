@@ -5,10 +5,12 @@ import './DetallesUser.css'
 import { formatearFecha } from '../../libraries/utilidades'
 import useListContext from '../../hooks/useListContext'
 import ListadoListas from '../lists/ListadoListas'
+import { useNavigate } from 'react-router-dom'
 
-const DetallesUser = ({ volver }) => {
+const DetallesUser = () => {
   const { usuarioSeleccionado, obtenerListasDelUsuario, actualizarRol, errorAdmin } = useAdminContext();
   const {listas} = useListContext();
+  const navegar = useNavigate();
 
   useEffect(() => {
     if (usuarioSeleccionado) {
@@ -24,8 +26,8 @@ const DetallesUser = ({ volver }) => {
 
   return (
     <div className="usuario-detalle">
-      <button onClick={volver} className="btn-volver">
-        ← Volver al listado
+      <button onClick={(()=>navegar('/admin'))} className="btn-volver">
+        ← Volver a Usuarios
       </button>
 
       <div className="grid-container">

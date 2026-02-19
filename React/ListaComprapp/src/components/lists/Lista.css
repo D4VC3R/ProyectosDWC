@@ -40,7 +40,8 @@
 }
 
 .btn-eliminar-lista,
-.btn-detalles-lista {
+.btn-editar-lista,
+.btn-ver-lista {
   cursor: pointer;
   font-size: 1.3rem;
   width: 2rem;
@@ -62,12 +63,13 @@
   color: white;
 }
 
-.btn-detalles-lista {
+.btn-editar-lista {
   color: #4ba53f;
   background-color: #e8f5e9;
 }
 
-.btn-detalles-lista:hover {
+.btn-editar-lista:hover {
   background-color: #4ba53f;
   color: white;
 }
+  

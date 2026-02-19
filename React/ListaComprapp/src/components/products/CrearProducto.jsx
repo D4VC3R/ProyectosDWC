@@ -30,7 +30,7 @@ const CrearProducto = () => {
 	// Si cancelamos la edición, limpiamos los datos del producto y volvemos a la página principal.
 	const manejarCancelar = () => {
 		limpiarDatosProducto();
-		navegar('/principal');
+		navegar('/admin');
 	};
 	// Como el formulario es practicamente igual para crear que para editar, utilizamos el booleano 'modoEdicion' para cambiar el texto de la cabecera y del botón.
 	// Si estamos en modo edición, también se añade un botón para cancelar y volver a la página principal sin guardar cambios.
@@ -115,7 +115,7 @@ const CrearProducto = () => {
 						{cargando ? 'Dame un segundo...' : (modoEdicion ? 'Actualizar Producto' : 'Crear Producto')}
 					</span>
 
-					{modoEdicion && <span className="btn-cancelar" disabled={cargando}>Cancelar</span>}
+					{<span className="btn-cancelar" disabled={cargando}>Cancelar</span>}
 				</div>
 
 				{cargando && <Cargando />}

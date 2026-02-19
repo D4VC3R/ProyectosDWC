@@ -159,7 +159,7 @@ const ProveedorListas = ({ children }) => {
 	// Si el producto ya está comprado, lo marcamos como no comprado y viceversa. Después recargamos la lista para mostrar el cambio.
 	const toggleComprado = async (itemId, estadoActual) => {
 		try {
-			await actualizar('items_lista', itemId, { comprado: !estadoActual });
+			await actualizar('items_lista', 'id', itemId, { comprado: !estadoActual });
 			await getProductosEnLista(listaActual.id);
 			return true;
 		} catch (error) {
@@ -246,6 +246,10 @@ const ProveedorListas = ({ children }) => {
 		const UMBRAL_PESO = 4;
 		return calcularPesoTotal() > UMBRAL_PESO;
 	};
+	
+	const soyPropietario = () => {
+		return listaActual.id_propietario === usuario.id;
+	}
 
 	// Cargar listas al montar el componente.
 	// Esta vez no he hecho la suscripción a la tabla porque no hay una acción que repita siempre tras un cambio como ocurre con el listado de productos.
@@ -275,6 +279,7 @@ const ProveedorListas = ({ children }) => {
 		calcularPesoTotal,
 		calcularPrecioTotal,
 		necesitaCoche,
+		soyPropietario,
 		listas,
 		listaActual,
 		items,

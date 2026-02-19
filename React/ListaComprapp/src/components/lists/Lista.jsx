@@ -8,12 +8,11 @@ const Lista = ({ lista }) => {
 	// Los clics se manejan en el componente padre ListadoListas.jsx, desde aquí le pasamos el id de la lista y la acción seleccionada.
 	const listaId = lista.id;
 	const sinDatos = "Sin datos."
-	const {usuario} = useSesionContext();
+	const { isAdmin, usuario } = useSesionContext();
 
 	const soyPropietario = () => {
 		return lista.id_propietario === usuario.id
 	}
-
 
 	return (
 		<div className="lista" data-lista-id={listaId}>
@@ -23,14 +22,19 @@ const Lista = ({ lista }) => {
 			</div>
 			<div className="lista-opciones">
 				{soyPropietario() &&
-				<>
-				<span className="btn-eliminar-lista" data-action="eliminar" data-lista-id={listaId} title="Eliminar lista">
-					X
-				</span>
-				<span className="btn-detalles-lista" data-action="detalles" data-lista-id={listaId} title="Detalles lista">
-					✎
-				</span>
-				</>
+					<>
+						<span className="btn-eliminar-lista" data-action="eliminar" data-lista-id={listaId} title="Eliminar lista">
+							X
+						</span>
+						<span className="btn-editar-lista" data-action="editar" data-lista-id={listaId} title="Editar lista">
+							✎
+						</span>
+					</>
+				}
+				{isAdmin &&
+					<span className="btn-ver-lista" data-action="ver" data-lista-id={listaId} title="Ver lista">
+						👁️
+					</span>
 				}
 			</div>
 

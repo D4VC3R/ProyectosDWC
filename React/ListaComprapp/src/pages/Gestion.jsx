@@ -23,7 +23,7 @@ const Gestion = () => {
 					className="btn-volver" 
 					onClick={manejarVolver}
 				>
-					Volver a listas
+					Ver mis listas
 				</button>
 			</div>
 
