@@ -1,22 +1,46 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
+import useSesionContext from '../../hooks/useSesionContext'
 import './Menu.css'
-import { Link } from 'react-router-dom'
 
-const Menu = ({vertical = false}) => {
+const Menu = () => {
+    const { isAdmin} = useSesionContext()
 
-	return (
-		<>
-		<div className="contenedor_menu">
-      <nav className={`menu_nav ${vertical ? 'menu_vertical' : ''}`}>
-				<ul className='menu_lista'>
-					<Link className='menu_elemento' to='/'>Inicio</Link>
-					<Link className='menu_elemento' to='/principal'>Mis Listas</Link>
-					<Link className='menu_elemento' to='/creacion'>Añadir Productos</Link>
-				</ul>
-			</nav>
-		</div>
-		</>
-	)
+    return (
+        <nav className="menu-navegacion">
+            <NavLink 
+                to="/principal" 
+                className={({ isActive }) => isActive ? 'menu-link active' : 'menu-link'}
+            >
+                Mis Listas
+            </NavLink>
+
+            <NavLink 
+                to="/miperfil" 
+                className={({ isActive }) => isActive ? 'menu-link active' : 'menu-link'}
+            >
+                Mi Perfil
+            </NavLink>
+
+            {isAdmin() && (
+                <>
+                    <NavLink 
+                        to="/admin" 
+                        className={({ isActive }) => isActive ? 'menu-link active' : 'menu-link'}
+                    >
+                        Panel Admin
+                    </NavLink>
+
+                    <NavLink 
+                        to="/admin/creacion" 
+                        className={({ isActive }) => isActive ? 'menu-link active' : 'menu-link'}
+                    >
+                        Crear Producto
+                    </NavLink>
+                </>
+            )}
+        </nav>
+    )
 }
 
 export default Menu

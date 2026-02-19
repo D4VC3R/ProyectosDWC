@@ -21,7 +21,7 @@ const Lista = ({ lista }) => {
 				<small className="lista-created_at">{lista.created_at ? formatearFecha(lista.created_at) : sinDatos}</small>
 			</div>
 			<div className="lista-opciones">
-				{soyPropietario() &&
+				{soyPropietario() ?
 					<>
 						<span className="btn-eliminar-lista" data-action="eliminar" data-lista-id={listaId} title="Eliminar lista">
 							X
@@ -30,8 +30,7 @@ const Lista = ({ lista }) => {
 							✎
 						</span>
 					</>
-				}
-				{isAdmin &&
+				:
 					<span className="btn-ver-lista" data-action="ver" data-lista-id={listaId} title="Ver lista">
 						👁️
 					</span>
