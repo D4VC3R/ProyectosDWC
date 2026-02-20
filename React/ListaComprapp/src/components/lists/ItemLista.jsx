@@ -38,7 +38,7 @@ const ItemLista = ({ item }) => {
         <div className={`item-lista ${item.comprado ? 'comprado' : ''}`} data-item-id={itemId} onClick={((e) => { manejarClic(e) })}>
             
             <div className="item-checkbox">
-                {!isAdmin() &&
+                {soyPropietario() &&
                 <input
                     type="checkbox"
                     checked={item.comprado}
@@ -67,7 +67,7 @@ const ItemLista = ({ item }) => {
                 </div>
             </div>
 
-            {!isAdmin() ? 
+            {soyPropietario() ? 
             <div className="item-cantidad">
                 <button
                     className="cantidad-btn"
@@ -98,7 +98,7 @@ const ItemLista = ({ item }) => {
                 </span>
             </div>
 
-            {!isAdmin() &&
+            {soyPropietario() &&
                 <div className="item-acciones">
                     <button
                         className="btn-eliminar-item"

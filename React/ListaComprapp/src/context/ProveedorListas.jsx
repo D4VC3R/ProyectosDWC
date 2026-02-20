@@ -66,8 +66,6 @@ const ProveedorListas = ({ children }) => {
 				nombrePropietario: lista.perfil_usuario?.nombre
 			}));
 
-			console.log(listasEnriquecidas)
-
 			setListas(listasEnriquecidas);
 		} catch (error) {
 			setErrorLista(error.message);

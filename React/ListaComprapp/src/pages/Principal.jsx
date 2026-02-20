@@ -10,12 +10,9 @@ import CrearLista from '../components/lists/CrearLista'
 import useListContext from '../hooks/useListContext'
 
 
-
-
 const Principal = () => {
-
 	const {sesionIniciada} = useSesionContext();
-	const { getListasPropias, limpiarDatosLista, listas} = useListContext();
+	const { getListasPropias, limpiarDatosLista} = useListContext();
 
 	// Booleanos para mostrar y ocular sus respectivos componentes.
 	const [mostrarLista, setMostrarLista] = useState(true);
@@ -32,9 +29,6 @@ const Principal = () => {
 		sesionIniciada &&
 				getListasPropias();
 		}, []);
-
-		console.log(listas)
-
 
 	return (
 		<div className="contenido-principal" onClick={((e)=> manejarClic(e))}>

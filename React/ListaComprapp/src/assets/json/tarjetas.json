@@ -9,7 +9,7 @@
     },
     {
       "titulo": "Ver Productos",
-      "descripcion": "Explora nuestro catálogo de productos",
+      "descripcion": "Explora el catálogo de productos",
       "imagen": "https://images.unsplash.com/photo-1543168256-418811576931?w=400&h=500&fit=crop",
       "ruta": "/principal",
       "color": "#2196F3"
@@ -34,7 +34,7 @@
   "admin": [
     {
       "titulo": "Administración",
-      "descripcion": "Panel de control del sistema",
+      "descripcion": "Gestiona productos y usuarios",
       "imagen": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=500&fit=crop",
       "ruta": "/admin",
       "color": "#9C27B0"

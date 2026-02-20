@@ -30,9 +30,9 @@ const Inicio = () => {
 			) : (
 				<>
 					<h2 className="inicio-titulo">
-						Bienvenido de nuevo{usuario.nombre && `, ${usuario.nombre}`}
+						Bienvenido de nuevo{usuario.nombre && `, ${usuario.nombre}.`}
 					</h2>
-					<p className="inicio-subtitulo">¿Qué deseas hacer hoy?</p>
+					<p className="inicio-subtitulo">Elige una de las infinitas opciones para comenzar.</p>
 				</>
 			)}
 

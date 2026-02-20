@@ -2,7 +2,6 @@ import React from 'react'
 import './Lista.css'
 import { formatearFecha } from '../../libraries/utilidades.js';
 import useSesionContext from '../../hooks/useSesionContext';
-import useListContext from '../../hooks/useListContext.js';
 
 const Lista = ({ lista }) => {
 	// Información básica de la lista y botones para ver detalles o eliminar.
