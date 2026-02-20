@@ -8,6 +8,7 @@ const Inicio = () => {
 	const navegar = useNavigate();
 	const { sesionIniciada, usuario, isAdmin } = useSesionContext();
 
+	// Si no hay sesión iniciada, se muestran las tarjetas públicas. Si la hay, se muestran las de usuario y, si es admin, también las de admin.
 	const obtenerTarjetas = () => {
 		if (!sesionIniciada) {
 			return tarjetas.publicas;
@@ -18,14 +19,19 @@ const Inicio = () => {
 	};
 
 	const tarjetasActuales = obtenerTarjetas();
+	const manejarClic = (e) => {
+		const ruta = e.target.closest('.tarjeta-opcion')?.dataset.ruta;
+		if (ruta) {
+			navegar(ruta);
+		}
+	};
 
-	// Dependiendo de si ha iniciado sesión, el usuario verá unas cosas u otras.
 	return (
 		<div className="inicio-container">
 			{!sesionIniciada ? (
 				<>
-					<h2 className="inicio-titulo">Bienvenido a ListaComprapp</h2>
-					<p className="inicio-subtitulo">Organiza tus compras de forma inteligente</p>
+					<h2 className="inicio-titulo">Bienvenido a Mi Compra</h2>
+					<p className="inicio-subtitulo">Inicia sesión para aprovechar al máximo la app</p>
 				</>
 			) : (
 				<>
@@ -36,14 +42,14 @@ const Inicio = () => {
 				</>
 			)}
 
-			<div className="tarjetas-grid">
+			<div className="tarjetas-grid" onClick={(e) => manejarClic(e)}>
 				{tarjetasActuales.map((tarjeta, i) => (
 					<div
 						key={i}
 						className="tarjeta-opcion"
-						onClick={() => navegar(tarjeta.ruta)}
+						data-ruta={tarjeta.ruta}
 					>
-						<div className="tarjeta-imagen-container">
+						<div className="tarjeta-imagen-container" >
 							<img
 								src={tarjeta.imagen}
 								alt={tarjeta.titulo}

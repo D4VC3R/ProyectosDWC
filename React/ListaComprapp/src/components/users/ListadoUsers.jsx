@@ -20,10 +20,13 @@ const ListadoUsers = () => {
 
 
 
+
+
+
   return (
     <>
       {cargando ? <Cargando />
-      :
+        :
         <div className='listado-usuarios' onClick={manejarClic}>
           {listaUsuarios.length > 0 ?
             listaUsuarios.map((usuario) =>

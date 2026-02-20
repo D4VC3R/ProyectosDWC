@@ -12,11 +12,11 @@ const DetallesUser = () => {
   const {listas} = useListContext();
   const navegar = useNavigate();
 
-    useEffect(() => {
+  useEffect(() => {
       obtenerListasDelUsuario();
   }, [usuarioSeleccionado?.id]);
 
-  const handleCambioRol = async (e) => {
+  const manejarCambioRol = async (e) => {
     const nuevoRol = e.target.value;
     await actualizarRol(nuevoRol);
   };
@@ -52,7 +52,7 @@ const DetallesUser = () => {
                 <strong>Rol:</strong>
                 <select 
                   value={usuarioSeleccionado?.roles_usuario.rol} 
-                  onChange={handleCambioRol}
+                  onChange={manejarCambioRol}
                   className="select-rol"
                 >
                   <option value="usuario">Usuario</option>

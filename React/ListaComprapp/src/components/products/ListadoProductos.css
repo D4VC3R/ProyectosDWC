@@ -1,6 +1,6 @@
 .listado-productos {
   padding: 1rem;
-  max-height: 50vh;
+  max-height: 65vh;
   border: 1px solid #ccc;
   overflow-y: auto;
   overflow-x: hidden;

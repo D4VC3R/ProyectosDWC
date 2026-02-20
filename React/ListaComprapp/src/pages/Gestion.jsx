@@ -9,6 +9,7 @@ import './Gestion.css';
 const Gestion = () => {
 	const navegar = useNavigate();
 	const { listaActual, limpiarDatosLista } = useListContext();
+	// Según de dónde venga el usuario, al volver se le redirigirá a un sitio u otro.
 	const ruta = useLocation().pathname;
 
 	const manejarVolver = () => {
