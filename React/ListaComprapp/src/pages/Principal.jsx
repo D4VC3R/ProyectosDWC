@@ -11,7 +11,7 @@ import useListContext from '../hooks/useListContext'
 
 
 const Principal = () => {
-	const {sesionIniciada} = useSesionContext();
+	const {sesionIniciada, isAdmin} = useSesionContext();
 	const { getListasPropias, limpiarDatosLista} = useListContext();
 
 	// Booleanos para mostrar y ocular sus respectivos componentes.
@@ -24,9 +24,10 @@ const Principal = () => {
 		e.target.tagName === "SPAN" && e.target.textContent.includes("PRODUCTOS") && setMostrarProductos(!mostrarProductos);
 	}
 
+	// Lo mismo que en el perfil.
 	useEffect(() => {
 		limpiarDatosLista();
-		sesionIniciada &&
+		sesionIniciada && isAdmin() &&
 				getListasPropias();
 		}, []);
 

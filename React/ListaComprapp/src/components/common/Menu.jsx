@@ -4,14 +4,16 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import './Menu.css'
 
 const Menu = () => {
-  const { isAdmin } = useSesionContext()
-  const navegar = useNavigate()
-  const location = useLocation()
+  const { isAdmin } = useSesionContext();
+  const navegar = useNavigate();
+  // Con location 'leo' la ruta actual para marcar el enlace activo facilmente.
+  const location = useLocation();
 
+  // Si hacemos clic en un elemento que contenga el atributo data-link, navegamos a esa ruta.
   const manejarClic = (e) => {
     const link = e.target.getAttribute('data-link')
     if (link) {
-      navegar(link)
+      navegar(link);
     }
   }
 

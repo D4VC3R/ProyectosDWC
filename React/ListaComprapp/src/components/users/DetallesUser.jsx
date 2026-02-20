@@ -12,15 +12,17 @@ const DetallesUser = () => {
   const {listas} = useListContext();
   const navegar = useNavigate();
 
+  // Como he decidido usar un único estado para controlar las listas, hay que asegurarse de cargar las listas del usuario seleccionado cada vez que cambie, 
+  // si no, al volver de la página de detalles a la de admin, seguiríamos viendo las listas del último usuario que hayamos visitado en vez de las del usuario seleccionado en el listado.
   useEffect(() => {
       obtenerListasDelUsuario();
   }, [usuarioSeleccionado?.id]);
 
+  // Guardar automaticamente en Supabase al cambiar de rol.
   const manejarCambioRol = async (e) => {
     const nuevoRol = e.target.value;
     await actualizarRol(nuevoRol);
   };
-
 
   return (
     <div className="usuario-detalle">

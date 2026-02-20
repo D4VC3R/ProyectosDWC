@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import useSesionContext from '../hooks/useSesionContext'
 import tarjetas from '../assets/json/tarjetas.json';
 import './Inicio.css';
+import TarjetaMenu from '../components/common/TarjetaMenu';
 
 const Inicio = () => {
 	const navegar = useNavigate();
@@ -18,14 +19,14 @@ const Inicio = () => {
 			: tarjetas.usuario;
 	};
 
-	const tarjetasActuales = obtenerTarjetas();
 	const manejarClic = (e) => {
 		const ruta = e.target.closest('.tarjeta-opcion')?.dataset.ruta;
 		if (ruta) {
 			navegar(ruta);
 		}
 	};
-
+	// Esto estaría mejor con un estado + useEffect en el contexto de sesión, en el proyecto prometo no hacer estas cochinadas.
+	const tarjetasActuales = obtenerTarjetas();
 	return (
 		<div className="inicio-container">
 			{!sesionIniciada ? (
@@ -44,24 +45,7 @@ const Inicio = () => {
 
 			<div className="tarjetas-grid" onClick={(e) => manejarClic(e)}>
 				{tarjetasActuales.map((tarjeta, i) => (
-					<div
-						key={i}
-						className="tarjeta-opcion"
-						data-ruta={tarjeta.ruta}
-					>
-						<div className="tarjeta-imagen-container" >
-							<img
-								src={tarjeta.imagen}
-								alt={tarjeta.titulo}
-								className="tarjeta-imagen"
-							/>
-							<div className="tarjeta-overlay"></div>
-						</div>
-						<div className="tarjeta-contenido" style={{ '--color-tarjeta': tarjeta.color }}>
-							<h3 className="tarjeta-titulo">{tarjeta.titulo}</h3>
-							<p className="tarjeta-descripcion">{tarjeta.descripcion}</p>
-						</div>
-					</div>
+					<TarjetaMenu key={i} tarjeta={tarjeta}/>
 				))}
 			</div>
 		</div>

@@ -7,7 +7,7 @@ import './PerfilUsuario.css'
 
 const PerfilUsuario = () => {
 
-	const { usuario, actualizarUsuario, sesionIniciada } = useSesionContext();
+	const { usuario, actualizarUsuario, sesionIniciada, isAdmin } = useSesionContext();
 	const { listas, getListasPropias } = useListContext();
 
 	const [usuarioEditado, setUsuarioEditado] = useState(usuario);
@@ -26,6 +26,7 @@ const PerfilUsuario = () => {
 		editando === true && e.target.tagName !== "TEXTAREA" && e.target.tagName !== "INPUT" && setEditando(false);
 	}
 
+	// Comprobar si algo ha cambiado para evitar llamadas cada vez que se pulsa en el botón de editar.
 	const hayCambios = () => {
 		return (
 			usuario?.nombre !== usuarioEditado?.nombre?.trim() ||
@@ -34,14 +35,18 @@ const PerfilUsuario = () => {
 		);
 	}
 
+	// Si dejas de editar y algo ha cambiado, se guardan los cambios automaticamente.
 	useEffect(() => {
 		if (!editando && hayCambios()) {
 			actualizarUsuario(usuarioEditado);
 		}
 	}, [editando])
 
+	// Al cargar un perfil en concreto, nos aseguramos de que el estado listas contenga solo las listas de ese usuario.
+	// Para el usuario normal no es necesario pero para el admin viene bien asegurarse.
+	// Como me he empeñado en un solo estado para las listas, tengo que hacer este tipo de comprobaciones...
 	useEffect(()=>{
-		sesionIniciada && getListasPropias();
+		sesionIniciada && isAdmin() && getListasPropias();
 	}, []);
 	
 

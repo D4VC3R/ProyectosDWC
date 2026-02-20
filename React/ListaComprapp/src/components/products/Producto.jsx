@@ -10,8 +10,8 @@ const Producto = ({ producto, mostrarBotonesAgregar = false, editando = false })
     // Guardamos el id del producto para usarlo en los data-attributes y recuperarlo en el componente padre ListadoProductos.
     const productoId = producto.id;
     const {sesionIniciada} = useSesionContext();
-    //Ahora si que si, el formato de la moneda tiene dos decimales separados por una coma.
     
+    //Ahora si que si, el formato de la moneda tiene dos decimales separados por una coma.
     return (
         <div className="producto" data-producto-id={productoId}>
             {sesionIniciada && !mostrarBotonesAgregar && editando &&

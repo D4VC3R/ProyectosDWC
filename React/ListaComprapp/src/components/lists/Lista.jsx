@@ -10,12 +10,11 @@ const Lista = ({ lista }) => {
 	const sinDatos = "Sin datos."
 	const { isAdmin, usuario } = useSesionContext();
 
-
-
 	const soyPropietario = () => {
 		return lista.id_propietario === usuario.id
 	}
 
+	// Solo el propietario puede eliminar o editar la lista, la opción para ver listas solo está disponible para admins.
 	return (
 		<div className="lista" data-lista-id={listaId}>
 			<div className="lista-info">

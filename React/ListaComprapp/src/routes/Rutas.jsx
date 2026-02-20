@@ -14,13 +14,14 @@ import PerfilUsuario from '../pages/PerfilUsuario.jsx'
 import ListaDetalles from '../components/lists/ListaDetalles.jsx'
 
 const Rutas = () => {
+	// Los productos y las listas viven en toda la app, el admin tiene un contexto mas acotado.
 	return (
 		<>
 			<Routes>
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/" element={<Inicio />}></Route>
 				<Route element={<WrapperListasProductos />}>
-						<Route path="/principal" element={<Principal />}></Route>
+					<Route path="/principal" element={<Principal />}></Route>
 					<Route path="/gestion" element={<Gestion />}></Route>
 					<Route path="/miperfil" element={<PerfilUsuario />}></Route>
 					<Route element ={<WrapperAdmin />}>

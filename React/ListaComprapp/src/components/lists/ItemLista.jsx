@@ -13,7 +13,6 @@ const ItemLista = ({ item }) => {
     const { rmProducto, updateCantidadProducto, toggleComprado, soyPropietario } = useListContext();
     const { isAdmin } = useSesionContext();
 
-
     // Delegación de eventos.
     const manejarClic = async (e) => {
         if (e.target.classList.contains('cantidad-btn')) {
@@ -34,6 +33,7 @@ const ItemLista = ({ item }) => {
     const precioTotal = producto?.precio * item.cantidad;
     const pesoTotal = producto?.peso * item.cantidad;
 
+    // Para evitar que el admin pueda modificar cosas, los botones solo aparecen si eres el propietario de la lista. Las comprobaciones estrictas están en supabase.
     return (
         <div className={`item-lista ${item.comprado ? 'comprado' : ''}`} data-item-id={itemId} onClick={((e) => { manejarClic(e) })}>
             
