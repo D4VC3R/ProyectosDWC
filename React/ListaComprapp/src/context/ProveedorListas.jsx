@@ -56,6 +56,24 @@ const ProveedorListas = ({ children }) => {
 		}
 	}
 
+	const getListasConPropietario = async (idPropietario) => {
+		try {
+			const columnas = 'id, nombre, created_at, id_propietario, perfil_usuario:id_propietario(id, nombre)';
+			const lists = await obtenerUno('listas_compra', idPropietario, 'id_propietario', columnas);
+
+			const listasEnriquecidas = lists.map(lista => ({
+				...lista,
+				nombrePropietario: lista.perfil_usuario?.nombre
+			}));
+
+			console.log(listasEnriquecidas)
+
+			setListas(listasEnriquecidas);
+		} catch (error) {
+			setErrorLista(error.message);
+		}
+	}
+
 	const getLista = async (idLista) => {
 		try {
 			const list = await obtenerUno('listas_compra', idLista);
@@ -125,9 +143,9 @@ const ProveedorListas = ({ children }) => {
 					comprado: false
 				};
 				await insertar('items_lista', nuevoItem);
+				await getProductosEnLista(listaActual.id);
 			}
 			// Recarga manual de los productos en la lista.
-			await getProductosEnLista(listaActual.id);
 			manejarExito('addProducto');
 			return true;
 		} catch (error) {
@@ -289,6 +307,7 @@ const ProveedorListas = ({ children }) => {
 		calcularPrecioTotal,
 		necesitaCoche,
 		soyPropietario,
+		getListasConPropietario,
 		listas,
 		listaActual,
 		items,

@@ -95,14 +95,8 @@ const ProveedorSesion = ({ children }) => {
 		try {
 			const perfilUsuario = await obtenerUno('perfil_usuario', id, 'id');
 			const { avatar, nombre, biografia, created_at } = perfilUsuario[0];
-			setUsuario(usuario => ({
-				...usuario,
-				id,
-				avatar,
-				nombre,
-				biografia,
-				created_at,
-			}));
+
+			return { id, avatar, nombre, biografia, created_at };
 		} catch (error) {
 			manejarFallo(error);
 		}
@@ -111,7 +105,7 @@ const ProveedorSesion = ({ children }) => {
 	const getRol = async (id) => {
 		try {
 			const rolUsuario = await obtenerUno('roles_usuario', id, 'id_rol');
-			setUsuario(usuario => ({ ...usuario, roles_usuario: rolUsuario[0] }));
+			return { roles_usuario: rolUsuario[0] };
 		} catch (error) {
 			manejarFallo(error);
 		}
@@ -123,10 +117,11 @@ const ProveedorSesion = ({ children }) => {
 
 	const obtenerDatosUsuario = async (id) => {
 		try {
-			await Promise.all([
+			const [perfil, rol] = await Promise.all([
 				getPerfil(id),
 				getRol(id)
 			]);
+			setUsuario(usuario => ({ ...usuario, ...perfil, ...rol }));
 		} catch (error) {
 			manejarFallo(error);
 		}
@@ -134,9 +129,9 @@ const ProveedorSesion = ({ children }) => {
 
 	const actualizarUsuario = async (usuarioEditado) => {
 		try {
-			const datos = {nombre: usuarioEditado.nombre, biografia: usuarioEditado.biografia, avatar: usuarioEditado.avatar};
+			const datos = { nombre: usuarioEditado.nombre, biografia: usuarioEditado.biografia, avatar: usuarioEditado.avatar };
 			const resultado = await actualizar('perfil_usuario', 'id', usuario.id, datos);
-			resultado && setUsuario(user => ({...user, ...datos}));
+			resultado && setUsuario(user => ({ ...user, ...datos }));
 		} catch (error) {
 			manejarFallo(error);
 		}

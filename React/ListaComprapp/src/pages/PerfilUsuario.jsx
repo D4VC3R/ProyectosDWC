@@ -7,7 +7,7 @@ import './PerfilUsuario.css'
 
 const PerfilUsuario = () => {
 
-	const { usuario, actualizarUsuario } = useSesionContext();
+	const { usuario, actualizarUsuario, sesionIniciada } = useSesionContext();
 	const { listas, getListasPropias } = useListContext();
 
 	const [usuarioEditado, setUsuarioEditado] = useState(usuario);
@@ -28,7 +28,7 @@ const PerfilUsuario = () => {
 
 	const hayCambios = () => {
 		return (
-			usuario?.nombre !== usuarioEditado?.nombre.trim() ||
+			usuario?.nombre !== usuarioEditado?.nombre?.trim() ||
 			usuario?.avatar !== usuarioEditado?.avatar ||
 			usuario?.biografia !== usuarioEditado?.biografia
 		);
@@ -41,7 +41,7 @@ const PerfilUsuario = () => {
 	}, [editando])
 
 	useEffect(()=>{
-		getListasPropias();
+		sesionIniciada && getListasPropias();
 	}, []);
 	
 

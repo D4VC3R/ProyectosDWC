@@ -15,7 +15,7 @@ import useListContext from '../hooks/useListContext'
 const Principal = () => {
 
 	const {sesionIniciada} = useSesionContext();
-	const { getListasPropias, limpiarDatosLista} = useListContext();
+	const { getListasPropias, limpiarDatosLista, listas} = useListContext();
 
 	// Booleanos para mostrar y ocular sus respectivos componentes.
 	const [mostrarLista, setMostrarLista] = useState(true);
@@ -32,6 +32,8 @@ const Principal = () => {
 		sesionIniciada &&
 				getListasPropias();
 		}, []);
+
+		console.log(listas)
 
 
 	return (

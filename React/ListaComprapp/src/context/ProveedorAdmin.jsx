@@ -13,7 +13,7 @@ const ProveedorAdmin = ({ children }) => {
 	const [vista, setVista] = useState('usuarios');
 
 	const { obtenerTodo, actualizar, cargando } = useSupabaseCRUD();
-	const { getListasPropias } = useListContext();
+	const { getListasConPropietario } = useListContext();
 	const { isAdmin, usuario } = useSesionContext();
 
 
@@ -44,7 +44,7 @@ const ProveedorAdmin = ({ children }) => {
 
 	const obtenerListasDelUsuario = async () => {
 		try {
-			await getListasPropias(usuarioSeleccionado.id);
+			await getListasConPropietario(usuarioSeleccionado.id);
 		} catch (error) {
 			manejarFallo(error)
 		}

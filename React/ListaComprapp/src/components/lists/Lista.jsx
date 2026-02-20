@@ -2,6 +2,7 @@ import React from 'react'
 import './Lista.css'
 import { formatearFecha } from '../../libraries/utilidades.js';
 import useSesionContext from '../../hooks/useSesionContext';
+import useListContext from '../../hooks/useListContext.js';
 
 const Lista = ({ lista }) => {
 	// Información básica de la lista y botones para ver detalles o eliminar.
@@ -9,6 +10,7 @@ const Lista = ({ lista }) => {
 	const listaId = lista.id;
 	const sinDatos = "Sin datos."
 	const { isAdmin, usuario } = useSesionContext();
+
 
 
 	const soyPropietario = () => {
@@ -22,12 +24,12 @@ const Lista = ({ lista }) => {
 				<small className="lista-created_at">{lista.created_at ? formatearFecha(lista.created_at) : sinDatos}</small>
 			</div>
 
-			{isAdmin() && (
+			
 				<div className="lista-propietario-container">
 					<span className="lista-propietario-label">Creador:</span>
-					<span className="lista-propietario">{lista.nombrePropietario}</span>
+					<span className="lista-propietario">{ soyPropietario() ? 'Tú' : lista.nombrePropietario}</span>
 				</div>
-			)}
+			
 			
 			<div className="lista-opciones">
 				{soyPropietario() ?

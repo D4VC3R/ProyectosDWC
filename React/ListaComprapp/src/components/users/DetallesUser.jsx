@@ -14,7 +14,7 @@ const DetallesUser = () => {
 
     useEffect(() => {
       obtenerListasDelUsuario();
-  }, [usuarioSeleccionado]);
+  }, [usuarioSeleccionado?.id]);
 
   const handleCambioRol = async (e) => {
     const nuevoRol = e.target.value;
@@ -34,14 +34,14 @@ const DetallesUser = () => {
           <div className="usuario-card">
             <div className="usuario-header">
               <img
-                src={usuarioSeleccionado.avatar}
-                alt={usuarioSeleccionado.nombre}
+                src={usuarioSeleccionado?.avatar}
+                alt={usuarioSeleccionado?.nombre}
                 className="usuario-avatar-grande"
               />
               <div className="usuario-info-principal">
-                <h1>{usuarioSeleccionado.nombre}</h1>
-                <span className={`rol-badge ${usuarioSeleccionado.roles_usuario.rol}`}>
-                  {usuarioSeleccionado.roles_usuario.rol}
+                <h1>{usuarioSeleccionado?.nombre}</h1>
+                <span className={`rol-badge ${usuarioSeleccionado?.roles_usuario.rol}`}>
+                  {usuarioSeleccionado?.roles_usuario.rol}
                 </span>
               </div>
             </div>
@@ -51,7 +51,7 @@ const DetallesUser = () => {
               <p className="campo-rol">
                 <strong>Rol:</strong>
                 <select 
-                  value={usuarioSeleccionado.roles_usuario.rol} 
+                  value={usuarioSeleccionado?.roles_usuario.rol} 
                   onChange={handleCambioRol}
                   className="select-rol"
                 >
@@ -59,13 +59,13 @@ const DetallesUser = () => {
                   <option value="admin">Admin</option>
                 </select>
               </p>
-              <p><strong>Email:</strong> {usuarioSeleccionado.roles_usuario.email}</p>
-              <p><strong>Fecha de registro:</strong> {formatearFecha(usuarioSeleccionado.created_at)}</p>
+              <p><strong>Email:</strong> {usuarioSeleccionado?.roles_usuario.email}</p>
+              <p><strong>Fecha de registro:</strong> {formatearFecha(usuarioSeleccionado?.created_at)}</p>
 
-              {usuarioSeleccionado.biografia && (
+              {usuarioSeleccionado?.biografia && (
                 <div className="biografia-seccion">
                   <strong>Biografía:</strong>
-                  <p className="biografia-texto">{usuarioSeleccionado.biografia}</p>
+                  <p className="biografia-texto">{usuarioSeleccionado?.biografia}</p>
                 </div>
               )}
             </div>

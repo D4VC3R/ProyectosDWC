@@ -58,7 +58,7 @@ const ListadoProductos = ({ mostrarBotonesAgregar = false, editando = false }) =
 				})
 				:<p>Sin resultados.</p>}
 			</div>
-			{editando && <span className="boton-inicio" onClick={()=>{navegar('/admin/creacion')}}>Nuevo producto</span>}
+			{editando && <span className="boton-crear" onClick={()=>{navegar('/admin/creacion')}}>Nuevo producto</span>}
 			{mensajeExitoLista && <div className="mensaje-exito">{mensajeExitoLista}</div>}
 
 			<Modal
