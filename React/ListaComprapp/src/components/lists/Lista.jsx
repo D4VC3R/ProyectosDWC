@@ -10,6 +10,7 @@ const Lista = ({ lista }) => {
 	const sinDatos = "Sin datos."
 	const { isAdmin, usuario } = useSesionContext();
 
+
 	const soyPropietario = () => {
 		return lista.id_propietario === usuario.id
 	}
@@ -20,6 +21,14 @@ const Lista = ({ lista }) => {
 				<span className="lista-nombre">{lista.nombre ? lista.nombre : sinDatos}</span>
 				<small className="lista-created_at">{lista.created_at ? formatearFecha(lista.created_at) : sinDatos}</small>
 			</div>
+
+			{isAdmin() && (
+				<div className="lista-propietario-container">
+					<span className="lista-propietario-label">Creador:</span>
+					<span className="lista-propietario">{lista.nombrePropietario}</span>
+				</div>
+			)}
+			
 			<div className="lista-opciones">
 				{soyPropietario() ?
 					<>
@@ -30,7 +39,7 @@ const Lista = ({ lista }) => {
 							✎
 						</span>
 					</>
-				:
+					: isAdmin() &&
 					<span className="btn-ver-lista" data-action="ver" data-lista-id={listaId} title="Ver lista">
 						Ver
 					</span>

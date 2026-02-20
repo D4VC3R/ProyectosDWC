@@ -13,7 +13,7 @@ const ProveedorAdmin = ({ children }) => {
 	const [vista, setVista] = useState('usuarios');
 
 	const { obtenerTodo, actualizar, cargando } = useSupabaseCRUD();
-	const {getListasPropias} = useListContext();
+	const { getListasPropias } = useListContext();
 	const { isAdmin, usuario } = useSesionContext();
 
 
@@ -24,7 +24,7 @@ const ProveedorAdmin = ({ children }) => {
 			}
 			const columnas = "id, nombre, avatar, biografia, created_at, roles_usuario!id_rol(id_rol, email, rol)"
 			const usuarios = await obtenerTodo('perfil_usuario', columnas);
-			
+
 			setListaUsuarios(usuarios);
 			setErrorAdmin('');
 		} catch (error) {
@@ -43,12 +43,12 @@ const ProveedorAdmin = ({ children }) => {
 	}
 
 	const obtenerListasDelUsuario = async () => {
-    try {
-      await getListasPropias(usuarioSeleccionado.id);
-    } catch (error) {
+		try {
+			await getListasPropias(usuarioSeleccionado.id);
+		} catch (error) {
 			manejarFallo(error)
-    }
-  };
+		}
+	};
 
 	const actualizarRol = async (nuevoRol) => {
 		try {
@@ -56,7 +56,7 @@ const ProveedorAdmin = ({ children }) => {
 				throw new Error("No puedes modificar tu propio rol, bandarra.");
 			}
 			await actualizar('roles_usuario', 'id_rol', usuarioSeleccionado.roles_usuario.id_rol, { rol: nuevoRol });
-			
+
 			const usuarioActualizado = {
 				...usuarioSeleccionado,
 				roles_usuario: {
@@ -65,11 +65,11 @@ const ProveedorAdmin = ({ children }) => {
 				}
 			};
 			setUsuarioSeleccionado(usuarioActualizado);
-			
-			setListaUsuarios(prevLista => 
-				prevLista.map(user => 
-					user.id === usuarioSeleccionado.id 
-						? usuarioActualizado 
+
+			setListaUsuarios(prevLista =>
+				prevLista.map(user =>
+					user.id === usuarioSeleccionado.id
+						? usuarioActualizado
 						: user
 				)
 			);
@@ -104,8 +104,7 @@ const ProveedorAdmin = ({ children }) => {
 		obtenerUsuarioPorId,
 		obtenerListasDelUsuario,
 		actualizarRol,
-		limpiarUsuarioSeleccionado
-
+		limpiarUsuarioSeleccionado,
 	}
 
 	return (

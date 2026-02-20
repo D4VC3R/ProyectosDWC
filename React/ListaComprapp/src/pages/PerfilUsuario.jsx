@@ -53,10 +53,11 @@ const PerfilUsuario = () => {
 						<div className="usuario-header">
 							<img
 								src={usuarioEditado.avatar || usuario?.avatar}
-								alt={usuario?.nombre}
+								alt={usuarioEditado.nombre || usuario?.nombre}
 								className="usuario-avatar-grande"
 							/>
 							<div className="usuario-info-principal">
+								<h1>{usuarioEditado.nombre || usuario?.nombre}</h1>
 								<span className={`rol-badge ${usuario?.roles_usuario?.rol}`}>
 									{usuario?.roles_usuario?.rol}
 								</span>

@@ -23,7 +23,7 @@ const CrearProducto = () => {
 		e.preventDefault();
 		// Si no devuelvía true en updateProduct, no podía navegar tras actualizar. Por consistencia devuelvo true también en createProduct aunque no lo use aquí.
 		e.target.textContent === 'Crear Producto' && await createProduct(); 
-		e.target.textContent === 'Actualizar Producto' && await updateProduct() && setTimeout(() => navegar('/principal'), 2000); 
+		e.target.textContent === 'Actualizar Producto' && await updateProduct() && setTimeout(() => navegar('/admin'), 2000); 
 		e.target.textContent === 'Cancelar' && manejarCancelar();
 	};
 

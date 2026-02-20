@@ -34,12 +34,10 @@ const ListadoProductos = ({ mostrarBotonesAgregar = false, editando = false }) =
 			abrirModalEliminacion(productoId); // Solo necesitamos el id para eliminar.
 		}
 		
-		// Si clicamos en editar, nos vamos al formulario y recuperamos los datos del producto.
-		// Navego primero para evitar que se vea el retardo de la carga de datos.
 		if (e.target.dataset.action === 'editar') {
-			navegar('/admin/creacion');
 			const productoId = e.target.dataset.productoId;
 			await cargarProductoParaEditar(productoId);
+			navegar('/admin/creacion');
 		}
 
 		// Si clicamos en agregar, añadimos el producto a la lista actual

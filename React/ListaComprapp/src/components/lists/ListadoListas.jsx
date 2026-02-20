@@ -7,6 +7,8 @@ import Modal from '../common/Modal';
 
 
 const ListadoListas = () => {
+
+
 	const navegar = useNavigate();
 	
 	const {
@@ -37,7 +39,6 @@ const ListadoListas = () => {
 
 		if (e.target.dataset.action === 'ver') {
 			const listaId = e.target.dataset.listaId;
-			// Navegar después de cargar los datos para evitar que se muestre una lista a la que hayamos accedido previamente.
 			await cargarListaParaMostrar(listaId);
 			navegar('/admin/detallesLista');
 		}

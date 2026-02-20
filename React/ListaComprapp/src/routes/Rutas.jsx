@@ -20,7 +20,7 @@ const Rutas = () => {
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/" element={<Inicio />}></Route>
 				<Route element={<WrapperListasProductos />}>
-					<Route path="/principal" element={<Principal />}></Route>
+						<Route path="/principal" element={<Principal />}></Route>
 					<Route path="/gestion" element={<Gestion />}></Route>
 					<Route path="/miperfil" element={<PerfilUsuario />}></Route>
 					<Route element ={<WrapperAdmin />}>
