@@ -22,7 +22,7 @@ const FiltrarProductos = () => {
 			tipoFiltro === 'peso' && !isNaN(valorFiltro) && getLessOrEqual("peso", valorFiltro);
 			tipoFiltro === 'precio' && !isNaN(valorFiltro) && getLessOrEqual("precio", valorFiltro);
 		}
-	}, [valorFiltro]);
+	}, [valorFiltro, tipoFiltro]);
 
 	// Si se cambia el tipo de filtro, reseteo el estado 'ordenado' y el input del filtro.
 	// Así si el usuario cambia de nombre a precio, no se queda el input con un valor que no tiene sentido.

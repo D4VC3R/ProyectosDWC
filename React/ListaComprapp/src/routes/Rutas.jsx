@@ -14,6 +14,7 @@ import PerfilUsuario from '../pages/PerfilUsuario.jsx'
 import ListaDetalles from '../components/lists/ListaDetalles.jsx'
 
 const Rutas = () => {
+	// Los productos y las listas viven en toda la app, el admin tiene un contexto mas acotado.
 	return (
 		<>
 			<Routes>

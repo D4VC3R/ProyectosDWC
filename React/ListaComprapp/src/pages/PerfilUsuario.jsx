@@ -7,8 +7,8 @@ import './PerfilUsuario.css'
 
 const PerfilUsuario = () => {
 
-	const { usuario, actualizarUsuario } = useSesionContext();
-	const { listas } = useListContext();
+	const { usuario, actualizarUsuario, sesionIniciada, isAdmin } = useSesionContext();
+	const { listas, getListasPropias } = useListContext();
 
 	const [usuarioEditado, setUsuarioEditado] = useState(usuario);
 	const [editando, setEditando] = useState(false);
@@ -26,20 +26,29 @@ const PerfilUsuario = () => {
 		editando === true && e.target.tagName !== "TEXTAREA" && e.target.tagName !== "INPUT" && setEditando(false);
 	}
 
+	// Comprobar si algo ha cambiado para evitar llamadas cada vez que se pulsa en el botón de editar.
 	const hayCambios = () => {
 		return (
-			usuario?.nombre !== usuarioEditado?.nombre.trim() ||
+			usuario?.nombre !== usuarioEditado?.nombre?.trim() ||
 			usuario?.avatar !== usuarioEditado?.avatar ||
 			usuario?.biografia !== usuarioEditado?.biografia
 		);
 	}
 
+	// Si dejas de editar y algo ha cambiado, se guardan los cambios automaticamente.
 	useEffect(() => {
 		if (!editando && hayCambios()) {
-			console.log("hay cambios")
 			actualizarUsuario(usuarioEditado);
 		}
 	}, [editando])
+
+	// Al cargar un perfil en concreto, nos aseguramos de que el estado listas contenga solo las listas de ese usuario.
+	// Para el usuario normal no es necesario pero para el admin viene bien asegurarse.
+	// Como me he empeñado en un solo estado para las listas, tengo que hacer este tipo de comprobaciones...
+	useEffect(()=>{
+		sesionIniciada && isAdmin() && getListasPropias();
+	}, []);
+	
 
 	return (
 		<div className="usuario-detalle" onClick={((e) => { manejarClic(e) })}>
@@ -49,10 +58,11 @@ const PerfilUsuario = () => {
 						<div className="usuario-header">
 							<img
 								src={usuarioEditado.avatar || usuario?.avatar}
-								alt={usuario?.nombre}
+								alt={usuarioEditado.nombre || usuario?.nombre}
 								className="usuario-avatar-grande"
 							/>
 							<div className="usuario-info-principal">
+								<h1>{usuarioEditado.nombre || usuario?.nombre}</h1>
 								<span className={`rol-badge ${usuario?.roles_usuario?.rol}`}>
 									{usuario?.roles_usuario?.rol}
 								</span>

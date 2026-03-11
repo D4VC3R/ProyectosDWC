@@ -10,6 +10,7 @@ const Cabecera = () => {
 
 	const { sesionIniciada } = useSesionContext();
 
+	// Por temas de CSS no agrupo todos los elementos relacionados con tener sesión iniciada en una sola condición.
 	return (
 		<header className="cabecera">
 			<div className="cabecera-top">

@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
 import ListadoListas from '../components/lists/ListadoListas';
 import ListadoProductos from '../components/products/ListadoProductos';
 import useListContext from '../hooks/useListContext';
@@ -9,7 +8,8 @@ import { useEffect } from 'react';
 import useAdminContext from '../hooks/useAdminContext';
 
 const PanelAdmin = () => {
-	// Se listarán todos los usuarios en formato tarjeta incluyendo nombre de usuario + lista. Al pinchar la lista, se visualizan los productos y resumen sin opciones de crud.
+	// Componente que cambia su contenido en función de la sección que elija el admin. Me apetecía reutilizar componentes para todo lo relacionado con el admin que ya tuviera creado para el usuario corriente.
+	// El problema es que al no haberlo diseñado con esta idea desde el principio, algunas cosas me han dado muchos dolores de cabeza.
 	
 	const { getListas } = useListContext();
 	const {vista, verProductos, verUsuarios, verListas} = useAdminContext();
@@ -18,12 +18,13 @@ const PanelAdmin = () => {
 		e.preventDefault();
 		e.target.dataset.id === 'productos' && verProductos();
 		e.target.dataset.id === 'usuarios' && verUsuarios();
+		// Como es posible que el estado listas esté conteniendo solo las vistas de un usuario en concreto, hay que asegurarse de cargarlas todas al entrar en esta sección.
 		if (e.target.dataset.id === 'listas') {
 			await getListas();
 			verListas();
 		}
 	}
-
+	// Si es la primera vez que entramos al panel, mostramos la vista de usuarios por defecto.
 	useEffect(()=>{
 		vista === '' && verUsuarios();
 	}, []);

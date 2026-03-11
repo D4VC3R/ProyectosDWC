@@ -14,12 +14,21 @@ const Lista = ({ lista }) => {
 		return lista.id_propietario === usuario.id
 	}
 
+	// Solo el propietario puede eliminar o editar la lista, la opción para ver listas solo está disponible para admins.
 	return (
 		<div className="lista" data-lista-id={listaId}>
 			<div className="lista-info">
 				<span className="lista-nombre">{lista.nombre ? lista.nombre : sinDatos}</span>
 				<small className="lista-created_at">{lista.created_at ? formatearFecha(lista.created_at) : sinDatos}</small>
 			</div>
+
+			
+				<div className="lista-propietario-container">
+					<span className="lista-propietario-label">Creador:</span>
+					<span className="lista-propietario">{ soyPropietario() ? 'Tú' : lista.nombrePropietario}</span>
+				</div>
+			
+			
 			<div className="lista-opciones">
 				{soyPropietario() ?
 					<>
@@ -30,9 +39,9 @@ const Lista = ({ lista }) => {
 							✎
 						</span>
 					</>
-				:
+					: isAdmin() &&
 					<span className="btn-ver-lista" data-action="ver" data-lista-id={listaId} title="Ver lista">
-						👁️
+						Ver
 					</span>
 				}
 			</div>

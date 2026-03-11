@@ -13,23 +13,33 @@ const ProveedorListas = ({ children }) => {
 	const itemsIniciales = [];
 
 	// Estados
-	const [listaActual, setListaActual] = useState(listaInicial);
-	const [listas, setListas] = useState(listasIniciales);
-	const [items, setItems] = useState(itemsIniciales);
+	const [listaActual, setListaActual] = useState(listaInicial); // La lista que estamos creando o editando en cada momento. Se resetea al valor inicial al crear una nueva lista o al eliminarla.
+	const [listas, setListas] = useState(listasIniciales); // Un único estado para guardar las listas, en función de donde nos encontremos y quien seamos, almacenará o bien las listas de un usuario, o, si es admin, todas las listas de la aplicación, solo las de un usuario en concreto o solo las del admin.
+	const [items, setItems] = useState(itemsIniciales); // Los elementos que contiene la lista actual.
 	const [errorLista, setErrorLista] = useState('');
 	const [mensajeExito, setMensajeExito] = useState('');
 	const [modalOpen, setModalOpen] = useState(false);
-	const [listaParaEliminar, setListaParaEliminar] = useState(null);
+	const [listaParaEliminar, setListaParaEliminar] = useState(null); // El id de la lista que vamos a borrar, útil para el modal de confirmación.
 
 	const { cargando, obtenerUno, obtenerTodo, obtenerRelacionados, insertar, actualizar, eliminar } = useSupabaseCRUD();
-	const {usuario, isAdmin} = useSesionContext();
+	const { usuario, isAdmin } = useSesionContext();
 
 	// Funciones de lectura
 	const getListas = async () => {
 		try {
 			if (isAdmin()) {
-				const lists = await obtenerTodo('listas_compra');
-				setListas(lists);
+				// Consulta con JOIN para traer el nombre del propietario
+				const columnas = 'id, nombre, created_at, id_propietario, perfil_usuario:id_propietario(id, nombre, avatar)';
+				const lists = await obtenerTodo('listas_compra', columnas);
+
+				// Como esta función es solo para el admin, me viene genial traer el nombre del propietario de cada lista.
+				const listasEnriquecidas = lists.map(lista => ({
+					...lista,
+					nombrePropietario: lista.perfil_usuario?.nombre
+				}));
+
+				setListas(listasEnriquecidas);
+				return listasEnriquecidas;
 			}
 		} catch (error) {
 			setErrorLista(error.message);
@@ -47,6 +57,23 @@ const ProveedorListas = ({ children }) => {
 		}
 	}
 
+	// Parecida a getListas pero solo trae las listas de un usuario concreto.
+	const getListasConPropietario = async (idPropietario) => {
+		try {
+			const columnas = 'id, nombre, created_at, id_propietario, perfil_usuario:id_propietario(id, nombre)';
+			const lists = await obtenerUno('listas_compra', idPropietario, 'id_propietario', columnas);
+
+			const listasEnriquecidas = lists.map(lista => ({
+				...lista,
+				nombrePropietario: lista.perfil_usuario?.nombre
+			}));
+
+			setListas(listasEnriquecidas);
+		} catch (error) {
+			setErrorLista(error.message);
+		}
+	}
+
 	const getLista = async (idLista) => {
 		try {
 			const list = await obtenerUno('listas_compra', idLista);
@@ -58,7 +85,7 @@ const ProveedorListas = ({ children }) => {
 	// Consulta multitabla para recuperar los productos de una lista en concreto.
 	// Indicamos que recupere todos los campos de 'columnas' que pertenezan a la lista con el uid que recibe la función.
 	const getProductosEnLista = async (idLista) => {
-		const columnas = 'id, cantidad, comprado, producto:producto_id(id, nombre, precio, peso)';
+		const columnas = 'id, cantidad, comprado, producto:producto_id(id, nombre, precio, peso, imagen)';
 		try {
 			const resultado = await obtenerRelacionados('items_lista', 'lista_id', idLista, columnas);
 			setItems(resultado);
@@ -116,9 +143,8 @@ const ProveedorListas = ({ children }) => {
 					comprado: false
 				};
 				await insertar('items_lista', nuevoItem);
+				await getProductosEnLista(listaActual.id); // Recarga manual de los productos en la lista.
 			}
-			// Recarga manual de los productos en la lista.
-			await getProductosEnLista(listaActual.id);
 			manejarExito('addProducto');
 			return true;
 		} catch (error) {
@@ -246,7 +272,7 @@ const ProveedorListas = ({ children }) => {
 		const UMBRAL_PESO = 4;
 		return calcularPesoTotal() > UMBRAL_PESO;
 	};
-	
+
 	const soyPropietario = () => {
 		return listaActual.id_propietario === usuario.id;
 	}
@@ -260,7 +286,7 @@ const ProveedorListas = ({ children }) => {
 
 
 	const exportaciones = {
-		getListas, 
+		getListas,
 		getListasPropias,
 		getLista,
 		getProductosEnLista,
@@ -280,6 +306,7 @@ const ProveedorListas = ({ children }) => {
 		calcularPrecioTotal,
 		necesitaCoche,
 		soyPropietario,
+		getListasConPropietario,
 		listas,
 		listaActual,
 		items,

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ListaDetalles from '../components/lists/ListaDetalles';
 import ListadoProductos from '../components/products/ListadoProductos';
 import FiltrarProductos from '../components/products/FiltrarProductos';
@@ -9,10 +9,13 @@ import './Gestion.css';
 const Gestion = () => {
 	const navegar = useNavigate();
 	const { listaActual, limpiarDatosLista } = useListContext();
+	// Según de dónde venga el usuario, al volver se le redirigirá a un sitio u otro.
+	const ruta = useLocation().pathname;
 
 	const manejarVolver = () => {
-		navegar('/principal');
 		limpiarDatosLista();
+		ruta.includes('/admin') ? navegar('/admin') :
+		navegar('/principal');
 	}
 
 

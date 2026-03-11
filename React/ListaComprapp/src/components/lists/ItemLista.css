@@ -1,6 +1,6 @@
 .item-lista {
   display: grid;
-  grid-template-columns: auto 1fr auto auto auto;
+  grid-template-columns: auto auto 1fr auto auto auto;
   gap: 1rem;
   align-items: center;
   padding: 1rem;
@@ -25,6 +25,12 @@
   color: #999;
 }
 
+.item-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .item-checkbox input[type="checkbox"] {
   width: 20px;
   height: 20px;
@@ -32,10 +38,19 @@
   accent-color: #4ba53f;
 }
 
+.item-imagen {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
 .item-info {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+  min-width: 0;
 }
 
 .item-nombre {
@@ -43,6 +58,9 @@
   font-size: 1.1rem;
   font-weight: 600;
   color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .item-detalles {
@@ -80,7 +98,7 @@
 .cantidad-btn:hover:not(:disabled) {
   background-color: #4ba53f;
   color: white;
-    border: 1px solid #fff;
+  border: 1px solid #fff;
 }
 
 .cantidad-btn:disabled {
@@ -117,6 +135,7 @@
 .item-acciones {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .btn-eliminar-item {
@@ -130,5 +149,35 @@
 
 .btn-eliminar-item:hover {
   transform: scale(1.2);
+}
+
+@media (max-width: 600px) {
+  .item-lista {
+    grid-template-columns: auto auto 1fr;
+    gap: 0.5rem;
+  }
+
+  .item-imagen {
+    width: 40px;
+    height: 40px;
+  }
+
+  .item-detalles {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .item-totales {
+    text-align: left;
+    grid-column: 2 / -1;
+  }
+
+  .item-cantidad {
+    grid-column: 2 / -1;
+  }
+
+  .item-acciones {
+    grid-column: 2 / -1;
+  }
 }
 

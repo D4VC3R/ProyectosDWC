@@ -1,6 +1,6 @@
 .listado-productos {
   padding: 1rem;
-  max-height: 50vh;
+  max-height: 65vh;
   border: 1px solid #ccc;
   overflow-y: auto;
   overflow-x: hidden;
@@ -47,6 +47,32 @@
   text-align: center;
   font-weight: 500;
   animation: slideDown 0.3s ease;
+}
+
+.boton-crear {
+  display: inline-block;
+  margin: 1rem auto;
+  padding: 0.7em 1.5em;
+  background: linear-gradient(0deg, #4ba53f 0%, #66f771 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0.5em 1.5em -0.5em #14a73e98;
+  transition: all 0.3s ease;
+}
+
+.boton-crear:hover {
+  background: linear-gradient(0deg, #3d8834 0%, #4ba53f 100%);
+  box-shadow: 0 0.3em 1em -0.5em #14a73e98;
+  transform: translateY(-2px);
+}
+
+.boton-crear:active {
+  transform: translateY(0);
+  box-shadow: 0 0.2em 0.5em -0.3em #14a73e98;
 }
 
 @keyframes slideDown {
