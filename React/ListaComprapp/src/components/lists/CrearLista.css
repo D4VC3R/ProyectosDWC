@@ -1,0 +1,63 @@
+.crear-lista-container {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+	border-top: 1px solid #14a73e;
+}
+
+.crear-lista-container form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.crear-lista-container label {
+  width: 100%;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.mensaje-error-lista,
+.mensaje-exito-lista {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.mensaje-error-lista {
+  background-color: #ffe5e5;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+
+.mensaje-exito-lista {
+  background-color: #e8f5e9;
+  color: #4ba53f;
+  border: 1px solid #4ba53f;
+}
+
+.crear-lista-container input {
+  flex: 2;
+  /* Ocupa 2/4 del espacio */
+  padding: 0.7rem;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.crear-lista-container input:focus {
+  border-color: #14a73e;
+}
+
+.crear-lista-container .form-btn {
+  flex: 1;
+  /* Ocupa 1/4 del espacio */
+  display: flex;
+  justify-content: flex-end;
+  /* Alinea el botón a la derecha */
+}

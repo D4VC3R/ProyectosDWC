@@ -1,11 +1,12 @@
-import React, {createContext, useState, useEffect} from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import useSupabaseAUTH from '../hooks/useSupabaseAUTH.js';
+import useSupabaseCRUD from '../hooks/useSupabaseCRUD.js';
 
 
 const ContextoSesion = createContext();
 
-const ProveedorSesion = ({children}) => {
+const ProveedorSesion = ({ children }) => {
 
 	// Valores iniciales
 	const datosSesionInicial = {
@@ -20,12 +21,14 @@ const ProveedorSesion = ({children}) => {
 	// Estados
 	const [datosSesion, setDatosSesion] = useState(datosSesionInicial);
 	const [usuario, setUsuario] = useState(usuarioInicial);
+
+
 	const [errorUsuario, setErrorUsuario] = useState(errorUsuarioInicial);
 	const [sesionIniciada, setSesionIniciada] = useState(sesionIniciadaInicial);
-	const [username, setUsername] = useState("");
 
 	// Hooks
-	const {cargando, crearCuenta, iniciarSesion, cerrarSesion, getUsuario, getSuscripcion} = useSupabaseAUTH();
+	const { cargando, crearCuenta, iniciarSesion, cerrarSesion, getUsuario, getSuscripcion } = useSupabaseAUTH();
+	const { obtenerUno, actualizar } = useSupabaseCRUD();
 
 	// Funciones
 	const manejarCrearCuenta = async () => {
@@ -50,7 +53,7 @@ const ProveedorSesion = ({children}) => {
 			await iniciarSesion(datosSesion.email, datosSesion.password, {
 				emailRedirectTo: "http://localhost:3000/inicio"
 			});
-	} catch (error) {
+		} catch (error) {
 			setErrorUsuario(error.message);
 		}
 	}
@@ -61,56 +64,101 @@ const ProveedorSesion = ({children}) => {
 			setDatosSesion(datosSesionInicial);
 			setErrorUsuario("");
 			// No utilizo navegar aquí porque ya lo hago en el useEffect.
-	} catch (error) {
+		} catch (error) {
 			setErrorUsuario(error.message);
 		}
 	}
 
 	const obtenerUsuario = async () => {
 		try {
-			const {user} = await getUsuario();
+			const { user } = await getUsuario();
 			if (!user) {
 				throw new Error("No se puede recuperar la información de usuario.");
 			}
-			setUsuario(user);
+			await obtenerDatosUsuario(user.id);
 			setErrorUsuario(errorUsuarioInicial);
-		}catch (error) {
+		} catch (error) {
 			setErrorUsuario(error.message);
 		}
 	}
 
-	const obtenerUsername = async () => {
-		try {
-			const {user} = await getUsuario();
-			setUsername(user?.user_metadata?.display_name.toUpperCase());
-		} catch (error) {
-			setErrorUsuario("No se pudo recuperar el nombre de usuario: "+ error.message);
-		}
-	}
 
 	const manejarDatosSesion = (evento) => {
-		const {name, value} = evento.target;
+		const { name, value } = evento.target;
 		setDatosSesion({
 			...datosSesion,
 			[name]: value
 		});
 	}
 
+	const getPerfil = async (id) => {
+		try {
+			const perfilUsuario = await obtenerUno('perfil_usuario', id, 'id');
+			const { avatar, nombre, biografia, created_at } = perfilUsuario[0];
+
+			return { id, avatar, nombre, biografia, created_at };
+		} catch (error) {
+			manejarFallo(error);
+		}
+	}
+
+	const getRol = async (id) => {
+		try {
+			const rolUsuario = await obtenerUno('roles_usuario', id, 'id_rol');
+			return { roles_usuario: rolUsuario[0] };
+		} catch (error) {
+			manejarFallo(error);
+		}
+	}
+
+	const isAdmin = () => {
+		return usuario?.roles_usuario?.rol === 'admin';
+	}
+
+	const obtenerDatosUsuario = async (id) => {
+		try {
+			const [perfil, rol] = await Promise.all([
+				getPerfil(id),
+				getRol(id)
+			]);
+			setUsuario(usuario => ({ ...usuario, ...perfil, ...rol }));
+		} catch (error) {
+			manejarFallo(error);
+		}
+	}
+
+	const actualizarUsuario = async (usuarioEditado) => {
+		try {
+			const datos = { nombre: usuarioEditado.nombre, biografia: usuarioEditado.biografia, avatar: usuarioEditado.avatar };
+			const resultado = await actualizar('perfil_usuario', 'id', usuario.id, datos);
+			resultado && setUsuario(user => ({ ...user, ...datos }));
+		} catch (error) {
+			manejarFallo(error);
+		}
+	}
+
+	const manejarFallo = (error) => {
+		setErrorUsuario(error.message);
+		setTimeout(() => {
+			setErrorUsuario("");
+		}, 5000);
+	}
+
 	// Efectos
-	useEffect(()=>{
+	useEffect(() => {
 		getSuscripcion((evento, sesion) => {
-			if (sesion){
+			if (sesion) {
+				obtenerUsuario();
 				navegar("/");
 				setSesionIniciada(true);
-				obtenerUsuario();
-				obtenerUsername(); // Podría sacarlo directamente del usuario pero así no accedo a tantas claves.
 			} else {
 				navegar("/");
 				setSesionIniciada(false);
 				setUsuario(usuarioInicial);
-		}
-	})
+			}
+		})
 	}, []);
+
 
 	// Exportaciones
 	const exportaciones = {
@@ -118,8 +166,10 @@ const ProveedorSesion = ({children}) => {
 		manejarInicioSesion,
 		manejarCierreSesion,
 		manejarDatosSesion,
+		actualizarUsuario,
 		obtenerUsuario,
-		username,
+		obtenerDatosUsuario,
+		isAdmin,
 		sesionIniciada,
 		usuario,
 		datosSesion,
@@ -137,4 +187,4 @@ const ProveedorSesion = ({children}) => {
 }
 
 export default ProveedorSesion
-export {ContextoSesion};
+export { ContextoSesion };

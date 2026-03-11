@@ -1,0 +1,129 @@
+.lista {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 1rem;
+  margin: 0 0.5rem 0.5rem 0.5rem;
+  border: 1px solid #4ba53f;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: box-shadow 0.3s;
+  gap: 1rem;
+}
+
+.lista:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lista-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  min-width: 0;
+  justify-self: start;
+}
+
+.lista-nombre {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.lista-created_at {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.lista-propietario-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  text-align: center;
+  justify-self: center;
+  white-space: nowrap;
+}
+
+.lista-propietario-label {
+  font-size: 0.85rem;
+  color: #777;
+  font-weight: 500;
+}
+
+.lista-propietario {
+  font-size: 1rem;
+  color: #4ba53f;
+  font-weight: 600;
+}
+
+.lista-opciones {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  justify-self: end;
+}
+
+.btn-eliminar-lista,
+.btn-editar-lista,
+.btn-ver-lista {
+  cursor: pointer;
+  font-size: 1.3rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.btn-eliminar-lista {
+  color: #e74c3c;
+  background-color: #ffe5e5;
+}
+
+.btn-eliminar-lista:hover {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-editar-lista {
+  color: #4ba53f;
+  background-color: #e8f5e9;
+}
+
+.btn-editar-lista:hover {
+  background-color: #4ba53f;
+  color: white;
+}
+
+.btn-ver-lista {
+  color: #3498db;
+  background-color: #e3f2fd;
+  width: 2.5rem;
+  font-size: 0.9rem;
+}
+
+.btn-ver-lista:hover {
+  background-color: #3498db;
+  color: white; 
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lista {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .lista-info,
+  .lista-propietario-container,
+  .lista-opciones {
+    justify-self: start;
+  }
+
+  .lista-propietario-container {
+    align-items: flex-start;
+  }
+}

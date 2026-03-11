@@ -1,0 +1,185 @@
+.usuario-detalle {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.btn-volver {
+  display: flex;
+  background-color: #45a049;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-volver:hover {
+  background-color: #4CAF50;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.columna-usuario {
+  display: flex;
+  flex-direction: column;
+}
+
+.usuario-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.usuario-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.usuario-avatar-grande {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #4CAF50;
+  margin-bottom: 15px;
+}
+
+.usuario-info-principal {
+  width: 100%;
+}
+
+.usuario-info-principal h1 {
+  margin: 0 0 10px 0;
+  font-size: 1.8em;
+  color: #333;
+}
+
+.rol-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.rol-badge.admin {
+  background-color: #ff5722;
+  color: white;
+}
+
+.rol-badge.user {
+  background-color: #2196F3;
+  color: white;
+}
+
+.info-seccion {
+  margin-top: 20px;
+}
+
+.info-seccion h3 {
+  color: #4CAF50;
+  margin-bottom: 15px;
+  font-size: 1.3em;
+}
+
+.info-seccion p {
+  margin: 12px 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.info-seccion p strong {
+  color: #333;
+  margin-right: 8px;
+}
+
+
+
+.select-rol {
+  padding: 8px 12px;
+  border: 2px solid #4CAF50;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: white;
+  color: #333333;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.select-rol:hover {
+  border-color: #45a049;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.select-rol:focus {
+  border-color: #45a049;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+.biografia-seccion {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border-left: 4px solid #4CAF50;
+}
+
+.biografia-seccion textarea{
+  padding: 5px;
+  border-radius: 8px;
+  border-left: 4px solid #4CAF50;
+  width: 100%;
+}
+
+.biografia-seccion strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #4CAF50;
+}
+
+.biografia-texto {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* Columna derecha - Listas */
+.columna-listas {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.columna-listas h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

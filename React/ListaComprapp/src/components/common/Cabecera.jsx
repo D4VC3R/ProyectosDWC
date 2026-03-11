@@ -1,33 +1,31 @@
 import React from 'react'
 import LogoCarrito from './LogoCarrito'
 import InfoUsuario from './InfoUsuario'
-import useSesionContext from '../../hooks/useSesionContext'
+import CerrarSesion from './CerrarSesion'
+import Menu from './Menu'
 import './Cabecera.css'
-import { useNavigate } from 'react-router-dom'
+import useSesionContext from '../../hooks/useSesionContext'
 
 const Cabecera = () => {
 
 	const { sesionIniciada } = useSesionContext();
-	const navegar = useNavigate();
 
-	const irAInicio = (e) => {
-		e.preventDefault();
-		e.target.tagName === "H1" && navegar('/');
-		e.target.tagName === "svg" && navegar('/');
-	}
-
+	// Por temas de CSS no agrupo todos los elementos relacionados con tener sesión iniciada en una sola condición.
 	return (
-		<>
-			<div className="contenedor_cabecera" onClick={((e)=>{irAInicio(e)})}>
-				<LogoCarrito size='72' />
-				<h1>Mi Compra</h1>
+		<header className="cabecera">
+			<div className="cabecera-top">
+				<LogoCarrito size='50'/>
+				{sesionIniciada && <Menu />}
 				{sesionIniciada &&
-					<InfoUsuario />
+					<div className="cabecera-usuario">
+						<InfoUsuario />
+					</div>
 				}
 			</div>
-
-		</>
+			
+		</header>
 	)
 }
 
 export default Cabecera
+

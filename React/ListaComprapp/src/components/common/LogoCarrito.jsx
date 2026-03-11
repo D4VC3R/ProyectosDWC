@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const LogoCarrito = ({size = "24"}) => {
+
+  const navegar = useNavigate();
   return (
-    <div className="logo-container">
+    <div className="logo-container" onClick={()=>navegar('/')}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width={size}

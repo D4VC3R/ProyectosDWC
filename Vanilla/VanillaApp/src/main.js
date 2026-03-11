@@ -17,7 +17,7 @@ const ANCHO_CAJA_INICIAL = 200;
 const CAJA_INICIAL_Y = 600;
 const ALTURA_CAJA = 50;
 const VELOCIDAD_INICIAL_Y = 10;
-const VELOCIDAD_INICIAL_X = 1.3;
+const VELOCIDAD_INICIAL_X = 1.5;
 
 // Variables de estado del juego
 let cajas = [];
@@ -125,7 +125,7 @@ function mostrarTop3() {
     top3.forEach((item, i) => {
         html += `<div class="score">${i + 1}. ${item.nombre} - ${item.puntuacion}</div>`;
     });
-    document.getElementById("top3").innerHTML = html;
+    document.getElementById("top").innerHTML = html;
 }
 
 // --Lógica principal del juego--

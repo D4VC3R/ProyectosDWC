@@ -1,12 +1,14 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import Producto from './Producto';
-import useProductContext from '../hooks/useProductContext'
+import useProductContext from '../../hooks/useProductContext'
+import useListContext from '../../hooks/useListContext';
 import './ListadoProductos.css'
-import Cargando from './common/Cargando';
-import Modal from './common/Modal';
+import Cargando from '../common/Cargando';
+import Modal from '../common/Modal';
 
-const ListadoProductos = () => {
+	// Se le pasa un parámetro para cambiar los botones que se muestran en Producto.jsx en función de si nos encontramos en /principal o en /gestion.
+const ListadoProductos = ({ mostrarBotonesAgregar = false, editando = false }) => {
 
 	const navegar = useNavigate();
 
@@ -23,6 +25,8 @@ const ListadoProductos = () => {
 		cargarProductoParaEditar
 	} = useProductContext();
 
+	const { addProducto, mensajeExito: mensajeExitoLista } = useListContext();
+
 	// Recuperamos el id del producto y la acción del botón desde el componente Producto gracias a los data-attributes.
 	const manejarClic = async (e) => {
 		if (e.target.dataset.action === 'eliminar') {
@@ -30,12 +34,16 @@ const ListadoProductos = () => {
 			abrirModalEliminacion(productoId); // Solo necesitamos el id para eliminar.
 		}
 		
-		// Si clicamos en editar, nos vamos al formulario y recuperamos los datos del producto.
-		// Navego primero para evitar que se vea el retardo de la carga de datos.
 		if (e.target.dataset.action === 'editar') {
-			navegar('/gestion');
 			const productoId = e.target.dataset.productoId;
 			await cargarProductoParaEditar(productoId);
+			navegar('/admin/creacion');
+		}
+
+		// Si clicamos en agregar, añadimos el producto a la lista actual
+		if (e.target.dataset.action === 'agregar') {
+			const productoId = e.target.dataset.productoId;
+			await addProducto(productoId);
 		}
 	};
 
@@ -46,10 +54,12 @@ const ListadoProductos = () => {
 			{errorProducto && <div className="mensaje-error">{errorProducto}</div>}
 			<div className='listado-productos' onClick={manejarClic}>
 				{listadoProductos.length > 0 ? listadoProductos.map((producto) => {
-					return <Producto key={producto.id} producto={producto} />
+					return <Producto key={producto.id} producto={producto} mostrarBotonesAgregar={mostrarBotonesAgregar} editando={editando} />
 				})
 				:<p>Sin resultados.</p>}
 			</div>
+			{editando && <span className="boton-crear" onClick={()=>{navegar('/admin/creacion')}}>Nuevo producto</span>}
+			{mensajeExitoLista && <div className="mensaje-exito">{mensajeExitoLista}</div>}
 
 			<Modal
 				isOpen={modalOpen}

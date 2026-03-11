@@ -66,3 +66,45 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Mensajes globales */
+.mensaje-exito {
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #e8f5e9;
+  color: #4ba53f;
+  border: 1px solid #4ba53f;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.mensaje-error {
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #ffe5e5;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4ba53f;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3d8834;
+}

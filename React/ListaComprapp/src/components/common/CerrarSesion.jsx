@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import useSesionContext from '../../hooks/useSesionContext'
 import Modal from './Modal'
+import './CerrarSesion.css'
 
 const CerrarSesion = () => {
 

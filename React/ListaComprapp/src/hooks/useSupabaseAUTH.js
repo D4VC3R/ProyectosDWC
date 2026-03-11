@@ -34,8 +34,8 @@ const useSupabaseAUTH = () => {
 		return solicitar(sb.auth.signOut());
 	};
 
-	const getUsuario = () => {
-		return solicitar(sb.auth.getUser());
+	const getUsuario = async () => {
+		return await solicitar(sb.auth.getUser());
 	};
 
 	const getSuscripcion = (funcion) => {

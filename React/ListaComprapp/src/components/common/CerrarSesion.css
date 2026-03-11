@@ -1,0 +1,19 @@
+.cerrarSesion {
+    cursor: pointer;
+    font-size: 0.9em;
+    text-shadow: 1px 1px 2px black;
+    border-radius: 1em;
+    color: #fff;
+    padding: 0.3em 0.6em;
+    border: 1px solid white;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.cerrarSesion:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.cerrarSesion:active {
+    transform: scale(0.95);
+}

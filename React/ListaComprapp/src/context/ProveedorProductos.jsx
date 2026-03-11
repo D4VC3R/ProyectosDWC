@@ -178,7 +178,7 @@ const ProveedorProductos = ({ children }) => {
 		try {
 			validarDatosProducto();
 			const productoFormateado = formatearProducto(producto);
-			await actualizar('producto', producto.id, productoFormateado);
+			await actualizar('producto', 'id', producto.id, productoFormateado);
 			manejarExito('actualizar');
 			return true; // Devuelvo true para poder navegar tras la creación si todo ha ido bien.
 		} catch (error) {

@@ -1,0 +1,43 @@
+{
+  "publicas": [
+    {
+      "titulo": "Iniciar Sesión",
+      "descripcion": "Accede a tus listas de la compra",
+      "imagen": "https://images.unsplash.com/photo-1633265486064-086b219458ec?w=400&h=500&fit=crop",
+      "ruta": "/login",
+      "color": "#4ba53f"
+    },
+    {
+      "titulo": "Ver Productos",
+      "descripcion": "Explora el catálogo de productos",
+      "imagen": "https://images.unsplash.com/photo-1543168256-418811576931?w=400&h=500&fit=crop",
+      "ruta": "/principal",
+      "color": "#2196F3"
+    }
+  ],
+  "usuario": [
+    {
+      "titulo": "Mis Listas",
+      "descripcion": "Gestiona tus listas de la compra",
+      "imagen": "https://images.unsplash.com/photo-1753715613392-c708c671b3dd?w=400&h=500&fit=crop",
+      "ruta": "/principal",
+      "color": "#4ba53f"
+    },
+    {
+      "titulo": "Mi Perfil",
+      "descripcion": "Configura tu cuenta y preferencias",
+      "imagen": "https://images.unsplash.com/photo-1504711331083-9c895941bf81?w=400&h=500&fit=crop",
+      "ruta": "/miperfil",
+      "color": "#FF9800"
+    }
+  ],
+  "admin": [
+    {
+      "titulo": "Administración",
+      "descripcion": "Gestiona productos y usuarios",
+      "imagen": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=500&fit=crop",
+      "ruta": "/admin",
+      "color": "#9C27B0"
+    }
+  ]
+}

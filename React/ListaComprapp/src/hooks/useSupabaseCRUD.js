@@ -5,12 +5,12 @@ const useSupabaseCRUD = () => {
   const { cargando, error, solicitar } = useSupabase();
 
   // Funciones para CRUD, no las hago asíncronas porque todas dependen de solicitar(), que ya lo es.
-  const obtenerTodo = (tabla) => {
-    return solicitar(sb.from(tabla).select("*"));
+  const obtenerTodo = async (tabla, columnas = "*") => {
+    return await solicitar(sb.from(tabla).select(columnas));
   };
 
-  const obtenerUno = (tabla, id) => {
-    return solicitar(sb.from(tabla).select("*").eq("id", id));
+  const obtenerUno = async (tabla, id, campo="id", columnas = "*") => {
+    return await solicitar(sb.from(tabla).select(columnas).eq(campo, id));
   };
 
   const filtrarILike = (tabla, columna, valor) => {
@@ -31,15 +31,22 @@ const useSupabaseCRUD = () => {
     return solicitar(sb.from(tabla).insert(datos).select());
   };
 
-  const actualizar = (tabla, id, datos) => {
-    return solicitar(sb.from(tabla).update(datos).eq("id", id).select());
+  const actualizar = (tabla, campo, valor, datos) => {
+    return solicitar(sb.from(tabla).update(datos).eq(campo, valor).select());
   };
 
   const eliminar = (tabla, id) => {
     return solicitar(sb.from(tabla).delete().eq("id", id));
   };
 
-	// Fusilada de la documentación de supabase.
+  // Consultas multitabla
+  // tabla de inicio  -> campo y valor para filtrar -> consulta sql
+  // order para que el producto mantenga simpre la misma posición en supabase. Así al actualizar la cantidad de un producto no se desordena la lista.
+const obtenerRelacionados = (tabla, filtro, id, columnas = '*') => {
+  return solicitar(sb.from(tabla).select(columnas).eq(filtro, id).order('created_at', { ascending: true })); 
+}
+
+	// Suscripción a tabla, se dispara con cualquier tipo de evento (insertar, actualizar, borrar...).
   const suscripcionATabla = (tabla, callback) => {
     const canal = sb
       .channel(`custom-${tabla}-channel`)
@@ -52,7 +59,7 @@ const useSupabaseCRUD = () => {
 
     return canal;
   };
-
+  // Eliminar la suscripción.
   const cancelarSuscripcion = (canal) => {
     sb.removeChannel(canal);
   };
@@ -62,6 +69,7 @@ const useSupabaseCRUD = () => {
     error,
     obtenerTodo,
     obtenerUno,
+    obtenerRelacionados,
     filtrarILike,
     filtrarIgualOMenor,
     ordenarTabla,
